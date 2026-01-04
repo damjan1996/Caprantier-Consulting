@@ -14,7 +14,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Standort',
-    value: 'Koeln, Deutschland',
+    value: 'Köln, Deutschland',
     href: null,
   },
   {
@@ -49,8 +49,8 @@ export default function KontaktPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Bereit fuer planbare Neukundengewinnung? Buchen Sie jetzt Ihr
-              kostenloses Strategiegespraech.
+              Bereit für planbare Neukundengewinnung? Buchen Sie jetzt Ihr
+              kostenloses Strategiegespräch.
             </p>
           </FadeIn>
         </div>
@@ -64,12 +64,12 @@ export default function KontaktPage() {
             <FadeIn>
               <div className="p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 h-full">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                  Kostenloses Strategiegespraech
+                  Kostenloses Strategiegespräch
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  In einem 15-minuetigen Gespraech analysieren wir Ihre aktuelle
+                  In einem 15-minütigen Gespräch analysieren wir Ihre aktuelle
                   Situation und zeigen Ihnen, wie wir Ihren Kalender mit
-                  qualifizierten Terminen fuellen koennen.
+                  qualifizierten Terminen füllen können.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -167,7 +167,7 @@ export default function KontaktPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" onClick={openCalendly}>
                   <Phone className="mr-2 h-4 w-4" />
-                  Gespraech buchen
+                  Gespräch buchen
                 </Button>
                 <a href="mailto:info@carpantier-consulting.de">
                   <Button variant="outline" className="w-full">

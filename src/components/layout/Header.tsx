@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Leistungen', href: '/leistungen' },
-  { name: 'Ueber uns', href: '/ueber-uns' },
+  { name: 'Über uns', href: '/ueber-uns' },
   { name: 'Kontakt', href: '/kontakt' },
 ]
 
@@ -24,6 +24,18 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
+
   const openCalendly = () => {
     if (typeof window !== 'undefined' && (window as any).Calendly) {
       (window as any).Calendly.showPopupWidget('https://calendly.com/nico-carpantier-consulting/30min')
@@ -31,87 +43,125 @@ export default function Header() {
   }
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-background/80 backdrop-blur-lg border-b border-white/10 py-3'
-          : 'bg-transparent py-5'
-      )}
-    >
-      <nav className="container-custom flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl md:text-2xl font-bold text-white">
-            Carpantier<span className="text-primary">.</span>
-          </span>
-        </Link>
+    <>
+      <header
+        className={cn(
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          isScrolled
+            ? 'bg-background/90 backdrop-blur-lg shadow-lg shadow-black/10 py-3'
+            : 'bg-transparent py-5'
+        )}
+      >
+        <nav className="container-custom flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl md:text-2xl font-bold text-white">
+              Carpantier<span className="text-primary">.</span>
+            </span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={openCalendly}
-            className="btn-primary flex items-center gap-2 text-sm"
-          >
-            <Phone className="h-4 w-4" />
-            Erstgespraech buchen
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-white/10">
-          <div className="container-custom py-6 flex flex-col gap-4">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-lg font-medium text-muted-foreground hover:text-white transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
               >
                 {item.name}
               </Link>
             ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
             <button
-              onClick={() => {
-                setIsMobileMenuOpen(false)
-                openCalendly()
-              }}
-              className="btn-primary flex items-center justify-center gap-2 mt-4"
+              onClick={openCalendly}
+              className="btn-primary flex items-center gap-2 text-sm"
             >
               <Phone className="h-4 w-4" />
-              Erstgespraech buchen
+              Erstgespräch buchen
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 text-white"
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Menü öffnen"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </nav>
+      </header>
+
+      {/* Mobile Sidebar Overlay */}
+      <div
+        className={cn(
+          'fixed inset-0 z-50 md:hidden',
+          isMobileMenuOpen
+            ? 'pointer-events-auto'
+            : 'pointer-events-none'
+        )}
+      >
+        {/* Backdrop - click to close */}
+        <div
+          className={cn(
+            'absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200',
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+          )}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+
+        {/* Sidebar */}
+        <div
+          className={cn(
+            'absolute top-0 right-0 h-full w-72 bg-background border-l border-white/10 shadow-2xl transition-transform duration-300 ease-out',
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          )}
+        >
+          {/* Close Button */}
+          <div className="flex justify-end p-4">
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 text-muted-foreground hover:text-white transition-colors"
+              aria-label="Menü schließen"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="px-6 py-4">
+            <div className="flex flex-col gap-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-lg font-medium text-muted-foreground hover:text-white hover:bg-white/5 transition-colors py-3 px-4 rounded-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-8">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  openCalendly()
+                }}
+                className="btn-primary w-full flex items-center justify-center gap-2 text-sm py-3 px-4"
+              >
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span>Erstgespräch buchen</span>
+              </button>
+            </div>
+          </nav>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   )
 }

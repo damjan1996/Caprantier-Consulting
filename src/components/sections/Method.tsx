@@ -15,18 +15,18 @@ const STEPS = [
   },
   {
     icon: Phone,
-    title: '2. Akquise-Uebernahme',
+    title: '2. Akquise-Übernahme',
     description:
-      'Wir fuehren die Gespraeche, als waeren wir Teil Ihres Teams. Professionell, hartnaeckig und sympathisch.',
+      'Wir führen die Gespräche, als wären wir Teil Ihres Teams. Professionell, hartnäckig und sympathisch.',
     color: 'text-purple-400',
     bg: 'bg-purple-400/10',
     border: 'border-purple-400/20',
   },
   {
     icon: CalendarCheck,
-    title: '3. Verkaufsgespraeche',
+    title: '3. Verkaufsgespräche',
     description:
-      'Sie erhalten qualifizierte Termine direkt in Ihren Kalender. Sie schliessen ab - wir halten Ihnen den Ruecken frei.',
+      'Sie erhalten qualifizierte Termine direkt in Ihren Kalender. Sie schließen ab - wir halten Ihnen den Rücken frei.',
     color: 'text-green-400',
     bg: 'bg-green-400/10',
     border: 'border-green-400/20',

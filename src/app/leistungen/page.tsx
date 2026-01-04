@@ -5,10 +5,10 @@ import CTA from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'Leistungen',
-  description: 'Unsere B2B-Akquise-Dienstleistungen: Telefonakquise, Leadgenerierung, Terminqualifizierung und strategisches Reporting fuer Agenturen und IT-Dienstleister.',
+  description: 'Unsere B2B-Akquise-Dienstleistungen: Telefonakquise, Leadgenerierung, Terminqualifizierung und strategisches Reporting für Agenturen und IT-Dienstleister.',
   openGraph: {
     title: 'Leistungen | Carpantier Consulting',
-    description: 'Professionelle B2B-Telefonakquise und Leadgenerierung fuer Ihren Erfolg.',
+    description: 'Professionelle B2B-Telefonakquise und Leadgenerierung für Ihren Erfolg.',
   },
 }
 
@@ -16,9 +16,9 @@ const services = [
   {
     icon: Phone,
     title: 'Telefonakquise',
-    description: 'Professionelle Kaltakquise durch erfahrene Sales-Experten. Wir sprechen mit Entscheidern auf Augenhoehe.',
+    description: 'Professionelle Kaltakquise durch erfahrene Sales-Experten. Wir sprechen mit Entscheidern auf Augenhöhe.',
     features: [
-      'Individuelle Gespraechsleitfaeden',
+      'Individuelle Gesprächsleitfäden',
       'Branchenspezifische Ansprache',
       'Kontinuierliche Optimierung',
       'Erfahrene B2B-Vertriebsprofis',
@@ -27,9 +27,9 @@ const services = [
   {
     icon: Target,
     title: 'Leadgenerierung',
-    description: 'Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden nach massgeschneiderten Kriterien.',
+    description: 'Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden nach maßgeschneiderten Kriterien.',
     features: [
-      'Praezise Zielgruppenselektion',
+      'Präzise Zielgruppenselektion',
       'Datenqualifizierung',
       'BANT-Methode',
       'CRM-Integration',
@@ -49,12 +49,12 @@ const services = [
   {
     icon: BarChart3,
     title: 'Reporting & Analyse',
-    description: 'Transparente Berichte ueber alle Aktivitaeten und Ergebnisse. Volle Kontrolle fuer Sie.',
+    description: 'Transparente Berichte über alle Aktivitäten und Ergebnisse. Volle Kontrolle für Sie.',
     features: [
-      'Woechentliche Reports',
+      'Wöchentliche Reports',
       'KPI-Tracking',
       'Conversion-Analysen',
-      'Optimierungsvorschlaege',
+      'Optimierungsvorschläge',
     ],
   },
 ]
@@ -68,12 +68,12 @@ const process = [
   {
     step: '02',
     title: 'Setup',
-    description: 'Erstellung massgeschneiderter Gespraechsleitfaeden und Selektion der Zielgruppe.',
+    description: 'Erstellung maßgeschneiderter Gesprächsleitfäden und Selektion der Zielgruppe.',
   },
   {
     step: '03',
     title: 'Akquise-Start',
-    description: 'Wir beginnen mit den Gespraechen und liefern qualifizierte Termine in Ihren Kalender.',
+    description: 'Wir beginnen mit den Gesprächen und liefern qualifizierte Termine in Ihren Kalender.',
   },
   {
     step: '04',
@@ -101,8 +101,8 @@ export default function LeistungenPage() {
               liefert
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Von der Strategie bis zum qualifizierten Termin - wir uebernehmen
-              Ihre komplette Akquise und fuellen Ihren Kalender mit Entscheidern.
+              Von der Strategie bis zum qualifizierten Termin - wir übernehmen
+              Ihre komplette Akquise und füllen Ihren Kalender mit Entscheidern.
             </p>
           </FadeIn>
         </div>
@@ -153,7 +153,7 @@ export default function LeistungenPage() {
               So starten wir zusammen
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ein strukturierter Prozess fuer maximale Ergebnisse.
+              Ein strukturierter Prozess für maximale Ergebnisse.
             </p>
           </FadeIn>
 
@@ -191,7 +191,7 @@ export default function LeistungenPage() {
               <p className="text-muted-foreground mb-8">
                 Jahrelange Erfahrung im B2B-Vertrieb und Recruiting. Wir wissen,
                 wie man mit Entscheidern spricht und Termine vereinbart, die zu
-                Abschluessen fuehren.
+                Abschlüssen führen.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
@@ -223,7 +223,7 @@ export default function LeistungenPage() {
                   <div>
                     <h4 className="font-semibold text-white">Zeitersparnis</h4>
                     <p className="text-sm text-muted-foreground">
-                      Fokussieren Sie sich auf Ihr Kerngeschaeft
+                      Fokussieren Sie sich auf Ihr Kerngeschäft
                     </p>
                   </div>
                 </div>

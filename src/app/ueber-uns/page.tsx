@@ -5,11 +5,11 @@ import FadeIn from '@/components/ui/FadeIn'
 import CTA from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Ueber uns',
-  description: 'Erfahren Sie mehr ueber Carpantier Consulting - Ihr Partner fuer professionelle B2B-Telefonakquise und Leadgenerierung aus Koeln.',
+  title: 'Über uns',
+  description: 'Erfahren Sie mehr über Carpantier Consulting - Ihr Partner für professionelle B2B-Telefonakquise und Leadgenerierung aus Köln.',
   openGraph: {
-    title: 'Ueber uns | Carpantier Consulting',
-    description: 'Ihr Partner fuer professionelle B2B-Telefonakquise und Leadgenerierung.',
+    title: 'Über uns | Carpantier Consulting',
+    description: 'Ihr Partner für professionelle B2B-Telefonakquise und Leadgenerierung.',
   },
 }
 
@@ -17,17 +17,17 @@ const values = [
   {
     icon: Target,
     title: 'Ergebnisorientiert',
-    description: 'Wir messen uns an den Terminen, die wir liefern - nicht an Aktivitaeten.',
+    description: 'Wir messen uns an den Terminen, die wir liefern - nicht an Aktivitäten.',
   },
   {
     icon: Users,
     title: 'Partnerschaftlich',
-    description: 'Wir arbeiten als Teil Ihres Teams und repraesentieren Ihre Marke.',
+    description: 'Wir arbeiten als Teil Ihres Teams und repräsentieren Ihre Marke.',
   },
   {
     icon: TrendingUp,
     title: 'Kontinuierlich',
-    description: 'Konstante Schlagzahl statt einmaliger Aktionen fuer nachhaltige Ergebnisse.',
+    description: 'Konstante Schlagzahl statt einmaliger Aktionen für nachhaltige Ergebnisse.',
   },
   {
     icon: Award,
@@ -40,12 +40,12 @@ const experience = [
   {
     icon: Briefcase,
     title: 'B2B-Vertrieb',
-    description: 'Umfassende Erfahrung in der Neukundengewinnung fuer Dienstleister und Agenturen.',
+    description: 'Umfassende Erfahrung in der Neukundengewinnung für Dienstleister und Agenturen.',
   },
   {
     icon: Users,
     title: 'Recruiting',
-    description: 'Tiefes Verstaendnis fuer Gespraechsfuehrung und Bedarfsanalyse aus dem Recruiting-Bereich.',
+    description: 'Tiefes Verständnis für Gesprächsführung und Bedarfsanalyse aus dem Recruiting-Bereich.',
   },
   {
     icon: Phone,
@@ -64,7 +64,7 @@ export default function UeberUnsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <span className="text-primary font-medium tracking-wider uppercase text-sm">
-                Ueber uns
+                Über uns
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
                 B2B-Akquise ist unsere{' '}
@@ -75,7 +75,7 @@ export default function UeberUnsPage() {
               <p className="text-lg md:text-xl text-muted-foreground mb-8">
                 Bei Carpantier Consulting verbinden wir jahrelange Erfahrung im
                 B2B-Vertrieb und Recruiting mit dem Ziel, Agenturen und
-                IT-Dienstleistern planbare Neukundengewinnung zu ermoeglichen.
+                IT-Dienstleistern planbare Neukundengewinnung zu ermöglichen.
               </p>
               <div className="flex items-center gap-4">
                 <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-primary">
@@ -90,7 +90,7 @@ export default function UeberUnsPage() {
                 <div>
                   <div className="font-semibold text-white">Nico Carpantier</div>
                   <div className="text-sm text-muted-foreground">
-                    Geschaeftsfuehrer & Sales Consultant
+                    Geschäftsführer & Sales Consultant
                   </div>
                 </div>
               </div>
@@ -126,19 +126,19 @@ export default function UeberUnsPage() {
                 <p className="text-lg text-muted-foreground mb-6">
                   Carpantier Consulting entstand aus einer einfachen Erkenntnis:
                   Die meisten Agenturen und IT-Dienstleister haben ein
-                  hervorragendes Angebot, aber keine Zeit oder Ressourcen fuer
+                  hervorragendes Angebot, aber keine Zeit oder Ressourcen für
                   systematische Akquise.
                 </p>
                 <p className="text-lg text-muted-foreground mb-6">
                   Mit jahrelanger Erfahrung im B2B-Vertrieb - von der
                   Personalberatung bis zur direkten Kundenakquise - wissen wir,
                   wie wichtig eine konstante Pipeline qualifizierter Leads ist.
-                  Diese Expertise bringen wir nun gezielt fuer unsere Partner ein.
+                  Diese Expertise bringen wir nun gezielt für unsere Partner ein.
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  Unser Ansatz: Wir uebernehmen nicht nur die Akquise, sondern
+                  Unser Ansatz: Wir übernehmen nicht nur die Akquise, sondern
                   werden zum erweiterten Teil Ihres Teams. Professionell,
-                  zuverlaessig und mit dem klaren Fokus auf messbare Ergebnisse.
+                  zuverlässig und mit dem klaren Fokus auf messbare Ergebnisse.
                 </p>
               </div>
             </FadeIn>
@@ -184,7 +184,7 @@ export default function UeberUnsPage() {
               Unsere Werte
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-6">
-              Wofuer wir stehen
+              Wofür wir stehen
             </h2>
           </FadeIn>
 
@@ -217,10 +217,10 @@ export default function UeberUnsPage() {
                 Unsere Mission
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Wir machen Akquise zur strategischen Saeure Ihres Unternehmens -
+                Wir machen Akquise zur strategischen Säule Ihres Unternehmens -
                 planbar, messbar und mit voller Transparenz. Damit Sie sich auf
-                das konzentrieren koennen, was Sie am besten koennen: Ihre Kunden
-                betreuen und Ihr Geschaeft ausbauen.
+                das konzentrieren können, was Sie am besten können: Ihre Kunden
+                betreuen und Ihr Geschäft ausbauen.
               </p>
               <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-primary">
                 Limitiert auf 5 neue Partner pro Monat

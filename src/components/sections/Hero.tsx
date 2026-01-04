@@ -42,7 +42,7 @@ export default function Hero() {
 
             <FadeIn delay={0.2}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
-                Die Aera der{' '}
+                Die Ära der{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 text-glow">
                   unplanbaren Akquise
                 </span>{' '}
@@ -61,7 +61,7 @@ export default function Hero() {
             <FadeIn delay={0.4}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" onClick={openCalendly}>
-                  Erstgespraech sichern
+                  Erstgespräch sichern
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>

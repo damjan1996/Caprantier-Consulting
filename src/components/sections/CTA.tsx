@@ -20,12 +20,12 @@ export default function CTA() {
         <div className="max-w-4xl mx-auto text-center">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Ihr naechster qualifizierter Kunde ist nur ein{' '}
-              <span className="text-primary">Gespraech</span> entfernt.
+              Ihr nächster qualifizierter Kunde ist nur ein{' '}
+              <span className="text-primary">Gespräch</span> entfernt.
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
               In 15 Minuten analysieren wir Ihr Potenzial und zeigen Ihnen, wie
-              der Akquise-Prozess Ihren Kalender fuellt.
+              der Akquise-Prozess Ihren Kalender füllt.
             </p>
           </FadeIn>
 
@@ -36,7 +36,7 @@ export default function CTA() {
                 onClick={openCalendly}
                 className="text-lg md:text-xl px-8 md:px-10 py-6 md:py-8"
               >
-                Kostenloses Strategiegespraech buchen
+                Kostenloses Strategiegespräch buchen
                 <ArrowRight className="ml-2 h-5 w-5 md:h-6 md:w-6" />
               </Button>
 

@@ -5,7 +5,7 @@ const navigation = {
   main: [
     { name: 'Home', href: '/' },
     { name: 'Leistungen', href: '/leistungen' },
-    { name: 'Ueber uns', href: '/ueber-uns' },
+    { name: 'Über uns', href: '/ueber-uns' },
     { name: 'Kontakt', href: '/kontakt' },
   ],
   legal: [
@@ -39,7 +39,7 @@ export default function Footer() {
               </a>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                Koeln, Deutschland
+                Köln, Deutschland
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function Footer() {
               &copy; {currentYear} Carpantier Consulting. Alle Rechte vorbehalten.
             </p>
             <p className="text-sm text-muted-foreground">
-              B2B Sales Consulting aus Koeln
+              B2B Sales Consulting aus Köln
             </p>
           </div>
         </div>

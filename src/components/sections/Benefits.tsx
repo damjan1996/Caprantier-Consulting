@@ -12,13 +12,13 @@ const BENEFITS = [
   },
   {
     icon: Clock,
-    title: 'Zeit fuer Ihr Kerngeschaeft',
+    title: 'Zeit für Ihr Kerngeschäft',
     description:
-      'Waehrend wir akquirieren, koennen Sie sich auf das konzentrieren, was Sie am besten koennen: Ihre Kunden betreuen.',
+      'Während wir akquirieren, können Sie sich auf das konzentrieren, was Sie am besten können: Ihre Kunden betreuen.',
   },
   {
     icon: TrendingUp,
-    title: 'Planbare Umsaetze',
+    title: 'Planbare Umsätze',
     description:
       'Schluss mit der Umsatz-Achterbahn. Mit konstanter Schlagzahl zu planbarem Wachstum.',
   },
@@ -26,19 +26,19 @@ const BENEFITS = [
     icon: Users,
     title: 'Kein eigenes Sales-Team',
     description:
-      'Sparen Sie sich die Kosten und den Aufwand fuer Recruiting, Onboarding und Fuehrung eines eigenen Vertriebsteams.',
+      'Sparen Sie sich die Kosten und den Aufwand für Recruiting, Onboarding und Führung eines eigenen Vertriebsteams.',
   },
   {
     icon: Shield,
     title: 'Expertise aus Erfahrung',
     description:
-      'Jahrelange Erfahrung in B2B-Vertrieb und Recruiting. Bewaehrte Strategien, die funktionieren.',
+      'Jahrelange Erfahrung in B2B-Vertrieb und Recruiting. Bewährte Strategien, die funktionieren.',
   },
   {
     icon: BarChart3,
     title: 'Volle Transparenz',
     description:
-      'Detailliertes Reporting ueber alle Aktivitaeten. Sie wissen immer genau, was passiert.',
+      'Detailliertes Reporting über alle Aktivitäten. Sie wissen immer genau, was passiert.',
   },
 ]
 
@@ -54,7 +54,7 @@ export default function Benefits() {
             Warum Carpantier Consulting?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Wir uebernehmen Ihre Akquise - Sie schliessen ab.
+            Wir übernehmen Ihre Akquise - Sie schließen ab.
           </p>
         </FadeIn>
 

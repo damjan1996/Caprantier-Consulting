@@ -6,17 +6,17 @@ import FadeIn from '@/components/ui/FadeIn'
 const PROBLEMS = [
   {
     title: 'Theorie statt Praxis',
-    description: 'Andere verkaufen Ihnen Videokurse. Wir liefern echte Gespraeche.',
+    description: 'Andere verkaufen Ihnen Videokurse. Wir liefern echte Gespräche.',
     quote: 'Sie brauchen keine weiteren Coachings, Sie brauchen Termine.',
   },
   {
     title: 'Zeitfresser Kaltakquise',
-    description: 'Ihre Zeit ist im Kerngeschaeft gebunden, nicht am Telefonhoerer.',
+    description: 'Ihre Zeit ist im Kerngeschäft gebunden, nicht am Telefonhörer.',
     quote: 'Jede Stunde in der Akquise fehlt Ihnen in der Auslieferung.',
   },
   {
     title: 'Umsatz-Achterbahn',
-    description: 'Mal laeuft es, mal nicht. Ohne System bleibt Erfolg Zufall.',
+    description: 'Mal läuft es, mal nicht. Ohne System bleibt Erfolg Zufall.',
     quote: 'Planbarkeit entsteht nur durch konsistente Schlagzahl.',
   },
 ]

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: '%s | Carpantier Consulting'
   },
   description: 'Planbare Neukundengewinnung durch professionelle B2B-Telefonakquise. Wir liefern qualifizierte Termine mit Entscheidern direkt in Ihren Kalender.',
-  keywords: ['B2B Akquise', 'Telefonakquise', 'Leadgenerierung', 'Neukundengewinnung', 'Kaltakquise', 'Sales Consulting', 'Terminierung', 'Vertrieb', 'Agentur Akquise', 'IT Dienstleister'],
+  keywords: ['B2B Akquise', 'Telefonakquise', 'Leadgenerierung', 'Neukundengewinnung', 'Kaltakquise', 'Sales Consulting', 'Terminierung', 'Vertrieb', 'Agentur Akquise', 'IT Dienstleister', 'Köln'],
   authors: [{ name: 'Carpantier Consulting' }],
   creator: 'Carpantier Consulting',
   publisher: 'Carpantier Consulting',
@@ -70,6 +70,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#0a0a0a" />
+        {/* Calendly Widget CSS */}
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Header />

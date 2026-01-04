@@ -7,22 +7,22 @@ import FadeIn from '@/components/ui/FadeIn'
 
 const FAQS = [
   {
-    question: 'Was passiert im Erstgespraech?',
+    question: 'Was passiert im Erstgespräch?',
     answer:
-      'Im Erstgespraech analysieren wir Ihre aktuelle Situation und pruefen, ob unser System fuer Ihre Agentur geeignet ist. Wir geben Ihnen bereits erste strategische Impulse mit, voellig unverbindlich.',
+      'Im Erstgespräch analysieren wir Ihre aktuelle Situation und prüfen, ob unser System für Ihre Agentur geeignet ist. Wir geben Ihnen bereits erste strategische Impulse mit, völlig unverbindlich.',
   },
   {
-    question: 'Warum ist das Gespraech kostenlos?',
+    question: 'Warum ist das Gespräch kostenlos?',
     answer:
-      'Wir investieren in Vorleistung, weil wir wissen, dass unser System ueberzeugt. Wenn wir sehen, dass wir Ihnen helfen koennen, machen wir Ihnen ein Angebot. Wenn nicht, haben Sie trotzdem wertvolle Klarheit gewonnen.',
+      'Wir investieren in Vorleistung, weil wir wissen, dass unser System überzeugt. Wenn wir sehen, dass wir Ihnen helfen können, machen wir Ihnen ein Angebot. Wenn nicht, haben Sie trotzdem wertvolle Klarheit gewonnen.',
   },
   {
     question: 'Was kostet die Dienstleistung?',
     answer:
-      'Da wir keine Standard-Pakete verkaufen, sondern massgeschneiderte Loesungen, variiert der Preis je nach Umfang und Zielsetzung. Im Erstgespraech koennen wir Ihnen nach der Analyse eine genaue Hausnummer nennen.',
+      'Da wir keine Standard-Pakete verkaufen, sondern maßgeschneiderte Lösungen, variiert der Preis je nach Umfang und Zielsetzung. Im Erstgespräch können wir Ihnen nach der Analyse eine genaue Hausnummer nennen.',
   },
   {
-    question: 'Fuer wen ist Carpantier Consulting geeignet?',
+    question: 'Für wen ist Carpantier Consulting geeignet?',
     answer:
       'Wir arbeiten exklusiv mit Dienstleistern und Agenturinhabern (B2B), die ein funktionierendes Angebot haben und bereit sind, zu skalieren. Wir arbeiten nicht mit Network Marketern oder Dropshippern.',
   },
@@ -34,7 +34,7 @@ const FAQS = [
   {
     question: 'Wie schnell kann ich mit Ergebnissen rechnen?',
     answer:
-      'Nach dem Onboarding starten wir in der Regel innerhalb weniger Tage mit den ersten Gespraechen. Die ersten qualifizierten Termine koennen Sie oft schon in der ersten Woche erwarten.',
+      'Nach dem Onboarding starten wir in der Regel innerhalb weniger Tage mit den ersten Gesprächen. Die ersten qualifizierten Termine können Sie oft schon in der ersten Woche erwarten.',
   },
 ]
 
@@ -86,10 +86,10 @@ export default function FAQ() {
         <div className="max-w-3xl mx-auto">
           <FadeIn className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Haeufige Fragen
+              Häufige Fragen
             </h2>
             <p className="text-muted-foreground">
-              Alles, was Sie vor dem Start wissen muessen.
+              Alles, was Sie vor dem Start wissen müssen.
             </p>
           </FadeIn>
 
