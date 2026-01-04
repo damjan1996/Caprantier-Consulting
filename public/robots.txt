@@ -1,0 +1,10 @@
+# Robots.txt for carpantier-consulting.de
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://carpantier-consulting.de/sitemap.xml
+
+# Disallow admin or private paths (if any)
+Disallow: /api/
