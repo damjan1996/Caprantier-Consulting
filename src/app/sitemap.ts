@@ -2,41 +2,47 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://carpantier-consulting.de'
+  const currentDate = new Date().toISOString()
 
   return [
+    // Homepage - höchste Priorität
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 1,
+      priority: 1.0,
     },
+    // Leistungen - sehr wichtig für SEO
     {
       url: `${baseUrl}/leistungen`,
-      lastModified: new Date(),
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    // Kontakt - wichtig für Conversions
+    {
+      url: `${baseUrl}/kontakt`,
+      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Über uns
     {
       url: `${baseUrl}/ueber-uns`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/kontakt`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+    // Rechtliche Seiten
     {
       url: `${baseUrl}/impressum`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/datenschutz`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
     },

@@ -1,0 +1,5 @@
+export { default as Hero } from './Hero'
+export { default as Problem } from './Problem'
+export { default as Method } from './Method'
+export { default as Benefits } from './Benefits'
+export { default as FAQ } from './FAQ'

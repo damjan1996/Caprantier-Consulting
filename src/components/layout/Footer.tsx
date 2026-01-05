@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import Image from 'next/image'
+import { Mail, MapPin } from 'lucide-react'
 
 const navigation = {
   main: [
@@ -18,12 +19,19 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-card border-t border-white/5">
+    <footer className="bg-black/60 backdrop-blur-sm border-t border-white/10 relative z-10">
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-flex items-center gap-3 mb-4">
+              <Image
+                src="/logo/Logo - Weiß.png"
+                alt="Carpantier Consulting"
+                width={40}
+                height={40}
+                className="h-9 w-auto"
+              />
               <span className="text-2xl font-bold text-white">
                 Carpantier<span className="text-primary">.</span>
               </span>

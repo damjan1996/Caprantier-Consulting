@@ -1,19 +1,18 @@
-import Hero from '@/components/sections/Hero'
-import Problem from '@/components/sections/Problem'
-import Method from '@/components/sections/Method'
-import Benefits from '@/components/sections/Benefits'
-import FAQ from '@/components/sections/FAQ'
+'use client'
+
+import { PageWrapper } from '@/components/ui'
 import CTA from '@/components/sections/CTA'
+import { Hero, Problem, Method, Benefits, FAQ } from './components'
 
 export default function Home() {
   return (
-    <>
+    <PageWrapper>
       <Hero />
       <Problem />
       <Method />
       <Benefits />
       <FAQ />
       <CTA />
-    </>
+    </PageWrapper>
   )
 }

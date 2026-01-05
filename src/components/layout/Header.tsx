@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useCalendly } from '@/hooks/useCalendly'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -15,6 +17,7 @@ const navigation = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { openCalendly, onHover } = useCalendly()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,25 +39,27 @@ export default function Header() {
     }
   }, [isMobileMenuOpen])
 
-  const openCalendly = () => {
-    if (typeof window !== 'undefined' && (window as any).Calendly) {
-      (window as any).Calendly.showPopupWidget('https://calendly.com/nico-carpantier-consulting/30min')
-    }
-  }
-
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-sm',
           isScrolled
-            ? 'bg-background/90 backdrop-blur-lg shadow-lg shadow-black/10 py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-black/70 backdrop-blur-lg shadow-lg shadow-black/10 py-3'
+            : 'bg-black/40 py-5'
         )}
       >
         <nav className="container-custom flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/logo/Logo - Weiß.png"
+              alt="Carpantier Consulting"
+              width={40}
+              height={40}
+              className="h-8 md:h-10 w-auto"
+              priority
+            />
             <span className="text-xl md:text-2xl font-bold text-white">
               Carpantier<span className="text-primary">.</span>
             </span>
@@ -76,7 +81,8 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <button
-              onClick={openCalendly}
+              onClick={() => openCalendly()}
+              onMouseEnter={onHover}
               className="btn-primary flex items-center gap-2 text-sm"
             >
               <Phone className="h-4 w-4" />
@@ -120,8 +126,20 @@ export default function Header() {
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           )}
         >
-          {/* Close Button */}
-          <div className="flex justify-end p-4">
+          {/* Header with Logo and Close Button */}
+          <div className="flex items-center justify-between p-4 border-b border-white/10">
+            <Link href="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
+              <Image
+                src="/logo/Logo - Weiß.png"
+                alt="Carpantier Consulting"
+                width={32}
+                height={32}
+                className="h-7 w-auto"
+              />
+              <span className="text-lg font-bold text-white">
+                Carpantier<span className="text-primary">.</span>
+              </span>
+            </Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 text-muted-foreground hover:text-white transition-colors"
@@ -153,6 +171,7 @@ export default function Header() {
                   setIsMobileMenuOpen(false)
                   openCalendly()
                 }}
+                onMouseEnter={onHover}
                 className="btn-primary w-full flex items-center justify-center gap-2 text-sm py-3 px-4"
               >
                 <Phone className="h-4 w-4 flex-shrink-0" />

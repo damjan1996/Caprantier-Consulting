@@ -50,23 +50,34 @@ function AccordionItem({
   onClick: () => void
 }) {
   return (
-    <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden">
+    <div className={cn(
+      "group border border-white/10 bg-white/5 rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/30 hover:bg-white/[0.07]",
+      isOpen && "border-primary/30 bg-white/[0.07] shadow-lg shadow-primary/5"
+    )}>
       <button
         onClick={onClick}
-        className="w-full flex items-center justify-between p-6 text-left"
+        className="w-full flex items-center justify-between p-6 text-left transition-colors"
       >
-        <span className="text-lg font-medium text-white pr-4">{question}</span>
-        <ChevronDown
-          className={cn(
-            'h-5 w-5 text-muted-foreground transition-transform duration-300 flex-shrink-0',
-            isOpen && 'transform rotate-180'
-          )}
-        />
+        <span className={cn(
+          "text-lg font-medium pr-4 transition-colors",
+          isOpen ? "text-white" : "text-white/90 group-hover:text-white"
+        )}>{question}</span>
+        <div className={cn(
+          "h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-300",
+          isOpen ? "bg-primary/20 text-primary" : "bg-white/10 text-muted-foreground group-hover:bg-white/20 group-hover:text-white"
+        )}>
+          <ChevronDown
+            className={cn(
+              'h-5 w-5 transition-transform duration-300',
+              isOpen && 'rotate-180'
+            )}
+          />
+        </div>
       </button>
       <div
         className={cn(
-          'overflow-hidden transition-all duration-300',
-          isOpen ? 'max-h-96' : 'max-h-0'
+          'overflow-hidden transition-all duration-500 ease-in-out',
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         )}
       >
         <p className="px-6 pb-6 text-muted-foreground leading-relaxed">
@@ -81,20 +92,30 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="section-padding bg-background border-t border-white/5">
+    <section className="section-padding relative">
+      {/* Decorative elements */}
+      <div className="absolute top-1/3 left-10 w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-1/4 right-16 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <FadeIn className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Häufige Fragen
+            <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
+              FAQ
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+              Häufige{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+                Fragen
+              </span>
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               Alles, was Sie vor dem Start wissen müssen.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {FAQS.map((faq, index) => (
                 <AccordionItem
                   key={index}
