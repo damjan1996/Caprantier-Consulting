@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import FadeIn from '@/components/ui/FadeIn'
 import { useCalendly } from '@/hooks/useCalendly'
 
 export default function Hero() {
@@ -20,14 +19,14 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <FadeIn delay={0.1}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
                 <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse group-hover:animate-ping"></span>
                 Planbare Kundenakquise
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.2}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
                 Die Ära der{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 text-glow">
@@ -35,26 +34,26 @@ export default function Hero() {
                 </span>{' '}
                 ist vorbei.
               </h1>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.3}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Wir implementieren das System, das qualifizierte Kunden{' '}
                 <strong className="text-white">planbar</strong> in Ihren Kalender
                 bringt - ohne Kaltakquise-Frust und ohne eigene Vertriebsmitarbeiter.
               </p>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.4}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
                 <Button size="lg" onClick={() => openCalendly()} onMouseEnter={onHover} className="group">
                   Erstgespräch sichern
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.5}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
               <div className="flex flex-wrap gap-x-5 gap-y-2 justify-center lg:justify-start text-sm text-muted-foreground">
                 <span className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-white cursor-default">
                   <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" /> Unverbindlich
@@ -66,11 +65,11 @@ export default function Hero() {
                   <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" /> Limitiert auf 5/Monat
                 </span>
               </div>
-            </FadeIn>
+            </div>
           </div>
 
           {/* Hero Image */}
-          <FadeIn delay={0.3} direction="right" className="lg:col-span-5 order-first lg:order-last">
+          <div className="lg:col-span-5 order-first lg:order-last animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             <div className="relative h-[350px] sm:h-[400px] md:h-[480px] lg:h-[540px] max-w-md mx-auto lg:max-w-none group">
               {/* Glow Effect behind image */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -80,6 +79,7 @@ export default function Hero() {
                   src="/images/nico-portrait.png"
                   alt="Nico Carpantier - B2B Sales Consultant"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-[center_20%] md:object-center transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
@@ -110,7 +110,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </div>
     </section>
