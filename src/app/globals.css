@@ -81,7 +81,7 @@ body {
   }
 
   .btn-primary {
-    background-color: var(--primary);
+    background-color: #1d4ed8;
     color: white;
     font-weight: 500;
     padding: 0.75rem 1.5rem;
@@ -91,7 +91,7 @@ body {
   }
 
   .btn-primary:hover {
-    background-color: rgba(59, 130, 246, 0.9);
+    background-color: #1e40af;
     box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
     transform: translateY(-2px);
   }

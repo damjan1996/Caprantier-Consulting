@@ -7,7 +7,10 @@
       "Bash(git branch:*)",
       "Bash(git remote add:*)",
       "Bash(git push:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(node scripts/pagespeed-check.js:*)",
+      "Bash(find:*)",
+      "Bash(node scripts/accessibility-audit.js:*)"
     ]
   }
 }

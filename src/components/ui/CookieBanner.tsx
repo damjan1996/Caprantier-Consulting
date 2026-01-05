@@ -46,7 +46,7 @@ export default function CookieBanner() {
                       Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
                       Einige Cookies sind notwendig für den Betrieb der Website, während andere uns helfen,
                       die Website zu verbessern und Ihnen personalisierte Inhalte anzubieten.{' '}
-                      <Link href="/datenschutz" className="text-primary hover:underline">
+                      <Link href="/datenschutz" className="text-primary underline hover:text-primary/80">
                         Mehr erfahren
                       </Link>
                     </p>
@@ -166,7 +166,7 @@ export default function CookieBanner() {
 
                 <p className="text-xs text-muted-foreground mt-4 text-center">
                   Weitere Informationen finden Sie in unserer{' '}
-                  <Link href="/datenschutz" className="text-primary hover:underline">
+                  <Link href="/datenschutz" className="text-primary underline hover:text-primary/80">
                     Datenschutzerklärung
                   </Link>
                 </p>
