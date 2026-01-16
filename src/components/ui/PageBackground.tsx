@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 
 interface PageBackgroundProps {
@@ -7,16 +5,16 @@ interface PageBackgroundProps {
   glowPosition?: 'left' | 'right' | 'center'
 }
 
+const glowPositionClasses = {
+  left: '-top-40 -left-40',
+  right: '-top-40 -right-40',
+  center: '-top-40 left-1/2 -translate-x-1/2',
+} as const
+
 export default function PageBackground({
   showGlow = true,
   glowPosition = 'left'
 }: PageBackgroundProps) {
-  const glowPositionClasses = {
-    left: '-top-40 -left-40',
-    right: '-top-40 -right-40',
-    center: '-top-40 left-1/2 -translate-x-1/2',
-  }
-
   return (
     <>
       {/* Background Image with Gradient Overlay */}
@@ -24,10 +22,11 @@ export default function PageBackground({
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background z-10" />
         <Image
           src="/images/abstract-bg-1.jpg"
-          alt="Background"
+          alt=""
           fill
           className="object-cover opacity-25 blur-sm"
           priority
+          sizes="100vw"
         />
       </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { useEffect, useRef, useState, ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
 interface FadeInProps {
   children: ReactNode
@@ -11,40 +11,57 @@ interface FadeInProps {
   className?: string
 }
 
+const directionStyles = {
+  up: 'translate-y-8',
+  down: '-translate-y-8',
+  left: 'translate-x-8',
+  right: '-translate-x-8',
+} as const
+
 export default function FadeIn({
   children,
   delay = 0,
-  duration = 0.6,
   direction = 'up',
   className = '',
 }: FadeInProps) {
-  const directions = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { y: 0, x: 30 },
-    right: { y: 0, x: -30 },
-  }
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Add delay before triggering animation
+          const timer = setTimeout(() => {
+            setIsVisible(true)
+          }, delay * 1000)
+          observer.disconnect()
+          return () => clearTimeout(timer)
+        }
+      },
+      { threshold: 0.1, rootMargin: '-50px' }
+    )
+
+    const current = ref.current
+    if (current) {
+      observer.observe(current)
+    }
+
+    return () => observer.disconnect()
+  }, [delay])
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        ...directions[direction],
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-      }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className={className}
+    <div
+      ref={ref}
+      className={cn(
+        'transition-all duration-700 ease-out',
+        isVisible
+          ? 'opacity-100 translate-x-0 translate-y-0'
+          : `opacity-0 ${directionStyles[direction]}`,
+        className
+      )}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

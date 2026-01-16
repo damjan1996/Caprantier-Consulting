@@ -1,10 +1,17 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import dynamic from 'next/dynamic'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
 import Script from 'next/script'
+
+// Dynamic import for TrackingScripts - load after page is interactive
+const TrackingScripts = dynamic(
+  () => import('@/components/tracking/TrackingScripts'),
+  { ssr: false }
+)
 
 const inter = Inter({
   subsets: ['latin'],
@@ -304,6 +311,9 @@ export default function RootLayout({
           src="https://assets.calendly.com/assets/external/widget.js"
           strategy="lazyOnload"
         />
+
+        {/* Tracking Scripts - werden nur bei Cookie-Einwilligung geladen */}
+        <TrackingScripts />
       </body>
     </html>
   )

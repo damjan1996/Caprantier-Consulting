@@ -1,17 +1,28 @@
-'use client'
-
+import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 import { PageWrapper } from '@/components/ui'
-import CTA from '@/components/sections/CTA'
 import { Hero, Services, Process, WhyUs } from './components'
+
+const CTA = dynamic(() => import('@/components/sections/CTA'), {
+  loading: () => <div className="section-padding" />,
+})
 
 export default function LeistungenPage() {
   return (
     <PageWrapper>
       <Hero />
-      <Services />
-      <Process />
-      <WhyUs />
-      <CTA />
+      <Suspense fallback={<div className="section-padding" />}>
+        <Services />
+      </Suspense>
+      <Suspense fallback={<div className="section-padding" />}>
+        <Process />
+      </Suspense>
+      <Suspense fallback={<div className="section-padding" />}>
+        <WhyUs />
+      </Suspense>
+      <Suspense fallback={<div className="section-padding" />}>
+        <CTA />
+      </Suspense>
     </PageWrapper>
   )
 }

@@ -1,8 +1,13 @@
 'use client'
 
 import { createContext, useContext, ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 import { useCookieConsent, CookieConsent } from '@/hooks/useCookieConsent'
-import CookieBanner from '@/components/ui/CookieBanner'
+
+// Dynamic import for CookieBanner - non-critical, load after hydration
+const CookieBanner = dynamic(() => import('@/components/ui/CookieBanner'), {
+  ssr: false,
+})
 
 type CookieConsentContextType = {
   consent: CookieConsent | null
