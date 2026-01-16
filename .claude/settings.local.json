@@ -10,7 +10,19 @@
       "Bash(npm run build:*)",
       "Bash(node scripts/pagespeed-check.js:*)",
       "Bash(find:*)",
-      "Bash(node scripts/accessibility-audit.js:*)"
+      "Bash(node scripts/accessibility-audit.js:*)",
+      "Bash(git -C \"C:/Users/damja/Desktop/Desktop/Projekte/Nico Luca Carpantier\" ls-tree:*)",
+      "Bash(npx next build)",
+      "Bash(pnpm run lint)",
+      "Bash(echo:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm next build:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm ls:*)",
+      "Bash(pnpm run build:*)"
     ]
   }
 }

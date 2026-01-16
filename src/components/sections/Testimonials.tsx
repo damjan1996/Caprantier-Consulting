@@ -12,7 +12,7 @@ const TESTIMONIALS = [
     role: 'Geschäftsführer',
     company: 'WebTech Solutions GmbH',
     rating: 5,
-    text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und die Kommunikation erstklassig.',
+    text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und erstklassig.',
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     role: 'Head of Sales',
     company: 'Digital First Agency',
     rating: 5,
-    text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert genau die richtigen Kontakte.',
+    text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert Neukunden.',
   },
   {
     id: 3,
