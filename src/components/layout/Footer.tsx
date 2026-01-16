@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, MapPin } from 'lucide-react'
+import { LOGO_BLUR } from '@/lib/image-placeholders'
 
 const navigation = {
   main: [
@@ -31,6 +32,8 @@ export default function Footer() {
                 width={40}
                 height={40}
                 className="h-9 w-auto"
+                placeholder="blur"
+                blurDataURL={LOGO_BLUR}
               />
               <span className="text-2xl font-bold text-white">
                 Carpantier<span className="text-primary">.</span>

@@ -6,6 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import { DecorativeParticles } from '@/components/ui'
 import { useCalendly } from '@/hooks/useCalendly'
+import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -62,6 +63,8 @@ export default function Hero() {
                     width={64}
                     height={64}
                     className="object-cover w-full h-full"
+                    placeholder="blur"
+                    blurDataURL={PORTRAIT_BLUR}
                   />
                 </div>
                 <div>
@@ -84,8 +87,11 @@ export default function Hero() {
                   src="/images/nico-portrait.png"
                   alt="Nico Carpantier - B2B Sales Consultant"
                   fill
+                  sizes={IMAGE_SIZES.heroPortrait}
                   className="object-cover object-[center_20%] md:object-center transition-transform duration-700 group-hover:scale-105"
                   priority
+                  placeholder="blur"
+                  blurDataURL={PORTRAIT_BLUR}
                 />
 
                 {/* Floating Cards */}

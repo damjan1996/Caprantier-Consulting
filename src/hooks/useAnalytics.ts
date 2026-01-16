@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { trackPageView, trackScrollDepth, trackTimeOnPage } from '@/lib/analytics'
+import { useWebVitals } from './useWebVitals'
 
 /**
  * Hook for automatic page view and engagement tracking
@@ -58,8 +59,10 @@ export function useScrollTracking() {
 
 /**
  * Combined analytics hook
+ * Includes page tracking, scroll tracking, and Web Vitals monitoring
  */
 export function useAnalytics() {
   usePageTracking()
   useScrollTracking()
+  useWebVitals()
 }

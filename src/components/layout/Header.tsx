@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useCalendly } from '@/hooks/useCalendly'
+import { LOGO_BLUR } from '@/lib/image-placeholders'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -59,6 +60,8 @@ export default function Header() {
               height={40}
               className="h-8 md:h-10 w-auto"
               priority
+              placeholder="blur"
+              blurDataURL={LOGO_BLUR}
             />
             <span className="text-xl md:text-2xl font-bold text-white">
               Carpantier<span className="text-primary">.</span>
@@ -135,6 +138,8 @@ export default function Header() {
                 width={32}
                 height={32}
                 className="h-7 w-auto"
+                placeholder="blur"
+                blurDataURL={LOGO_BLUR}
               />
               <span className="text-lg font-bold text-white">
                 Carpantier<span className="text-primary">.</span>

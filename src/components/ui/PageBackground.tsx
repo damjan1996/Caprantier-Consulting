@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ABSTRACT_BG_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 interface PageBackgroundProps {
   showGlow?: boolean
@@ -26,7 +27,9 @@ export default function PageBackground({
           fill
           className="object-cover opacity-25 blur-sm"
           priority
-          sizes="100vw"
+          sizes={IMAGE_SIZES.fullWidth}
+          placeholder="blur"
+          blurDataURL={ABSTRACT_BG_BLUR}
         />
       </div>
 

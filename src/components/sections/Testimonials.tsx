@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { cn } from '@/lib/utils'
+import { TESTIMONIAL_BLUR } from '@/lib/image-placeholders'
 
 const TESTIMONIALS = [
   {
@@ -101,7 +102,10 @@ export default function Testimonials() {
                         src={TESTIMONIALS[activeIndex].image}
                         alt={TESTIMONIALS[activeIndex].name}
                         fill
+                        sizes="56px"
                         className="object-cover"
+                        placeholder="blur"
+                        blurDataURL={TESTIMONIAL_BLUR}
                       />
                     ) : (
                       <div className="h-full w-full flex items-center justify-center text-xl font-bold text-primary">

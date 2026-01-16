@@ -6,6 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import { DecorativeParticles } from '@/components/ui'
 import { useCalendly } from '@/hooks/useCalendly'
+import { BUSINESS_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -74,8 +75,11 @@ export default function Hero() {
                   src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=1000&fit=crop"
                   alt="B2B Sales Meeting"
                   fill
+                  sizes={IMAGE_SIZES.heroPortrait}
                   className="object-cover object-[center_20%] md:object-center transition-transform duration-700 group-hover:scale-105"
                   priority
+                  placeholder="blur"
+                  blurDataURL={BUSINESS_BLUR}
                 />
 
                 {/* Floating Cards */}

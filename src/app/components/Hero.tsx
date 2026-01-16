@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useCalendly } from '@/hooks/useCalendly'
+import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -79,9 +80,11 @@ export default function Hero() {
                   src="/images/nico-portrait.png"
                   alt="Nico Carpantier - B2B Sales Consultant"
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
+                  sizes={IMAGE_SIZES.heroPortrait}
                   className="object-cover object-[center_20%] md:object-center transition-transform duration-700 group-hover:scale-105"
                   priority
+                  placeholder="blur"
+                  blurDataURL={PORTRAIT_BLUR}
                 />
 
                 {/* Floating Cards */}

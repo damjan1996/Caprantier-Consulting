@@ -112,3 +112,28 @@ export function trackFormSubmit(formName: string, success: boolean): void {
 export function trackTimeOnPage(seconds: number): void {
   trackEvent('time_on_page', 'engagement', `${seconds}s`, seconds)
 }
+
+/**
+ * Track Web Vitals metrics (LCP, FID, CLS, TTFB, INP)
+ */
+export function trackWebVitals(metric: {
+  name: string
+  value: number
+  id: string
+  rating: 'good' | 'needs-improvement' | 'poor'
+}): void {
+  if (typeof window === 'undefined' || !window.gtag) {
+    return
+  }
+
+  // Send to Google Analytics 4
+  window.gtag('event', metric.name, {
+    event_category: 'Web Vitals',
+    event_label: metric.id,
+    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+    non_interaction: true,
+    // Custom dimensions for better analysis
+    metric_rating: metric.rating,
+    metric_value: metric.value,
+  })
+}
