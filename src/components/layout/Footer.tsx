@@ -2,6 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, MapPin } from 'lucide-react'
 
+// Static import for SSR optimization
+import logoWhite from '@/../public/logo/Logo - Weiß.png'
+
 const navigation = {
   main: [
     { name: 'Home', href: '/' },
@@ -26,7 +29,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
               <Image
-                src="/logo/Logo - Weiß.png"
+                src={logoWhite}
                 alt="Carpantier Consulting"
                 width={40}
                 height={40}

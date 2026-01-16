@@ -7,6 +7,9 @@ import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useCalendly } from '@/hooks/useCalendly'
 
+// Static import for SSR optimization
+import logoWhite from '@/../public/logo/Logo - Weiß.png'
+
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Leistungen', href: '/leistungen' },
@@ -53,7 +56,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo/Logo - Weiß.png"
+              src={logoWhite}
               alt="Carpantier Consulting"
               width={40}
               height={40}
@@ -130,7 +133,7 @@ export default function Header() {
           <div className="flex items-center justify-between p-4 border-b border-white/10">
             <Link href="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
               <Image
-                src="/logo/Logo - Weiß.png"
+                src={logoWhite}
                 alt="Carpantier Consulting"
                 width={32}
                 height={32}
