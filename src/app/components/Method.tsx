@@ -3,7 +3,9 @@
 import Image from 'next/image'
 import { Compass, Phone, CalendarCheck } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
-import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
+
+// Static import for automatic blur placeholder
+import nicoStrategy from '@/../public/images/nico-strategy.jpg'
 
 const STEPS = [
   {
@@ -77,13 +79,12 @@ export default function Method() {
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-green-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
                 <Image
-                  src="/images/nico-strategy.jpg"
+                  src={nicoStrategy}
                   alt="Nico Carpantier erklärt Strategie am Whiteboard"
                   fill
-                  sizes={IMAGE_SIZES.heroPortrait}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   placeholder="blur"
-                  blurDataURL={PORTRAIT_BLUR}
                 />
               </div>
             </div>

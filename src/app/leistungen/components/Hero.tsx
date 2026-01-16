@@ -6,7 +6,9 @@ import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import { DecorativeParticles } from '@/components/ui'
 import { useCalendly } from '@/hooks/useCalendly'
-import { BUSINESS_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
+
+// Static import for automatic blur placeholder
+import nicoSalesCall from '@/../public/images/nico-sales-call.jpg'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -72,14 +74,13 @@ export default function Hero() {
 
               <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-white/30 group-hover:shadow-primary/10">
                 <Image
-                  src="/images/nico-sales-call.jpg"
+                  src={nicoSalesCall}
                   alt="Nico Carpantier - B2B Sales in Aktion"
                   fill
-                  sizes={IMAGE_SIZES.heroPortrait}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
                   placeholder="blur"
-                  blurDataURL={BUSINESS_BLUR}
                 />
 
                 {/* Floating Cards */}

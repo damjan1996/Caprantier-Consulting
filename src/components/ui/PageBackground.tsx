@@ -1,5 +1,7 @@
 import Image from 'next/image'
-import { ABSTRACT_BG_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
+
+// Static import for automatic blur placeholder
+import abstractBg from '@/../public/images/abstract-bg-1.jpg'
 
 interface PageBackgroundProps {
   showGlow?: boolean
@@ -22,14 +24,13 @@ export default function PageBackground({
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background z-10" />
         <Image
-          src="/images/abstract-bg-1.jpg"
+          src={abstractBg}
           alt=""
           fill
           className="object-cover opacity-25 blur-sm"
           priority
-          sizes={IMAGE_SIZES.fullWidth}
+          sizes="100vw"
           placeholder="blur"
-          blurDataURL={ABSTRACT_BG_BLUR}
         />
       </div>
 

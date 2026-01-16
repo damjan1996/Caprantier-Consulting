@@ -3,7 +3,9 @@
 import Image from 'next/image'
 import { Target, Clock, TrendingUp, Users, Shield, BarChart3 } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
-import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
+
+// Static import for automatic blur placeholder
+import nicoConsulting from '@/../public/images/nico-consulting.jpg'
 
 const BENEFITS = [
   {
@@ -74,13 +76,12 @@ export default function Benefits() {
               <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-blue-500/20 to-primary/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
                 <Image
-                  src="/images/nico-consulting.jpg"
+                  src={nicoConsulting}
                   alt="Nico Carpantier - Persönliche Beratung"
                   fill
-                  sizes={IMAGE_SIZES.heroPortrait}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   placeholder="blur"
-                  blurDataURL={PORTRAIT_BLUR}
                 />
               </div>
             </div>
