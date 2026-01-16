@@ -1,7 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { Target, Clock, TrendingUp, Users, Shield, BarChart3 } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
+import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 const BENEFITS = [
   {
@@ -51,19 +53,38 @@ export default function Benefits() {
       <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-blue-400/30 rounded-full animate-pulse" style={{ animationDuration: '2.5s' }} />
 
       <div className="container-custom">
-        <FadeIn className="text-center mb-16">
-          <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
-            Ihre Vorteile
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
-            Warum{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary">
-              Carpantier Consulting
-            </span>?
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Wir übernehmen Ihre Akquise - Sie schließen ab.
-          </p>
+        {/* Visual Header with Image */}
+        <FadeIn className="mb-16 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
+                Ihre Vorteile
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+                Warum{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary">
+                  Carpantier Consulting
+                </span>?
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0">
+                Wir übernehmen Ihre Akquise - Sie schließen ab. Persönlich, professionell und mit voller Transparenz.
+              </p>
+            </div>
+            <div className="relative h-[280px] md:h-[350px] rounded-2xl overflow-hidden group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-blue-500/20 to-primary/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                <Image
+                  src="/images/nico-consulting.jpg"
+                  alt="Nico Carpantier - Persönliche Beratung"
+                  fill
+                  sizes={IMAGE_SIZES.heroPortrait}
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  placeholder="blur"
+                  blurDataURL={PORTRAIT_BLUR}
+                />
+              </div>
+            </div>
+          </div>
         </FadeIn>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">

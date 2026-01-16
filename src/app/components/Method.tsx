@@ -1,7 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { Compass, Phone, CalendarCheck } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
+import { PORTRAIT_BLUR, IMAGE_SIZES } from '@/lib/image-placeholders'
 
 const STEPS = [
   {
@@ -67,6 +69,46 @@ export default function Method() {
             </p>
           </FadeIn>
         </div>
+
+        {/* Visual with Strategy Image */}
+        <FadeIn className="mb-16 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden group order-last lg:order-first">
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-green-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                <Image
+                  src="/images/nico-strategy.jpg"
+                  alt="Nico Carpantier erklärt Strategie am Whiteboard"
+                  fill
+                  sizes={IMAGE_SIZES.heroPortrait}
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  placeholder="blur"
+                  blurDataURL={PORTRAIT_BLUR}
+                />
+              </div>
+            </div>
+            <div className="space-y-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                Individuelle Strategie für{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  Ihren Erfolg
+                </span>
+              </h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Jedes Unternehmen ist einzigartig. Deshalb entwickeln wir gemeinsam eine maßgeschneiderte Akquise-Strategie,
+                die zu Ihrem Angebot, Ihrer Zielgruppe und Ihren Zielen passt.
+              </p>
+              <ul className="space-y-3">
+                {['Zielgruppenanalyse', 'Skript-Entwicklung', 'Einwandbehandlung'].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-white/80">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 relative">
           {STEPS.map((step, index) => (

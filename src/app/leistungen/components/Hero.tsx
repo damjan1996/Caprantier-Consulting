@@ -72,11 +72,11 @@ export default function Hero() {
 
               <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-white/30 group-hover:shadow-primary/10">
                 <Image
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=1000&fit=crop"
-                  alt="B2B Sales Meeting"
+                  src="/images/nico-sales-call.jpg"
+                  alt="Nico Carpantier - B2B Sales in Aktion"
                   fill
                   sizes={IMAGE_SIZES.heroPortrait}
-                  className="object-cover object-[center_20%] md:object-center transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
                   placeholder="blur"
                   blurDataURL={BUSINESS_BLUR}
