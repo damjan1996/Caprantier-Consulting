@@ -1,11 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { cn } from '@/lib/utils'
-import { TESTIMONIAL_BLUR } from '@/lib/image-placeholders'
 
 const TESTIMONIALS = [
   {
@@ -13,7 +11,6 @@ const TESTIMONIALS = [
     name: 'Michael Weber',
     role: 'Geschäftsführer',
     company: 'WebTech Solutions GmbH',
-    image: '/images/testimonials/testimonial-1.jpg',
     rating: 5,
     text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und die Kommunikation erstklassig.',
   },
@@ -22,7 +19,6 @@ const TESTIMONIALS = [
     name: 'Sandra Müller',
     role: 'Head of Sales',
     company: 'Digital First Agency',
-    image: '/images/testimonials/testimonial-2.jpg',
     rating: 5,
     text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert genau die richtigen Kontakte.',
   },
@@ -31,7 +27,6 @@ const TESTIMONIALS = [
     name: 'Thomas Schneider',
     role: 'Inhaber',
     company: 'Schneider IT Consulting',
-    image: '/images/testimonials/testimonial-3.jpg',
     rating: 5,
     text: 'Als Einzelunternehmer hatte ich keine Zeit für Akquise. Carpantier hat mir ermöglicht, mich auf mein Kerngeschäft zu konzentrieren, während sie die Pipeline füllen. ROI nach 2 Monaten erreicht. Absolute Empfehlung!',
   },
@@ -96,22 +91,10 @@ export default function Testimonials() {
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="relative h-14 w-14 rounded-full overflow-hidden bg-white/10">
-                    {TESTIMONIALS[activeIndex].image ? (
-                      <Image
-                        src={TESTIMONIALS[activeIndex].image}
-                        alt={TESTIMONIALS[activeIndex].name}
-                        fill
-                        sizes="56px"
-                        className="object-cover"
-                        placeholder="blur"
-                        blurDataURL={TESTIMONIAL_BLUR}
-                      />
-                    ) : (
-                      <div className="h-full w-full flex items-center justify-center text-xl font-bold text-primary">
-                        {TESTIMONIALS[activeIndex].name.charAt(0)}
-                      </div>
-                    )}
+                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 border border-white/10 flex items-center justify-center">
+                    <span className="text-xl font-bold text-primary">
+                      {TESTIMONIALS[activeIndex].name.charAt(0)}
+                    </span>
                   </div>
                   <div>
                     <p className="font-semibold text-white">
