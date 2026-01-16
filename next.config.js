@@ -28,10 +28,35 @@ const nextConfig = {
 
   // Custom Headers für SEO & Security
   async headers() {
+    // Content Security Policy
+    const cspDirectives = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://www.googletagmanager.com https://www.google-analytics.com https://t.contentsquare.net https://sibautomation.com",
+      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
+      "img-src 'self' data: blob: https: http:",
+      "font-src 'self' https://fonts.gstatic.com",
+      "connect-src 'self' https://calendly.com https://www.google-analytics.com https://analytics.google.com https://t.contentsquare.net https://sibautomation.com",
+      "frame-src 'self' https://calendly.com",
+      "frame-ancestors 'self'",
+      "form-action 'self'",
+      "base-uri 'self'",
+      "upgrade-insecure-requests",
+    ].join('; ')
+
     return [
       {
         source: '/:path*',
         headers: [
+          // HSTS - Enforce HTTPS
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          // Content Security Policy
+          {
+            key: 'Content-Security-Policy',
+            value: cspDirectives,
+          },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',

@@ -11,6 +11,11 @@ type CookieConsent = {
 
 const COOKIE_CONSENT_KEY = 'cookie-consent'
 
+// Environment variables for tracking IDs
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const CONTENTSQUARE_ID = process.env.NEXT_PUBLIC_CONTENTSQUARE_ID
+const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
+
 export default function TrackingScripts() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
 
@@ -51,13 +56,18 @@ export default function TrackingScripts() {
     }
   }, [])
 
+  // Don't render if no tracking IDs configured
+  if (!GA_MEASUREMENT_ID && !CONTENTSQUARE_ID && !BREVO_CLIENT_KEY) {
+    return null
+  }
+
   return (
     <>
       {/* Google Analytics - nur bei Analytics-Einwilligung */}
-      {consent?.analytics && (
+      {consent?.analytics && GA_MEASUREMENT_ID && (
         <>
           <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-K5EZ67MCY7"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
             strategy="afterInteractive"
           />
           <Script
@@ -68,7 +78,7 @@ export default function TrackingScripts() {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-K5EZ67MCY7', {
+                gtag('config', '${GA_MEASUREMENT_ID}', {
                   anonymize_ip: true
                 });
               `,
@@ -78,15 +88,15 @@ export default function TrackingScripts() {
       )}
 
       {/* Hotjar / Contentsquare - nur bei Analytics-Einwilligung */}
-      {consent?.analytics && (
+      {consent?.analytics && CONTENTSQUARE_ID && (
         <Script
-          src="https://t.contentsquare.net/uxa/1fd438cca552d.js"
+          src={`https://t.contentsquare.net/uxa/${CONTENTSQUARE_ID}.js`}
           strategy="lazyOnload"
         />
       )}
 
       {/* Brevo (Sendinblue) - nur bei Marketing-Einwilligung */}
-      {consent?.marketing && (
+      {consent?.marketing && BREVO_CLIENT_KEY && (
         <Script
           id="brevo-tracking"
           strategy="lazyOnload"
@@ -95,7 +105,7 @@ export default function TrackingScripts() {
               (function() {
                 window.sib = {
                   equeue: [],
-                  client_key: "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"
+                  client_key: "${BREVO_CLIENT_KEY}"
                 };
                 window.sib.email_id = function() {
                   return arguments[0] ? window.sib.equeue.push(arguments[0]) : false;
