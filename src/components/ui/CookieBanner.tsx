@@ -97,8 +97,11 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium text-white mb-1">Notwendige Cookies</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
+                        </p>
+                        <p className="text-xs text-muted-foreground/70">
+                          Dienste: Cookie-Einstellungen, Calendly (Terminbuchung)
                         </p>
                       </div>
                       <div className="flex-shrink-0 ml-4">
@@ -114,8 +117,11 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium text-white mb-1">Analyse-Cookies</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen.
+                        </p>
+                        <p className="text-xs text-muted-foreground/70">
+                          Dienste: Google Analytics, Hotjar
                         </p>
                       </div>
                       <div className="flex-shrink-0 ml-4">
@@ -136,8 +142,11 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium text-white mb-1">Marketing-Cookies</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies werden verwendet, um Werbung relevanter für Sie zu gestalten.
+                        </p>
+                        <p className="text-xs text-muted-foreground/70">
+                          Dienste: Brevo (E-Mail-Marketing)
                         </p>
                       </div>
                       <div className="flex-shrink-0 ml-4">

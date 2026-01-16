@@ -9,7 +9,7 @@ export type CookieConsent = {
 }
 
 const COOKIE_CONSENT_KEY = 'cookie-consent'
-const COOKIE_CONSENT_VERSION = '1'
+const COOKIE_CONSENT_VERSION = '2' // Updated for Google Analytics, Hotjar, Brevo
 
 const defaultConsent: CookieConsent = {
   necessary: true, // Always required
@@ -51,6 +51,9 @@ export function useCookieConsent() {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(data))
     setConsent(newConsent)
     setShowBanner(false)
+
+    // Dispatch custom event to notify tracking scripts
+    window.dispatchEvent(new CustomEvent('cookie-consent-update'))
   }, [])
 
   const acceptAll = useCallback(() => {

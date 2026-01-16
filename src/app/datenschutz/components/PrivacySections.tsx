@@ -1,6 +1,6 @@
 'use client'
 
-import { Shield, Eye, Server, Cookie, Calendar, UserCheck, AlertCircle, Lock, FileText, Mail, Ban, Globe } from 'lucide-react'
+import { Shield, Eye, Server, Cookie, Calendar, UserCheck, AlertCircle, Lock, FileText, Mail, Ban, Globe, BarChart3 } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
 
@@ -23,7 +23,7 @@ const sections = [
           <h3 className="text-lg font-medium text-white mb-3">Datenerfassung auf dieser Website</h3>
           <h4 className="text-base font-medium text-white/90 mb-2">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
           <p className="text-muted-foreground mb-4">
-            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.
+            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerklärung entnehmen.
           </p>
 
           <h4 className="text-base font-medium text-white/90 mb-2">Wie erfassen wir Ihre Daten?</h4>
@@ -196,7 +196,7 @@ const sections = [
     content: (
       <div className="space-y-4">
         <p className="text-muted-foreground">
-          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von &bdquo;http://&ldquo; auf &bdquo;https://&ldquo; wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
         </p>
         <p className="text-muted-foreground">
           Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
@@ -225,7 +225,7 @@ const sections = [
         <div>
           <h3 className="text-lg font-medium text-white mb-3">Cookies</h3>
           <p className="text-muted-foreground mb-4">
-            Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.
+            Unsere Internetseiten verwenden so genannte &bdquo;Cookies&ldquo;. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.
           </p>
           <p className="text-muted-foreground mb-4">
             Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen stammen (sog. Third-Party-Cookies). Third-Party-Cookies ermöglichen die Einbindung bestimmter Dienstleistungen von Drittunternehmen innerhalb von Webseiten (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).
@@ -270,8 +270,118 @@ const sections = [
     ),
   },
   {
+    icon: BarChart3,
+    title: '4. Analyse-Tools und Werbung',
+    iconColor: 'text-cyan-400',
+    iconBg: 'bg-cyan-400/10',
+    content: (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">Google Analytics</h3>
+          <p className="text-muted-foreground mb-4">
+            Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Ireland Limited (&bdquo;Google&ldquo;), Gordon House, Barrow Street, Dublin 4, Irland.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Google Analytics ermöglicht es dem Websitebetreiber, das Verhalten der Websitebesucher zu analysieren. Hierbei erhält der Websitebetreiber verschiedene Nutzungsdaten, wie z. B. Seitenaufrufe, Verweildauer, verwendete Betriebssysteme und Herkunft des Nutzers. Diese Daten werden dem jeweiligen Endgerät des Users zugeordnet. Eine Zuordnung zu einer User-ID erfolgt nicht.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Des Weiteren können wir mit Google Analytics u. a. Ihre Maus- und Scrollbewegungen und Klicks aufzeichnen. Ferner verwendet Google Analytics verschiedene Modellierungsansätze, um die erfassten Datensätze zu ergänzen und setzt Machine-Learning-Technologien bei der Datenanalyse ein.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Google Analytics verwendet Technologien, die die Wiedererkennung des Nutzers zum Zwecke der Analyse des Nutzerverhaltens ermöglichen (z. B. Cookies oder Device-Fingerprinting). Die von Google erfassten Informationen über die Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier:{' '}
+            <a href="https://privacy.google.com/businesses/controllerterms/mccs/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://privacy.google.com/businesses/controllerterms/mccs/
+            </a>.
+          </p>
+          <p className="text-muted-foreground">
+            Das Unternehmen verfügt über eine Zertifizierung nach dem &bdquo;EU-US Data Privacy Framework&ldquo; (DPF). Weitere Informationen hierzu erhalten Sie unter:{' '}
+            <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://www.dataprivacyframework.gov/participant/5780
+            </a>.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">Hotjar (Contentsquare)</h3>
+          <p className="text-muted-foreground mb-4">
+            Diese Website nutzt Hotjar, einen Dienst der Contentsquare GmbH. Hotjar ist ein Analyse-Tool, das uns hilft, die Nutzererfahrung auf unserer Website zu verstehen und zu verbessern.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Hotjar verwendet Cookies und andere Technologien, um Informationen über das Verhalten unserer Nutzer und deren Endgeräte zu sammeln. Dazu gehören insbesondere:
+          </p>
+          <ul className="space-y-2 mb-4">
+            {[
+              'Die IP-Adresse des Geräts (wird während Ihrer Sitzung erfasst und in anonymisierter Form gespeichert)',
+              'Bildschirmgröße des Geräts',
+              'Gerätetyp und Browserinformationen',
+              'Geografischer Standort (nur Land)',
+              'Die bevorzugte Sprache zur Anzeige unserer Website',
+              'Nutzerinteraktionen (Mausbewegungen, Klicks, Scrollverhalten)',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted-foreground mb-4">
+            Hotjar speichert diese Informationen in einem pseudonymisierten Nutzerprofil. Die Informationen werden weder von Hotjar noch von uns dazu verwendet, einzelne Nutzer zu identifizieren oder mit weiteren Daten über einzelne Nutzer zusammenzuführen.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+          </p>
+          <p className="text-muted-foreground">
+            Weitere Informationen finden Sie in der Datenschutzerklärung von Hotjar:{' '}
+            <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://www.hotjar.com/legal/policies/privacy/
+            </a>
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">Brevo (ehemals Sendinblue)</h3>
+          <p className="text-muted-foreground mb-4">
+            Diese Website nutzt Brevo für E-Mail-Marketing und Website-Tracking. Anbieter ist die Brevo GmbH (ehemals Sendinblue GmbH), Köpenicker Str. 126, 10179 Berlin, Deutschland.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Brevo ermöglicht uns, das Nutzerverhalten auf unserer Website zu analysieren und personalisierte E-Mail-Kommunikation zu versenden. Dabei werden folgende Daten verarbeitet:
+          </p>
+          <ul className="space-y-2 mb-4">
+            {[
+              'E-Mail-Adresse (sofern Sie diese angeben)',
+              'IP-Adresse',
+              'Besuchte Seiten und Verweildauer',
+              'Technische Informationen (Browser, Betriebssystem)',
+              'Interaktionen mit E-Mails (Öffnungen, Klicks)',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted-foreground mb-4">
+            Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+          </p>
+          <p className="text-muted-foreground">
+            Weitere Informationen finden Sie in der Datenschutzerklärung von Brevo:{' '}
+            <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://www.brevo.com/de/legal/privacypolicy/
+            </a>
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
     icon: Globe,
-    title: '4. Plugins und Tools',
+    title: '5. Plugins und Tools',
     iconColor: 'text-purple-400',
     iconBg: 'bg-purple-400/10',
     content: (
@@ -298,7 +408,7 @@ const sections = [
             </a>.
           </p>
           <p className="text-muted-foreground">
-            Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{' '}
+            Das Unternehmen verfügt über eine Zertifizierung nach dem &bdquo;EU-US Data Privacy Framework&ldquo; (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{' '}
             <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               https://www.dataprivacyframework.gov/participant/5780
             </a>.
