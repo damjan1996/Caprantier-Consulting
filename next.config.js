@@ -115,23 +115,6 @@ const nextConfig = {
     ]
   },
 
-  // Redirects für SEO (falls nötig)
-  async redirects() {
-    return [
-      // www zu non-www redirect
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.carpantier-consulting.de',
-          },
-        ],
-        destination: 'https://carpantier-consulting.de/:path*',
-        permanent: true,
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig
