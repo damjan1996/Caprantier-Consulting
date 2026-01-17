@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, MapPin } from 'lucide-react'
+import { cities } from '@/lib/cities'
 
 // Static import for SSR optimization
 import logoWhite from '@/../public/logo/Logo - Weiß.png'
@@ -16,6 +17,11 @@ const navigation = {
     { name: 'Impressum', href: '/impressum' },
     { name: 'Datenschutz', href: '/datenschutz' },
   ],
+  // Städte für lokale SEO
+  cities: cities.slice(0, 6).map((city) => ({
+    name: `Akquise ${city.name}`,
+    href: `/leistungen/${city.slug}`,
+  })),
 }
 
 export default function Footer() {
@@ -24,7 +30,7 @@ export default function Footer() {
   return (
     <footer className="bg-black/60 backdrop-blur-sm border-t border-white/10 relative z-10">
       <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
@@ -87,6 +93,22 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Städte - Lokale SEO Links */}
+        <div className="mt-8 pt-8 border-t border-white/5">
+          <h3 className="text-white font-semibold mb-4">B2B Akquise in Ihrer Region</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {navigation.cities.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-muted-foreground hover:text-white transition-colors text-sm"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </div>
 

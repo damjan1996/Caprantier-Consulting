@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import { Quote, ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { cn } from '@/lib/utils'
 
@@ -11,6 +11,7 @@ const TESTIMONIALS = [
     name: 'Michael Weber',
     role: 'Geschäftsführer',
     company: 'WebTech Solutions GmbH',
+    location: 'Köln',
     rating: 5,
     text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und erstklassig.',
   },
@@ -19,6 +20,7 @@ const TESTIMONIALS = [
     name: 'Sandra Müller',
     role: 'Head of Sales',
     company: 'Digital First Agency',
+    location: 'Düsseldorf',
     rating: 5,
     text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert Neukunden.',
   },
@@ -27,10 +29,49 @@ const TESTIMONIALS = [
     name: 'Thomas Schneider',
     role: 'Inhaber',
     company: 'Schneider IT Consulting',
+    location: 'Frankfurt',
     rating: 5,
     text: 'Als Einzelunternehmer hatte ich keine Zeit für Akquise. Carpantier hat mir ermöglicht, mich auf mein Kerngeschäft zu konzentrieren, während sie die Pipeline füllen. ROI nach 2 Monaten erreicht. Absolute Empfehlung!',
   },
 ]
+
+// Generate Review Schema for SEO
+export function generateTestimonialsSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Carpantier Consulting',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: TESTIMONIALS.length.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: TESTIMONIALS.map((t) => ({
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: t.rating.toString(),
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Person',
+        name: t.name,
+      },
+      reviewBody: t.text,
+      publisher: {
+        '@type': 'Organization',
+        name: t.company,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: t.location,
+          addressCountry: 'DE',
+        },
+      },
+    })),
+  }
+}
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -102,6 +143,10 @@ export default function Testimonials() {
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {TESTIMONIALS[activeIndex].role}, {TESTIMONIALS[activeIndex].company}
+                    </p>
+                    <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                      <MapPin className="h-3 w-3" />
+                      {TESTIMONIALS[activeIndex].location}
                     </p>
                   </div>
                 </div>

@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Standalone output nur für Docker-Deployment (nicht für Vercel)
+  // Bei Hetzner-Migration: output: 'standalone' wieder aktivieren
+  ...(process.env.STANDALONE === 'true' && { output: 'standalone' }),
+
   // Image Optimization
   images: {
     unoptimized: false,

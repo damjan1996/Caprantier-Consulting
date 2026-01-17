@@ -1,8 +1,17 @@
 import { MetadataRoute } from 'next'
+import { cities } from '@/lib/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://carpantier-consulting.de'
   const currentDate = new Date().toISOString()
+
+  // Stadt-spezifische Leistungsseiten
+  const cityPages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${baseUrl}/leistungen/${city.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }))
 
   return [
     // Homepage - höchste Priorität
@@ -19,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Stadt-spezifische Leistungsseiten
+    ...cityPages,
     // Kontakt - wichtig für Conversions
     {
       url: `${baseUrl}/kontakt`,

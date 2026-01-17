@@ -77,7 +77,7 @@ export default function Benefits() {
               <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
                 <Image
                   src={nicoConsulting}
-                  alt="Nico Carpantier - Persönliche Beratung"
+                  alt="Nico Carpantier - Persönliche B2B Akquise Beratung in Köln"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
