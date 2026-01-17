@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Phone, Target, CheckCircle, ArrowRight, MapPin } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
-import { DecorativeParticles } from '@/components/ui'
+import { DecorativeParticles, Breadcrumbs } from '@/components/ui'
 import { useCalendly } from '@/hooks/useCalendly'
 import { type City, getSlugFromName } from '@/lib/cities'
 
@@ -27,6 +27,16 @@ export default function StadtHero({ city }: StadtHeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <FadeIn delay={0.05}>
+              <Breadcrumbs
+                items={[
+                  { label: 'Leistungen', href: '/leistungen' },
+                  { label: city.name },
+                ]}
+                className="justify-center lg:justify-start mb-2"
+              />
+            </FadeIn>
+
             <FadeIn delay={0.1}>
               <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
                 <MapPin className="h-4 w-4 mr-2 text-primary" />

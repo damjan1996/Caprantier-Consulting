@@ -65,7 +65,7 @@ const keywords = [
 ]
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.carpantier-consulting.de'),
+  metadataBase: new URL('https://carpantier-consulting.de'),
   title: {
     default: 'B2B Telefonakquise & Leadgenerierung Köln | Carpantier Consulting',
     template: '%s | Carpantier Consulting',
@@ -93,14 +93,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'de_DE',
-    url: 'https://www.carpantier-consulting.de',
+    url: 'https://carpantier-consulting.de',
     siteName: 'Carpantier Consulting',
     title: 'B2B Telefonakquise & Leadgenerierung Köln | Carpantier Consulting',
     description:
       'Professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister & Beratungen.',
     images: [
       {
-        url: 'https://www.carpantier-consulting.de/images/og-image.jpg',
+        url: 'https://carpantier-consulting.de/images/og-image.jpg',
         width: 1024,
         height: 1024,
         alt: 'Nico-Luca Carpantier - B2B Telefonakquise & Leadgenerierung',
@@ -113,13 +113,13 @@ export const metadata: Metadata = {
     title: 'B2B Telefonakquise & Leadgenerierung | Carpantier Consulting',
     description:
       'Planbare Neukundengewinnung durch professionelle B2B-Telefonakquise aus Köln.',
-    images: ['https://www.carpantier-consulting.de/images/og-image.jpg'],
+    images: ['https://carpantier-consulting.de/images/og-image.jpg'],
     creator: '@carpantier',
   },
   alternates: {
-    canonical: 'https://www.carpantier-consulting.de',
+    canonical: 'https://carpantier-consulting.de',
     languages: {
-      'de-DE': 'https://www.carpantier-consulting.de',
+      'de-DE': 'https://carpantier-consulting.de',
     },
   },
   verification: {

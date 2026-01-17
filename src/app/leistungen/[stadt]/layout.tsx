@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `https://carpantier-consulting.de/leistungen/${city.slug}`,
+      languages: {
+        'de-DE': `https://carpantier-consulting.de/leistungen/${city.slug}`,
+      },
     },
     other: {
       'geo.region': `DE-${city.regionShort}`,
