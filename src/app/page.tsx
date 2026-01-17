@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { PageWrapper } from '@/components/ui'
 import { Hero, Problem, Method, Benefits, FAQ } from './components'
-import { generateTestimonialsSchema } from '@/components/sections/Testimonials'
+import { generateTestimonialsSchema } from '@/lib/schemas'
 
 // Dynamic imports for below the fold components
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {

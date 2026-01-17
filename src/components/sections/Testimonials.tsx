@@ -35,44 +35,6 @@ const TESTIMONIALS = [
   },
 ]
 
-// Generate Review Schema for SEO
-export function generateTestimonialsSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Carpantier Consulting',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: TESTIMONIALS.length.toString(),
-      bestRating: '5',
-      worstRating: '1',
-    },
-    review: TESTIMONIALS.map((t) => ({
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: t.rating.toString(),
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: t.name,
-      },
-      reviewBody: t.text,
-      publisher: {
-        '@type': 'Organization',
-        name: t.company,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: t.location,
-          addressCountry: 'DE',
-        },
-      },
-    })),
-  }
-}
-
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
 

@@ -5,52 +5,10 @@ import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import FadeIn from '@/components/ui/FadeIn'
 import type { City } from '@/lib/cities'
+import { getCityFAQs } from '@/lib/schemas'
 
 interface StadtFAQProps {
   city: City
-}
-
-// Generate city-specific FAQs
-function getCityFAQs(city: City) {
-  return [
-    {
-      question: `Bieten Sie B2B Akquise in ${city.name} an?`,
-      answer: `Ja, wir sind spezialisiert auf B2B Telefonakquise und Leadgenerierung ${city.businessContext}. ${city.regionalText} Von unserem Standort in Köln aus betreuen wir Unternehmen in ${city.name} und Umgebung.`,
-    },
-    {
-      question: `Wie läuft die Zusammenarbeit mit Unternehmen aus ${city.name} ab?`,
-      answer: `Die Zusammenarbeit startet mit einem kostenlosen Strategiegespräch. Wir analysieren Ihre Zielgruppe in ${city.name} und ${city.region}, entwickeln maßgeschneiderte Gesprächsleitfäden und beginnen mit der Akquise. Alle Termine werden digital übergeben - die Distanz spielt keine Rolle.`,
-    },
-    {
-      question: `Welche Branchen sprechen Sie in ${city.name} an?`,
-      answer: `Wir sind auf B2B-Dienstleister spezialisiert: Agenturen, IT-Dienstleister, Beratungsunternehmen und Softwareunternehmen ${city.businessContext}. Unsere Expertise liegt in der Ansprache von Entscheidern in mittelständischen Unternehmen.`,
-    },
-    {
-      question: `Wie schnell kann ich mit ersten Terminen in ${city.name} rechnen?`,
-      answer: `Nach dem Onboarding und der Kampagneneinrichtung können Sie oft schon in der ersten Woche mit den ersten qualifizierten Terminen rechnen. Die genaue Geschwindigkeit hängt von Ihrer Zielgruppe und Branche in ${city.name} ab.`,
-    },
-    {
-      question: `Was unterscheidet Carpantier von anderen Akquise-Agenturen in ${city.region}?`,
-      answer: `Wir liefern ausschließlich BANT-qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Zudem haben wir über 3 Jahre Erfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Herausforderungen von Unternehmen ${city.businessContext}.`,
-    },
-  ]
-}
-
-// Generate FAQPage Schema for SEO
-export function generateCityFAQSchema(city: City) {
-  const faqs = getCityFAQs(city)
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
 }
 
 function AccordionItem({
