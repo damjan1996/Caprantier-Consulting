@@ -25,11 +25,11 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
       {/* Categories */}
       <section className="pb-8">
         <div className="container-custom">
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0}>
             <div className="flex flex-wrap justify-center gap-2">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                   selectedCategory === null
                     ? 'bg-primary/20 text-primary border border-primary/30'
                     : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
@@ -41,7 +41,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                     selectedCategory === category
                       ? 'bg-primary/20 text-primary border border-primary/30'
                       : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
@@ -65,9 +65,12 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPosts.map((post, index) => (
-                <FadeIn key={post.slug} delay={Math.min(index * 0.05, 0.3)}>
+                <FadeIn
+                  key={post.slug}
+                  delay={index < 6 ? Math.min(index * 0.03, 0.15) : 0}
+                >
                   <Link href={`/blog/${post.slug}`} className="group block h-full">
-                    <article className="relative h-full rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 overflow-hidden">
+                    <article className="relative h-full rounded-2xl border border-white/10 bg-white/5 transition-[background-color,border-color] duration-200 hover:bg-white/10 hover:border-primary/30 md:hover:shadow-xl md:hover:shadow-primary/5 md:hover:-translate-y-1 md:transition-all overflow-hidden">
                       {/* Image */}
                       {getBlogImage(post.slug) && (
                         <div className="relative w-full aspect-[16/9] overflow-hidden">
@@ -75,7 +78,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                             src={getBlogImage(post.slug)!}
                             alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="object-cover md:transition-transform md:duration-300 md:group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             placeholder="blur"
                             loading={index < 6 ? 'eager' : 'lazy'}
@@ -100,7 +103,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        <h2 className="text-xl font-bold text-white mb-3 md:group-hover:text-primary md:transition-colors line-clamp-2">
                           {post.title}
                         </h2>
 
@@ -126,9 +129,9 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                         </div>
 
                         {/* Read More */}
-                        <div className="flex items-center gap-2 text-sm font-medium text-white/70 group-hover:text-primary transition-colors">
+                        <div className="flex items-center gap-2 text-sm font-medium text-white/70 md:group-hover:text-primary md:transition-colors">
                           Weiterlesen
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="h-4 w-4 md:transition-transform md:group-hover:translate-x-1" />
                         </div>
                       </div>
                     </article>

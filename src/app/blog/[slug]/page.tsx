@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {getBlogImage(post.slug) && (
         <section className="pb-8">
           <div className="container-custom">
-            <FadeIn delay={0.1} className="max-w-4xl mx-auto">
+            <FadeIn delay={0} className="max-w-4xl mx-auto">
               <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10">
                 <Image
                   src={getBlogImage(post.slug)!}
@@ -166,7 +166,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {post.illustration && !getBlogImage(post.slug) && (
         <section className="pb-8">
           <div className="container-custom">
-            <FadeIn delay={0.1} className="max-w-4xl mx-auto">
+            <FadeIn delay={0} className="max-w-4xl mx-auto">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-8 overflow-hidden">
                 <BlogIllustration name={post.illustration} />
               </div>
@@ -178,7 +178,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Article Content */}
       <section className="pb-16">
         <div className="container-custom">
-          <FadeIn delay={0.1} className="max-w-3xl mx-auto">
+          <FadeIn delay={0} className="max-w-3xl mx-auto">
             <article className="prose prose-invert prose-lg max-w-none">
               <Markdown content={post.content} />
             </article>
@@ -211,10 +211,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Link
                     key={relatedPost.slug}
                     href={`/blog/${relatedPost.slug}`}
-                    className="group p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all"
+                    className="group p-5 rounded-xl border border-white/10 bg-white/5 md:hover:bg-white/10 md:hover:border-primary/30 transition-colors duration-150"
                   >
                     <span className="text-xs text-primary font-medium">{relatedPost.category}</span>
-                    <h3 className="text-base font-semibold text-white mt-2 group-hover:text-primary transition-colors line-clamp-2">
+                    <h3 className="text-base font-semibold text-white mt-2 md:group-hover:text-primary md:transition-colors line-clamp-2">
                       {relatedPost.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
