@@ -2,6 +2,7 @@
 
 import { XCircle } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
+import { SalesGrowthIllustration } from '@/components/illustrations'
 
 const PROBLEMS = [
   {
@@ -29,8 +30,33 @@ export default function Problem() {
       <div className="absolute bottom-1/3 left-[8%] w-1 h-1 bg-red-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
 
       <div className="container-custom relative">
-        <div className="max-w-4xl mx-auto">
-          <FadeIn className="text-center mb-16">
+        <div className="max-w-5xl mx-auto">
+          {/* Visual Header with Illustration */}
+          <FadeIn className="mb-12 md:mb-16">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div className="text-center lg:text-left order-last lg:order-first">
+                <span className="inline-block text-destructive/80 font-medium tracking-wider uppercase text-sm mb-4">
+                  Das Problem
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+                  Warum Ihre Akquise bisher{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-destructive to-red-500">nicht funktioniert</span> hat.
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Die meisten Agenturinhaber scheitern nicht am Angebot, sondern an
+                  der fehlenden Konstanz im Vertrieb.
+                </p>
+              </div>
+              <div className="relative flex justify-center lg:justify-end">
+                <div className="relative w-full max-w-[320px] h-[240px] opacity-90 grayscale hover:grayscale-0 transition-all duration-500">
+                  <SalesGrowthIllustration className="w-full h-full rotate-180 opacity-40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn className="text-center mb-16 hidden">
             <span className="inline-block text-destructive/80 font-medium tracking-wider uppercase text-sm mb-4">
               Das Problem
             </span>

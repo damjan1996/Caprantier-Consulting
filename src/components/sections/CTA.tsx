@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import FadeIn from '@/components/ui/FadeIn'
 import { useCalendly } from '@/hooks/useCalendly'
+import { CalendarLeadsIllustration, NetworkConnectionIllustration } from '@/components/illustrations'
 
 export default function CTA() {
   const { openCalendly, onHover } = useCalendly()
@@ -18,6 +19,14 @@ export default function CTA() {
       {/* Background Glow - max-width begrenzt für Mobile */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent z-0" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(600px,100vw)] h-[300px] bg-primary/20 rounded-full blur-3xl opacity-50" />
+
+      {/* Decorative Illustrations - hidden on mobile for performance */}
+      <div className="hidden lg:block absolute left-[5%] top-1/2 -translate-y-1/2 w-[200px] h-[150px] opacity-20 pointer-events-none">
+        <CalendarLeadsIllustration className="w-full h-full" />
+      </div>
+      <div className="hidden lg:block absolute right-[5%] top-1/2 -translate-y-1/2 w-[200px] h-[150px] opacity-20 pointer-events-none">
+        <NetworkConnectionIllustration className="w-full h-full" />
+      </div>
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">

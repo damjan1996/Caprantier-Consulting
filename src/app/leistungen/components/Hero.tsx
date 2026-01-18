@@ -5,6 +5,7 @@ import { Phone, Target, CheckCircle, ArrowRight } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import { DecorativeParticles } from '@/components/ui'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { useCalendly } from '@/hooks/useCalendly'
 
 // Static import for automatic blur placeholder
@@ -18,6 +19,13 @@ export default function Hero() {
       <DecorativeParticles preset="hero" />
 
       <div className="container-custom relative z-20">
+        {/* Breadcrumbs */}
+        <FadeIn className="mb-6">
+          <Breadcrumbs
+            items={[{ label: 'Leistungen' }]}
+          />
+        </FadeIn>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">

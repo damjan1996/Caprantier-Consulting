@@ -26,12 +26,13 @@ export default function PageBackground({
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background z-10" />
         <Image
           src={abstractBg}
-          alt=""
+          alt="Abstrakter Hintergrund - Carpantier Consulting Vertriebsagentur"
           fill
           className="object-cover opacity-25 blur-sm"
           priority
           sizes="100vw"
           placeholder="blur"
+          aria-hidden="true"
         />
       </div>
 

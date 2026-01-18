@@ -3,10 +3,17 @@
 import { Phone, Target, BarChart3, Users, CheckCircle } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { DecorativeParticles } from '@/components/ui'
+import {
+  PhoneCallIllustration,
+  TargetAudienceIllustration,
+  CalendarLeadsIllustration,
+  DataAnalyticsIllustration,
+} from '@/components/illustrations'
 
 const services = [
   {
     icon: Phone,
+    illustration: PhoneCallIllustration,
     title: 'Telefonakquise',
     description: 'Professionelle Kaltakquise durch erfahrene Sales-Experten. Wir sprechen mit Entscheidern auf Augenhöhe.',
     features: ['Individuelle Gesprächsleitfäden', 'Branchenspezifische Ansprache', 'Kontinuierliche Optimierung', 'Erfahrene B2B-Vertriebsprofis'],
@@ -18,6 +25,7 @@ const services = [
   },
   {
     icon: Target,
+    illustration: TargetAudienceIllustration,
     title: 'Leadgenerierung',
     description: 'Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden nach maßgeschneiderten Kriterien.',
     features: ['Präzise Zielgruppenselektion', 'Datenqualifizierung', 'BANT-Methode', 'CRM-Integration'],
@@ -29,6 +37,7 @@ const services = [
   },
   {
     icon: Users,
+    illustration: CalendarLeadsIllustration,
     title: 'Terminqualifizierung',
     description: 'Nur qualifizierte Termine mit echten Entscheidern, die Interesse und Budget haben.',
     features: ['Vorqualifizierte Leads', 'Entscheider-Kontakte', 'Terminerinnerungen', 'Flexible Kalenderintegration'],
@@ -40,6 +49,7 @@ const services = [
   },
   {
     icon: BarChart3,
+    illustration: DataAnalyticsIllustration,
     title: 'Reporting & Analyse',
     description: 'Transparente Berichte über alle Aktivitäten und Ergebnisse. Volle Kontrolle für Sie.',
     features: ['Wöchentliche Reports', 'KPI-Tracking', 'Conversion-Analysen', 'Optimierungsvorschläge'],
@@ -80,8 +90,13 @@ export default function Services() {
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <FadeIn key={index} delay={index * 0.1}>
-              <div className={`group relative p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 ${service.borderHover} hover:shadow-xl ${service.shadow} hover:-translate-y-1 cursor-default`}>
+              <div className={`group relative p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 ${service.borderHover} hover:shadow-xl ${service.shadow} hover:-translate-y-1 cursor-default overflow-hidden`}>
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Background Illustration */}
+                <div className="absolute -right-8 -bottom-8 w-[180px] h-[135px] opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                  <service.illustration className="w-full h-full" />
+                </div>
 
                 <div className="relative">
                   <div className={`h-14 w-14 rounded-2xl ${service.bg} ${service.bgHover} ${service.color} flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110`}>

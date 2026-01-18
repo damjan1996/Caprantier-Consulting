@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { cities } from '@/lib/cities'
+import { blogPosts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://carpantier-consulting.de'
@@ -11,6 +12,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,
     priority: 0.85,
+  }))
+
+  // Blog-Artikel
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.updatedAt,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
   }))
 
   return [
@@ -30,6 +39,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Stadt-spezifische Leistungsseiten
     ...cityPages,
+    // Blog - wichtig für SEO & Content Marketing
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    // Blog-Artikel
+    ...blogPages,
     // Kontakt - wichtig für Conversions
     {
       url: `${baseUrl}/kontakt`,
@@ -40,6 +58,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Über uns
     {
       url: `${baseUrl}/ueber-uns`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Glossar - SEO Content
+    {
+      url: `${baseUrl}/glossar`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    // Case Studies
+    {
+      url: `${baseUrl}/case-studies`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,

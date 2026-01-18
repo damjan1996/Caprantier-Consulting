@@ -1,26 +1,98 @@
 # Robots.txt for carpantier-consulting.de
-# B2B Telefonakquise & Leadgenerierung Köln
+# B2B Vertriebsagentur - Telefonakquise & Leadgenerierung
 
+# ===========================================
+# Allgemeine Regeln für alle Crawler
+# ===========================================
 User-agent: *
 Allow: /
 
-# Wichtige Seiten
+# Wichtige Seiten explizit erlauben
 Allow: /leistungen
+Allow: /leistungen/
+Allow: /blog
+Allow: /blog/
+Allow: /glossar
+Allow: /case-studies
 Allow: /ueber-uns
 Allow: /kontakt
-Allow: /impressum
-Allow: /datenschutz
 
-# API und interne Pfade blockieren
+# Ressourcen für Rendering erlauben
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.gif$
+
+# Interne und technische Pfade blockieren
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/static/chunks/
 Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
 
-# Crawl-Delay für respektvolles Crawling
-Crawl-delay: 1
+# Query-Parameter blockieren (Duplicate Content vermeiden)
+Disallow: /*?*
+Allow: /*?utm_source=
+Allow: /*?utm_medium=
+Allow: /*?utm_campaign=
 
+# ===========================================
+# Google-spezifische Regeln
+# ===========================================
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/chunks/
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /logo/
+
+# ===========================================
+# Bing-spezifische Regeln
+# ===========================================
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/chunks/
+
+# ===========================================
+# Social Media Crawler erlauben
+# ===========================================
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# ===========================================
+# Bad Bots blockieren
+# ===========================================
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ===========================================
 # Sitemaps
+# ===========================================
 Sitemap: https://carpantier-consulting.de/sitemap.xml
 
-# Host
+# ===========================================
+# Host (Canonical Domain)
+# ===========================================
 Host: https://carpantier-consulting.de

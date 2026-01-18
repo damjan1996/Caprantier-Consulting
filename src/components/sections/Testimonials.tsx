@@ -4,33 +4,40 @@ import { useState } from 'react'
 import { Quote, ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { cn } from '@/lib/utils'
+import { ProfessionalAvatar } from '@/components/illustrations'
 
 const TESTIMONIALS = [
   {
     id: 1,
     name: 'Michael Weber',
+    initials: 'MW',
     role: 'Geschäftsführer',
     company: 'WebTech Solutions GmbH',
     location: 'Köln',
     rating: 5,
+    avatarVariant: 'primary' as const,
     text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und erstklassig.',
   },
   {
     id: 2,
     name: 'Sandra Müller',
+    initials: 'SM',
     role: 'Head of Sales',
     company: 'Digital First Agency',
     location: 'Düsseldorf',
     rating: 5,
+    avatarVariant: 'blue' as const,
     text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert Neukunden.',
   },
   {
     id: 3,
     name: 'Thomas Schneider',
+    initials: 'TS',
     role: 'Inhaber',
     company: 'Schneider IT Consulting',
     location: 'Frankfurt',
     rating: 5,
+    avatarVariant: 'purple' as const,
     text: 'Als Einzelunternehmer hatte ich keine Zeit für Akquise. Carpantier hat mir ermöglicht, mich auf mein Kerngeschäft zu konzentrieren, während sie die Pipeline füllen. ROI nach 2 Monaten erreicht. Absolute Empfehlung!',
   },
 ]
@@ -94,10 +101,12 @@ export default function Testimonials() {
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 border border-white/10 flex items-center justify-center">
-                    <span className="text-xl font-bold text-primary">
-                      {TESTIMONIALS[activeIndex].name.charAt(0)}
-                    </span>
+                  <div className="h-14 w-14 rounded-full overflow-hidden">
+                    <ProfessionalAvatar
+                      initials={TESTIMONIALS[activeIndex].initials}
+                      variant={TESTIMONIALS[activeIndex].avatarVariant}
+                      className="w-full h-full"
+                    />
                   </div>
                   <div>
                     <p className="font-semibold text-white">

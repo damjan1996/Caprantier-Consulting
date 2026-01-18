@@ -13,6 +13,7 @@ import logoWhite from '@/../public/logo/Logo - Weiß.png'
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Leistungen', href: '/leistungen' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Über uns', href: '/ueber-uns' },
   { name: 'Kontakt', href: '/kontakt' },
 ]

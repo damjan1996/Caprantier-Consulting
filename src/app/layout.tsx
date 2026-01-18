@@ -110,9 +110,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://carpantier-consulting.de/images/og-image.jpg',
-        width: 1024,
-        height: 1024,
-        alt: 'Nico-Luca Carpantier - B2B Telefonakquise & Leadgenerierung',
+        width: 1200,
+        height: 630,
+        alt: 'Carpantier Consulting - B2B Telefonakquise & Leadgenerierung aus Köln',
         type: 'image/jpeg',
       },
     ],
@@ -181,9 +181,27 @@ const jsonLd = {
         { '@type': 'City', name: 'München' },
         { '@type': 'City', name: 'Hamburg' },
         { '@type': 'City', name: 'Berlin' },
+        { '@type': 'City', name: 'Stuttgart' },
+        { '@type': 'City', name: 'Hannover' },
+        { '@type': 'City', name: 'Leipzig' },
+        { '@type': 'City', name: 'Dresden' },
+        { '@type': 'City', name: 'Nürnberg' },
+        { '@type': 'City', name: 'Bremen' },
         { '@type': 'State', name: 'Nordrhein-Westfalen' },
+        { '@type': 'State', name: 'Bayern' },
+        { '@type': 'State', name: 'Baden-Württemberg' },
+        { '@type': 'State', name: 'Hessen' },
+        { '@type': 'State', name: 'Niedersachsen' },
+        { '@type': 'State', name: 'Sachsen' },
         { '@type': 'Country', name: 'Deutschland' },
       ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        reviewCount: '12',
+        bestRating: '5',
+        worstRating: '1',
+      },
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -243,6 +261,30 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Leadgenerierung',
               description: 'Qualifizierte B2B Leads für Ihr Vertriebsteam',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Vertriebsoutsourcing',
+              description: 'Komplette Auslagerung Ihres B2B-Vertriebs an erfahrene Profis',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'SDR as a Service',
+              description: 'Sales Development Representatives als externe Dienstleistung',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Terminqualifizierung',
+              description: 'BANT-qualifizierte Termine mit echten Entscheidern',
             },
           },
           {

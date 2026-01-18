@@ -12,6 +12,7 @@ type FormData = {
   company: string
   phone: string
   message: string
+  privacyConsent: boolean
 }
 
 type FormErrors = Partial<Record<keyof FormData, string>>
@@ -25,6 +26,7 @@ export default function ContactForm() {
     company: '',
     phone: '',
     message: '',
+    privacyConsent: false,
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<FormStatus>('idle')
@@ -50,6 +52,10 @@ export default function ContactForm() {
       newErrors.message = 'Nachricht ist erforderlich'
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Nachricht muss mindestens 10 Zeichen lang sein'
+    }
+
+    if (!formData.privacyConsent) {
+      newErrors.privacyConsent = 'Bitte stimmen Sie der Datenschutzerklärung zu'
     }
 
     setErrors(newErrors)
@@ -81,7 +87,7 @@ export default function ContactForm() {
 
       setStatus('success')
       trackEvent('form_submit', 'contact_form', 'success')
-      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+      setFormData({ name: '', email: '', company: '', phone: '', message: '', privacyConsent: false })
     } catch {
       setStatus('error')
       trackEvent('form_submit', 'contact_form', 'error')
@@ -91,9 +97,10 @@ export default function ContactForm() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    // Clear error when user starts typing
+    const { name, value, type } = e.target
+    const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    setFormData((prev) => ({ ...prev, [name]: newValue }))
+    // Clear error when user starts typing/clicking
     if (errors[name as keyof FormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
     }
@@ -242,6 +249,43 @@ export default function ContactForm() {
           )}
         </div>
 
+        {/* Privacy Consent Checkbox - DSGVO */}
+        <div className="space-y-2">
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <div className="relative flex items-center justify-center mt-0.5">
+              <input
+                type="checkbox"
+                id="privacyConsent"
+                name="privacyConsent"
+                checked={formData.privacyConsent}
+                onChange={handleChange}
+                className={`h-5 w-5 rounded border bg-white/5 text-primary focus:ring-2 focus:ring-primary/50 focus:ring-offset-0 cursor-pointer transition-colors ${
+                  errors.privacyConsent ? 'border-red-500' : 'border-white/20 group-hover:border-white/40'
+                }`}
+              />
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Ich habe die{' '}
+              <a
+                href="/datenschutz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Datenschutzerklärung
+              </a>{' '}
+              gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *
+            </span>
+          </label>
+          {errors.privacyConsent && (
+            <p className="text-sm text-red-500 flex items-center gap-1 ml-8">
+              <AlertCircle className="h-3 w-3" />
+              {errors.privacyConsent}
+            </p>
+          )}
+        </div>
+
         {/* Error message */}
         {status === 'error' && (
           <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
@@ -272,11 +316,7 @@ export default function ContactForm() {
         </Button>
 
         <p className="text-xs text-muted-foreground">
-          * Pflichtfelder. Mit dem Absenden stimmen Sie unserer{' '}
-          <a href="/datenschutz" className="text-primary hover:underline">
-            Datenschutzerklärung
-          </a>{' '}
-          zu.
+          * Pflichtfelder
         </p>
       </form>
     </FadeIn>

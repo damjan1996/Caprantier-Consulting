@@ -217,7 +217,53 @@ const sections = [
   },
   {
     icon: Server,
-    title: '3. Datenerfassung auf dieser Website',
+    title: '3. Hosting',
+    iconColor: 'text-indigo-400',
+    iconBg: 'bg-indigo-400/10',
+    content: (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">Vercel</h3>
+          <p className="text-muted-foreground mb-4">
+            Wir hosten unsere Website bei Vercel. Anbieter ist die Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA (nachfolgend: Vercel).
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Wenn Sie unsere Website besuchen, werden Ihre personenbezogenen Daten auf den Servern von Vercel verarbeitet. Hierbei können auch personenbezogene Daten an den Mutterkonzern von Vercel in die USA übermittelt werden. Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Vercel erfasst bei jedem Zugriff auf unsere Website automatisch folgende Informationen in sogenannten Server-Log-Dateien:
+          </p>
+          <ul className="space-y-2 mb-4">
+            {[
+              'IP-Adresse des anfragenden Rechners',
+              'Datum und Uhrzeit des Zugriffs',
+              'Name und URL der abgerufenen Datei',
+              'Website, von der aus der Zugriff erfolgt (Referrer-URL)',
+              'Verwendeter Browser und ggf. Betriebssystem Ihres Rechners',
+              'Name Ihres Access-Providers',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted-foreground mb-4">
+            Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an der technisch einwandfreien Bereitstellung und Optimierung unserer Website.
+          </p>
+          <p className="text-muted-foreground">
+            Weitere Informationen finden Sie in der Datenschutzerklärung von Vercel:{' '}
+            <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://vercel.com/legal/privacy-policy
+            </a>
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    icon: Cookie,
+    title: '4. Datenerfassung auf dieser Website',
     iconColor: 'text-blue-400',
     iconBg: 'bg-blue-400/10',
     content: (
@@ -238,6 +284,73 @@ const sections = [
           </p>
           <p className="text-muted-foreground">
             Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">Cookie-Übersicht</h3>
+          <p className="text-muted-foreground mb-4">
+            Auf unserer Website setzen wir folgende Cookies ein:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="text-left py-3 px-4 text-white font-medium">Cookie-Name</th>
+                  <th className="text-left py-3 px-4 text-white font-medium">Anbieter</th>
+                  <th className="text-left py-3 px-4 text-white font-medium">Zweck</th>
+                  <th className="text-left py-3 px-4 text-white font-medium">Speicherdauer</th>
+                  <th className="text-left py-3 px-4 text-white font-medium">Typ</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">cookie-consent</td>
+                  <td className="py-3 px-4">Eigene</td>
+                  <td className="py-3 px-4">Speichert Ihre Cookie-Einstellungen</td>
+                  <td className="py-3 px-4">1 Jahr</td>
+                  <td className="py-3 px-4">Notwendig</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">_ga</td>
+                  <td className="py-3 px-4">Google Analytics</td>
+                  <td className="py-3 px-4">Unterscheidung von Nutzern</td>
+                  <td className="py-3 px-4">2 Jahre</td>
+                  <td className="py-3 px-4">Analyse</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">_ga_*</td>
+                  <td className="py-3 px-4">Google Analytics</td>
+                  <td className="py-3 px-4">Speicherung des Session-Status</td>
+                  <td className="py-3 px-4">2 Jahre</td>
+                  <td className="py-3 px-4">Analyse</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">_hjSession*</td>
+                  <td className="py-3 px-4">Hotjar</td>
+                  <td className="py-3 px-4">Session-Tracking für Heatmaps</td>
+                  <td className="py-3 px-4">30 Minuten</td>
+                  <td className="py-3 px-4">Analyse</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">_hjSessionUser*</td>
+                  <td className="py-3 px-4">Hotjar</td>
+                  <td className="py-3 px-4">Benutzer-ID für Hotjar</td>
+                  <td className="py-3 px-4">1 Jahr</td>
+                  <td className="py-3 px-4">Analyse</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">sib_cuid</td>
+                  <td className="py-3 px-4">Brevo</td>
+                  <td className="py-3 px-4">Benutzer-Identifikation</td>
+                  <td className="py-3 px-4">13 Monate</td>
+                  <td className="py-3 px-4">Marketing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-muted-foreground mt-4 text-sm">
+            Sie können Ihre Cookie-Einstellungen jederzeit über den Link &bdquo;Cookie-Einstellungen&ldquo; im Footer dieser Website anpassen.
           </p>
         </div>
 
@@ -271,7 +384,7 @@ const sections = [
   },
   {
     icon: BarChart3,
-    title: '4. Analyse-Tools und Werbung',
+    title: '5. Analyse-Tools und Werbung',
     iconColor: 'text-cyan-400',
     iconBg: 'bg-cyan-400/10',
     content: (
@@ -381,7 +494,7 @@ const sections = [
   },
   {
     icon: Globe,
-    title: '5. Plugins und Tools',
+    title: '6. Plugins und Tools',
     iconColor: 'text-purple-400',
     iconBg: 'bg-purple-400/10',
     content: (
@@ -417,8 +530,35 @@ const sections = [
 
         <div>
           <h3 className="text-lg font-medium text-white mb-3">Calendly</h3>
+          <p className="text-muted-foreground mb-4">
+            Für die Terminbuchung nutzen wir den Dienst Calendly. Anbieter ist die Calendly LLC, 271 17th St NW, Ste 1000, Atlanta, GA 30363, USA.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Calendly ermöglicht es Ihnen, Termine mit uns zu vereinbaren. Bei der Nutzung von Calendly werden folgende personenbezogene Daten verarbeitet:
+          </p>
+          <ul className="space-y-2 mb-4">
+            {[
+              'Ihr Name',
+              'Ihre E-Mail-Adresse',
+              'Gewünschter Termin',
+              'Ggf. weitere Angaben, die Sie im Buchungsformular machen',
+              'IP-Adresse',
+              'Browser- und Geräteinformationen',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted-foreground mb-4">
+            Diese Daten werden an die Server von Calendly in den USA übertragen. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Nutzung von Calendly erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) sowie Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer effizienten Terminplanung.
+          </p>
           <p className="text-muted-foreground">
-            Für die Terminbuchung nutzen wir Calendly. Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly:{' '}
+            Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly:{' '}
             <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               https://calendly.com/privacy
             </a>

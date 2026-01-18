@@ -1,10 +1,15 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Kontakt - Kostenloses Strategiegespräch buchen',
+  title: 'Kontakt | Vertrieb auslagern - Kostenloses Strategiegespräch',
   description:
-    'Kontaktieren Sie Carpantier Consulting für Ihr kostenloses Strategiegespräch. ✓ Unverbindliche Beratung ✓ Persönlicher Ansprechpartner ✓ Köln & deutschlandweit. Jetzt Termin vereinbaren!',
+    'Vertrieb auslagern leicht gemacht: Kontaktieren Sie Carpantier Consulting für Ihr kostenloses Strategiegespräch. ✓ Vertriebsagentur Köln ✓ B2B Akquise ✓ Leadgenerierung. Jetzt Termin vereinbaren!',
   keywords: [
+    'Vertrieb auslagern Kontakt',
+    'Vertriebsagentur Köln Kontakt',
+    'Vertriebsberatung Strategiegespräch',
+    'B2B Vertrieb Beratung',
+    'Vertriebsoutsourcing anfragen',
     'Kontakt Carpantier Consulting',
     'Strategiegespräch B2B Akquise',
     'Beratung Leadgenerierung',
@@ -13,6 +18,7 @@ export const metadata: Metadata = {
     'Vertriebsberatung anfragen',
     'Sales Consulting Termin',
     'Akquise Beratung NRW',
+    'Kaltakquise Agentur Anfrage',
   ],
   openGraph: {
     title: 'Kontakt | Carpantier Consulting',

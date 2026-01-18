@@ -2,7 +2,12 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { PageWrapper } from '@/components/ui'
 import { Hero, Problem, Method, Benefits, FAQ } from './components'
-import { generateTestimonialsSchema } from '@/lib/schemas'
+import {
+  generateTestimonialsSchema,
+  generateHowToSchema,
+  generateHomepageFAQSchema,
+  generateServiceAreaSchema,
+} from '@/lib/schemas'
 
 // Dynamic imports for below the fold components
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
@@ -19,6 +24,9 @@ const CTA = dynamic(() => import('@/components/sections/CTA'), {
 
 export default function Home() {
   const reviewSchema = generateTestimonialsSchema()
+  const howToSchema = generateHowToSchema()
+  const faqSchema = generateHomepageFAQSchema()
+  const serviceAreaSchema = generateServiceAreaSchema()
 
   return (
     <PageWrapper>
@@ -26,6 +34,21 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
+      {/* HowTo Schema for Method Section */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      {/* FAQ Schema for Homepage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      {/* Service Area Schema for Local SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreaSchema) }}
       />
 
       <Hero />
