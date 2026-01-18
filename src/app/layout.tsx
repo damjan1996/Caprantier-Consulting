@@ -5,7 +5,6 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
-import Script from 'next/script'
 
 // Dynamic import for TrackingScripts - load after page is interactive
 const TrackingScripts = dynamic(
@@ -340,22 +339,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Carpantier" />
 
-        {/* Preconnect für externe Ressourcen */}
-        <link rel="preconnect" href="https://assets.calendly.com" />
-        <link rel="preconnect" href="https://calendly.com" />
-        <link rel="dns-prefetch" href="https://assets.calendly.com" />
-        <link rel="dns-prefetch" href="https://calendly.com" />
-
-        {/* Calendly Widget CSS - mit preload für Performance */}
-        <link
-          rel="preload"
-          href="https://assets.calendly.com/assets/external/widget.css"
-          as="style"
-        />
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>
@@ -363,12 +346,6 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </Providers>
-
-        {/* Calendly Widget Script - async für Performance */}
-        <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
-        />
 
         {/* Tracking Scripts - werden nur bei Cookie-Einwilligung geladen */}
         <TrackingScripts />

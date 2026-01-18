@@ -191,134 +191,64 @@ body {
   color: white;
 }
 
-/* Calendly Widget Customization */
+/* ============================================
+   Calendly (react-calendly) Styles
+   ============================================ */
+
+/* Overlay - dunkler Hintergrund */
 .calendly-overlay {
-  background: rgba(10, 10, 26, 0.7) !important;
-  backdrop-filter: blur(8px) !important;
-  animation: calendlyFadeIn 0.1s ease-out !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(4px) !important;
 }
 
+/* Popup Container */
 .calendly-popup {
-  max-width: 1000px !important;
-  width: 95% !important;
-  max-height: 90vh !important;
-  height: 680px !important;
-  border-radius: 1rem !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 60px rgba(59, 130, 246, 0.15) !important;
-  overflow: visible !important;
-  /* Feste Positionierung von Anfang an */
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  margin: 0 !important;
-  animation: calendlyFadeIn 0.1s ease-out !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5) !important;
 }
 
-.calendly-popup-content {
-  height: 100% !important;
-  width: 100% !important;
-  border-radius: 1rem !important;
-  overflow: hidden !important;
-}
-
-/* Spinner/Loading zentriert */
-.calendly-popup .calendly-spinner {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-/* Close Button - positioniert relativ zum Popup */
+/* Close Button */
 .calendly-popup-close {
-  position: absolute !important;
-  top: -12px !important;
-  right: -12px !important;
-  width: 36px !important;
-  height: 36px !important;
-  background: #1a1a2e !important;
-  border: 2px solid rgba(59, 130, 246, 0.5) !important;
+  background: #1a1a1a !important;
   border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.15s ease !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  cursor: pointer !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: all 0.2s ease !important;
-  z-index: 10000 !important;
-  color: white !important;
-  cursor: pointer !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  font-size: 24px !important;
+  font-weight: 300 !important;
+  color: #fff !important;
+  font-family: Arial, sans-serif !important;
+  line-height: 1 !important;
+  overflow: visible !important;
+}
+
+.calendly-popup-close::before {
+  content: '✕' !important;
+  color: #fff !important;
+  font-size: 20px !important;
 }
 
 .calendly-popup-close:hover {
-  background: #252542 !important;
-  border-color: rgba(59, 130, 246, 0.8) !important;
+  background: #333 !important;
   transform: scale(1.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.calendly-popup-close svg {
-  width: 16px !important;
-  height: 16px !important;
-  color: white !important;
-  fill: white !important;
-  stroke: white !important;
+/* Verstecke originales Icon falls vorhanden */
+.calendly-popup-close svg,
+.calendly-popup-close img {
+  display: none !important;
 }
 
-@keyframes calendlyFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Mobile Calendly Optimization */
+/* Mobile Fullscreen */
 @media (max-width: 768px) {
   .calendly-popup {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
     border-radius: 0 !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: none !important;
-  }
-
-  .calendly-popup-content {
-    border-radius: 0 !important;
-  }
-
-  .calendly-popup-close {
-    top: 12px !important;
-    right: 12px !important;
-    width: 40px !important;
-    height: 40px !important;
-    background: #1a1a2e !important;
-    border: 2px solid rgba(59, 130, 246, 0.5) !important;
-  }
-
-  .calendly-popup-close:hover {
-    background: #252542 !important;
-  }
-
-  .calendly-popup-close svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
-
-  .calendly-overlay {
-    background: rgba(10, 10, 26, 0.9) !important;
-  }
-}
-
-/* Tablet Calendly Optimization */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .calendly-popup {
-    width: 90% !important;
-    max-width: 800px !important;
-    height: 85vh !important;
-    max-height: 700px !important;
   }
 }
