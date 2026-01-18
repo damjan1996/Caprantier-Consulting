@@ -1,24 +1,43 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
-import { BlogPost } from '@/lib/blog'
+import { BlogPostPreview } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
 
+const POSTS_PER_PAGE = 12
+
 interface BlogGridProps {
-  posts: BlogPost[]
+  posts: BlogPostPreview[]
   categories: string[]
 }
 
 export default function BlogGrid({ posts, categories }: BlogGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const filteredPosts = selectedCategory
     ? posts.filter((post) => post.category === selectedCategory)
     : posts
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
+  const paginatedPosts = filteredPosts.slice(startIndex, startIndex + POSTS_PER_PAGE)
+
+  // Reset to page 1 when category changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedCategory])
+
+  // Scroll to top when page changes
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -64,7 +83,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPosts.map((post, index) => (
+              {paginatedPosts.map((post, index) => (
                 <FadeIn
                   key={post.slug}
                   delay={index < 6 ? Math.min(index * 0.03, 0.15) : 0}
@@ -139,6 +158,77 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                 </FadeIn>
               ))}
             </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+              {/* Previous Button */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/70 transition-colors duration-150 hover:bg-white/10 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:text-white/70"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Zurück
+              </button>
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // Show first, last, current, and adjacent pages
+                  const showPage =
+                    page === 1 ||
+                    page === totalPages ||
+                    Math.abs(page - currentPage) <= 1
+
+                  // Show ellipsis
+                  const showEllipsisBefore = page === currentPage - 2 && currentPage > 3
+                  const showEllipsisAfter = page === currentPage + 2 && currentPage < totalPages - 2
+
+                  if (showEllipsisBefore || showEllipsisAfter) {
+                    return (
+                      <span key={page} className="px-2 text-white/40">
+                        ...
+                      </span>
+                    )
+                  }
+
+                  if (!showPage) return null
+
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-10 h-10 rounded-lg font-medium transition-colors duration-150 ${
+                        currentPage === page
+                          ? 'bg-primary/20 text-primary border border-primary/30'
+                          : 'border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/70 transition-colors duration-150 hover:bg-white/10 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:text-white/70"
+              >
+                Weiter
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Results Info */}
+          {filteredPosts.length > 0 && (
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              {startIndex + 1}–{Math.min(startIndex + POSTS_PER_PAGE, filteredPosts.length)} von {filteredPosts.length} Artikeln
+            </p>
           )}
         </div>
       </section>

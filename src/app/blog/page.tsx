@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PageWrapper } from '@/components/ui'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { blogPosts, getAllCategories } from '@/lib/blog'
+import { getBlogPostPreviews, getAllCategories } from '@/lib/blog'
 import BlogGrid from './components/BlogGrid'
 
 export const metadata: Metadata = {
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const categories = getAllCategories()
+  const posts = getBlogPostPreviews()
 
   return (
     <PageWrapper>
@@ -57,7 +58,7 @@ export default function BlogPage() {
       </section>
 
       {/* Filterable Blog Grid */}
-      <BlogGrid posts={blogPosts} categories={categories} />
+      <BlogGrid posts={posts} categories={categories} />
     </PageWrapper>
   )
 }

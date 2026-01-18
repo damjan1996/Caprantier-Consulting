@@ -18,6 +18,18 @@ export interface BlogPost {
   image?: string
 }
 
+// Leichtgewichtige Version für Blog-Übersicht (ohne Content)
+export interface BlogPostPreview {
+  slug: string
+  title: string
+  description: string
+  author: string
+  publishedAt: string
+  readingTime: string
+  category: string
+  featured: boolean
+}
+
 export const blogPosts: BlogPost[] = [
   {
     slug: 'vertrieb-auslagern-kosten-vorteile',
@@ -7875,4 +7887,18 @@ export function getPostsByCategory(category: string): BlogPost[] {
 
 export function getAllCategories(): string[] {
   return [...new Set(blogPosts.map((post) => post.category))]
+}
+
+// Gibt nur die für die Übersicht nötigen Felder zurück (ohne Content)
+export function getBlogPostPreviews(): BlogPostPreview[] {
+  return blogPosts.map(({ slug, title, description, author, publishedAt, readingTime, category, featured }) => ({
+    slug,
+    title,
+    description,
+    author,
+    publishedAt,
+    readingTime,
+    category,
+    featured,
+  }))
 }
