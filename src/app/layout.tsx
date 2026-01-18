@@ -20,9 +20,29 @@ const inter = Inter({
   preload: true,
 })
 
-// Relevante Keywords für B2B Akquise, Leadgenerierung, Städte
+// Relevante Keywords für Vertrieb, B2B Akquise, Leadgenerierung - optimiert für lokale Suche
 const keywords = [
-  // Hauptkeywords
+  // PRIMÄRE KEYWORDS: "Vertrieb + Stadt" (höchste Priorität für Rankings)
+  'Vertrieb Köln',
+  'Vertrieb Düsseldorf',
+  'Vertrieb Bonn',
+  'Vertrieb Essen',
+  'Vertrieb Dortmund',
+  'Vertrieb Frankfurt',
+  'Vertrieb München',
+  'Vertrieb Hamburg',
+  'Vertrieb Berlin',
+  'Vertrieb NRW',
+  // Vertrieb-Varianten
+  'Vertriebsagentur',
+  'Vertrieb auslagern',
+  'Vertriebsunterstützung',
+  'Vertriebsoutsourcing',
+  'Vertriebspartner',
+  'Vertriebsberatung',
+  'B2B Vertrieb',
+  'Vertrieb outsourcen',
+  // Sekundäre Keywords
   'B2B Akquise',
   'B2B Leadgenerierung',
   'Telefonakquise',
@@ -30,31 +50,20 @@ const keywords = [
   'Terminvereinbarung B2B',
   'Neukundengewinnung',
   'Sales Outsourcing',
-  'Vertriebsagentur',
   'Akquise Dienstleister',
   'Lead Generation',
   // Zielgruppen
-  'Akquise für Agenturen',
-  'Akquise für IT-Dienstleister',
-  'Akquise für Beratungsunternehmen',
-  'Akquise für Softwareunternehmen',
-  // Städte NRW
-  'Akquise Köln',
-  'Leadgenerierung Köln',
-  'Telefonakquise Köln',
+  'Vertrieb für Agenturen',
+  'Vertrieb für IT-Dienstleister',
+  'Vertrieb für Beratungsunternehmen',
+  'Vertrieb für Softwareunternehmen',
+  // Städte + Vertriebsagentur
   'Vertriebsagentur Köln',
-  'B2B Akquise Düsseldorf',
-  'Leadgenerierung Düsseldorf',
-  'B2B Akquise Bonn',
-  'Akquise NRW',
-  'Vertrieb Nordrhein-Westfalen',
-  // Weitere Städte
-  'B2B Akquise Essen',
-  'Leadgenerierung Dortmund',
-  'Telefonakquise Frankfurt',
-  'Akquise München',
+  'Vertriebsagentur Düsseldorf',
+  'Vertriebsagentur Frankfurt',
+  'Vertriebsagentur München',
   'Vertriebsagentur Hamburg',
-  'B2B Leads Deutschland',
+  'Vertriebsagentur Berlin',
   // Long-tail Keywords
   'qualifizierte Termine B2B',
   'Entscheider Termine',

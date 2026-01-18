@@ -8,9 +8,10 @@ interface PageBackgroundProps {
   glowPosition?: 'left' | 'right' | 'center'
 }
 
+// Glow-Positionen - max-w-screen verhindert Overflow auf Mobile
 const glowPositionClasses = {
-  left: '-top-40 -left-40',
-  right: '-top-40 -right-40',
+  left: '-top-40 left-0 -translate-x-1/3',
+  right: '-top-40 right-0 translate-x-1/3',
   center: '-top-40 left-1/2 -translate-x-1/2',
 } as const
 
@@ -34,11 +35,13 @@ export default function PageBackground({
         />
       </div>
 
-      {/* Glow Effect */}
+      {/* Glow Effect - mit overflow-hidden Container um horizontales Scrolling zu verhindern */}
       {showGlow && (
-        <div
-          className={`fixed ${glowPositionClasses[glowPosition]} w-[600px] h-[600px] hero-glow blur-3xl pointer-events-none opacity-60 z-0`}
-        />
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className={`absolute ${glowPositionClasses[glowPosition]} w-[min(600px,150vw)] h-[600px] hero-glow blur-3xl opacity-60`}
+          />
+        </div>
       )}
     </>
   )

@@ -93,9 +93,9 @@ export default function FAQ() {
 
   return (
     <section className="section-padding relative">
-      {/* Decorative elements */}
-      <div className="absolute top-1/3 left-10 w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-1/4 right-16 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+      {/* Decorative elements - prozentbasiert für Mobile */}
+      <div className="absolute top-1/3 left-[5%] w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-1/4 right-[8%] w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
 
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">

@@ -40,13 +40,13 @@ export default function StadtHero({ city }: StadtHeroProps) {
             <FadeIn delay={0.1}>
               <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
                 <MapPin className="h-4 w-4 mr-2 text-primary" />
-                B2B Akquise in {city.name}
+                Vertrieb & Vertriebsagentur in {city.name}
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-                B2B-Akquise in{' '}
+                Vertrieb{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600">
                   {city.name}
                 </span>
@@ -55,7 +55,7 @@ export default function StadtHero({ city }: StadtHeroProps) {
 
             <FadeIn delay={0.3}>
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                {city.regionalText} Wir liefern qualifizierte Termine mit{' '}
+                <strong className="text-white">Ihre Vertriebsagentur in {city.name}:</strong> {city.regionalText} Wir übernehmen Ihren Vertrieb und liefern qualifizierte Termine mit{' '}
                 <strong className="text-white">Entscheidern</strong>{' '}
                 {city.businessContext}.
               </p>
@@ -78,9 +78,9 @@ export default function StadtHero({ city }: StadtHeroProps) {
             <FadeIn delay={0.5}>
               <div className="flex flex-wrap gap-x-5 gap-y-2 justify-center lg:justify-start text-sm text-muted-foreground">
                 {[
-                  `Telefonakquise ${city.name}`,
-                  `Leadgenerierung ${city.regionShort}`,
-                  'Qualifizierte Termine',
+                  `Vertrieb ${city.name}`,
+                  `Vertriebsagentur ${city.regionShort}`,
+                  'Vertrieb auslagern',
                 ].map((item) => (
                   <span key={item} className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-white cursor-default">
                     <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" />
@@ -130,7 +130,7 @@ export default function StadtHero({ city }: StadtHeroProps) {
               <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-white/30 group-hover:shadow-primary/10">
                 <Image
                   src={nicoSalesCall}
-                  alt={`Nico Carpantier - B2B Akquise ${city.name}`}
+                  alt={`Nico Carpantier - Vertrieb ${city.name} - Vertriebsagentur`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -145,7 +145,7 @@ export default function StadtHero({ city }: StadtHeroProps) {
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-white/80 group-hover/card:text-white transition-colors">Akquise {city.name}</p>
+                      <p className="text-xs text-white/80 group-hover/card:text-white transition-colors">Vertrieb {city.name}</p>
                       <p className="text-sm font-bold text-white">Läuft</p>
                     </div>
                   </div>

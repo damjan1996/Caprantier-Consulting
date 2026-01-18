@@ -10,14 +10,14 @@ export default function CTA() {
 
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/50 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
-      <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-green-400/40 rounded-full animate-pulse" style={{ animationDuration: '2.5s' }} />
-      <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+      {/* Decorative elements - prozentbasierte Positionen */}
+      <div className="absolute top-1/4 left-[15%] w-2 h-2 bg-primary/50 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+      <div className="absolute top-1/3 right-[15%] w-1.5 h-1.5 bg-green-400/40 rounded-full animate-pulse" style={{ animationDuration: '2.5s' }} />
+      <div className="absolute bottom-1/3 left-[20%] w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
 
-      {/* Background Glow */}
+      {/* Background Glow - max-width begrenzt für Mobile */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent z-0" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/20 rounded-full blur-3xl opacity-50" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(600px,100vw)] h-[300px] bg-primary/20 rounded-full blur-3xl opacity-50" />
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">

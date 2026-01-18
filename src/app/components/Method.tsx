@@ -49,10 +49,10 @@ const STEPS = [
 export default function Method() {
   return (
     <section className="section-padding relative">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-1/4 right-1/5 w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
-      <div className="absolute top-1/2 right-10 w-1 h-1 bg-green-400/30 rounded-full animate-pulse" style={{ animationDuration: '2.5s' }} />
+      {/* Decorative elements - prozentbasiert für Mobile */}
+      <div className="absolute top-20 left-[15%] w-2 h-2 bg-blue-400/30 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-1/4 right-[12%] w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+      <div className="absolute top-1/2 right-[5%] w-1 h-1 bg-green-400/30 rounded-full animate-pulse" style={{ animationDuration: '2.5s' }} />
 
       <div className="container-custom">
         <div className="text-center mb-16 md:mb-20">

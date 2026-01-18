@@ -23,8 +23,8 @@ function generateCityJsonLd(city: City) {
         '@type': 'LocalBusiness',
         '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#organization`,
         name: 'Carpantier Consulting',
-        alternateName: `Carpantier Consulting - B2B Akquise ${city.name}`,
-        description: `Professionelle B2B Telefonakquise & Leadgenerierung in ${city.name}. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen ${city.businessContext}.`,
+        alternateName: `Vertriebsagentur ${city.name} - Carpantier Consulting`,
+        description: `Vertrieb ${city.name}: Ihre Vertriebsagentur für B2B Leadgenerierung & Telefonakquise. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen ${city.businessContext}.`,
         url: `https://carpantier-consulting.de/leistungen/${city.slug}`,
         logo: 'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
         image: 'https://carpantier-consulting.de/images/nico-portrait.png',
@@ -62,9 +62,9 @@ function generateCityJsonLd(city: City) {
       {
         '@type': 'Service',
         '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#service`,
-        serviceType: 'B2B Telefonakquise',
-        name: `B2B Leadgenerierung & Terminvereinbarung in ${city.name}`,
-        description: `Professionelle Kaltakquise und Leadgenerierung für B2B-Unternehmen in ${city.name}. Wir vereinbaren qualifizierte Termine mit Entscheidern ${city.businessContext}.`,
+        serviceType: 'Vertriebsagentur',
+        name: `Vertrieb ${city.name} - B2B Leadgenerierung & Terminvereinbarung`,
+        description: `Vertrieb auslagern in ${city.name}: Professionelle Vertriebsunterstützung, Kaltakquise und Leadgenerierung für B2B-Unternehmen. Wir vereinbaren qualifizierte Termine mit Entscheidern ${city.businessContext}.`,
         provider: {
           '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#organization`,
         },
@@ -74,14 +74,22 @@ function generateCityJsonLd(city: City) {
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: `B2B Akquise Dienstleistungen ${city.name}`,
+          name: `Vertrieb & B2B Akquise Dienstleistungen ${city.name}`,
           itemListElement: [
             {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: `B2B Telefonakquise ${city.name}`,
-                description: `Professionelle Kaltakquise zur Terminvereinbarung mit Entscheidern in ${city.name}`,
+                name: `Vertrieb ${city.name}`,
+                description: `Professionelle Vertriebsagentur und Vertriebsunterstützung für B2B-Unternehmen in ${city.name}`,
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: `Vertrieb auslagern ${city.name}`,
+                description: `Vertriebsoutsourcing und B2B Telefonakquise zur Terminvereinbarung mit Entscheidern in ${city.name}`,
               },
             },
             {
@@ -89,7 +97,7 @@ function generateCityJsonLd(city: City) {
               itemOffered: {
                 '@type': 'Service',
                 name: `Leadgenerierung ${city.name}`,
-                description: `Qualifizierte B2B Leads für Ihr Vertriebsteam in ${city.name}`,
+                description: `Qualifizierte B2B Leads und Vertriebsunterstützung für Ihr Team in ${city.name}`,
               },
             },
           ],

@@ -67,24 +67,24 @@ export default function StadtFAQ({ city }: StadtFAQProps) {
 
   return (
     <section className="section-padding relative">
-      {/* Decorative elements */}
-      <div className="absolute top-1/3 left-10 w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-1/4 right-16 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+      {/* Decorative elements - prozentbasiert für Mobile */}
+      <div className="absolute top-1/3 left-[5%] w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-1/4 right-[8%] w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
 
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <FadeIn className="text-center mb-10">
             <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
-              FAQ {city.name}
+              Vertrieb FAQ {city.name}
             </span>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15]">
-              Häufige Fragen zur{' '}
+              Häufige Fragen zum{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Akquise in {city.name}
+                Vertrieb in {city.name}
               </span>
             </h2>
             <p className="text-base text-muted-foreground">
-              Alles, was Sie über unsere B2B-Akquise {city.businessContext} wissen müssen.
+              Alles, was Sie über Vertrieb auslagern und unsere Vertriebsagentur {city.businessContext} wissen müssen.
             </p>
           </FadeIn>
 

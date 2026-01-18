@@ -119,20 +119,31 @@ export function getAllCitySlugs(): string[] {
   return cities.map((city) => city.slug)
 }
 
-// Generate city-specific keywords
+// Generate city-specific keywords - optimiert für "Vertrieb + Stadt"
 export function getCityKeywords(city: City): string[] {
   return [
+    // Primäre "Vertrieb"-Keywords (höchste Priorität)
+    `Vertrieb ${city.name}`,
+    `Vertriebsagentur ${city.name}`,
+    `Vertrieb auslagern ${city.name}`,
+    `Vertriebsunterstützung ${city.name}`,
+    `Vertriebsoutsourcing ${city.name}`,
+    `Vertriebspartner ${city.name}`,
+    `Vertriebsberatung ${city.name}`,
+    // Sekundäre Keywords
+    `B2B Vertrieb ${city.name}`,
     `B2B Akquise ${city.name}`,
     `Telefonakquise ${city.name}`,
     `Leadgenerierung ${city.name}`,
     `Kaltakquise ${city.name}`,
-    `Vertriebsagentur ${city.name}`,
     `Neukundengewinnung ${city.name}`,
     `B2B Leads ${city.name}`,
     `Terminvereinbarung ${city.name}`,
     `Sales Outsourcing ${city.name}`,
     `Akquise Agentur ${city.name}`,
-    `B2B Vertrieb ${city.name}`,
+    // Regionale Keywords
+    `Vertrieb ${city.regionShort}`,
+    `Vertriebsagentur ${city.region}`,
     `Leadgenerierung ${city.regionShort}`,
     `Akquise ${city.region}`,
   ]

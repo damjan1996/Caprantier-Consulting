@@ -1,6 +1,6 @@
 import type { City } from './cities'
 
-// Testimonials data for schema generation
+// Testimonials data for schema generation - mit Vertrieb-Keywords
 const TESTIMONIALS_DATA = [
   {
     id: 1,
@@ -8,7 +8,7 @@ const TESTIMONIALS_DATA = [
     company: 'WebTech Solutions GmbH',
     location: 'Köln',
     rating: 5,
-    text: 'Carpantier Consulting hat unsere Erwartungen übertroffen. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Die Zusammenarbeit war professionell und erstklassig.',
+    text: 'Carpantier Consulting ist die beste Vertriebsagentur in Köln. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Vertrieb auslagern war die beste Entscheidung für unser Unternehmen.',
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const TESTIMONIALS_DATA = [
     company: 'Digital First Agency',
     location: 'Düsseldorf',
     rating: 5,
-    text: 'Endlich planbare Akquise! Wir haben jahrelang versucht, selbst Kaltakquise zu machen - ohne Erfolg. Mit Carpantier haben wir jetzt einen konstanten Strom an qualifizierten Leads. Das Team versteht unser Geschäft und liefert Neukunden.',
+    text: 'Endlich planbarer Vertrieb! Wir haben jahrelang versucht, selbst Vertrieb zu machen - ohne Erfolg. Mit Carpantier als Vertriebspartner haben wir jetzt einen konstanten Strom an qualifizierten Leads. Die Vertriebsagentur versteht unser Geschäft.',
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const TESTIMONIALS_DATA = [
     company: 'Schneider IT Consulting',
     location: 'Frankfurt',
     rating: 5,
-    text: 'Als Einzelunternehmer hatte ich keine Zeit für Akquise. Carpantier hat mir ermöglicht, mich auf mein Kerngeschäft zu konzentrieren, während sie die Pipeline füllen. ROI nach 2 Monaten erreicht. Absolute Empfehlung!',
+    text: 'Als Einzelunternehmer hatte ich keine Zeit für Vertrieb. Carpantier ermöglicht mir, mich auf mein Kerngeschäft zu konzentrieren, während sie meinen Vertrieb übernehmen. ROI nach 2 Monaten erreicht. Beste Vertriebsagentur in Frankfurt!',
   },
 ]
 
@@ -66,28 +66,32 @@ export function generateTestimonialsSchema() {
   }
 }
 
-// Generate city-specific FAQs
+// Generate city-specific FAQs - optimiert für "Vertrieb [Stadt]" Keywords
 function getCityFAQs(city: City) {
   return [
     {
-      question: `Bieten Sie B2B Akquise in ${city.name} an?`,
-      answer: `Ja, wir sind spezialisiert auf B2B Telefonakquise und Leadgenerierung ${city.businessContext}. ${city.regionalText} Von unserem Standort in Köln aus betreuen wir Unternehmen in ${city.name} und Umgebung.`,
+      question: `Kann ich meinen Vertrieb in ${city.name} an Sie auslagern?`,
+      answer: `Ja, als Vertriebsagentur übernehmen wir Ihren kompletten B2B-Vertrieb in ${city.name}. Wir sind spezialisiert auf Vertriebsoutsourcing und Leadgenerierung ${city.businessContext}. ${city.regionalText} Von unserem Standort aus betreuen wir Unternehmen in ${city.name} und Umgebung mit professioneller Vertriebsunterstützung.`,
     },
     {
-      question: `Wie läuft die Zusammenarbeit mit Unternehmen aus ${city.name} ab?`,
-      answer: `Die Zusammenarbeit startet mit einem kostenlosen Strategiegespräch. Wir analysieren Ihre Zielgruppe in ${city.name} und ${city.region}, entwickeln maßgeschneiderte Gesprächsleitfäden und beginnen mit der Akquise. Alle Termine werden digital übergeben - die Distanz spielt keine Rolle.`,
+      question: `Wie funktioniert Vertrieb auslagern mit Carpantier in ${city.name}?`,
+      answer: `Als Ihre Vertriebsagentur für ${city.name} starten wir mit einem kostenlosen Strategiegespräch. Wir analysieren Ihre Zielgruppe in ${city.name} und ${city.region}, entwickeln maßgeschneiderte Vertriebsstrategien und übernehmen die aktive Kundenakquise. Alle qualifizierten Termine werden digital in Ihren Kalender übergeben.`,
     },
     {
-      question: `Welche Branchen sprechen Sie in ${city.name} an?`,
-      answer: `Wir sind auf B2B-Dienstleister spezialisiert: Agenturen, IT-Dienstleister, Beratungsunternehmen und Softwareunternehmen ${city.businessContext}. Unsere Expertise liegt in der Ansprache von Entscheidern in mittelständischen Unternehmen.`,
+      question: `Was kostet eine Vertriebsagentur in ${city.name}?`,
+      answer: `Die Kosten für Vertriebsoutsourcing in ${city.name} hängen von Ihrem Bedarf ab. Wir bieten verschiedene Modelle an - von Pay-per-Lead bis zu monatlichen Vertriebspaketen. In einem kostenlosen Strategiegespräch erstellen wir ein individuelles Angebot für Ihr Vertriebsprojekt ${city.businessContext}.`,
     },
     {
-      question: `Wie schnell kann ich mit ersten Terminen in ${city.name} rechnen?`,
-      answer: `Nach dem Onboarding und der Kampagneneinrichtung können Sie oft schon in der ersten Woche mit den ersten qualifizierten Terminen rechnen. Die genaue Geschwindigkeit hängt von Ihrer Zielgruppe und Branche in ${city.name} ab.`,
+      question: `Welche Branchen betreut Ihre Vertriebsagentur in ${city.name}?`,
+      answer: `Wir sind auf den Vertrieb für B2B-Dienstleister spezialisiert: Agenturen, IT-Dienstleister, Beratungsunternehmen und Softwareunternehmen ${city.businessContext}. Unsere Vertriebsexpertise liegt in der Ansprache von Entscheidern in mittelständischen Unternehmen in ${city.name}.`,
     },
     {
-      question: `Was unterscheidet Carpantier von anderen Akquise-Agenturen in ${city.region}?`,
-      answer: `Wir liefern ausschließlich BANT-qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Zudem haben wir über 3 Jahre Erfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Herausforderungen von Unternehmen ${city.businessContext}.`,
+      question: `Wie schnell generiert Ihr Vertriebsteam erste Leads in ${city.name}?`,
+      answer: `Nach dem Onboarding können Sie oft schon in der ersten Woche mit den ersten qualifizierten Terminen aus ${city.name} rechnen. Als erfahrene Vertriebsagentur verstehen wir den Markt ${city.businessContext} und liefern schnelle Ergebnisse.`,
+    },
+    {
+      question: `Was unterscheidet Carpantier von anderen Vertriebsagenturen in ${city.region}?`,
+      answer: `Als spezialisierte Vertriebsagentur für ${city.name} liefern wir ausschließlich BANT-qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Wir haben über 3 Jahre Vertriebserfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Vertriebsherausforderungen ${city.businessContext}.`,
     },
   ]
 }

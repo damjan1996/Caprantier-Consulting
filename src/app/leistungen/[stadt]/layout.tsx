@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const title = `B2B Telefonakquise & Leadgenerierung ${city.name} | Carpantier Consulting`
-  const description = `Professionelle B2B Telefonakquise & Leadgenerierung in ${city.name}. ✓ Qualifizierte Termine mit Entscheidern ✓ Für Agenturen & IT-Dienstleister ${city.businessContext}. Jetzt Strategiegespräch buchen!`
+  const title = `Vertrieb ${city.name} | Vertriebsagentur & B2B Akquise | Carpantier`
+  const description = `Vertrieb ${city.name}: Ihre Vertriebsagentur für B2B Leadgenerierung & Telefonakquise. ✓ Qualifizierte Termine mit Entscheidern ✓ Vertrieb auslagern ${city.businessContext}. Jetzt Strategiegespräch buchen!`
 
   return {
     title,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: '/images/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: `Carpantier Consulting - B2B Akquise ${city.name}`,
+          alt: `Carpantier Consulting - Vertrieb & Vertriebsagentur ${city.name}`,
         },
       ],
     },

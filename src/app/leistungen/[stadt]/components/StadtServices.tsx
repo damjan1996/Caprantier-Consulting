@@ -13,9 +13,9 @@ export default function StadtServices({ city }: StadtServicesProps) {
   const services = [
     {
       icon: Phone,
-      title: `Telefonakquise ${city.name}`,
-      description: `Professionelle Kaltakquise durch erfahrene Sales-Experten für Unternehmen ${city.businessContext}. Wir sprechen mit Entscheidern auf Augenhöhe.`,
-      features: ['Individuelle Gesprächsleitfäden', 'Branchenspezifische Ansprache', 'Kontinuierliche Optimierung', 'Erfahrene B2B-Vertriebsprofis'],
+      title: `Vertrieb ${city.name}`,
+      description: `Ihr Vertrieb in ${city.name}: Professionelle Vertriebsunterstützung und Telefonakquise durch erfahrene Vertriebsprofis ${city.businessContext}. Wir sprechen mit Entscheidern auf Augenhöhe.`,
+      features: ['Vertrieb auslagern', 'Branchenspezifische Ansprache', 'Kontinuierliche Optimierung', 'Erfahrene Vertriebsprofis'],
       color: 'text-blue-400',
       bg: 'bg-blue-400/10',
       bgHover: 'group-hover:bg-blue-400/20',
@@ -24,8 +24,8 @@ export default function StadtServices({ city }: StadtServicesProps) {
     },
     {
       icon: Target,
-      title: `Leadgenerierung ${city.regionShort}`,
-      description: `Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden in ${city.name} und ${city.region} nach maßgeschneiderten Kriterien.`,
+      title: `Vertriebsagentur ${city.regionShort}`,
+      description: `Ihre Vertriebsagentur für ${city.name} und ${city.region}: Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden nach maßgeschneiderten Kriterien.`,
       features: ['Präzise Zielgruppenselektion', 'Datenqualifizierung', 'BANT-Methode', 'CRM-Integration'],
       color: 'text-purple-400',
       bg: 'bg-purple-400/10',
@@ -35,8 +35,8 @@ export default function StadtServices({ city }: StadtServicesProps) {
     },
     {
       icon: Users,
-      title: 'Terminqualifizierung',
-      description: `Nur qualifizierte Termine mit echten Entscheidern in ${city.name}, die Interesse und Budget haben.`,
+      title: `Vertriebsoutsourcing ${city.name}`,
+      description: `Vertrieb auslagern in ${city.name}: Nur qualifizierte Termine mit echten Entscheidern, die Interesse und Budget haben.`,
       features: ['Vorqualifizierte Leads', 'Entscheider-Kontakte', 'Terminerinnerungen', 'Flexible Kalenderintegration'],
       color: 'text-green-400',
       bg: 'bg-green-400/10',
@@ -46,9 +46,9 @@ export default function StadtServices({ city }: StadtServicesProps) {
     },
     {
       icon: BarChart3,
-      title: 'Reporting & Analyse',
-      description: `Transparente Berichte über alle Aktivitäten und Ergebnisse Ihrer Akquise-Kampagne in ${city.name}. Volle Kontrolle für Sie.`,
-      features: ['Wöchentliche Reports', 'KPI-Tracking', 'Conversion-Analysen', 'Optimierungsvorschläge'],
+      title: 'Vertriebscontrolling',
+      description: `Transparente Berichte über alle Vertriebsaktivitäten und Ergebnisse Ihrer Vertriebskampagne in ${city.name}. Volle Kontrolle für Sie.`,
+      features: ['Wöchentliche Reports', 'KPI-Tracking', 'Conversion-Analysen', 'Vertriebsoptimierung'],
       color: 'text-orange-400',
       bg: 'bg-orange-400/10',
       bgHover: 'group-hover:bg-orange-400/20',
@@ -69,16 +69,16 @@ export default function StadtServices({ city }: StadtServicesProps) {
       <div className="container-custom">
         <FadeIn className="text-center mb-16">
           <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
-            Unsere Leistungen in {city.name}
+            Vertriebsagentur {city.name}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
-            B2B-Akquise{' '}
+            Vertrieb{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">
               {city.businessContext}
             </span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Alles aus einer Hand - von der Strategie bis zum qualifizierten Termin in {city.name}.
+            Vertrieb auslagern - von der Strategie bis zum qualifizierten Termin in {city.name}. Ihre Vertriebsagentur für B2B.
           </p>
         </FadeIn>
 

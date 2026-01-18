@@ -8,9 +8,9 @@ import { cities } from '@/lib/cities'
 export default function ServiceAreas() {
   return (
     <section className="section-padding relative">
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-10 w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-1/3 left-16 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
+      {/* Decorative elements - prozentbasiert für Mobile */}
+      <div className="absolute top-1/4 right-[5%] w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-1/3 left-[8%] w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
 
       <div className="container-custom">
         <FadeIn className="text-center mb-12">
