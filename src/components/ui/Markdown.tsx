@@ -11,7 +11,8 @@ export default function Markdown({ content }: MarkdownProps) {
   const html = useMemo(() => {
     let result = content
 
-    // Headers
+    // Headers (order matters - more specific first)
+    result = result.replace(/^#### (.*$)/gim, '<h4 class="text-lg font-bold text-white mt-6 mb-3">$1</h4>')
     result = result.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-white mt-8 mb-4">$1</h3>')
     result = result.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-white mt-10 mb-4">$1</h2>')
     result = result.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-white mt-12 mb-6">$1</h1>')
@@ -31,6 +32,12 @@ export default function Markdown({ content }: MarkdownProps) {
     result = result.replace(
       /`([^`]+)`/g,
       '<code class="px-1.5 py-0.5 bg-white/10 text-primary rounded text-sm">$1</code>'
+    )
+
+    // Blockquotes
+    result = result.replace(
+      /^> (.*)$/gim,
+      '<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-white/5 rounded-r italic text-muted-foreground">$1</blockquote>'
     )
 
     // Tables
