@@ -69,7 +69,7 @@ export const cities: City[] = [
   },
   {
     slug: 'frankfurt',
-    name: 'Frankfurt am Main',
+    name: 'Frankfurt',
     region: 'Hessen',
     regionShort: 'HE',
     coordinates: { latitude: 50.1109, longitude: 8.6821 },

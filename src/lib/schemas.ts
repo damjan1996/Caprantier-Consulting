@@ -124,6 +124,7 @@ export function generateBlogPostSchema(post: {
   author: string
   publishedAt: string
   updatedAt: string
+  image?: string
 }) {
   return {
     '@context': 'https://schema.org',
@@ -150,6 +151,30 @@ export function generateBlogPostSchema(post: {
       '@id': `https://carpantier-consulting.de/blog/${post.slug}`,
     },
     url: `https://carpantier-consulting.de/blog/${post.slug}`,
+    ...(post.image && {
+      image: {
+        '@type': 'ImageObject',
+        url: `https://carpantier-consulting.de${post.image}`,
+      },
+    }),
+  }
+}
+
+// Blog Post FAQ Schema for Featured Snippets
+export function generateBlogFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+  if (!faqs || faqs.length === 0) return null
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   }
 }
 
@@ -276,7 +301,7 @@ export function generateServiceAreaSchema() {
     'Bonn',
     'Essen',
     'Dortmund',
-    'Frankfurt am Main',
+    'Frankfurt',
     'München',
     'Hamburg',
     'Berlin',

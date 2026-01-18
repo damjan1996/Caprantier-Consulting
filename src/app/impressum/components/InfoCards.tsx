@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail, User, Building, FileText, Phone } from 'lucide-react'
+import { Mail, User, Building, Phone } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
 
@@ -39,18 +39,6 @@ const infoCards = [
     ),
     iconColor: 'text-purple-400',
     iconBg: 'bg-purple-400/10',
-  },
-  {
-    icon: FileText,
-    title: 'Umsatzsteuer-ID',
-    content: (
-      <p className="text-muted-foreground">
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-        DE999999999
-      </p>
-    ),
-    iconColor: 'text-green-400',
-    iconBg: 'bg-green-400/10',
   },
   {
     icon: User,

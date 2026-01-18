@@ -92,7 +92,7 @@ export const businessInfo = {
     'Bonn',
     'Essen',
     'Dortmund',
-    'Frankfurt am Main',
+    'Frankfurt',
     'München',
     'Hamburg',
     'Berlin',

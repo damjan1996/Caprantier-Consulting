@@ -177,7 +177,7 @@ const jsonLd = {
         { '@type': 'City', name: 'Bonn' },
         { '@type': 'City', name: 'Essen' },
         { '@type': 'City', name: 'Dortmund' },
-        { '@type': 'City', name: 'Frankfurt am Main' },
+        { '@type': 'City', name: 'Frankfurt' },
         { '@type': 'City', name: 'München' },
         { '@type': 'City', name: 'Hamburg' },
         { '@type': 'City', name: 'Berlin' },

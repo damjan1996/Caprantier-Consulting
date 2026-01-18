@@ -7,7 +7,7 @@ import { PageWrapper } from '@/components/ui'
 import FadeIn from '@/components/ui/FadeIn'
 import { getBlogPostBySlug, getAllBlogSlugs, blogPosts, BlogPost } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
-import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/schemas'
+import { generateBlogPostSchema, generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
 import Markdown from '@/components/ui/Markdown'
 import BlogIllustration from './BlogIllustration'
 
@@ -81,6 +81,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     { name: 'Blog', url: 'https://carpantier-consulting.de/blog' },
     { name: post.title, url: `https://carpantier-consulting.de/blog/${post.slug}` },
   ])
+  const faqSchema = post.faqs ? generateBlogFAQSchema(post.faqs) : null
 
   return (
     <PageWrapper>
@@ -93,6 +94,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-8 md:pt-32 md:pb-12">
@@ -221,6 +228,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       {relatedPost.description}
                     </p>
                   </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ Section */}
+      {post.faqs && post.faqs.length > 0 && (
+        <section className="section-padding bg-white/[0.02] border-t border-white/10">
+          <div className="container-custom">
+            <FadeIn className="max-w-3xl mx-auto">
+              <h2 className="text-xl font-bold text-white mb-6">Häufig gestellte Fragen</h2>
+              <div className="space-y-4">
+                {post.faqs.map((faq, index) => (
+                  <div
+                    key={index}
+                    className="p-5 rounded-xl border border-white/10 bg-white/5"
+                  >
+                    <h3 className="text-base font-semibold text-white mb-2">
+                      {faq.question}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {faq.answer}
+                    </p>
+                  </div>
                 ))}
               </div>
             </FadeIn>

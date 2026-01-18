@@ -6,23 +6,37 @@ import { getBlogPostPreviews, getAllCategories } from '@/lib/blog'
 import BlogGrid from './components/BlogGrid'
 
 export const metadata: Metadata = {
-  title: 'Blog | Vertrieb & B2B Akquise Wissen | Carpantier Consulting',
-  description: 'Praxiswissen zu Vertrieb, B2B Kaltakquise, Leadgenerierung und Vertriebsoutsourcing. Tipps und Strategien von Vertriebsprofis.',
+  title: 'Blog | B2B Vertrieb, Kaltakquise & Leadgenerierung | Carpantier Consulting',
+  description: 'B2B Vertriebswissen: Kaltakquise Tipps, Leadgenerierung Strategien, Vertriebsoutsourcing, BANT-Methode, Einwandbehandlung. 50+ Fachartikel von Vertriebsprofis aus Köln.',
   keywords: [
-    'Vertrieb Blog',
-    'B2B Akquise Tipps',
-    'Kaltakquise Leitfaden',
-    'Leadgenerierung Strategien',
+    'B2B Vertrieb Blog',
+    'Kaltakquise Tipps',
+    'Leadgenerierung B2B',
     'Vertriebsoutsourcing',
-    'Sales Blog',
+    'Telefonakquise Leitfaden',
+    'BANT-Methode',
+    'SDR as a Service',
+    'Vertrieb auslagern',
+    'Einwandbehandlung',
+    'Sales Blog Deutschland',
+    'B2B Akquise Strategien',
+    'Neukundengewinnung',
+    'Cold Calling Tipps',
+    'Vertriebsagentur Blog',
   ],
   openGraph: {
-    title: 'Blog | Vertrieb & B2B Akquise Wissen',
-    description: 'Praxiswissen zu Vertrieb, B2B Kaltakquise und Leadgenerierung.',
+    title: 'B2B Vertrieb Blog | Kaltakquise, Leadgenerierung & mehr',
+    description: 'Praxiswissen zu B2B Vertrieb, Kaltakquise und Leadgenerierung. 50+ Fachartikel von erfahrenen Vertriebsprofis.',
     url: 'https://carpantier-consulting.de/blog',
+    type: 'website',
+    siteName: 'Carpantier Consulting',
   },
   alternates: {
     canonical: 'https://carpantier-consulting.de/blog',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
