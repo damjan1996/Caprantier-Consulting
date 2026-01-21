@@ -101,7 +101,7 @@ export default function CookieBanner() {
                           Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
                         </p>
                         <p className="text-xs text-muted-foreground/70">
-                          Dienste: Cookie-Einstellungen, Calendly (Terminbuchung)
+                          Dienste: Cookie-Einstellungen, KI-Chatbot, Calendly (Terminbuchung)
                         </p>
                       </div>
                       <div className="flex-shrink-0 ml-4">

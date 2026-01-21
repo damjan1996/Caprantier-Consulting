@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// CHAT MODELS
+// ============================================
+
+model ChatSession {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  visitorId    String?
+  visitorName  String?
+  visitorEmail String?
+  pageUrl      String?
+
+  messages ChatMessage[]
+
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  role    String
+  content String
+
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sessionId String
+
+  @@map("chat_messages")
+}
+
+// ============================================
+// KNOWLEDGEBASE MODELS
+// ============================================
+
+model KnowledgeArticle {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  slug        String @unique
+  title       String
+  description String
+  category    String // e.g., "vertrieb", "kaltakquise", "leadgenerierung"
+
+  // Main content sections as JSON for flexibility
+  content     String // Full article content
+  keyPoints   String // JSON array of key takeaways
+  faqs        String // JSON array of {question, answer}
+
+  // SEO & Search
+  keywords    String // Comma-separated keywords for search
+
+  @@map("knowledge_articles")
+}
+
+model KnowledgeService {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  slug        String @unique
+  title       String
+  description String
+  features    String // JSON array of features
+  benefits    String // JSON array of benefits
+
+  @@map("knowledge_services")
+}
+
+model KnowledgeCity {
+  id        String   @id @default(cuid())
+
+  slug        String @unique
+  name        String
+  region      String
+  regionCode  String
+
+  description     String // Regional business context
+  nearbyAreas     String // JSON array of nearby cities
+  localKeywords   String // JSON array of local SEO keywords
+
+  @@map("knowledge_cities")
+}
+
+model KnowledgeFAQ {
+  id        String   @id @default(cuid())
+
+  category  String // "general", "pricing", "process", "services"
+  question  String
+  answer    String
+  priority  Int    @default(0) // Higher = more important
+
+  @@map("knowledge_faqs")
+}
+
+model CompanyInfo {
+  id        String   @id @default(cuid())
+
+  key       String @unique // e.g., "contact", "hours", "about", "process"
+  value     String // JSON data
+
+  @@map("company_info")
+}

@@ -12,6 +12,12 @@ const TrackingScripts = dynamic(
   { ssr: false }
 )
 
+// Dynamic import for ChatWidget - client-side only
+const ChatWidget = dynamic(
+  () => import('@/components/chat/ChatWidget'),
+  { ssr: false }
+)
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -345,6 +351,8 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          {/* AI Chat Widget */}
+          <ChatWidget />
         </Providers>
 
         {/* Tracking Scripts - werden nur bei Cookie-Einwilligung geladen */}

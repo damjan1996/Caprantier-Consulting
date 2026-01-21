@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react'
-import { PopupModal, useCalendlyEventListener } from 'react-calendly'
 
 const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min?hide_gdpr_banner=1'
 
@@ -27,11 +26,44 @@ function prefetchCalendly() {
   document.head.appendChild(link)
 }
 
+// Calendly Modal Component - only loaded on client
+function CalendlyModal({ isOpen, onClose, rootElement }: {
+  isOpen: boolean
+  onClose: () => void
+  rootElement: HTMLElement
+}) {
+  const { PopupModal, useCalendlyEventListener } = require('react-calendly')
+
+  useCalendlyEventListener({
+    onEventScheduled: (e: { data: { payload: unknown } }) => {
+      console.log('Calendly: Event scheduled', e.data.payload)
+    },
+  })
+
+  return (
+    <PopupModal
+      url={CALENDLY_URL}
+      onModalClose={onClose}
+      open={isOpen}
+      rootElement={rootElement}
+      pageSettings={{
+        backgroundColor: 'ffffff',
+        primaryColor: '3b82f6',
+        textColor: '1f2937',
+        hideEventTypeDetails: false,
+        hideLandingPageDetails: false,
+      }}
+    />
+  )
+}
+
 export function CalendlyProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [rootElement, setRootElement] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
+    setMounted(true)
     setRootElement(document.getElementById('__next') || document.body)
   }, [])
 
@@ -39,29 +71,14 @@ export function CalendlyProvider({ children }: { children: ReactNode }) {
   const closeCalendly = useCallback(() => setIsOpen(false), [])
   const onHover = useCallback(() => prefetchCalendly(), [])
 
-  // Event tracking
-  useCalendlyEventListener({
-    onEventScheduled: (e) => {
-      console.log('Calendly: Event scheduled', e.data.payload)
-    },
-  })
-
   return (
     <CalendlyContext.Provider value={{ openCalendly, closeCalendly, onHover, isOpen }}>
       {children}
-      {rootElement && (
-        <PopupModal
-          url={CALENDLY_URL}
-          onModalClose={closeCalendly}
-          open={isOpen}
+      {mounted && rootElement && (
+        <CalendlyModal
+          isOpen={isOpen}
+          onClose={closeCalendly}
           rootElement={rootElement}
-          pageSettings={{
-            backgroundColor: 'ffffff',
-            primaryColor: '3b82f6',
-            textColor: '1f2937',
-            hideEventTypeDetails: false,
-            hideLandingPageDetails: false,
-          }}
         />
       )}
     </CalendlyContext.Provider>

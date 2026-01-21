@@ -564,6 +564,52 @@ const sections = [
             </a>
           </p>
         </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-white mb-3">KI-Chatbot (Claude)</h3>
+          <p className="text-muted-foreground mb-4">
+            Auf unserer Website setzen wir einen KI-gestützten Chatbot ein, um Ihnen schnell und unkompliziert Informationen zu unseren Dienstleistungen bereitzustellen. Der Chatbot basiert auf Claude, einem KI-Modell von Anthropic, PBC, 548 Market St, PMB 90375, San Francisco, CA 94104, USA.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Bei der Nutzung des Chatbots werden folgende Daten verarbeitet:
+          </p>
+          <ul className="space-y-2 mb-4">
+            {[
+              'Ihre Chatnachrichten und -verläufe',
+              'E-Mail-Adresse (nur wenn Sie diese freiwillig im Chat angeben)',
+              'Die Seite, von der aus Sie den Chat gestartet haben',
+              'Session-ID zur Zuordnung der Konversation',
+              'Zeitpunkt der Nachrichten',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted-foreground mb-4">
+            Die Chatnachrichten werden zur Verarbeitung an die Server von Anthropic in den USA übermittelt. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission. Die Chatverläufe werden in unserer Datenbank gespeichert, um den Gesprächsverlauf aufrechtzuerhalten und um unseren Service zu verbessern.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Nutzung des Chatbots erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen und Kundenservice) sowie Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer effizienten Kundenkommunikation und der schnellen Beantwortung von Anfragen.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Sofern Sie Ihre E-Mail-Adresse im Chat angeben, wird diese zur Kontaktaufnahme und ggf. zur Zusendung weiterer Informationen genutzt. In diesem Fall erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Angabe).
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Chatverläufe werden gespeichert, bis der Zweck für die Datenspeicherung entfällt oder Sie uns zur Löschung auffordern. Sie können jederzeit die Löschung Ihrer Chatdaten verlangen, indem Sie uns unter{' '}
+            <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
+              nico@carpantier-consulting.de
+            </a>
+            {' '}kontaktieren.
+          </p>
+          <p className="text-muted-foreground">
+            Weitere Informationen finden Sie in der Datenschutzerklärung von Anthropic:{' '}
+            <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              https://www.anthropic.com/privacy
+            </a>
+          </p>
+        </div>
       </div>
     ),
   },
