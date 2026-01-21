@@ -8,13 +8,13 @@ interface QuickAnswer {
 const QUICK_ANSWERS: QuickAnswer[] = [
   {
     triggers: ['was kostet', 'kosten', 'preis', 'wie teuer', 'preise'],
-    answer: `Unsere Preise sind maßgeschneidert:
+    answer: `Die Preise sind individuell und hängen von Ihrem Projekt ab. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot.
 
-• Pay-per-Lead: 150-500€ pro qualifiziertem Lead
-• Monatspauschale: ab 2.000€/Monat
-• Vollservice: 5.000-15.000€/Monat
+Am besten sprechen wir kurz persönlich:
 
-Details klären wir gerne im Gespräch: calendly.com/nico-carpantier-consulting/30min`,
++49 157 38186221
+nico@carpantier-consulting.de
+calendly.com/nico-carpantier-consulting/30min`,
   },
   {
     triggers: ['wie läuft', 'wie funktioniert', 'ablauf', 'prozess'],
