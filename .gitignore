@@ -71,3 +71,16 @@ logs
 # PWA
 **/public/sw.js
 **/public/workbox-*.js
+
+/src/generated/prisma
+
+# Auto Claude data directory
+.auto-claude/
+
+# Auto Claude generated files
+.auto-claude-security.json
+.auto-claude-status
+.claude_settings.json
+.worktrees/
+.security-key
+logs/security/
