@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 type CookieConsent = {
   necessary: boolean
@@ -19,6 +19,12 @@ const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
 export default function TrackingScripts() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
   const [consentInitialized, setConsentInitialized] = useState(false)
+  const [shouldLoadGA, setShouldLoadGA] = useState(false)
+
+  // Trigger GA loading - called on user interaction or idle
+  const triggerGALoad = useCallback(() => {
+    setShouldLoadGA(true)
+  }, [])
 
   useEffect(() => {
     // Initial load
@@ -58,6 +64,50 @@ export default function TrackingScripts() {
     }
   }, [])
 
+  // Delayed/interaction-based GA loading for better TBT
+  useEffect(() => {
+    if (shouldLoadGA || !GA_MEASUREMENT_ID) return
+
+    const events = ['scroll', 'click', 'mousemove', 'keypress', 'touchstart']
+
+    const handleInteraction = () => {
+      triggerGALoad()
+      // Remove all listeners after first interaction
+      events.forEach(event => {
+        window.removeEventListener(event, handleInteraction, { capture: true })
+      })
+    }
+
+    // Add interaction listeners
+    events.forEach(event => {
+      window.addEventListener(event, handleInteraction, { capture: true, passive: true })
+    })
+
+    // Fallback: Load after idle or 4 seconds max
+    let timeoutId: ReturnType<typeof setTimeout>
+    if ('requestIdleCallback' in window) {
+      const idleId = (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        () => triggerGALoad(),
+        { timeout: 4000 }
+      )
+      return () => {
+        events.forEach(event => {
+          window.removeEventListener(event, handleInteraction, { capture: true })
+        })
+        ;(window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId)
+      }
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      timeoutId = setTimeout(triggerGALoad, 4000)
+      return () => {
+        events.forEach(event => {
+          window.removeEventListener(event, handleInteraction, { capture: true })
+        })
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [shouldLoadGA, triggerGALoad])
+
   // Update Google Consent Mode when consent changes
   useEffect(() => {
     if (typeof window !== 'undefined' && consentInitialized) {
@@ -82,15 +132,16 @@ export default function TrackingScripts() {
   return (
     <>
       {/* Google Analytics mit Consent Mode v2 - DSGVO-konform & Performance-optimiert */}
-      {GA_MEASUREMENT_ID && (
+      {/* Wird erst bei User-Interaktion oder nach Idle geladen für bessere TBT */}
+      {GA_MEASUREMENT_ID && shouldLoadGA && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="lazyOnload"
+            strategy="afterInteractive"
           />
           <Script
             id="google-analytics-init"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
