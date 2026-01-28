@@ -3,6 +3,14 @@
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
 
+// Erweitere Window-Interface für gtag
+declare global {
+  interface Window {
+    gtag: (command: string, ...args: unknown[]) => void
+    dataLayer: unknown[]
+  }
+}
+
 type CookieConsent = {
   necessary: boolean
   analytics: boolean
@@ -18,6 +26,7 @@ const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
 
 export default function TrackingScripts() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
+  const [consentInitialized, setConsentInitialized] = useState(false)
 
   useEffect(() => {
     // Initial load
@@ -31,6 +40,7 @@ export default function TrackingScripts() {
           setConsent(null)
         }
       }
+      setConsentInitialized(true)
     }
 
     loadConsent()
@@ -56,6 +66,18 @@ export default function TrackingScripts() {
     }
   }, [])
 
+  // Update Google Consent Mode when consent changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag && consentInitialized) {
+      window.gtag('consent', 'update', {
+        'analytics_storage': consent?.analytics ? 'granted' : 'denied',
+        'ad_storage': consent?.marketing ? 'granted' : 'denied',
+        'ad_user_data': consent?.marketing ? 'granted' : 'denied',
+        'ad_personalization': consent?.marketing ? 'granted' : 'denied',
+      })
+    }
+  }, [consent, consentInitialized])
+
   // Don't render if no tracking IDs configured
   if (!GA_MEASUREMENT_ID && !CONTENTSQUARE_ID && !BREVO_CLIENT_KEY) {
     return null
@@ -63,9 +85,29 @@ export default function TrackingScripts() {
 
   return (
     <>
-      {/* Google Analytics - nur bei Analytics-Einwilligung */}
-      {consent?.analytics && GA_MEASUREMENT_ID && (
+      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
+      {GA_MEASUREMENT_ID && (
         <>
+          {/* Consent Mode Default - wird VOR gtag.js gesetzt */}
+          <Script
+            id="google-consent-mode"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+
+                // Consent Mode v2: Standardmäßig alles verweigert (DSGVO-konform)
+                gtag('consent', 'default', {
+                  'analytics_storage': 'denied',
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied',
+                  'wait_for_update': 500
+                });
+              `,
+            }}
+          />
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
             strategy="afterInteractive"

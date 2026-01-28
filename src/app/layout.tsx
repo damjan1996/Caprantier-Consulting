@@ -302,20 +302,6 @@ export default function RootLayout({
   return (
     <html lang="de" className="dark">
       <head>
-        {/* Google Analytics - G-1JZ5EDZ26R */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZ5EDZ26R" />
-        <script
-          id="gtag-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-1JZ5EDZ26R');
-            `,
-          }}
-        />
-
         {/* Structured Data */}
         <script
           type="application/ld+json"
