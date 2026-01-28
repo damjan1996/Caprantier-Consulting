@@ -81,13 +81,16 @@ export default function TrackingScripts() {
 
   return (
     <>
-      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
+      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform & Performance-optimiert */}
       {GA_MEASUREMENT_ID && (
         <>
-          {/* Consent Mode Default - wird VOR gtag.js gesetzt */}
           <Script
-            id="google-consent-mode"
-            strategy="beforeInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="lazyOnload"
+          />
+          <Script
+            id="google-analytics-init"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -98,26 +101,13 @@ export default function TrackingScripts() {
                   'analytics_storage': 'denied',
                   'ad_storage': 'denied',
                   'ad_user_data': 'denied',
-                  'ad_personalization': 'denied',
-                  'wait_for_update': 500
+                  'ad_personalization': 'denied'
                 });
-              `,
-            }}
-          />
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+
                 gtag('js', new Date());
                 gtag('config', '${GA_MEASUREMENT_ID}', {
-                  anonymize_ip: true
+                  anonymize_ip: true,
+                  send_page_view: true
                 });
               `,
             }}

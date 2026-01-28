@@ -85,7 +85,9 @@ export default function Hero() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
+                  fetchPriority="high"
                   placeholder="blur"
+                  quality={85}
                 />
 
                 {/* Floating Cards */}
