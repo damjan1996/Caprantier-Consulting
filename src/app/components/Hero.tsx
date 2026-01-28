@@ -71,8 +71,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div className="lg:col-span-5 order-first lg:order-last animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          {/* Hero Image - keine Animation für schnelleren LCP */}
+          <div className="lg:col-span-5 order-first lg:order-last">
             <div className="relative h-[350px] sm:h-[400px] md:h-[480px] lg:h-[540px] max-w-md mx-auto lg:max-w-none group">
               {/* Glow Effect behind image */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

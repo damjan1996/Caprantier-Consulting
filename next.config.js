@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Experimental: Optimize package imports for smaller bundles
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+
   // Standalone output nur für Docker-Deployment (nicht für Vercel)
   // Bei Hetzner-Migration: output: 'standalone' wieder aktivieren
   ...(process.env.STANDALONE === 'true' && { output: 'standalone' }),
