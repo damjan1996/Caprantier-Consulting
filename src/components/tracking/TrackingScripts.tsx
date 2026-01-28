@@ -3,14 +3,6 @@
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
 
-// Erweitere Window-Interface für gtag
-declare global {
-  interface Window {
-    gtag: (command: string, ...args: unknown[]) => void
-    dataLayer: unknown[]
-  }
-}
-
 type CookieConsent = {
   necessary: boolean
   analytics: boolean
@@ -68,13 +60,17 @@ export default function TrackingScripts() {
 
   // Update Google Consent Mode when consent changes
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag && consentInitialized) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': consent?.analytics ? 'granted' : 'denied',
-        'ad_storage': consent?.marketing ? 'granted' : 'denied',
-        'ad_user_data': consent?.marketing ? 'granted' : 'denied',
-        'ad_personalization': consent?.marketing ? 'granted' : 'denied',
-      })
+    if (typeof window !== 'undefined' && consentInitialized) {
+      // Verwende gtag-Funktion für Consent-Updates (type-safe)
+      const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag
+      if (gtag) {
+        gtag('consent', 'update', {
+          'analytics_storage': consent?.analytics ? 'granted' : 'denied',
+          'ad_storage': consent?.marketing ? 'granted' : 'denied',
+          'ad_user_data': consent?.marketing ? 'granted' : 'denied',
+          'ad_personalization': consent?.marketing ? 'granted' : 'denied',
+        })
+      }
     }
   }, [consent, consentInitialized])
 
