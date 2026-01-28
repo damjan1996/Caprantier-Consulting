@@ -1,22 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import dynamic from 'next/dynamic'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
-
-// Dynamic import for TrackingScripts - load after page is interactive
-const TrackingScripts = dynamic(
-  () => import('@/components/tracking/TrackingScripts'),
-  { ssr: false }
-)
-
-// Dynamic import for ChatWidget - client-side only
-const ChatWidget = dynamic(
-  () => import('@/components/chat/ChatWidget'),
-  { ssr: false }
-)
+import { ClientSideComponents } from '@/components/layout/ClientComponents'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -320,19 +308,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        {/* Favicon */}
+        {/* Favicon - SVG für moderne Browser, PNG als Fallback */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link
           rel="icon"
+          type="image/png"
           href="/logo/Logo%20-%20Schwarz.png"
           media="(prefers-color-scheme: light)"
         />
         <link
           rel="icon"
+          type="image/png"
           href="/logo/Logo%20-%20Wei%C3%9F.png"
           media="(prefers-color-scheme: dark)"
         />
-        <link rel="icon" href="/logo/Logo%20-%20Schwarz.png" />
-        <link rel="apple-touch-icon" href="/logo/Logo%20-%20Schwarz.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo/Logo%20-%20Schwarz.png" />
 
         {/* Theme Color */}
         <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
@@ -351,12 +341,9 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
-          {/* AI Chat Widget */}
-          <ChatWidget />
+          {/* Client-side Components (Chat Widget + Tracking) */}
+          <ClientSideComponents />
         </Providers>
-
-        {/* Tracking Scripts - werden nur bei Cookie-Einwilligung geladen */}
-        <TrackingScripts />
       </body>
     </html>
   )
