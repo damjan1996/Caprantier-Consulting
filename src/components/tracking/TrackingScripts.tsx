@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 type CookieConsent = {
   necessary: boolean
@@ -19,12 +19,7 @@ const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
 export default function TrackingScripts() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
   const [consentInitialized, setConsentInitialized] = useState(false)
-  const [shouldLoadGA, setShouldLoadGA] = useState(false)
-
-  // Trigger GA loading - called on user interaction or idle
-  const triggerGALoad = useCallback(() => {
-    setShouldLoadGA(true)
-  }, [])
+  const prevAnalyticsConsent = useRef<boolean | null>(null)
 
   useEffect(() => {
     // Initial load
@@ -64,62 +59,34 @@ export default function TrackingScripts() {
     }
   }, [])
 
-  // Delayed/interaction-based GA loading for better TBT
-  useEffect(() => {
-    if (shouldLoadGA || !GA_MEASUREMENT_ID) return
-
-    const events = ['scroll', 'click', 'mousemove', 'keypress', 'touchstart']
-
-    const handleInteraction = () => {
-      triggerGALoad()
-      // Remove all listeners after first interaction
-      events.forEach(event => {
-        window.removeEventListener(event, handleInteraction, { capture: true })
-      })
-    }
-
-    // Add interaction listeners
-    events.forEach(event => {
-      window.addEventListener(event, handleInteraction, { capture: true, passive: true })
-    })
-
-    // Fallback: Load after idle or 4 seconds max
-    let timeoutId: ReturnType<typeof setTimeout>
-    if ('requestIdleCallback' in window) {
-      const idleId = (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
-        () => triggerGALoad(),
-        { timeout: 4000 }
-      )
-      return () => {
-        events.forEach(event => {
-          window.removeEventListener(event, handleInteraction, { capture: true })
-        })
-        ;(window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId)
-      }
-    } else {
-      // Fallback for browsers without requestIdleCallback
-      timeoutId = setTimeout(triggerGALoad, 4000)
-      return () => {
-        events.forEach(event => {
-          window.removeEventListener(event, handleInteraction, { capture: true })
-        })
-        clearTimeout(timeoutId)
-      }
-    }
-  }, [shouldLoadGA, triggerGALoad])
-
-  // Update Google Consent Mode when consent changes
+  // Update Google Consent Mode when consent changes & send pageview after opt-in
   useEffect(() => {
     if (typeof window !== 'undefined' && consentInitialized) {
-      // Verwende gtag-Funktion für Consent-Updates (type-safe)
       const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag
       if (gtag) {
+        const analyticsGranted = consent?.analytics ? 'granted' : 'denied'
+        const marketingGranted = consent?.marketing ? 'granted' : 'denied'
+
         gtag('consent', 'update', {
-          'analytics_storage': consent?.analytics ? 'granted' : 'denied',
-          'ad_storage': consent?.marketing ? 'granted' : 'denied',
-          'ad_user_data': consent?.marketing ? 'granted' : 'denied',
-          'ad_personalization': consent?.marketing ? 'granted' : 'denied',
+          'analytics_storage': analyticsGranted,
+          'ad_storage': marketingGranted,
+          'ad_user_data': marketingGranted,
+          'ad_personalization': marketingGranted,
         })
+
+        // Pageview nur senden wenn Consent sich gerade von denied->granted geändert hat
+        // (nicht bei Seiten-Load mit bereits gespeichertem Consent - dort sendet gtag config den Pageview)
+        const wasGranted = prevAnalyticsConsent.current
+        const isNowGranted = consent?.analytics ?? false
+        prevAnalyticsConsent.current = isNowGranted
+
+        if (!wasGranted && isNowGranted && GA_MEASUREMENT_ID) {
+          gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname,
+          })
+        }
       }
     }
   }, [consent, consentInitialized])
@@ -131,9 +98,9 @@ export default function TrackingScripts() {
 
   return (
     <>
-      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform & Performance-optimiert */}
-      {/* Wird erst bei User-Interaktion oder nach Idle geladen für bessere TBT */}
-      {GA_MEASUREMENT_ID && shouldLoadGA && (
+      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
+      {/* Script lädt sofort - Consent Mode verhindert Datenerfassung ohne Zustimmung */}
+      {GA_MEASUREMENT_ID && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
