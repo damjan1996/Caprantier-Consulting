@@ -316,10 +316,10 @@ export function generateServiceAreaSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'B2B Vertriebsagentur',
-    name: 'B2B Telefonakquise & Leadgenerierung',
+    serviceType: 'B2B Vertriebsdienstleister',
+    name: 'B2B Vertriebsagentur - Telefonakquise & Leadgenerierung',
     description:
-      'Professionelle B2B Telefonakquise und Leadgenerierung. Vertrieb auslagern an erfahrene Profis. Qualifizierte Termine mit Entscheidern.',
+      'Vertriebsagentur & Vertriebsdienstleister für B2B Vertrieb, Telefonakquise und Leadgenerierung. Vertrieb auslagern an erfahrene Sales Agentur. Qualifizierte Termine mit Entscheidern.',
     provider: {
       '@type': 'LocalBusiness',
       name: 'Carpantier Consulting',
@@ -373,6 +373,26 @@ export function generateServiceAreaSchema() {
               itemOffered: {
                 '@type': 'Service',
                 name: 'Entscheider-Termine',
+              },
+            },
+          ],
+        },
+        {
+          '@type': 'OfferCatalog',
+          name: 'Vertriebsoutsourcing',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Vertrieb auslagern',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'SDR as a Service',
               },
             },
           ],

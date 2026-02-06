@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'B2B Akquise Leistungen - Telefonakquise & Leadgenerierung',
+  title: 'B2B Vertriebsdienstleister - Telefonakquise & Leadgenerierung',
   description:
-    'Unsere B2B Akquise Leistungen: ✓ Professionelle Telefonakquise ✓ Qualifizierte Leadgenerierung ✓ Terminvereinbarung mit Entscheidern ✓ Sales Consulting. Für Agenturen & IT-Dienstleister in Köln, Düsseldorf, NRW und deutschlandweit.',
+    'Ihr B2B Vertriebsdienstleister für Telefonakquise & Leadgenerierung. Als Vertriebsagentur & B2B Sales Agentur übernehmen wir Ihren Vertrieb. ✓ Vertrieb auslagern ✓ Kaltakquise ✓ Terminvereinbarung. Für Agenturen & IT-Dienstleister deutschlandweit.',
   keywords: [
-    'B2B Akquise Leistungen',
+    'B2B Vertriebsdienstleister',
+    'Vertriebsagentur Leistungen',
+    'B2B Sales Agentur',
     'Telefonakquise Service',
     'Leadgenerierung Agentur',
     'Terminvereinbarung B2B',
     'Kaltakquise Dienstleistung',
     'Sales Outsourcing',
+    'Vertrieb auslagern',
     'Vertriebsunterstützung',
     'Akquise für Agenturen',
     'IT Dienstleister Akquise',
@@ -18,9 +21,9 @@ export const metadata: Metadata = {
     'Leadgenerierung NRW',
   ],
   openGraph: {
-    title: 'B2B Akquise Leistungen | Carpantier Consulting',
+    title: 'B2B Vertriebsdienstleister - Telefonakquise & Leadgenerierung | Carpantier',
     description:
-      'Professionelle B2B Telefonakquise, Leadgenerierung und Terminvereinbarung. Qualifizierte Termine mit Entscheidern für Ihren Vertriebserfolg.',
+      'Ihr Vertriebsdienstleister für B2B Telefonakquise, Leadgenerierung und Terminvereinbarung. Vertrieb auslagern an Profis.',
     url: 'https://carpantier-consulting.de/leistungen',
     images: [
       {

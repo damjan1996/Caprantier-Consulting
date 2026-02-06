@@ -106,7 +106,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                           {/* Featured Badge */}
                           {post.featured && (
                             <div className="absolute top-3 right-3">
-                              <span className="px-2 py-1 text-xs font-medium bg-primary/90 text-white rounded-full backdrop-blur-sm">
+                              <span className="px-2 py-1 text-xs font-medium bg-primary/90 text-white rounded-full backdrop-blur-xs">
                                 Featured
                               </span>
                             </div>

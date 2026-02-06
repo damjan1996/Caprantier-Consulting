@@ -25,7 +25,7 @@ export default function CookieBanner() {
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]" />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-[100]" />
 
       {/* Banner */}
       <div className="fixed bottom-0 left-0 right-0 z-[101] p-4 md:p-6">
@@ -35,7 +35,7 @@ export default function CookieBanner() {
               // Main Banner
               <div className="p-6 md:p-8">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Cookie className="h-6 w-6" />
                   </div>
                   <div className="flex-1">
@@ -104,7 +104,7 @@ export default function CookieBanner() {
                           Dienste: Cookie-Einstellungen, KI-Chatbot, Calendly (Terminbuchung)
                         </p>
                       </div>
-                      <div className="flex-shrink-0 ml-4">
+                      <div className="shrink-0 ml-4">
                         <div className="w-12 h-6 rounded-full bg-primary flex items-center justify-end px-1 cursor-not-allowed">
                           <div className="w-4 h-4 rounded-full bg-white" />
                         </div>
@@ -124,7 +124,7 @@ export default function CookieBanner() {
                           Dienste: Google Analytics, Hotjar
                         </p>
                       </div>
-                      <div className="flex-shrink-0 ml-4">
+                      <div className="shrink-0 ml-4">
                         <button
                           onClick={() => setCustomConsent(prev => ({ ...prev, analytics: !prev.analytics }))}
                           className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
@@ -149,7 +149,7 @@ export default function CookieBanner() {
                           Dienste: Brevo (E-Mail-Marketing)
                         </p>
                       </div>
-                      <div className="flex-shrink-0 ml-4">
+                      <div className="shrink-0 ml-4">
                         <button
                           onClick={() => setCustomConsent(prev => ({ ...prev, marketing: !prev.marketing }))}
                           className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${

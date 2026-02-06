@@ -37,7 +37,7 @@ export default function ServiceAreas() {
                 className="group relative p-5 rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-3">
-                  <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                  <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
                     <MapPin className="h-4 w-4" />
                   </div>
                   <div className="flex-1 min-w-0">

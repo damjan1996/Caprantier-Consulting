@@ -23,12 +23,12 @@ export default function PageBackground({
     <>
       {/* Background Image with Gradient Overlay */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background/50 z-10" />
         <Image
           src={abstractBg}
           alt="Abstrakter Hintergrund - Carpantier Consulting Vertriebsagentur"
           fill
-          className="object-cover opacity-25 blur-sm"
+          className="object-cover opacity-60 blur-sm"
           priority
           sizes="100vw"
           placeholder="blur"

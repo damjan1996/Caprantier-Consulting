@@ -38,7 +38,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-black/60 backdrop-blur-sm border-t border-white/10 relative z-10">
+    <footer className="bg-black/60 backdrop-blur-xs border-t border-white/10 relative z-10">
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}

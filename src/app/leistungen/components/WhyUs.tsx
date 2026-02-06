@@ -48,7 +48,7 @@ export default function WhyUs() {
             <div className="space-y-4">
               {benefits.map((item, index) => (
                 <div key={index} className="group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 cursor-default">
-                  <div className={`h-10 w-10 rounded-lg ${item.bg} ${item.color} flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110`}>
+                  <div className={`h-10 w-10 rounded-lg ${item.bg} ${item.color} flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110`}>
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div>

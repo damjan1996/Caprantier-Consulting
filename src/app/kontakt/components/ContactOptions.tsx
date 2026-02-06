@@ -113,7 +113,7 @@ export default function ContactOptions() {
                   className={`group p-6 rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:bg-white/10 ${info.borderHover} hover:shadow-xl ${info.shadow} hover:-translate-y-1 cursor-default`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`h-12 w-12 rounded-xl ${info.bg} ${info.bgHover} ${info.color} flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110`}>
+                    <div className={`h-12 w-12 rounded-xl ${info.bg} ${info.bgHover} ${info.color} flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110`}>
                       <info.icon className="h-6 w-6" />
                     </div>
                     <div>

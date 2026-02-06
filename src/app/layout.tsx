@@ -35,6 +35,13 @@ const keywords = [
   'Vertriebsberatung',
   'B2B Vertrieb',
   'Vertrieb outsourcen',
+  'B2B Sales Agentur',
+  'Vertriebsdienstleister',
+  'Vertriebsdienstleister Köln',
+  'Vertriebsdienstleister NRW',
+  'Sales Agentur Deutschland',
+  'B2B Vertriebsagentur',
+  'Vertriebsagentur Deutschland',
   // Sekundäre Keywords
   'B2B Akquise',
   'B2B Leadgenerierung',
@@ -69,11 +76,11 @@ const keywords = [
 export const metadata: Metadata = {
   metadataBase: new URL('https://carpantier-consulting.de'),
   title: {
-    default: 'B2B Telefonakquise & Leadgenerierung Köln | Carpantier Consulting',
+    default: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
     template: '%s | Carpantier Consulting',
   },
   description:
-    'Professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Wir liefern qualifizierte Termine mit Entscheidern direkt in Ihren Kalender. ✓ Für Agenturen ✓ IT-Dienstleister ✓ Beratungen. Jetzt kostenloses Strategiegespräch buchen!',
+    'Ihre Vertriebsagentur für B2B Vertrieb & Leadgenerierung aus Köln. Als erfahrener Vertriebsdienstleister & Sales Agentur liefern wir qualifizierte Termine durch professionelle Kaltakquise. ✓ Vertrieb auslagern ✓ Telefonakquise ✓ Jetzt Strategiegespräch buchen!',
   keywords: keywords,
   authors: [{ name: 'Nico-Luca Carpantier', url: 'https://carpantier-consulting.de' }],
   creator: 'Carpantier Consulting',
@@ -97,24 +104,24 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     url: 'https://carpantier-consulting.de',
     siteName: 'Carpantier Consulting',
-    title: 'B2B Telefonakquise & Leadgenerierung Köln | Carpantier Consulting',
+    title: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
     description:
-      'Professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister & Beratungen.',
+      'Ihre Vertriebsagentur für B2B Vertrieb & Leadgenerierung aus Köln. Vertriebsdienstleister für qualifizierte Termine mit Entscheidern.',
     images: [
       {
         url: 'https://carpantier-consulting.de/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Carpantier Consulting - B2B Telefonakquise & Leadgenerierung aus Köln',
+        alt: 'Carpantier Consulting - B2B Vertriebsagentur für Leadgenerierung aus Köln',
         type: 'image/jpeg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B2B Telefonakquise & Leadgenerierung | Carpantier Consulting',
+    title: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
     description:
-      'Planbare Neukundengewinnung durch professionelle B2B-Telefonakquise aus Köln.',
+      'Ihre B2B Vertriebsagentur für planbare Neukundengewinnung. Vertriebsdienstleister aus Köln.',
     images: ['https://carpantier-consulting.de/images/og-image.jpg'],
     creator: '@carpantier',
   },
@@ -125,7 +132,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // TODO: Add actual verification code
+    google: 'google657f39b03f350aac',
   },
   other: {
     'geo.region': 'DE-NW',
@@ -143,12 +150,21 @@ const jsonLd = {
       '@type': 'LocalBusiness',
       '@id': 'https://carpantier-consulting.de/#organization',
       name: 'Carpantier Consulting',
-      alternateName: 'Carpantier Consulting - B2B Akquise',
+      alternateName: 'Carpantier Consulting - B2B Vertriebsagentur',
       description:
-        'Professionelle B2B Telefonakquise & Leadgenerierung. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen.',
+        'Vertriebsagentur & Vertriebsdienstleister für B2B Vertrieb, Telefonakquise & Leadgenerierung. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen.',
       url: 'https://carpantier-consulting.de',
-      logo: 'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
-      image: 'https://carpantier-consulting.de/images/nico-portrait.png',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
+        width: 512,
+        height: 512,
+      },
+      image: [
+        'https://carpantier-consulting.de/images/nico-portrait-new.jpg',
+        'https://carpantier-consulting.de/images/og-image.jpg',
+        'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
+      ],
       telephone: '+4915738186221',
       email: 'nico@carpantier-consulting.de',
       address: {
@@ -216,7 +232,7 @@ const jsonLd = {
       '@id': 'https://carpantier-consulting.de/#website',
       url: 'https://carpantier-consulting.de',
       name: 'Carpantier Consulting',
-      description: 'B2B Telefonakquise & Leadgenerierung aus Köln',
+      description: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung aus Köln',
       publisher: {
         '@id': 'https://carpantier-consulting.de/#organization',
       },
@@ -302,6 +318,26 @@ export default function RootLayout({
   return (
     <html lang="de" className="dark">
       <head>
+        {/* Google Consent Mode v2 - MUSS VOR allen anderen Google-Scripts sein! */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+
+              // Consent Mode v2: Standardmäßig alles verweigert (DSGVO-konform)
+              // WICHTIG: Muss vor gtag.js geladen werden!
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'wait_for_update': 500
+              });
+            `,
+          }}
+        />
+
         {/* Preconnect für externe Ressourcen - Performance Optimierung */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />

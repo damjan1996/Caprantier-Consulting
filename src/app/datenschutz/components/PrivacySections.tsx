@@ -176,7 +176,7 @@ const sections = [
               'Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}
@@ -243,7 +243,7 @@ const sections = [
               'Name Ihres Access-Providers',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}
@@ -438,7 +438,7 @@ const sections = [
               'Nutzerinteraktionen (Mausbewegungen, Klicks, Scrollverhalten)',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}
@@ -474,7 +474,7 @@ const sections = [
               'Interaktionen mit E-Mails (Öffnungen, Klicks)',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}
@@ -546,7 +546,7 @@ const sections = [
               'Browser- und Geräteinformationen',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}
@@ -582,7 +582,7 @@ const sections = [
               'Zeitpunkt der Nachrichten',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
                 {item}
               </li>
             ))}

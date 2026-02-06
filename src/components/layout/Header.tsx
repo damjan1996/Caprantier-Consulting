@@ -47,7 +47,7 @@ export default function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-sm',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xs',
           isScrolled
             ? 'bg-black/70 backdrop-blur-lg shadow-lg shadow-black/10 py-3'
             : 'bg-black/40 py-5'
@@ -108,7 +108,7 @@ export default function Header() {
       {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
-          'fixed inset-0 z-50 md:hidden',
+          'fixed inset-0 z-50 md:hidden overflow-hidden',
           isMobileMenuOpen
             ? 'pointer-events-auto'
             : 'pointer-events-none'
@@ -117,7 +117,7 @@ export default function Header() {
         {/* Backdrop - click to close */}
         <div
           className={cn(
-            'absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200',
+            'absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200',
             isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setIsMobileMenuOpen(false)}
@@ -178,7 +178,7 @@ export default function Header() {
                 onMouseEnter={onHover}
                 className="btn-primary w-full flex items-center justify-center gap-2 text-sm py-3 px-4"
               >
-                <Phone className="h-4 w-4 flex-shrink-0" />
+                <Phone className="h-4 w-4 shrink-0" />
                 <span>Erstgespräch buchen</span>
               </button>
             </div>

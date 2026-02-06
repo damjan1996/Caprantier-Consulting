@@ -144,16 +144,26 @@ export default function TrackingScripts() {
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                // dataLayer und gtag wurden bereits im Head initialisiert
+                // Consent Default wurde auch bereits im Head gesetzt
 
-                // Consent Mode v2: Standardmäßig alles verweigert (DSGVO-konform)
-                gtag('consent', 'default', {
-                  'analytics_storage': 'denied',
-                  'ad_storage': 'denied',
-                  'ad_user_data': 'denied',
-                  'ad_personalization': 'denied'
-                });
+                // Prüfe gespeicherten Consent und aktualisiere sofort
+                (function() {
+                  try {
+                    var stored = localStorage.getItem('cookie-consent');
+                    if (stored) {
+                      var parsed = JSON.parse(stored);
+                      if (parsed.consent) {
+                        gtag('consent', 'update', {
+                          'analytics_storage': parsed.consent.analytics ? 'granted' : 'denied',
+                          'ad_storage': parsed.consent.marketing ? 'granted' : 'denied',
+                          'ad_user_data': parsed.consent.marketing ? 'granted' : 'denied',
+                          'ad_personalization': parsed.consent.marketing ? 'granted' : 'denied'
+                        });
+                      }
+                    }
+                  } catch(e) {}
+                })();
 
                 gtag('js', new Date());
                 gtag('config', '${GA_MEASUREMENT_ID}', {

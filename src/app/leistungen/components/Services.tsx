@@ -107,7 +107,7 @@ export default function Services() {
                   <ul className="space-y-3">
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3 text-sm text-white/80">
-                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
                         {feature}
                       </li>
                     ))}

@@ -78,7 +78,7 @@ export default function Problem() {
                   <div className="absolute inset-0 bg-gradient-to-r from-destructive/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative flex items-start gap-4 md:gap-6">
-                    <div className="mt-1 flex-shrink-0">
+                    <div className="mt-1 shrink-0">
                       <div className="h-12 w-12 rounded-xl bg-destructive/10 flex items-center justify-center transition-all duration-300 group-hover:bg-destructive/20 group-hover:scale-110">
                         <XCircle className="h-6 w-6 text-destructive/80 transition-colors group-hover:text-destructive" />
                       </div>

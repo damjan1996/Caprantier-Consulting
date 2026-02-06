@@ -25,18 +25,24 @@ export default function Hero() {
             <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
                 <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse group-hover:animate-ping"></span>
-                Planbare Kundenakquise
+                B2B Vertriebsagentur
               </div>
             </div>
 
             <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-                Die Ära der{' '}
+                Ihre B2B{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 text-glow">
-                  unplanbaren Akquise
+                  Vertriebsagentur
                 </span>{' '}
-                ist vorbei.
+                für planbare Neukundengewinnung
               </h1>
+            </div>
+
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+              <p className="text-lg md:text-xl font-semibold text-white/90 max-w-lg mx-auto lg:mx-0">
+                Die Ära der unplanbaren Akquise ist vorbei.
+              </p>
             </div>
 
             <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>

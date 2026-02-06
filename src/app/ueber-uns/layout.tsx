@@ -1,25 +1,26 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Über uns - B2B Akquise Experten aus Köln',
+  title: 'Über uns - Ihre B2B Vertriebsagentur aus Köln',
   description:
-    'Lernen Sie Carpantier Consulting kennen: Ihr Partner für professionelle B2B Telefonakquise & Leadgenerierung aus Köln. ✓ Erfahrene Akquise-Experten ✓ Persönliche Betreuung ✓ Messbare Ergebnisse.',
+    'Lernen Sie Carpantier Consulting kennen: Ihre B2B Vertriebsagentur & Vertriebsdienstleister aus Köln. ✓ Erfahrene Vertriebsexperten ✓ Persönliche Betreuung ✓ Messbare Ergebnisse bei Leadgenerierung & Kaltakquise.',
   keywords: [
     'Carpantier Consulting',
-    'B2B Akquise Agentur Köln',
+    'B2B Vertriebsagentur Köln',
+    'Vertriebsdienstleister Köln',
     'Telefonakquise Experten',
     'Leadgenerierung Köln',
     'Nico Carpantier',
     'Vertriebsagentur NRW',
-    'Sales Consulting Team',
-    'Akquise Spezialisten',
+    'B2B Sales Agentur',
+    'Vertrieb Experten',
     'B2B Vertrieb Experten',
     'Kaltakquise Profis',
   ],
   openGraph: {
-    title: 'Über uns | Carpantier Consulting',
+    title: 'Über uns - Ihre B2B Vertriebsagentur aus Köln | Carpantier',
     description:
-      'Ihr Partner für professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Erfahrene Experten für planbare Neukundengewinnung.',
+      'Ihre B2B Vertriebsagentur & Vertriebsdienstleister aus Köln. Erfahrene Experten für planbare Neukundengewinnung.',
     url: 'https://carpantier-consulting.de/ueber-uns',
     images: [
       {

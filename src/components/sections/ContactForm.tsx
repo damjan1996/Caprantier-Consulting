@@ -147,7 +147,7 @@ export default function ContactForm() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors ${
+              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
                 errors.name ? 'border-red-500' : 'border-white/10 focus:border-primary'
               }`}
               placeholder="Max Mustermann"
@@ -171,7 +171,7 @@ export default function ContactForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors ${
+              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
                 errors.email ? 'border-red-500' : 'border-white/10 focus:border-primary'
               }`}
               placeholder="max@beispiel.de"
@@ -195,7 +195,7 @@ export default function ContactForm() {
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors ${
+              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
                 errors.company ? 'border-red-500' : 'border-white/10 focus:border-primary'
               }`}
               placeholder="Ihre Firma GmbH"
@@ -219,7 +219,7 @@ export default function ContactForm() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
               placeholder="+49 123 456789"
             />
           </div>
@@ -236,7 +236,7 @@ export default function ContactForm() {
             rows={5}
             value={formData.message}
             onChange={handleChange}
-            className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors resize-none ${
+            className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors resize-none ${
               errors.message ? 'border-red-500' : 'border-white/10 focus:border-primary'
             }`}
             placeholder="Wie können wir Ihnen helfen?"

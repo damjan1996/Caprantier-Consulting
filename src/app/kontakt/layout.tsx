@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Kontakt | Vertrieb auslagern - Kostenloses Strategiegespräch',
+  title: 'Kontakt | Vertriebsagentur für B2B Vertrieb - Strategiegespräch buchen',
   description:
-    'Vertrieb auslagern leicht gemacht: Kontaktieren Sie Carpantier Consulting für Ihr kostenloses Strategiegespräch. ✓ Vertriebsagentur Köln ✓ B2B Akquise ✓ Leadgenerierung. Jetzt Termin vereinbaren!',
+    'Kontaktieren Sie Ihre B2B Vertriebsagentur für ein kostenloses Strategiegespräch. ✓ Vertriebsdienstleister Köln ✓ Vertrieb auslagern ✓ Leadgenerierung. Jetzt unverbindlich Termin vereinbaren!',
   keywords: [
     'Vertrieb auslagern Kontakt',
     'Vertriebsagentur Köln Kontakt',

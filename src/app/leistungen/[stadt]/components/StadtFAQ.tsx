@@ -36,7 +36,7 @@ function AccordionItem({
           isOpen ? "text-white" : "text-white/90 group-hover:text-white"
         )}>{question}</span>
         <div className={cn(
-          "h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-300 flex-shrink-0",
+          "h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-300 shrink-0",
           isOpen ? "bg-primary/20 text-primary" : "bg-white/10 text-muted-foreground group-hover:bg-white/20 group-hover:text-white"
         )}>
           <ChevronDown
