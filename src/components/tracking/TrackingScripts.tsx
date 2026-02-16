@@ -91,58 +91,8 @@ export default function TrackingScripts() {
     }
   }, [consent, consentInitialized])
 
-  // Don't render if no tracking IDs configured
-  if (!GA_MEASUREMENT_ID && !CONTENTSQUARE_ID && !BREVO_CLIENT_KEY) {
-    return null
-  }
-
   return (
     <>
-      {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
-      {/* Script lädt sofort - Consent Mode verhindert Datenerfassung ohne Zustimmung */}
-      {GA_MEASUREMENT_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script
-            id="google-analytics-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                // dataLayer und gtag wurden bereits im Head initialisiert
-                // Consent Default wurde auch bereits im Head gesetzt
-
-                // Prüfe gespeicherten Consent und aktualisiere sofort
-                (function() {
-                  try {
-                    var stored = localStorage.getItem('cookie-consent');
-                    if (stored) {
-                      var parsed = JSON.parse(stored);
-                      if (parsed.consent) {
-                        gtag('consent', 'update', {
-                          'analytics_storage': parsed.consent.analytics ? 'granted' : 'denied',
-                          'ad_storage': parsed.consent.marketing ? 'granted' : 'denied',
-                          'ad_user_data': parsed.consent.marketing ? 'granted' : 'denied',
-                          'ad_personalization': parsed.consent.marketing ? 'granted' : 'denied'
-                        });
-                      }
-                    }
-                  } catch(e) {}
-                })();
-
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  anonymize_ip: true,
-                  send_page_view: true
-                });
-              `,
-            }}
-          />
-        </>
-      )}
-
       {/* Hotjar / Contentsquare - nur bei Analytics-Einwilligung */}
       {consent?.analytics && CONTENTSQUARE_ID && (
         <Script

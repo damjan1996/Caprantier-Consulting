@@ -318,7 +318,8 @@ export default function RootLayout({
   return (
     <html lang="de" className="dark">
       <head>
-        {/* Google Consent Mode v2 - MUSS VOR allen anderen Google-Scripts sein! */}
+        {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
+        {/* Schritt 1: Consent-Defaults setzen (vor gtag.js!) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -326,13 +327,68 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
 
               // Consent Mode v2: Standardmäßig alles verweigert (DSGVO-konform)
-              // WICHTIG: Muss vor gtag.js geladen werden!
               gtag('consent', 'default', {
                 'analytics_storage': 'denied',
                 'ad_storage': 'denied',
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
                 'wait_for_update': 500
+              });
+
+              // Prüfe gespeicherten Consent und aktualisiere sofort
+              try {
+                var stored = localStorage.getItem('cookie-consent');
+                if (stored) {
+                  var parsed = JSON.parse(stored);
+                  if (parsed.consent) {
+                    gtag('consent', 'update', {
+                      'analytics_storage': parsed.consent.analytics ? 'granted' : 'denied',
+                      'ad_storage': parsed.consent.marketing ? 'granted' : 'denied',
+                      'ad_user_data': parsed.consent.marketing ? 'granted' : 'denied',
+                      'ad_personalization': parsed.consent.marketing ? 'granted' : 'denied'
+                    });
+                  }
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+        {/* Schritt 2: gtag.js laden */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-1JZ5EDZ26R'}`} />
+        {/* Schritt 3: GA4 konfigurieren + Consent-Listener */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-1JZ5EDZ26R'}', {
+                anonymize_ip: true,
+                send_page_view: true
+              });
+
+              // Nativer Consent-Update-Listener (funktioniert ohne React-Hydration)
+              window.addEventListener('cookie-consent-update', function() {
+                try {
+                  var s = localStorage.getItem('cookie-consent');
+                  if (s) {
+                    var p = JSON.parse(s);
+                    if (p.consent) {
+                      gtag('consent', 'update', {
+                        'analytics_storage': p.consent.analytics ? 'granted' : 'denied',
+                        'ad_storage': p.consent.marketing ? 'granted' : 'denied',
+                        'ad_user_data': p.consent.marketing ? 'granted' : 'denied',
+                        'ad_personalization': p.consent.marketing ? 'granted' : 'denied'
+                      });
+                      if (p.consent.analytics) {
+                        gtag('event', 'page_view', {
+                          page_title: document.title,
+                          page_location: window.location.href,
+                          page_path: window.location.pathname
+                        });
+                      }
+                    }
+                  }
+                } catch(e) {}
               });
             `,
           }}
