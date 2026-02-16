@@ -44,7 +44,7 @@ const nextConfig = {
       "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
       "img-src 'self' data: blob: https: http:",
       "font-src 'self' https://fonts.gstatic.com",
-      "connect-src 'self' https://calendly.com https://www.google-analytics.com https://analytics.google.com https://t.contentsquare.net https://sibautomation.com",
+      "connect-src 'self' https://calendly.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://t.contentsquare.net https://sibautomation.com",
       "frame-src 'self' https://calendly.com",
       "frame-ancestors 'self'",
       "form-action 'self'",
