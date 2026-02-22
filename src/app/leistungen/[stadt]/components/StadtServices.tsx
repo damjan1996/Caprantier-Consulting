@@ -26,7 +26,7 @@ export default function StadtServices({ city }: StadtServicesProps) {
       icon: Target,
       title: `Vertriebsagentur ${city.regionShort}`,
       description: `Ihre Vertriebsagentur für ${city.name} und ${city.region}: Zielgenaue Identifikation und Ansprache Ihrer idealen Kunden nach maßgeschneiderten Kriterien.`,
-      features: ['Präzise Zielgruppenselektion', 'Datenqualifizierung', 'BANT-Methode', 'CRM-Integration'],
+      features: ['Präzise Zielgruppenselektion', 'Datenqualifizierung', 'Entscheider-Qualifizierung', 'CRM-Integration'],
       color: 'text-purple-400',
       bg: 'bg-purple-400/10',
       bgHover: 'group-hover:bg-purple-400/20',

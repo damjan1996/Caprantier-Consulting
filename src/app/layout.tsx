@@ -293,7 +293,7 @@ const jsonLd = {
             itemOffered: {
               '@type': 'Service',
               name: 'Terminqualifizierung',
-              description: 'BANT-qualifizierte Termine mit echten Entscheidern',
+              description: 'Qualifizierte Termine mit echten Entscheidern',
             },
           },
           {

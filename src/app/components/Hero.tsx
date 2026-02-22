@@ -71,7 +71,7 @@ export default function Hero() {
                   <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" /> Kostenlos
                 </span>
                 <span className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-white cursor-default">
-                  <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" /> Limitiert auf 5/Monat
+                  <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" /> Nur 5 Kunden/Monat
                 </span>
               </div>
             </div>

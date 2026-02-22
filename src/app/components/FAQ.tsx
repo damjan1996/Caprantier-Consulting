@@ -29,7 +29,7 @@ const FAQS = [
   {
     question: 'Sind die Termine qualifiziert?',
     answer:
-      'Ja. Wir vereinbaren keine "Kaffeetrinken"-Termine. Jeder Lead wird nach Ihren Kriterien vorqualifiziert (BANT-Methode: Budget, Authority, Need, Timing), bevor er in Ihrem Kalender landet.',
+      'Ja. Wir vereinbaren keine "Kaffeetrinken"-Termine. Wir stellen sicher, dass wir mit dem Entscheider sprechen und ein grundsätzliches Interesse am Angebot besteht - erst dann wird der Termin in Ihren Kalender eingetragen.',
   },
   {
     question: 'Wie schnell kann ich mit Ergebnissen rechnen?',

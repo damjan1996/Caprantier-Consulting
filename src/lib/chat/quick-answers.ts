@@ -62,20 +62,19 @@ Die meisten Kunden sehen erste Termine schon in der ersten Akquise-Woche.`,
 
 • Telefonakquise – Professionelle Kaltakquise
 • Leadgenerierung – Zielgruppen-Recherche
-• Terminqualifizierung – BANT-qualifizierte Termine
+• Terminqualifizierung – Nur Entscheider mit echtem Interesse
 
 Sie fokussieren sich aufs Kerngeschäft, wir füllen Ihren Kalender.`,
   },
   {
-    triggers: ['bant', 'qualifiziert', 'qualifizierung'],
-    answer: `Wir nutzen die BANT-Methode:
+    triggers: ['qualifiziert', 'qualifizierung'],
+    answer: `Unsere Qualifizierung ist klar und direkt:
 
-• Budget – Hat der Lead Budget?
-• Authority – Ist es der Entscheider?
-• Need – Gibt es echten Bedarf?
-• Timing – Passt der Zeitpunkt?
+• Entscheider – Wir sprechen nur mit der richtigen Person
+• Interesse – Grundsätzliches Interesse am Angebot Ihres Kunden
+• Termin – Erst dann wird ein Termin vereinbart
 
-Nur wenn alle Kriterien erfüllt sind, wird ein Termin gebucht.`,
+Keine komplizierten Frameworks, sondern effektive Praxis.`,
   },
 ]
 

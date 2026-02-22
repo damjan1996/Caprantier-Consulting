@@ -14,7 +14,7 @@ const stats = [
   { value: '3+', label: 'Jahre Erfahrung' },
   { value: '100%', label: 'B2B-Fokus' },
   { value: '5', label: 'Partner/Monat' },
-  { value: 'BANT', label: 'Qualifizierung' },
+  { value: '✓', label: 'Entscheider-Fokus' },
 ]
 
 export default function WhyUs() {

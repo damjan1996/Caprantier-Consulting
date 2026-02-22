@@ -34,7 +34,7 @@ export default function Mission() {
             </p>
             <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-primary cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20">
               <CheckCircle className="h-5 w-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
-              Limitiert auf 5 neue Partner pro Monat
+              Wir arbeiten mit max. 5 Kunden gleichzeitig
             </div>
           </FadeIn>
         </div>

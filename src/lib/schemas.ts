@@ -91,7 +91,7 @@ function getCityFAQs(city: City) {
     },
     {
       question: `Was unterscheidet Carpantier von anderen Vertriebsagenturen in ${city.region}?`,
-      answer: `Als spezialisierte Vertriebsagentur für ${city.name} liefern wir ausschließlich BANT-qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Wir haben über 3 Jahre Vertriebserfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Vertriebsherausforderungen ${city.businessContext}.`,
+      answer: `Als spezialisierte Vertriebsagentur für ${city.name} liefern wir ausschließlich qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Wir haben über 3 Jahre Vertriebserfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Vertriebsherausforderungen ${city.businessContext}.`,
     },
   ]
 }
@@ -227,7 +227,7 @@ export function generateHowToSchema() {
         '@type': 'HowToStep',
         position: 3,
         name: 'Verkaufsgespräche führen',
-        text: 'Sie erhalten qualifizierte Termine direkt in Ihren Kalender. Sie schließen ab - wir halten Ihnen den Rücken frei. BANT-qualifizierte Leads mit echten Entscheidern.',
+        text: 'Sie erhalten qualifizierte Termine direkt in Ihren Kalender. Sie schließen ab - wir halten Ihnen den Rücken frei. Qualifizierte Leads mit echten Entscheidern.',
         url: 'https://carpantier-consulting.de/#methode',
       },
     ],
@@ -270,7 +270,7 @@ export function generateHomepageFAQSchema() {
     {
       question: 'Sind die Termine qualifiziert?',
       answer:
-        'Ja. Wir vereinbaren keine "Kaffeetrinken"-Termine. Jeder Lead wird nach Ihren Kriterien vorqualifiziert (BANT-Methode: Budget, Authority, Need, Timing), bevor er in Ihrem Kalender landet.',
+        'Ja. Wir vereinbaren keine "Kaffeetrinken"-Termine. Wir stellen sicher, dass wir mit dem Entscheider sprechen und ein grundsätzliches Interesse am Angebot besteht - erst dann wird der Termin in Ihren Kalender eingetragen.',
     },
     {
       question: 'Wie schnell kann ich mit Ergebnissen rechnen?',
@@ -365,7 +365,7 @@ export function generateServiceAreaSchema() {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: 'BANT-qualifizierte Leads',
+                name: 'Qualifizierte Leads mit Entscheidern',
               },
             },
             {
