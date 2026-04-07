@@ -4,9 +4,9 @@ import FadeIn from '@/components/ui/FadeIn'
 import { DecorativeParticles } from '@/components/ui'
 
 const storyParagraphs = [
-  'Carpantier Consulting entstand aus einer einfachen Erkenntnis: Die meisten Agenturen und IT-Dienstleister haben ein hervorragendes Angebot, aber keine Zeit oder Ressourcen für systematische Akquise.',
-  'Mit jahrelanger Erfahrung im B2B-Vertrieb - von der Personalberatung bis zur direkten Kundenakquise - wissen wir, wie wichtig eine konstante Pipeline qualifizierter Leads ist. Diese Expertise bringen wir nun gezielt für unsere Partner ein.',
-  'Unser Ansatz: Wir übernehmen nicht nur die Akquise, sondern werden zum erweiterten Teil Ihres Teams. Professionell, zuverlässig und mit dem klaren Fokus auf messbare Ergebnisse.',
+  'Carpantier Consulting entstand aus einer einfachen Erkenntnis: Die meisten B2B-Dienstleister haben ein hervorragendes Angebot und zufriedene Kunden - aber keine Kontrolle darüber, wann das nächste Gespräch stattfindet.',
+  'Ob Personalvermittler, IT-Systemhäuser, Unternehmensberater oder SaaS-Anbieter - sie alle kennen das gleiche Problem: Das Tagesgeschäft frisst alles, die Akquise bleibt liegen, die Pipeline wird dünn. Mit jahrelanger Erfahrung im B2B-Vertrieb liefern wir genau das, was fehlt: einen konstanten Zustrom qualifizierter Gespräche.',
+  'Unser Ansatz: Wir sind kein externer Dienstleister, sondern ein Multiplikator für Ihr Geschäft. Professionell, zuverlässig und mit dem klaren Fokus auf Termine mit echten Entscheidern.',
 ]
 
 export default function Story() {

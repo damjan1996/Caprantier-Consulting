@@ -6,19 +6,19 @@ import { SalesGrowthIllustration } from '@/components/illustrations'
 
 const PROBLEMS = [
   {
-    title: 'Theorie statt Praxis',
-    description: 'Andere verkaufen Ihnen Videokurse. Wir liefern echte Gespräche.',
-    quote: 'Sie brauchen keine weiteren Coachings, Sie brauchen Termine.',
-  },
-  {
-    title: 'Zeitfresser Kaltakquise',
-    description: 'Ihre Zeit ist im Kerngeschäft gebunden, nicht am Telefonhörer.',
+    title: 'Überlastet im Tagesgeschäft',
+    description: 'Das Tagesgeschäft frisst alles. Akquise bleibt liegen, obwohl Sie wissen, dass Sie es tun müssten.',
     quote: 'Jede Stunde in der Akquise fehlt Ihnen in der Auslieferung.',
   },
   {
-    title: 'Umsatz-Achterbahn',
-    description: 'Mal läuft es, mal nicht. Ohne System bleibt Erfolg Zufall.',
-    quote: 'Planbarkeit entsteht nur durch konsistente Schlagzahl.',
+    title: 'Gebrannte Finger',
+    description: 'Ein Vertriebler hat nicht geliefert, ein Kurs hat nichts gebracht, eigene Versuche blieben ohne Konstanz.',
+    quote: 'Sie brauchen keine weiteren Experimente - Sie brauchen einen bewiesenen Prozess.',
+  },
+  {
+    title: 'Empfehlungs-Abhängigkeit',
+    description: 'Gutes Angebot, zufriedene Kunden - aber keine Kontrolle darüber, wann das nächste Gespräch stattfindet.',
+    quote: 'Planbarkeit entsteht nur durch systematische Akquise, nicht durch Zufall.',
   },
 ]
 
@@ -43,8 +43,8 @@ export default function Problem() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-destructive to-red-500">nicht funktioniert</span> hat.
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground">
-                  Die meisten Agenturinhaber scheitern nicht am Angebot, sondern an
-                  der fehlenden Konstanz im Vertrieb.
+                  B2B-Dienstleister mit 5-50 Mitarbeitern scheitern selten am Angebot -
+                  sondern daran, dass die Pipeline leer bleibt.
                 </p>
               </div>
               <div className="relative flex justify-center lg:justify-end">
@@ -65,8 +65,8 @@ export default function Problem() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-destructive to-red-500">nicht funktioniert</span> hat.
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Die meisten Agenturinhaber scheitern nicht am Angebot, sondern an
-              der fehlenden Konstanz im Vertrieb.
+              B2B-Dienstleister mit 5-50 Mitarbeitern scheitern selten am Angebot -
+              sondern daran, dass die Pipeline leer bleibt.
             </p>
           </FadeIn>
 

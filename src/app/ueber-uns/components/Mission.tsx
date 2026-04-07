@@ -27,10 +27,11 @@ export default function Mission() {
               </span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Wir machen Akquise zur strategischen Säule Ihres Unternehmens -
-              planbar, messbar und mit voller Transparenz. Damit Sie sich auf
-              das konzentrieren können, was Sie am besten können: Ihre Kunden
-              betreuen und Ihr Geschäft ausbauen.
+              Inhabergeführte B2B-Unternehmen brauchen keine Videokurse oder
+              noch einen Vertriebler, der nicht liefert. Sie brauchen einen
+              bewiesenen Prozess, der qualifizierte Gespräche planbar und
+              messbar in ihren Kalender bringt - damit sie sich auf ihr
+              Kerngeschäft konzentrieren können.
             </p>
             <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-primary cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20">
               <CheckCircle className="h-5 w-5 mr-2 transition-transform duration-300 group-hover:scale-110" />

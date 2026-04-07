@@ -49,10 +49,10 @@ export default function Hero() {
             <FadeIn delay={0.3}>
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Bei Carpantier Consulting verbinden wir jahrelange Erfahrung im
-                B2B-Vertrieb und Recruiting mit dem Ziel, Agenturen und
-                IT-Dienstleistern{' '}
+                B2B-Vertrieb mit dem Ziel, inhabergeführten Unternehmen und
+                Dienstleistern{' '}
                 <strong className="text-white">planbare Neukundengewinnung</strong>{' '}
-                zu ermöglichen.
+                zu ermöglichen - von Personalvermittlern über IT-Systemhäuser bis zu SaaS-Anbietern.
               </p>
             </FadeIn>
 

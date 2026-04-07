@@ -57,7 +57,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: 'Für welche Unternehmen eignet sich Vertriebsoutsourcing?',
-        answer: 'Vertriebsoutsourcing eignet sich besonders für B2B-Unternehmen wie IT-Dienstleister, Agenturen, Beratungen und Softwarefirmen, die keine Zeit oder Ressourcen für eigene Kaltakquise haben.',
+        answer: 'Vertriebsoutsourcing eignet sich besonders für B2B-Dienstleister und inhabergeführte Unternehmen mit 5-50 Mitarbeitern: Personalvermittler, IT-Systemhäuser, Unternehmensberater, SaaS-Anbieter und Software-Agenturen, die wachsen wollen, ohne intern ein eigenes Vertriebsteam aufzubauen.',
       },
       {
         question: 'Wie schnell kann eine Vertriebsagentur Ergebnisse liefern?',

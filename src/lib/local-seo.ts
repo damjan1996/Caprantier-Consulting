@@ -48,7 +48,7 @@ export const businessInfo = {
 
   // Geschäftsdetails
   businessType: 'Vertriebsagentur',
-  description: 'Professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen.',
+  description: 'Professionelle B2B Telefonakquise & Leadgenerierung aus Köln. Wir liefern qualifizierte Termine mit Entscheidern für Personalvermittler, IT-Systemhäuser, Unternehmensberater, SaaS-Anbieter und Software-Agenturen.',
   shortDescription: 'B2B Vertriebsagentur für Telefonakquise & Leadgenerierung',
 
   // Inhaber

@@ -47,9 +47,9 @@ export default function Hero() {
 
             <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                Wir implementieren das System, das qualifizierte Kunden{' '}
-                <strong className="text-white">planbar</strong> in Ihren Kalender
-                bringt - ohne Kaltakquise-Frust und ohne eigene Vertriebsmitarbeiter.
+                Für B2B-Dienstleister und inhabergeführte Unternehmen, die wachsen wollen -{' '}
+                <strong className="text-white">ohne eigenes Vertriebsteam aufzubauen</strong>.
+                Wir liefern qualifizierte Termine mit Entscheidern direkt in Ihren Kalender.
               </p>
             </div>
 

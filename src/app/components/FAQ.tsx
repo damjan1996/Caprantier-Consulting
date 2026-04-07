@@ -9,7 +9,7 @@ const FAQS = [
   {
     question: 'Was passiert im Erstgespräch?',
     answer:
-      'Im Erstgespräch analysieren wir Ihre aktuelle Situation und prüfen, ob unser System für Ihre Agentur geeignet ist. Wir geben Ihnen bereits erste strategische Impulse mit, völlig unverbindlich.',
+      'Im Erstgespräch analysieren wir Ihre aktuelle Situation und prüfen, ob unser System für Ihr Unternehmen geeignet ist. Wir geben Ihnen bereits erste strategische Impulse mit, völlig unverbindlich.',
   },
   {
     question: 'Warum ist das Gespräch kostenlos?',
@@ -24,7 +24,7 @@ const FAQS = [
   {
     question: 'Für wen ist Carpantier Consulting geeignet?',
     answer:
-      'Wir arbeiten exklusiv mit Dienstleistern und Agenturinhabern (B2B), die ein funktionierendes Angebot haben und bereit sind, zu skalieren. Wir arbeiten nicht mit Network Marketern oder Dropshippern.',
+      'Für B2B-Dienstleister und inhabergeführte Unternehmen mit 5 bis 50 Mitarbeitern und einem Deal-Wert ab 5.000 € pro Kunde. Konkret: Personalvermittler, IT-Systemhäuser, Unternehmensberater, SaaS-Anbieter und Web- oder Software-Agenturen. Wichtig: Sie haben ein gutes Angebot und zufriedene Kunden - es fehlt nur der konstante Zustrom qualifizierter Gespräche.',
   },
   {
     question: 'Sind die Termine qualifiziert?',

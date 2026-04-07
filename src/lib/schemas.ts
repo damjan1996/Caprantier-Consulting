@@ -83,7 +83,7 @@ function getCityFAQs(city: City) {
     },
     {
       question: `Welche Branchen betreut Ihre Vertriebsagentur in ${city.name}?`,
-      answer: `Wir sind auf den Vertrieb für B2B-Dienstleister spezialisiert: Agenturen, IT-Dienstleister, Beratungsunternehmen und Softwareunternehmen ${city.businessContext}. Unsere Vertriebsexpertise liegt in der Ansprache von Entscheidern in mittelständischen Unternehmen in ${city.name}.`,
+      answer: `Wir sind auf den Vertrieb für B2B-Dienstleister und inhabergeführte Unternehmen spezialisiert: Personalvermittler, IT-Systemhäuser, Unternehmensberater, SaaS-Anbieter und Web- oder Software-Agenturen ${city.businessContext}. Unsere Vertriebsexpertise liegt in der Ansprache von Entscheidern in Unternehmen mit 5 bis 50 Mitarbeitern in ${city.name}.`,
     },
     {
       question: `Wie schnell generiert Ihr Vertriebsteam erste Leads in ${city.name}?`,

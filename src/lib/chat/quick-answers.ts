@@ -37,14 +37,15 @@ Oder direkt: nico@carpantier-consulting.de | +49 157 38186221`,
   },
   {
     triggers: ['für wen', 'zielgruppe', 'geeignet', 'passt das'],
-    answer: `Wir arbeiten mit B2B-Dienstleistern:
+    answer: `Wir arbeiten mit B2B-Dienstleistern und inhabergeführten Unternehmen (5-50 Mitarbeiter, Deal-Wert ab 5.000 €):
 
-• Agenturen (Marketing, Web, Design)
-• IT-Dienstleister & Softwarefirmen
-• Beratungsunternehmen
+• Personalvermittler
+• IT-Systemhäuser
+• Unternehmensberater
 • SaaS-Anbieter
+• Web- & Software-Agenturen
 
-Nicht geeignet für: B2C, MLM, Dropshipping.`,
+Voraussetzung: Gutes Angebot, zufriedene Kunden - es fehlt nur der konstante Zustrom qualifizierter Gespräche. Nicht geeignet für: B2C, MLM, Dropshipping.`,
   },
   {
     triggers: ['wie schnell', 'erste ergebnisse', 'wann'],
