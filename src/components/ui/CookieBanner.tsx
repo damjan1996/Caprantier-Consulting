@@ -30,7 +30,7 @@ export default function CookieBanner() {
       {/* Banner */}
       <div className="fixed bottom-0 left-0 right-0 z-[101] p-4 md:p-6">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto bg-card border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+          <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
             {!showSettings ? (
               // Main Banner
               <div className="p-6 md:p-8">
@@ -39,7 +39,7 @@ export default function CookieBanner() {
                     <Cookie className="h-6 w-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2">
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
                       Cookie-Einstellungen
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base mb-6">
@@ -79,13 +79,13 @@ export default function CookieBanner() {
                     <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <Settings className="h-5 w-5" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-foreground">
                       Cookie-Einstellungen anpassen
                     </h3>
                   </div>
                   <button
                     onClick={() => setShowSettings(false)}
-                    className="p-2 rounded-lg hover:bg-white/10 transition-colors text-muted-foreground hover:text-white"
+                    className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -93,10 +93,10 @@ export default function CookieBanner() {
 
                 <div className="space-y-4 mb-6">
                   {/* Necessary Cookies */}
-                  <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                  <div className="p-4 rounded-xl border border-border bg-white">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-white mb-1">Notwendige Cookies</h4>
+                        <h4 className="font-medium text-foreground mb-1">Notwendige Cookies</h4>
                         <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
                         </p>
@@ -113,10 +113,10 @@ export default function CookieBanner() {
                   </div>
 
                   {/* Analytics Cookies */}
-                  <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                  <div className="p-4 rounded-xl border border-border bg-white">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-white mb-1">Analyse-Cookies</h4>
+                        <h4 className="font-medium text-foreground mb-1">Analyse-Cookies</h4>
                         <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen.
                         </p>
@@ -128,7 +128,7 @@ export default function CookieBanner() {
                         <button
                           onClick={() => setCustomConsent(prev => ({ ...prev, analytics: !prev.analytics }))}
                           className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
-                            customConsent.analytics ? 'bg-primary justify-end' : 'bg-white/20 justify-start'
+                            customConsent.analytics ? 'bg-primary justify-end' : 'bg-muted justify-start'
                           }`}
                         >
                           <div className="w-4 h-4 rounded-full bg-white" />
@@ -138,10 +138,10 @@ export default function CookieBanner() {
                   </div>
 
                   {/* Marketing Cookies */}
-                  <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                  <div className="p-4 rounded-xl border border-border bg-white">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-white mb-1">Marketing-Cookies</h4>
+                        <h4 className="font-medium text-foreground mb-1">Marketing-Cookies</h4>
                         <p className="text-sm text-muted-foreground mb-2">
                           Diese Cookies werden verwendet, um Werbung relevanter für Sie zu gestalten.
                         </p>
@@ -153,7 +153,7 @@ export default function CookieBanner() {
                         <button
                           onClick={() => setCustomConsent(prev => ({ ...prev, marketing: !prev.marketing }))}
                           className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
-                            customConsent.marketing ? 'bg-primary justify-end' : 'bg-white/20 justify-start'
+                            customConsent.marketing ? 'bg-primary justify-end' : 'bg-muted justify-start'
                           }`}
                         >
                           <div className="w-4 h-4 rounded-full bg-white" />

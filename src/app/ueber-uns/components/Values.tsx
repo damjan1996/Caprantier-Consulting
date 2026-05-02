@@ -62,9 +62,9 @@ export default function Values() {
           <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
             Unsere Werte
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
             Wofür wir{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">
+            <span className="text-primary">
               stehen
             </span>
           </h2>
@@ -73,11 +73,11 @@ export default function Values() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {values.map((value, index) => (
             <FadeIn key={index} delay={index * 0.1}>
-              <div className={`group p-6 rounded-2xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 ${value.borderHover} hover:shadow-xl ${value.shadow} hover:-translate-y-1 cursor-default`}>
+              <div className={`group p-6 rounded-2xl border border-border bg-white h-full transition-all duration-500 hover:bg-muted ${value.borderHover} hover:shadow-xl ${value.shadow} hover:-translate-y-1 cursor-default`}>
                 <div className={`h-12 w-12 rounded-xl ${value.bg} ${value.bgHover} ${value.color} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}>
                   <value.icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3 className="text-lg font-bold text-foreground mb-2">
                   {value.title}
                 </h3>
                 <p className="text-sm text-muted-foreground">

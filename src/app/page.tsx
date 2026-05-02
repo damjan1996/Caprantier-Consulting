@@ -3,14 +3,13 @@ import dynamic from 'next/dynamic'
 import { PageWrapper } from '@/components/ui'
 import { Hero, Problem, Method, Benefits, FAQ } from './components'
 import {
-  generateTestimonialsSchema,
   generateHowToSchema,
   generateHomepageFAQSchema,
   generateServiceAreaSchema,
 } from '@/lib/schemas'
 
 // Dynamic imports for below the fold components
-const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
+const AboutTeaser = dynamic(() => import('@/components/sections/Testimonials'), {
   loading: () => <div className="section-padding" />,
 })
 
@@ -23,18 +22,12 @@ const CTA = dynamic(() => import('@/components/sections/CTA'), {
 })
 
 export default function Home() {
-  const reviewSchema = generateTestimonialsSchema()
   const howToSchema = generateHowToSchema()
   const faqSchema = generateHomepageFAQSchema()
   const serviceAreaSchema = generateServiceAreaSchema()
 
   return (
     <PageWrapper>
-      {/* Review Schema for Testimonials */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
-      />
       {/* HowTo Schema for Method Section */}
       <script
         type="application/ld+json"
@@ -51,25 +44,33 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreaSchema) }}
       />
 
+      {/* 1. Hero */}
       <Hero />
+      {/* 2. Warum unsere Akquise-Strategie so gut funktioniert */}
       <Suspense fallback={<div className="section-padding" />}>
         <Problem />
       </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <Method />
-      </Suspense>
+      {/* 3. Das erreichen unsere Kunden */}
       <Suspense fallback={<div className="section-padding" />}>
         <Benefits />
       </Suspense>
+      {/* 4. So können Sie mit uns zusammenarbeiten */}
       <Suspense fallback={<div className="section-padding" />}>
-        <Testimonials />
+        <Method />
       </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <ServiceAreas />
-      </Suspense>
+      {/* 5. FAQ */}
       <Suspense fallback={<div className="section-padding" />}>
         <FAQ />
       </Suspense>
+      {/* 6. Über uns */}
+      <Suspense fallback={<div className="section-padding" />}>
+        <AboutTeaser />
+      </Suspense>
+      {/* 7. Regionen */}
+      <Suspense fallback={<div className="section-padding" />}>
+        <ServiceAreas />
+      </Suspense>
+      {/* 8. Abschließender CTA */}
       <Suspense fallback={<div className="section-padding" />}>
         <CTA />
       </Suspense>

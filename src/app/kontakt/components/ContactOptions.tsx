@@ -60,12 +60,12 @@ export default function ContactOptions() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Side - CTA Card */}
           <FadeIn>
-            <div className="group p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
+            <div className="group p-8 md:p-10 rounded-3xl border border-border bg-white h-full transition-all duration-500 hover:bg-muted hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
                   <Zap className="h-6 w-6" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">
                   Kostenloses Strategiegespräch
                 </h2>
               </div>
@@ -78,9 +78,9 @@ export default function ContactOptions() {
 
               <div className="space-y-4 mb-8">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="group/item flex items-center gap-3 text-white cursor-default">
+                  <div key={index} className="group/item flex items-center gap-3 text-foreground cursor-default">
                     <CheckCircle className={`h-5 w-5 ${benefit.color} transition-transform duration-300 group-hover/item:scale-110`} />
-                    <span className="transition-colors duration-300 group-hover/item:text-white/90">{benefit.text}</span>
+                    <span className="transition-colors duration-300 group-hover/item:text-foreground/90">{benefit.text}</span>
                   </div>
                 ))}
               </div>
@@ -100,9 +100,9 @@ export default function ContactOptions() {
           {/* Right Side - Contact Info */}
           <FadeIn delay={0.2}>
             <div className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
                 Oder kontaktieren Sie uns{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                <span className="text-primary">
                   direkt
                 </span>
               </h2>
@@ -110,16 +110,16 @@ export default function ContactOptions() {
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className={`group p-6 rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:bg-white/10 ${info.borderHover} hover:shadow-xl ${info.shadow} hover:-translate-y-1 cursor-default`}
+                  className={`group p-6 rounded-2xl border border-border bg-white transition-all duration-500 hover:bg-muted ${info.borderHover} hover:shadow-xl ${info.shadow} hover:-translate-y-1 cursor-default`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`h-12 w-12 rounded-xl ${info.bg} ${info.bgHover} ${info.color} flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110`}>
                       <info.icon className="h-6 w-6" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white mb-1">{info.title}</h3>
+                      <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
                       {info.href ? (
-                        <a href={info.href} className="text-muted-foreground hover:text-white transition-colors">
+                        <a href={info.href} className="text-muted-foreground hover:text-foreground transition-colors">
                           {info.value}
                         </a>
                       ) : (
@@ -136,7 +136,7 @@ export default function ContactOptions() {
                     <Zap className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white mb-1">Schnelle Antwort garantiert</h3>
+                    <h3 className="font-semibold text-foreground mb-1">Schnelle Antwort garantiert</h3>
                     <p className="text-sm text-muted-foreground">
                       Wir antworten auf alle Anfragen innerhalb von 24 Stunden an Werktagen.
                     </p>

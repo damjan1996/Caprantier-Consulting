@@ -213,13 +213,13 @@ export default function GlossarPage() {
           </FadeIn>
 
           <FadeIn className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-foreground mb-6">
               <BookOpen className="h-4 w-4 text-primary" />
               Vertrieb Glossar
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
               B2B-Vertriebsbegriffe{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+              <span className="text-primary">
                 einfach erklärt
               </span>
             </h1>
@@ -240,7 +240,7 @@ export default function GlossarPage() {
                 <a
                   key={category}
                   href={`#${category.toLowerCase()}`}
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-white/5 text-white/70 border border-white/10 transition-all hover:bg-white/10 hover:text-white hover:border-primary/30"
+                  className="px-4 py-2 rounded-full text-sm font-medium bg-muted text-muted-foreground border border-border transition-all hover:bg-muted hover:text-foreground hover:border-primary/30"
                 >
                   {category}
                 </a>
@@ -257,7 +257,7 @@ export default function GlossarPage() {
             {categories.map((category, categoryIndex) => (
               <FadeIn key={category} delay={categoryIndex * 0.1}>
                 <div id={category.toLowerCase()} className="mb-12 scroll-mt-24">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                     <span className="h-8 w-1 bg-primary rounded-full" />
                     {category}
                   </h2>
@@ -268,9 +268,9 @@ export default function GlossarPage() {
                         <div
                           key={item.id}
                           id={item.id}
-                          className="group p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all scroll-mt-24"
+                          className="group p-6 rounded-2xl border border-border bg-white hover:bg-muted hover:border-primary/30 transition-all scroll-mt-24"
                         >
-                          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                          <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                             {item.term}
                           </h3>
                           <p className="text-primary text-sm font-medium mb-3">
@@ -282,11 +282,11 @@ export default function GlossarPage() {
                           <div className="flex flex-wrap items-center gap-4">
                             {item.relatedTerms && item.relatedTerms.length > 0 && (
                               <div className="flex flex-wrap gap-2">
-                                <span className="text-xs text-white/50">Verwandte Begriffe:</span>
+                                <span className="text-xs text-muted-foreground">Verwandte Begriffe:</span>
                                 {item.relatedTerms.map((related) => (
                                   <span
                                     key={related}
-                                    className="px-2 py-1 text-xs bg-white/10 text-white/70 rounded-full"
+                                    className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full"
                                   >
                                     {related}
                                   </span>
@@ -318,7 +318,7 @@ export default function GlossarPage() {
         <div className="container-custom">
           <FadeIn className="max-w-3xl mx-auto text-center">
             <div className="p-8 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
                 Vertrieb in der Praxis erleben?
               </h2>
               <p className="text-muted-foreground mb-6">

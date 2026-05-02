@@ -1,46 +1,28 @@
-import Image from 'next/image'
-
-// Static import for automatic blur placeholder
-import abstractBg from '@/../public/images/abstract-bg-1.jpg'
-
 interface PageBackgroundProps {
   showGlow?: boolean
   glowPosition?: 'left' | 'right' | 'center'
 }
 
-// Glow-Positionen - max-w-screen verhindert Overflow auf Mobile
-const glowPositionClasses = {
-  left: '-top-40 left-0 -translate-x-1/3',
-  right: '-top-40 right-0 translate-x-1/3',
-  center: '-top-40 left-1/2 -translate-x-1/2',
-} as const
-
 export default function PageBackground({
   showGlow = true,
   glowPosition = 'left'
 }: PageBackgroundProps) {
+  const glowPositionClasses = {
+    left: '-top-40 left-0 -translate-x-1/3',
+    right: '-top-40 right-0 translate-x-1/3',
+    center: '-top-40 left-1/2 -translate-x-1/2',
+  } as const
+
   return (
     <>
-      {/* Background Image with Gradient Overlay */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background/50 z-10" />
-        <Image
-          src={abstractBg}
-          alt="Abstrakter Hintergrund - Carpantier Consulting Vertriebsagentur"
-          fill
-          className="object-cover opacity-60 blur-sm"
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          aria-hidden="true"
-        />
-      </div>
+      {/* Clean light background */}
+      <div className="fixed inset-0 z-0 bg-white" />
 
-      {/* Glow Effect - mit overflow-hidden Container um horizontales Scrolling zu verhindern */}
+      {/* Subtle decorative gradient */}
       {showGlow && (
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
           <div
-            className={`absolute ${glowPositionClasses[glowPosition]} w-[min(600px,150vw)] h-[600px] hero-glow blur-3xl opacity-60`}
+            className={`absolute ${glowPositionClasses[glowPosition]} w-[min(800px,150vw)] h-[600px] bg-gradient-to-br from-blue-50 via-indigo-50/50 to-transparent rounded-full blur-3xl opacity-70`}
           />
         </div>
       )}

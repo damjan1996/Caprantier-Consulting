@@ -51,7 +51,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                   selectedCategory === null
                     ? 'bg-primary/20 text-primary border border-primary/30'
-                    : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
+                    : 'bg-muted text-muted-foreground border border-border hover:bg-muted hover:text-foreground'
                 }`}
               >
                 Alle Artikel
@@ -63,7 +63,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                     selectedCategory === category
                       ? 'bg-primary/20 text-primary border border-primary/30'
-                      : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
+                      : 'bg-muted text-muted-foreground border border-border hover:bg-muted hover:text-foreground'
                   }`}
                 >
                   {category}
@@ -89,7 +89,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                   delay={index < 6 ? Math.min(index * 0.03, 0.15) : 0}
                 >
                   <Link href={`/blog/${post.slug}`} className="group block h-full">
-                    <article className="relative h-full rounded-2xl border border-white/10 bg-white/5 transition-[background-color,border-color] duration-200 hover:bg-white/10 hover:border-primary/30 md:hover:shadow-xl md:hover:shadow-primary/5 md:hover:-translate-y-1 md:transition-all overflow-hidden">
+                    <article className="relative h-full rounded-2xl border border-border bg-white transition-[background-color,border-color] duration-200 hover:bg-muted hover:border-primary/30 md:hover:shadow-xl md:hover:shadow-primary/5 md:hover:-translate-y-1 md:transition-all overflow-hidden">
                       {/* Image */}
                       {getBlogImage(post.slug) && (
                         <div className="relative w-full aspect-[16/9] overflow-hidden">
@@ -122,7 +122,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-xl font-bold text-white mb-3 md:group-hover:text-primary md:transition-colors line-clamp-2">
+                        <h2 className="text-xl font-bold text-foreground mb-3 md:group-hover:text-primary md:transition-colors line-clamp-2">
                           {post.title}
                         </h2>
 
@@ -148,7 +148,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                         </div>
 
                         {/* Read More */}
-                        <div className="flex items-center gap-2 text-sm font-medium text-white/70 md:group-hover:text-primary md:transition-colors">
+                        <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground md:group-hover:text-primary md:transition-colors">
                           Weiterlesen
                           <ArrowRight className="h-4 w-4 md:transition-transform md:group-hover:translate-x-1" />
                         </div>
@@ -167,7 +167,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/70 transition-colors duration-150 hover:bg-white/10 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:text-white/70"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-muted text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-muted disabled:hover:text-muted-foreground"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Zurück
@@ -188,7 +188,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
 
                   if (showEllipsisBefore || showEllipsisAfter) {
                     return (
-                      <span key={page} className="px-2 text-white/40">
+                      <span key={page} className="px-2 text-muted-foreground">
                         ...
                       </span>
                     )
@@ -203,7 +203,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                       className={`w-10 h-10 rounded-lg font-medium transition-colors duration-150 ${
                         currentPage === page
                           ? 'bg-primary/20 text-primary border border-primary/30'
-                          : 'border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                          : 'border border-border bg-muted text-muted-foreground hover:bg-muted hover:text-foreground'
                       }`}
                     >
                       {page}
@@ -216,7 +216,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/70 transition-colors duration-150 hover:bg-white/10 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:text-white/70"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-muted text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-muted disabled:hover:text-muted-foreground"
               >
                 Weiter
                 <ChevronRight className="h-4 w-4" />

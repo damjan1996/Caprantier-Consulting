@@ -256,7 +256,7 @@ export default function ChatWidget() {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-6 right-6 z-50 flex h-[480px] w-[360px] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] shadow-2xl border border-white/10 transition-all duration-300 ${
+        className={`fixed bottom-6 right-6 z-50 flex h-[480px] w-[360px] flex-col overflow-hidden rounded-2xl bg-card shadow-2xl border border-border transition-all duration-300 ${
           isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
         }`}
       >
@@ -291,7 +291,7 @@ export default function ChatWidget() {
                 className={`max-w-[85%] rounded-2xl px-4 py-2 ${
                   msg.role === 'user'
                     ? 'bg-blue-600 text-white rounded-br-md'
-                    : 'bg-white/10 text-gray-200 rounded-bl-md'
+                    : 'bg-muted text-foreground rounded-bl-md'
                 }`}
               >
                 {msg.content ? (
@@ -310,7 +310,7 @@ export default function ChatWidget() {
                 <button
                   key={reply}
                   onClick={() => sendMessage(reply)}
-                  className="px-3 py-1.5 text-xs bg-white/5 border border-white/20 rounded-full text-gray-300 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  className="px-3 py-1.5 text-xs bg-white border border-border rounded-full text-muted-foreground hover:bg-muted hover:border-primary/30 transition-colors"
                 >
                   {reply}
                 </button>
@@ -322,7 +322,7 @@ export default function ChatWidget() {
         </div>
 
         {/* Input */}
-        <div className="border-t border-white/10 p-3">
+        <div className="border-t border-border p-3">
           <div className="flex items-center gap-2">
             <input
               ref={inputRef}
@@ -331,7 +331,7 @@ export default function ChatWidget() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Nachricht schreiben..."
-              className="flex-1 rounded-full bg-white/10 px-4 py-2 text-sm text-white placeholder-gray-400 outline-hidden focus:ring-2 focus:ring-blue-500/50"
+              className="flex-1 rounded-full bg-muted px-4 py-2 text-sm text-foreground placeholder-muted-foreground outline-hidden focus:ring-2 focus:ring-blue-500/50"
               disabled={isLoading}
             />
             <button

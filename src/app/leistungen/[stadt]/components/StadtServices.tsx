@@ -71,9 +71,9 @@ export default function StadtServices({ city }: StadtServicesProps) {
           <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
             Vertriebsagentur {city.name}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
             Vertrieb{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">
+            <span className="text-primary">
               {city.businessContext}
             </span>
           </h2>
@@ -85,18 +85,18 @@ export default function StadtServices({ city }: StadtServicesProps) {
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <FadeIn key={index} delay={index * 0.1}>
-              <div className={`group relative p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 ${service.borderHover} hover:shadow-xl ${service.shadow} hover:-translate-y-1 cursor-default`}>
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`group relative p-8 md:p-10 rounded-3xl border border-border bg-white h-full transition-all duration-500 hover:bg-muted ${service.borderHover} hover:shadow-xl ${service.shadow} hover:-translate-y-1 cursor-default`}>
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative">
                   <div className={`h-14 w-14 rounded-2xl ${service.bg} ${service.bgHover} ${service.color} flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110`}>
                     <service.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                  <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
                   <p className="text-muted-foreground mb-6">{service.description}</p>
                   <ul className="space-y-3">
                     {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm text-white/80">
+                      <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
                         <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
                         {feature}
                       </li>

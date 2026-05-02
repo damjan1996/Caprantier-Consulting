@@ -20,7 +20,7 @@ export default function Story() {
             <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
               Unsere Geschichte
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
               Wie alles{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                 begann
@@ -33,7 +33,7 @@ export default function Story() {
               {storyParagraphs.map((text, index) => (
                 <p
                   key={index}
-                  className="text-base md:text-lg text-muted-foreground p-6 rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/20"
+                  className="text-base md:text-lg text-muted-foreground p-6 rounded-2xl border border-border bg-white transition-all duration-300 hover:bg-muted hover:border-border"
                 >
                   {text}
                 </p>

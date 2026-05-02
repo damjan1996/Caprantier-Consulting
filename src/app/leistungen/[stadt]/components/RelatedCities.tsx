@@ -26,15 +26,15 @@ export default function RelatedCities({ city }: RelatedCitiesProps) {
   ].slice(0, 6)
 
   return (
-    <section className="section-padding relative bg-white/[0.02]">
+    <section className="section-padding relative bg-muted/50">
       <div className="container-custom">
         <FadeIn className="text-center mb-10">
           <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
             Weitere Standorte
           </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15]">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-[1.15]">
             B2B Akquise in{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+            <span className="text-primary">
               weiteren Städten
             </span>
           </h2>
@@ -49,18 +49,18 @@ export default function RelatedCities({ city }: RelatedCitiesProps) {
               <Link
                 key={relatedCity.slug}
                 href={`/leistungen/${relatedCity.slug}`}
-                className="group relative p-4 rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 text-center"
+                className="group relative p-4 rounded-xl border border-border bg-white transition-all duration-300 hover:bg-muted hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 text-center"
               >
                 <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mx-auto mb-3 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
                   <MapPin className="h-5 w-5" />
                 </div>
-                <h3 className="font-semibold text-white text-sm group-hover:text-primary transition-colors">
+                <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">
                   {relatedCity.name}
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">
                   {relatedCity.regionShort}
                 </p>
-                <ArrowRight className="absolute bottom-3 right-3 h-3 w-3 text-white/20 transition-all duration-300 group-hover:text-primary group-hover:translate-x-0.5 opacity-0 group-hover:opacity-100" />
+                <ArrowRight className="absolute bottom-3 right-3 h-3 w-3 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:translate-x-0.5 opacity-0 group-hover:opacity-100" />
               </Link>
             ))}
           </div>

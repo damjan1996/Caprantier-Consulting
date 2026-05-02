@@ -13,37 +13,37 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Allgemeine Hinweise</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Allgemeine Hinweise</h3>
           <p className="text-muted-foreground">
             Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Datenerfassung auf dieser Website</h3>
-          <h4 className="text-base font-medium text-white/90 mb-2">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
+          <h3 className="text-lg font-medium text-foreground mb-3">Datenerfassung auf dieser Website</h3>
+          <h4 className="text-base font-medium text-foreground/90 mb-2">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
           <p className="text-muted-foreground mb-4">
             Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerklärung entnehmen.
           </p>
 
-          <h4 className="text-base font-medium text-white/90 mb-2">Wie erfassen wir Ihre Daten?</h4>
+          <h4 className="text-base font-medium text-foreground/90 mb-2">Wie erfassen wir Ihre Daten?</h4>
           <p className="text-muted-foreground mb-4">
             Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
           </p>
 
-          <h4 className="text-base font-medium text-white/90 mb-2">Wofür nutzen wir Ihre Daten?</h4>
+          <h4 className="text-base font-medium text-foreground/90 mb-2">Wofür nutzen wir Ihre Daten?</h4>
           <p className="text-muted-foreground mb-4">
             Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
           </p>
 
-          <h4 className="text-base font-medium text-white/90 mb-2">Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
+          <h4 className="text-base font-medium text-foreground/90 mb-2">Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
           <p className="text-muted-foreground">
             Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Analyse-Tools und Tools von Drittanbietern</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Analyse-Tools und Tools von Drittanbietern</h3>
           <p className="text-muted-foreground">
             Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit sogenannten Analyseprogrammen. Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in der folgenden Datenschutzerklärung.
           </p>
@@ -59,7 +59,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Datenschutz</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Datenschutz</h3>
           <p className="text-muted-foreground mb-4">
             Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
           </p>
@@ -69,8 +69,8 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Hinweis zur verantwortlichen Stelle</h3>
-          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+          <h3 className="text-lg font-medium text-foreground mb-3">Hinweis zur verantwortlichen Stelle</h3>
+          <div className="p-4 rounded-xl bg-white border border-border">
             <p className="text-muted-foreground">
               Nico-Luca Carpantier<br />
               Stammheimer Straße 123<br />
@@ -94,36 +94,36 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Speicherdauer</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Speicherdauer</h3>
           <p className="text-muted-foreground">
             Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
           <p className="text-muted-foreground">
             Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung informiert.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Empfänger von personenbezogenen Daten</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Empfänger von personenbezogenen Daten</h3>
           <p className="text-muted-foreground">
             Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen Stellen zusammen. Dabei ist teilweise auch eine Übermittlung von personenbezogenen Daten an diese externen Stellen erforderlich. Wir geben personenbezogene Daten nur dann an externe Stellen weiter, wenn dies im Rahmen einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich hierzu verpflichtet sind (z. B. Weitergabe von Daten an Steuerbehörden), wenn wir ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt. Beim Einsatz von Auftragsverarbeitern geben wir personenbezogene Daten unserer Kunden nur auf Grundlage eines gültigen Vertrags über Auftragsverarbeitung weiter. Im Falle einer gemeinsamen Verarbeitung wird ein Vertrag über gemeinsame Verarbeitung geschlossen.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
           <p className="text-muted-foreground">
             Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h3>
-          <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-sm text-muted-foreground space-y-3">
+          <h3 className="text-lg font-medium text-foreground mb-3">Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h3>
+          <div className="p-4 rounded-xl bg-white border border-border text-sm text-muted-foreground space-y-3">
             <p>
               WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT. E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIE VERARBEITUNG IHRER PERSONENBEZOGENEN DATEN WIDERSPRUCH EINZULEGEN; DIES GILT AUCH FÜR EIN AUF DIESE BESTIMMUNGEN GESTÜTZTES PROFILING. DIE JEWEILIGE RECHTSGRUNDLAGE, AUF DENEN EINE VERARBEITUNG BERUHT, ENTNEHMEN SIE DIESER DATENSCHUTZERKLÄRUNG. WENN SIE WIDERSPRUCH EINLEGEN, WERDEN WIR IHRE BETROFFENEN PERSONENBEZOGENEN DATEN NICHT MEHR VERARBEITEN, ES SEI DENN, WIR KÖNNEN ZWINGENDE SCHUTZWÜRDIGE GRÜNDE FÜR DIE VERARBEITUNG NACHWEISEN, DIE IHRE INTERESSEN, RECHTE UND FREIHEITEN ÜBERWIEGEN ODER DIE VERARBEITUNG DIENT DER GELTENDMACHUNG, AUSÜBUNG ODER VERTEIDIGUNG VON RECHTSANSPRÜCHEN (WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO).
             </p>
@@ -143,28 +143,28 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
           <p className="text-muted-foreground">
             Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Recht auf Datenübertragbarkeit</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Recht auf Datenübertragbarkeit</h3>
           <p className="text-muted-foreground">
             Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Auskunft, Berichtigung und Löschung</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Auskunft, Berichtigung und Löschung</h3>
           <p className="text-muted-foreground">
             Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Recht auf Einschränkung der Verarbeitung</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Recht auf Einschränkung der Verarbeitung</h3>
           <p className="text-muted-foreground mb-4">
             Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:
           </p>
@@ -223,7 +223,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Vercel</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Vercel</h3>
           <p className="text-muted-foreground mb-4">
             Wir hosten unsere Website bei Vercel. Anbieter ist die Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA (nachfolgend: Vercel).
           </p>
@@ -269,7 +269,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Cookies</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Cookies</h3>
           <p className="text-muted-foreground mb-4">
             Unsere Internetseiten verwenden so genannte &bdquo;Cookies&ldquo;. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.
           </p>
@@ -288,58 +288,58 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Cookie-Übersicht</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Cookie-Übersicht</h3>
           <p className="text-muted-foreground mb-4">
             Auf unserer Website setzen wir folgende Cookies ein:
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-3 px-4 text-white font-medium">Cookie-Name</th>
-                  <th className="text-left py-3 px-4 text-white font-medium">Anbieter</th>
-                  <th className="text-left py-3 px-4 text-white font-medium">Zweck</th>
-                  <th className="text-left py-3 px-4 text-white font-medium">Speicherdauer</th>
-                  <th className="text-left py-3 px-4 text-white font-medium">Typ</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-foreground font-medium">Cookie-Name</th>
+                  <th className="text-left py-3 px-4 text-foreground font-medium">Anbieter</th>
+                  <th className="text-left py-3 px-4 text-foreground font-medium">Zweck</th>
+                  <th className="text-left py-3 px-4 text-foreground font-medium">Speicherdauer</th>
+                  <th className="text-left py-3 px-4 text-foreground font-medium">Typ</th>
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">cookie-consent</td>
                   <td className="py-3 px-4">Eigene</td>
                   <td className="py-3 px-4">Speichert Ihre Cookie-Einstellungen</td>
                   <td className="py-3 px-4">1 Jahr</td>
                   <td className="py-3 px-4">Notwendig</td>
                 </tr>
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">_ga</td>
                   <td className="py-3 px-4">Google Analytics</td>
                   <td className="py-3 px-4">Unterscheidung von Nutzern</td>
                   <td className="py-3 px-4">2 Jahre</td>
                   <td className="py-3 px-4">Analyse</td>
                 </tr>
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">_ga_*</td>
                   <td className="py-3 px-4">Google Analytics</td>
                   <td className="py-3 px-4">Speicherung des Session-Status</td>
                   <td className="py-3 px-4">2 Jahre</td>
                   <td className="py-3 px-4">Analyse</td>
                 </tr>
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">_hjSession*</td>
                   <td className="py-3 px-4">Hotjar</td>
                   <td className="py-3 px-4">Session-Tracking für Heatmaps</td>
                   <td className="py-3 px-4">30 Minuten</td>
                   <td className="py-3 px-4">Analyse</td>
                 </tr>
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">_hjSessionUser*</td>
                   <td className="py-3 px-4">Hotjar</td>
                   <td className="py-3 px-4">Benutzer-ID für Hotjar</td>
                   <td className="py-3 px-4">1 Jahr</td>
                   <td className="py-3 px-4">Analyse</td>
                 </tr>
-                <tr className="border-b border-white/5">
+                <tr className="border-b border-border/50">
                   <td className="py-3 px-4">sib_cuid</td>
                   <td className="py-3 px-4">Brevo</td>
                   <td className="py-3 px-4">Benutzer-Identifikation</td>
@@ -355,7 +355,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Kontaktformular</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Kontaktformular</h3>
           <p className="text-muted-foreground mb-4">
             Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
           </p>
@@ -368,7 +368,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Anfrage per E-Mail, Telefon oder Telefax</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Anfrage per E-Mail, Telefon oder Telefax</h3>
           <p className="text-muted-foreground mb-4">
             Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
           </p>
@@ -390,7 +390,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Google Analytics</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Google Analytics</h3>
           <p className="text-muted-foreground mb-4">
             Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Ireland Limited (&bdquo;Google&ldquo;), Gordon House, Barrow Street, Dublin 4, Irland.
           </p>
@@ -421,7 +421,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Hotjar (Contentsquare)</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Hotjar (Contentsquare)</h3>
           <p className="text-muted-foreground mb-4">
             Diese Website nutzt Hotjar, einen Dienst der Contentsquare GmbH. Hotjar ist ein Analyse-Tool, das uns hilft, die Nutzererfahrung auf unserer Website zu verstehen und zu verbessern.
           </p>
@@ -458,7 +458,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Brevo (ehemals Sendinblue)</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Brevo (ehemals Sendinblue)</h3>
           <p className="text-muted-foreground mb-4">
             Diese Website nutzt Brevo für E-Mail-Marketing und Website-Tracking. Anbieter ist die Brevo GmbH (ehemals Sendinblue GmbH), Köpenicker Str. 126, 10179 Berlin, Deutschland.
           </p>
@@ -500,7 +500,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Google Fonts</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Google Fonts</h3>
           <p className="text-muted-foreground mb-4">
             Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
           </p>
@@ -529,7 +529,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">Calendly</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Calendly</h3>
           <p className="text-muted-foreground mb-4">
             Für die Terminbuchung nutzen wir den Dienst Calendly. Anbieter ist die Calendly LLC, 271 17th St NW, Ste 1000, Atlanta, GA 30363, USA.
           </p>
@@ -566,7 +566,7 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-white mb-3">KI-Chatbot (Claude)</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">KI-Chatbot (Claude)</h3>
           <p className="text-muted-foreground mb-4">
             Auf unserer Website setzen wir einen KI-gestützten Chatbot ein, um Ihnen schnell und unkompliziert Informationen zu unseren Dienstleistungen bereitzustellen. Der Chatbot basiert auf Claude, einem KI-Modell von Anthropic, PBC, 548 Market St, PMB 90375, San Francisco, CA 94104, USA.
           </p>

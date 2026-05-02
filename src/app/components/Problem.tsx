@@ -1,100 +1,63 @@
 'use client'
 
-import { XCircle } from 'lucide-react'
+import { MessageCircle, Search, Flame } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
-import { SalesGrowthIllustration } from '@/components/illustrations'
 
-const PROBLEMS = [
+const STRATEGIES = [
   {
-    title: 'Überlastet im Tagesgeschäft',
-    description: 'Das Tagesgeschäft frisst alles. Akquise bleibt liegen, obwohl Sie wissen, dass Sie es tun müssten.',
-    quote: 'Jede Stunde in der Akquise fehlt Ihnen in der Auslieferung.',
+    icon: MessageCircle,
+    title: 'Kein Druck und keine Verkaufs-Floskeln',
+    description: 'Wir führen Gespräche auf Augenhöhe, die sich nicht wie typische Kaltakquise anfühlen. Professionell, sympathisch und respektvoll — so entstehen echte Verbindungen.',
+    color: 'text-primary',
+    bg: 'bg-primary/5',
   },
   {
-    title: 'Gebrannte Finger',
-    description: 'Ein Vertriebler hat nicht geliefert, ein Kurs hat nichts gebracht, eigene Versuche blieben ohne Konstanz.',
-    quote: 'Sie brauchen keine weiteren Experimente - Sie brauchen einen bewiesenen Prozess.',
+    icon: Search,
+    title: 'Wir suchen die Nadel im Heuhaufen',
+    description: 'Nicht jeder Lead ist ein guter Lead. Wir identifizieren die Unternehmen und Entscheider, die wirklich zu Ihrem Angebot passen — nur Termine mit echter Auftragschance.',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50',
   },
   {
-    title: 'Empfehlungs-Abhängigkeit',
-    description: 'Gutes Angebot, zufriedene Kunden - aber keine Kontrolle darüber, wann das nächste Gespräch stattfindet.',
-    quote: 'Planbarkeit entsteht nur durch systematische Akquise, nicht durch Zufall.',
+    icon: Flame,
+    title: 'Aus kalten Leads werden warme Kontakte',
+    description: 'Wir machen aus einem kalten Lead einen warmen Lead. Durch gezielte Gesprächsführung wecken wir echtes Interesse — bevor der Termin in Ihrem Kalender landet.',
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
   },
 ]
 
 export default function Problem() {
   return (
-    <section className="section-padding relative">
-      {/* Decorative elements - prozentbasiert für Mobile */}
-      <div className="absolute top-1/4 right-[5%] w-1.5 h-1.5 bg-destructive/40 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-1/3 left-[8%] w-1 h-1 bg-red-400/30 rounded-full animate-ping" style={{ animationDuration: '4s' }} />
-
-      <div className="container-custom relative">
+    <section className="section-padding relative bg-white">
+      <div className="container-custom">
         <div className="max-w-5xl mx-auto">
-          {/* Visual Header with Illustration */}
-          <FadeIn className="mb-12 md:mb-16">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="text-center lg:text-left order-last lg:order-first">
-                <span className="inline-block text-destructive/80 font-medium tracking-wider uppercase text-sm mb-4">
-                  Das Problem
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
-                  Warum Ihre Akquise bisher{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-destructive to-red-500">nicht funktioniert</span> hat.
-                </h2>
-                <p className="text-base md:text-lg text-muted-foreground">
-                  B2B-Dienstleister mit 5-50 Mitarbeitern scheitern selten am Angebot -
-                  sondern daran, dass die Pipeline leer bleibt.
-                </p>
-              </div>
-              <div className="relative flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-[320px] h-[240px] opacity-90 grayscale hover:grayscale-0 transition-all duration-500">
-                  <SalesGrowthIllustration className="w-full h-full rotate-180 opacity-40" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn className="text-center mb-16 hidden">
-            <span className="inline-block text-destructive/80 font-medium tracking-wider uppercase text-sm mb-4">
-              Das Problem
+          <FadeIn className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
+              Unsere Strategie
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
-              Warum Ihre Akquise bisher{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-destructive to-red-500">nicht funktioniert</span> hat.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
+              Warum unsere Akquise-Strategie{' '}
+              <span className="text-primary">so gut funktioniert</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              B2B-Dienstleister mit 5-50 Mitarbeitern scheitern selten am Angebot -
-              sondern daran, dass die Pipeline leer bleibt.
+              Ihr externes Akquise-Büro läuft wie ein Uhrwerk — wie ein eigener Mitarbeiter, nur ohne den Aufwand.
             </p>
           </FadeIn>
 
-          <div className="grid gap-5 md:gap-6">
-            {PROBLEMS.map((problem, index) => (
-              <FadeIn key={index} delay={index * 0.15} direction="left">
-                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8 transition-all duration-500 hover:bg-white/10 hover:border-destructive/30 hover:shadow-xl hover:shadow-destructive/5 hover:-translate-y-1 cursor-default">
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-destructive/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative flex items-start gap-4 md:gap-6">
-                    <div className="mt-1 shrink-0">
-                      <div className="h-12 w-12 rounded-xl bg-destructive/10 flex items-center justify-center transition-all duration-300 group-hover:bg-destructive/20 group-hover:scale-110">
-                        <XCircle className="h-6 w-6 text-destructive/80 transition-colors group-hover:text-destructive" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-2 transition-colors group-hover:text-white">
-                        {problem.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 transition-colors group-hover:text-muted-foreground/90">
-                        {problem.description}
-                      </p>
-                      <blockquote className="border-l-2 border-white/20 pl-4 italic text-sm text-white/60 transition-all duration-300 group-hover:border-destructive/40 group-hover:text-white/70">
-                        &ldquo;{problem.quote}&rdquo;
-                      </blockquote>
-                    </div>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {STRATEGIES.map((strategy, index) => (
+              <FadeIn key={index} delay={index * 0.15}>
+                <div className="group relative h-full p-8 rounded-2xl border border-border bg-white hover:shadow-lg transition-all duration-500 hover:-translate-y-1">
+                  <div className={`h-14 w-14 rounded-xl ${strategy.bg} ${strategy.color} flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110`}>
+                    <strategy.icon className="h-7 w-7" />
                   </div>
+                  <h3 className="text-xl font-bold text-foreground mb-4">
+                    {strategy.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {strategy.description}
+                  </p>
                 </div>
               </FadeIn>
             ))}

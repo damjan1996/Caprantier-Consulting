@@ -26,7 +26,7 @@ export default function Error({
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
           Etwas ist schiefgelaufen
         </h1>
 

@@ -25,8 +25,8 @@ export default function SectionCard({
   return (
     <div
       className={`
-        p-6 rounded-2xl border border-white/10 bg-white/5
-        ${hover ? 'transition-all duration-300 hover:bg-white/10 hover:border-white/20' : ''}
+        p-6 rounded-2xl border border-border bg-white
+        ${hover ? 'transition-all duration-300 hover:bg-muted hover:border-border' : ''}
         ${className}
       `}
     >
@@ -38,7 +38,7 @@ export default function SectionCard({
             </div>
           )}
           {title && (
-            <h2 className="text-xl font-semibold text-white">{title}</h2>
+            <h2 className="text-xl font-semibold text-foreground">{title}</h2>
           )}
         </div>
       )}

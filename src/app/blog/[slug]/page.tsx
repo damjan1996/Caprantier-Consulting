@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-[1.2]">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6 leading-[1.2]">
               {post.title}
             </h1>
 
@@ -153,7 +153,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="pb-8">
           <div className="container-custom">
             <FadeIn delay={0} className="max-w-4xl mx-auto">
-              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10">
+              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-border">
                 <Image
                   src={getBlogImage(post.slug)!}
                   alt={post.title}
@@ -174,7 +174,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="pb-8">
           <div className="container-custom">
             <FadeIn delay={0} className="max-w-4xl mx-auto">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-8 overflow-hidden">
+              <div className="rounded-2xl border border-border bg-muted p-4 md:p-8 overflow-hidden">
                 <BlogIllustration name={post.illustration} />
               </div>
             </FadeIn>
@@ -186,17 +186,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="pb-16">
         <div className="container-custom">
           <FadeIn delay={0} className="max-w-3xl mx-auto">
-            <article className="prose prose-invert prose-lg max-w-none">
+            <article className="prose prose-lg max-w-none">
               <Markdown content={post.content} />
             </article>
 
             {/* Tags */}
-            <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="mt-12 pt-8 border-t border-border">
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 text-sm bg-white/5 text-white/70 rounded-full border border-white/10"
+                    className="px-3 py-1 text-sm bg-muted text-muted-foreground rounded-full border border-border"
                   >
                     {tag}
                   </span>
@@ -209,19 +209,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="section-padding bg-white/[0.02] border-t border-white/10">
+        <section className="section-padding bg-gray-50 border-t border-border">
           <div className="container-custom">
             <FadeIn className="max-w-3xl mx-auto">
-              <h2 className="text-xl font-bold text-white mb-6">Weitere Artikel</h2>
+              <h2 className="text-xl font-bold text-foreground mb-6">Weitere Artikel</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {relatedPosts.map((relatedPost) => (
                   <Link
                     key={relatedPost.slug}
                     href={`/blog/${relatedPost.slug}`}
-                    className="group p-5 rounded-xl border border-white/10 bg-white/5 md:hover:bg-white/10 md:hover:border-primary/30 transition-colors duration-150"
+                    className="group p-5 rounded-xl border border-border bg-white md:hover:bg-muted md:hover:border-primary/30 transition-colors duration-150"
                   >
                     <span className="text-xs text-primary font-medium">{relatedPost.category}</span>
-                    <h3 className="text-base font-semibold text-white mt-2 md:group-hover:text-primary md:transition-colors line-clamp-2">
+                    <h3 className="text-base font-semibold text-foreground mt-2 md:group-hover:text-primary md:transition-colors line-clamp-2">
                       {relatedPost.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
@@ -237,17 +237,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* FAQ Section */}
       {post.faqs && post.faqs.length > 0 && (
-        <section className="section-padding bg-white/[0.02] border-t border-white/10">
+        <section className="section-padding bg-gray-50 border-t border-border">
           <div className="container-custom">
             <FadeIn className="max-w-3xl mx-auto">
-              <h2 className="text-xl font-bold text-white mb-6">Häufig gestellte Fragen</h2>
+              <h2 className="text-xl font-bold text-foreground mb-6">Häufig gestellte Fragen</h2>
               <div className="space-y-4">
                 {post.faqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="p-5 rounded-xl border border-white/10 bg-white/5"
+                    className="p-5 rounded-xl border border-border bg-white"
                   >
-                    <h3 className="text-base font-semibold text-white mb-2">
+                    <h3 className="text-base font-semibold text-foreground mb-2">
                       {faq.question}
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -266,7 +266,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="container-custom">
           <FadeIn className="max-w-3xl mx-auto text-center">
             <div className="p-8 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
                 Bereit für mehr qualifizierte Termine?
               </h2>
               <p className="text-muted-foreground mb-6">

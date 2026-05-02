@@ -20,9 +20,9 @@ export default function Mission() {
             <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
               Unsere Mission
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
               Akquise als{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+              <span className="text-primary">
                 strategische Säule
               </span>
             </h2>

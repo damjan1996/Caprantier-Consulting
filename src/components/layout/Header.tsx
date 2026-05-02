@@ -7,8 +7,8 @@ import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useCalendly } from '@/hooks/useCalendly'
 
-// Static import for SSR optimization
-import logoWhite from '@/../public/logo/Logo - Weiß.png'
+// Use the dark logo for light backgrounds
+import logoBlack from '@/../public/logo/Logo - Schwarz.png'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -31,7 +31,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -47,42 +46,39 @@ export default function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xs',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-black/70 backdrop-blur-lg shadow-lg shadow-black/10 py-3'
-            : 'bg-black/40 py-5'
+            ? 'bg-white/90 backdrop-blur-lg shadow-sm border-b border-border py-3'
+            : 'bg-white/60 backdrop-blur-sm py-5'
         )}
       >
         <nav className="container-custom flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src={logoWhite}
+              src={logoBlack}
               alt="Carpantier Consulting"
               width={40}
               height={40}
               className="h-8 md:h-10 w-auto"
               priority
             />
-            <span className="text-xl md:text-2xl font-bold text-white">
+            <span className="text-xl md:text-2xl font-bold text-foreground">
               Carpantier<span className="text-primary">.</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.name}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => openCalendly()}
@@ -94,9 +90,8 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Menü öffnen"
           >
@@ -105,62 +100,55 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
           'fixed inset-0 z-50 md:hidden overflow-hidden',
-          isMobileMenuOpen
-            ? 'pointer-events-auto'
-            : 'pointer-events-none'
+          isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         )}
       >
-        {/* Backdrop - click to close */}
         <div
           className={cn(
-            'absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200',
+            'absolute inset-0 bg-black/30 backdrop-blur-xs transition-opacity duration-200',
             isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
-        {/* Sidebar */}
         <div
           className={cn(
-            'absolute top-0 right-0 h-full w-72 bg-background border-l border-white/10 shadow-2xl transition-transform duration-300 ease-out',
+            'absolute top-0 right-0 h-full w-72 bg-white border-l border-border shadow-2xl transition-transform duration-300 ease-out',
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           )}
         >
-          {/* Header with Logo and Close Button */}
-          <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div className="flex items-center justify-between p-4 border-b border-border">
             <Link href="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
               <Image
-                src={logoWhite}
+                src={logoBlack}
                 alt="Carpantier Consulting"
                 width={32}
                 height={32}
                 className="h-7 w-auto"
               />
-              <span className="text-lg font-bold text-white">
+              <span className="text-lg font-bold text-foreground">
                 Carpantier<span className="text-primary">.</span>
               </span>
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 text-muted-foreground hover:text-white transition-colors"
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Menü schließen"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
-          {/* Navigation Links */}
           <nav className="px-6 py-4">
             <div className="flex flex-col gap-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-lg font-medium text-muted-foreground hover:text-white hover:bg-white/5 transition-colors py-3 px-4 rounded-lg"
+                  className="text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors py-3 px-4 rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -168,7 +156,6 @@ export default function Header() {
               ))}
             </div>
 
-            {/* CTA Button */}
             <div className="mt-8">
               <button
                 onClick={() => {

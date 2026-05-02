@@ -30,16 +30,16 @@ export default function Hero() {
           {/* Text Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <FadeIn delay={0.1}>
-              <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
+              <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-foreground cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu">
                 <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse group-hover:animate-ping"></span>
                 Unsere Leistungen
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.15]">
                 B2B-Akquise, die{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600">
+                <span className="text-primary">
                   Ergebnisse
                 </span>{' '}
                 liefert.
@@ -50,7 +50,7 @@ export default function Hero() {
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Von der Strategie bis zum qualifizierten Termin - wir übernehmen
                 Ihre komplette Akquise und füllen Ihren Kalender mit{' '}
-                <strong className="text-white">Entscheidern</strong>.
+                <strong className="text-foreground">Entscheidern</strong>.
               </p>
             </FadeIn>
 
@@ -66,7 +66,7 @@ export default function Hero() {
             <FadeIn delay={0.5}>
               <div className="flex flex-wrap gap-x-5 gap-y-2 justify-center lg:justify-start text-sm text-muted-foreground">
                 {['Telefonakquise', 'Leadgenerierung', 'Reporting'].map((item) => (
-                  <span key={item} className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-white cursor-default">
+                  <span key={item} className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-foreground cursor-default">
                     <CheckCircle className="h-4 w-4 text-green-500 transition-transform duration-300 group-hover:scale-110" />
                     {item}
                   </span>
@@ -80,7 +80,7 @@ export default function Hero() {
             <div className="relative h-[350px] sm:h-[400px] md:h-[480px] lg:h-[540px] max-w-md mx-auto lg:max-w-none group">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-white/30 group-hover:shadow-primary/10">
+              <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10">
                 <Image
                   src={nicoSalesCall}
                   alt="Nico Carpantier - B2B Telefonakquise für Unternehmen deutschlandweit"
@@ -92,26 +92,26 @@ export default function Hero() {
                 />
 
                 {/* Floating Cards */}
-                <div className="absolute bottom-20 left-2 bg-card/90 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl animate-float-slow cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 group/card">
+                <div className="absolute bottom-20 left-2 bg-card/90 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-xl animate-float-slow cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 group/card">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 transition-all duration-300 group-hover/card:bg-blue-500/30 group-hover/card:scale-110">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-white/80 group-hover/card:text-white transition-colors">Akquise läuft</p>
-                      <p className="text-sm font-bold text-white">15 Calls heute</p>
+                      <p className="text-xs text-foreground/80 group-hover/card:text-foreground transition-colors">Akquise läuft</p>
+                      <p className="text-sm font-bold text-foreground">15 Calls heute</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute bottom-4 right-2 bg-card/90 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl animate-float-slower cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 group/card2">
+                <div className="absolute bottom-4 right-2 bg-card/90 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-xl animate-float-slower cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 group/card2">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 transition-all duration-300 group-hover/card2:bg-green-500/30 group-hover/card2:scale-110">
                       <Target className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-white/80 group-hover/card2:text-white transition-colors">Neuer Lead</p>
-                      <p className="text-sm font-bold text-white">Qualifiziert</p>
+                      <p className="text-xs text-foreground/80 group-hover/card2:text-foreground transition-colors">Neuer Lead</p>
+                      <p className="text-sm font-bold text-foreground">Qualifiziert</p>
                     </div>
                   </div>
                 </div>

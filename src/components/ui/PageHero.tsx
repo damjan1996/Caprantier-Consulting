@@ -32,13 +32,13 @@ export default function PageHero({
       <div className="container-custom">
         <FadeIn className={`max-w-3xl ${centered ? 'mx-auto text-center' : ''}`}>
           {badge && (
-            <div className="group inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white cursor-default transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transform-gpu mb-6">
+            <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary mb-6">
               {BadgeIcon && <BadgeIcon className="h-4 w-4 mr-2 text-primary" />}
               {badge}
             </div>
           )}
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.15]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.15]">
             {title}
           </h1>
 

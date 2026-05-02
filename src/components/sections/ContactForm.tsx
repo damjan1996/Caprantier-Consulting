@@ -109,13 +109,13 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <FadeIn>
-        <div className="bg-white/5 border border-green-500/30 rounded-2xl p-8 text-center">
+        <div className="bg-white border border-green-500/30 rounded-2xl p-8 text-center">
           <div className="flex justify-center mb-4">
             <div className="h-16 w-16 rounded-full bg-green-500/20 flex items-center justify-center">
               <CheckCircle className="h-8 w-8 text-green-500" />
             </div>
           </div>
-          <h3 className="text-xl font-semibold text-white mb-2">
+          <h3 className="text-xl font-semibold text-foreground mb-2">
             Nachricht gesendet!
           </h3>
           <p className="text-muted-foreground mb-6">
@@ -138,7 +138,7 @@ export default function ContactForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
               Name *
             </label>
             <input
@@ -147,8 +147,8 @@ export default function ContactForm() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
-                errors.name ? 'border-red-500' : 'border-white/10 focus:border-primary'
+              className={`w-full px-4 py-3 bg-white border rounded-lg text-foreground placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
+                errors.name ? 'border-red-500' : 'border-border focus:border-primary'
               }`}
               placeholder="Max Mustermann"
             />
@@ -162,7 +162,7 @@ export default function ContactForm() {
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
               E-Mail *
             </label>
             <input
@@ -171,8 +171,8 @@ export default function ContactForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
-                errors.email ? 'border-red-500' : 'border-white/10 focus:border-primary'
+              className={`w-full px-4 py-3 bg-white border rounded-lg text-foreground placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
+                errors.email ? 'border-red-500' : 'border-border focus:border-primary'
               }`}
               placeholder="max@beispiel.de"
             />
@@ -186,7 +186,7 @@ export default function ContactForm() {
 
           {/* Company */}
           <div>
-            <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
+            <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
               Unternehmen *
             </label>
             <input
@@ -195,8 +195,8 @@ export default function ContactForm() {
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
-                errors.company ? 'border-red-500' : 'border-white/10 focus:border-primary'
+              className={`w-full px-4 py-3 bg-white border rounded-lg text-foreground placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors ${
+                errors.company ? 'border-red-500' : 'border-border focus:border-primary'
               }`}
               placeholder="Ihre Firma GmbH"
             />
@@ -210,7 +210,7 @@ export default function ContactForm() {
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
               Telefon <span className="text-muted-foreground">(optional)</span>
             </label>
             <input
@@ -219,7 +219,7 @@ export default function ContactForm() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+              className="w-full px-4 py-3 bg-white border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
               placeholder="+49 123 456789"
             />
           </div>
@@ -227,7 +227,7 @@ export default function ContactForm() {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
             Nachricht *
           </label>
           <textarea
@@ -236,8 +236,8 @@ export default function ContactForm() {
             rows={5}
             value={formData.message}
             onChange={handleChange}
-            className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors resize-none ${
-              errors.message ? 'border-red-500' : 'border-white/10 focus:border-primary'
+            className={`w-full px-4 py-3 bg-white border rounded-lg text-foreground placeholder-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/50 transition-colors resize-none ${
+              errors.message ? 'border-red-500' : 'border-border focus:border-primary'
             }`}
             placeholder="Wie können wir Ihnen helfen?"
           />
@@ -259,8 +259,8 @@ export default function ContactForm() {
                 name="privacyConsent"
                 checked={formData.privacyConsent}
                 onChange={handleChange}
-                className={`h-5 w-5 rounded border bg-white/5 text-primary focus:ring-2 focus:ring-primary/50 focus:ring-offset-0 cursor-pointer transition-colors ${
-                  errors.privacyConsent ? 'border-red-500' : 'border-white/20 group-hover:border-white/40'
+                className={`h-5 w-5 rounded border bg-white text-primary focus:ring-2 focus:ring-primary/50 focus:ring-offset-0 cursor-pointer transition-colors ${
+                  errors.privacyConsent ? 'border-red-500' : 'border-border group-hover:border-border'
                 }`}
               />
             </div>

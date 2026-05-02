@@ -54,9 +54,9 @@ export default function Process() {
           <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
             Der Ablauf
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
             So{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">
+            <span className="text-primary">
               starten wir
             </span>{' '}
             zusammen
@@ -69,15 +69,15 @@ export default function Process() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {process.map((item, index) => (
             <FadeIn key={index} delay={index * 0.15}>
-              <div className="group relative p-6 rounded-2xl border border-white/10 bg-white/5 h-full transition-all duration-500 hover:bg-white/10 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
-                <span className="absolute top-4 right-4 text-4xl font-bold text-white/5 group-hover:text-white/10 transition-colors">
+              <div className="group relative p-6 rounded-2xl border border-border bg-white h-full transition-all duration-500 hover:bg-muted hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
+                <span className="absolute top-4 right-4 text-4xl font-bold text-muted-foreground/10 group-hover:text-muted-foreground/20 transition-colors">
                   {item.step}
                 </span>
 
                 <div className={`h-12 w-12 rounded-xl ${item.bg} ${item.color} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}>
                   <item.icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                <h3 className="text-xl font-bold text-foreground mb-3 relative z-10">
                   {item.title}
                 </h3>
                 <p className="text-muted-foreground text-sm relative z-10">

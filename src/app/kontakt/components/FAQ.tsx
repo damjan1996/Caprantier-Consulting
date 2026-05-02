@@ -24,9 +24,9 @@ export default function FAQ() {
             <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
               Noch Fragen?
             </span>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-[1.15]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6 leading-[1.15]">
               Wir helfen Ihnen{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">
+              <span className="text-primary">
                 gerne weiter
               </span>
             </h2>

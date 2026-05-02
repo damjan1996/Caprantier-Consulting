@@ -9,7 +9,7 @@ export default function Hero() {
       badge="Rechtliches"
       badgeIcon={Shield}
       title={
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+        <span className="text-primary">
           Datenschutz
         </span>
       }

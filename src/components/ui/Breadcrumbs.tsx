@@ -29,7 +29,7 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
       </Link>
       {items.map((item, index) => (
         <span key={index} className="flex items-center gap-1">
-          <ChevronRight className="h-4 w-4 text-white/20" />
+          <ChevronRight className="h-4 w-4 text-muted-foreground" />
           {item.href ? (
             <Link
               href={item.href}
@@ -38,7 +38,7 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
               {item.label}
             </Link>
           ) : (
-            <span className="text-white/90 font-medium">{item.label}</span>
+            <span className="text-foreground font-medium">{item.label}</span>
           )}
         </span>
       ))}

@@ -50,7 +50,7 @@ export default function NotFound() {
         </div>
 
         {/* Message */}
-        <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
           Seite nicht gefunden
         </h2>
         <p className="text-muted-foreground mb-12 max-w-lg mx-auto text-lg">
@@ -64,10 +64,10 @@ export default function NotFound() {
             <Link
               key={link.href}
               href={link.href}
-              className="group p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300"
+              className="group p-6 rounded-2xl border border-border bg-white hover:bg-muted hover:border-primary/30 transition-all duration-300"
             >
               <link.icon className="h-8 w-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-semibold text-white mb-1">{link.name}</div>
+              <div className="font-semibold text-foreground mb-1">{link.name}</div>
               <div className="text-xs text-muted-foreground">{link.description}</div>
             </Link>
           ))}

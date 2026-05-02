@@ -13,7 +13,7 @@ export default function CookieSettingsButton({ className = '' }: CookieSettingsB
   return (
     <button
       onClick={() => setShowBanner(true)}
-      className={`flex items-center gap-2 text-muted-foreground hover:text-white transition-colors text-sm ${className}`}
+      className={`flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm ${className}`}
       aria-label="Cookie-Einstellungen öffnen"
     >
       <Cookie className="h-4 w-4" />

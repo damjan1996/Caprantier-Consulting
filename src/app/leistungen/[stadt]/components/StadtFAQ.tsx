@@ -24,8 +24,8 @@ function AccordionItem({
 }) {
   return (
     <div className={cn(
-      "group border border-white/10 bg-white/5 rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/30 hover:bg-white/[0.07]",
-      isOpen && "border-primary/30 bg-white/[0.07] shadow-lg shadow-primary/5"
+      "group border border-border bg-white rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/30 hover:bg-muted",
+      isOpen && "border-primary/30 bg-muted shadow-lg shadow-primary/5"
     )}>
       <button
         onClick={onClick}
@@ -33,11 +33,11 @@ function AccordionItem({
       >
         <span className={cn(
           "text-base font-medium pr-4 transition-colors",
-          isOpen ? "text-white" : "text-white/90 group-hover:text-white"
+          isOpen ? "text-foreground" : "text-foreground/90 group-hover:text-foreground"
         )}>{question}</span>
         <div className={cn(
           "h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-300 shrink-0",
-          isOpen ? "bg-primary/20 text-primary" : "bg-white/10 text-muted-foreground group-hover:bg-white/20 group-hover:text-white"
+          isOpen ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground group-hover:bg-gray-100 group-hover:text-foreground"
         )}>
           <ChevronDown
             className={cn(
@@ -77,9 +77,9 @@ export default function StadtFAQ({ city }: StadtFAQProps) {
             <span className="inline-block text-primary font-medium tracking-wider uppercase text-sm mb-4">
               Vertrieb FAQ {city.name}
             </span>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-[1.15]">
               Häufige Fragen zum{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+              <span className="text-primary">
                 Vertrieb in {city.name}
               </span>
             </h2>

@@ -113,13 +113,13 @@ export default function CaseStudiesPage() {
           </FadeIn>
 
           <FadeIn className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-white mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-foreground mb-6">
               <TrendingUp className="h-4 w-4 text-primary" />
               Erfolgsgeschichten
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.15]">
               Echte Ergebnisse,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+              <span className="text-primary">
                 echte Kunden
               </span>
             </h1>
@@ -139,10 +139,10 @@ export default function CaseStudiesPage() {
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-2xl border border-white/10 bg-white/5 text-center"
+                  className="p-6 rounded-2xl border border-border bg-white text-center"
                 >
                   <stat.icon className="h-6 w-6 text-primary mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-3xl font-bold text-foreground mb-1">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
@@ -164,15 +164,15 @@ export default function CaseStudiesPage() {
                     {/* Left Side - Info */}
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">
+                        <span className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full">
                           {study.industry}
                         </span>
-                        <span className="px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">
+                        <span className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full">
                           {study.location}
                         </span>
                       </div>
 
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                         {study.company}
                       </h2>
 
@@ -190,18 +190,18 @@ export default function CaseStudiesPage() {
                       </div>
 
                       {/* Quote */}
-                      <blockquote className="border-l-2 border-primary/50 pl-4 italic text-white/80 mb-4">
+                      <blockquote className="border-l-2 border-primary/50 pl-4 italic text-muted-foreground mb-4">
                         &ldquo;{study.quote}&rdquo;
                       </blockquote>
                       <div className="text-sm text-muted-foreground">
-                        <span className="text-white font-medium">{study.author}</span>,{' '}
+                        <span className="text-foreground font-medium">{study.author}</span>,{' '}
                         {study.role}
                       </div>
                     </div>
 
                     {/* Right Side - Results */}
                     <div className="flex flex-col justify-center">
-                      <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-500" />
                         Ergebnisse
                       </h3>
@@ -209,15 +209,15 @@ export default function CaseStudiesPage() {
                         {study.results.map((result, idx) => (
                           <div
                             key={idx}
-                            className="p-4 rounded-xl bg-white/10 border border-white/10 text-center"
+                            className="p-4 rounded-xl bg-muted border border-border text-center"
                           >
-                            <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                            <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">
                               {result.metric}
                             </div>
-                            <div className="text-sm text-white/90 font-medium">
+                            <div className="text-sm text-foreground font-medium">
                               {result.label}
                             </div>
-                            <div className="text-xs text-white/60">{result.period}</div>
+                            <div className="text-xs text-muted-foreground">{result.period}</div>
                           </div>
                         ))}
                       </div>
@@ -235,7 +235,7 @@ export default function CaseStudiesPage() {
         <div className="container-custom">
           <FadeIn className="max-w-3xl mx-auto text-center">
             <div className="p-8 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
                 Ihre Erfolgsgeschichte beginnt hier
               </h2>
               <p className="text-muted-foreground mb-6">
