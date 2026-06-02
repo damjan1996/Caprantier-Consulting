@@ -46,10 +46,10 @@ export default function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
           isScrolled
-            ? 'bg-white/90 backdrop-blur-lg shadow-sm border-b border-border py-3'
-            : 'bg-white/60 backdrop-blur-sm py-5'
+            ? 'bg-white/95 backdrop-blur-lg shadow-sm border-gray-200 py-3'
+            : 'bg-white/60 backdrop-blur-sm border-transparent py-5'
         )}
       >
         <nav className="container-custom flex items-center justify-between">

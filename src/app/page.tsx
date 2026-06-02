@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { PageWrapper } from '@/components/ui'
-import { Hero, Problem, Method, Benefits, FAQ } from './components'
+import { Hero, ClientLogos, Problem, Method, Benefits, FAQ } from './components'
 import {
   generateHowToSchema,
   generateHomepageFAQSchema,
@@ -46,6 +46,8 @@ export default function Home() {
 
       {/* 1. Hero */}
       <Hero />
+      {/* 1b. Trusted-by Logo Marquee */}
+      <ClientLogos />
       {/* 2. Warum unsere Akquise-Strategie so gut funktioniert */}
       <Suspense fallback={<div className="section-padding" />}>
         <Problem />
