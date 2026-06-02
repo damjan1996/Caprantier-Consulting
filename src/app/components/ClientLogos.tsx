@@ -6,6 +6,7 @@ type ClientLogo = {
   name: string
   src: string
   href?: string
+  heightClass?: string
 }
 
 const logos: ClientLogo[] = [
@@ -13,16 +14,19 @@ const logos: ClientLogo[] = [
     name: 'Lixt AG',
     src: '/logo/lixt.svg',
     href: 'https://www.lixt.ch',
+    heightClass: 'h-10 md:h-14',
   },
   {
     name: 'Jungwild',
     src: '/logo/jungwild.svg',
     href: 'https://jungwild.io',
+    heightClass: 'h-10 md:h-14',
   },
   {
     name: 'Syntriq',
     src: '/logo/syntriq.png',
     href: 'https://syntriq.de',
+    heightClass: 'h-16 md:h-24',
   },
 ]
 
@@ -59,7 +63,7 @@ export default function ClientLogos() {
                   alt={`${logo.name} Logo`}
                   loading="lazy"
                   decoding="async"
-                  className="h-10 md:h-14 w-auto opacity-70 hover:opacity-100 transition-all duration-300 [filter:brightness(0)] hover:[filter:none]"
+                  className={`${logo.heightClass ?? 'h-10 md:h-14'} w-auto opacity-70 hover:opacity-100 transition-all duration-300 [filter:brightness(0)] hover:[filter:none]`}
                 />
               )
               return (
