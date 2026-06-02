@@ -59,7 +59,7 @@ export default function ClientLogos() {
                   alt={`${logo.name} Logo`}
                   loading="lazy"
                   decoding="async"
-                  className="h-8 md:h-10 w-auto opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                  className="h-10 md:h-14 w-auto opacity-70 hover:opacity-100 transition-all duration-300 [filter:brightness(0)] hover:[filter:none]"
                 />
               )
               return (
