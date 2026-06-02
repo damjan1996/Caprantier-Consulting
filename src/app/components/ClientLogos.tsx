@@ -26,7 +26,7 @@ const logos: ClientLogo[] = [
     name: 'Syntriq',
     src: '/logo/syntriq.png',
     href: 'https://syntriq.de',
-    heightClass: 'h-16 md:h-24',
+    heightClass: 'h-10 md:h-14',
   },
 ]
 
