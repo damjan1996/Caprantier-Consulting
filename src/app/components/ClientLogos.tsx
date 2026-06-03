@@ -28,6 +28,12 @@ const logos: ClientLogo[] = [
     href: 'https://syntriq.de',
     heightClass: 'h-10 md:h-14',
   },
+  {
+    name: 'SMYCO',
+    src: '/logo/smyco.svg',
+    href: 'https://www.smyco.de',
+    heightClass: 'h-10 md:h-14',
+  },
 ]
 
 export default function ClientLogos() {
