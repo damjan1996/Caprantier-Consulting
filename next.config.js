@@ -18,12 +18,9 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 Tage Cache
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+    // Bewusst keine remotePatterns: alle Bilder liegen unter /public und werden
+    // vom eigenen Server ausgeliefert. Ein freigegebener Fremdhost würde die
+    // IP-Adresse der Besucher ohne Einwilligung an Dritte übertragen.
   },
 
   // Performance & Security Headers
@@ -37,18 +34,32 @@ const nextConfig = {
 
   // Custom Headers für SEO & Security
   async headers() {
-    // Content Security Policy
+    // Content Security Policy.
+    //
+    // Die Liste ist bewusst eng: Jeder hier erlaubte Fremdhost ist ein Ziel, an
+    // das der Browser die IP-Adresse der Besucher senden darf. Hosts, die erst
+    // nach einer Einwilligung geladen werden (Analytics, Calendly), müssen
+    // trotzdem gelistet sein — die CSP erlaubt sie, geladen werden sie aber
+    // ausschließlich durch TrackingScripts bzw. durch Öffnen des Buchungsfensters.
+    //
+    // Nicht gelistet und auch nicht nötig:
+    // - fonts.googleapis.com / fonts.gstatic.com: next/font liefert Inter beim
+    //   Build lokal aus, zur Laufzeit geht kein Request an Google (§ 25 TDDDG).
+    // - api.anthropic.com: der Chat läuft serverseitig über /api/chat.
     const cspDirectives = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://www.googletagmanager.com https://www.google-analytics.com https://t.contentsquare.net https://sibautomation.com",
-      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
-      "img-src 'self' data: blob: https: http:",
-      "font-src 'self' https://fonts.gstatic.com",
+      "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
+      // Kein pauschales `https:`/`http:`: Bilder kommen ausschließlich vom
+      // eigenen Server, Calendly liefert Avatare im Buchungs-Iframe.
+      "img-src 'self' data: blob: https://assets.calendly.com https://*.calendly.com",
+      "font-src 'self'",
       "connect-src 'self' https://calendly.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://t.contentsquare.net https://sibautomation.com",
       "frame-src 'self' https://calendly.com",
       "frame-ancestors 'self'",
       "form-action 'self'",
       "base-uri 'self'",
+      "object-src 'none'",
       "upgrade-insecure-requests",
     ].join('; ')
 

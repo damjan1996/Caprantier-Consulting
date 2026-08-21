@@ -685,6 +685,20 @@ const sections = [
             .
           </p>
         </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-foreground mb-3">KI-gestützte Texte</h3>
+          <p className="text-muted-foreground mb-4">
+            Ein Teil unserer redaktionellen Inhalte &ndash; insbesondere Blog- und Glossarbeiträge &ndash; entsteht mit Unterstützung von KI-Werkzeugen. Diese Beiträge sind unmittelbar am Inhalt entsprechend gekennzeichnet. Alle Texte werden vor Veröffentlichung redaktionell geprüft; die inhaltliche Verantwortung trägt der im{' '}
+            <Link href="/impressum" className="text-primary hover:underline">
+              Impressum
+            </Link>{' '}
+            genannte Anbieter.
+          </p>
+          <p className="text-muted-foreground">
+            Für die Erstellung dieser Texte werden keine personenbezogenen Daten unserer Websitebesucher verarbeitet. Die Beiträge werden vorab erstellt und als statische Inhalte ausgeliefert.
+          </p>
+        </div>
       </div>
     ),
   },
