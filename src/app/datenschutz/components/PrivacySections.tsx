@@ -538,13 +538,13 @@ const sections = [
             ))}
           </ul>
           <p className="text-muted-foreground mb-4">
-            Das Buchungsfenster wird <strong className="text-foreground">erst geladen, wenn Sie eine Schaltfläche zur Terminbuchung anklicken</strong>. Bis dahin wird keine Verbindung zu Calendly aufgebaut und es werden keine Daten an Calendly übermittelt. Innerhalb des Buchungsfensters setzt Calendly eigene Cookies und weist Sie darauf mit einem eigenen Hinweis hin.
+            Ein Klick auf eine Schaltfläche zur Terminbuchung öffnet zunächst nur einen Hinweis, der Ihnen erklärt, welche Daten an Calendly übertragen werden. <strong className="text-foreground">Das Buchungsfenster selbst wird erst geladen, wenn Sie dort ausdrücklich zustimmen.</strong> Bis dahin wird keine Verbindung zu Calendly aufgebaut und es werden keine Daten an Calendly übermittelt. Wenn Sie nicht zustimmen möchten, können Sie uns stattdessen eine E-Mail schreiben &ndash; die Möglichkeit dazu steht auf demselben Hinweis.
           </p>
           <p className="text-muted-foreground mb-4">
-            Diese Daten werden an die Server von Calendly in den USA übertragen. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission.
+            Innerhalb des Buchungsfensters setzt Calendly eigene Cookies und weist Sie darauf mit einem eigenen Hinweis hin. Die Daten werden an Server von Calendly in den USA übertragen.
           </p>
           <p className="text-muted-foreground mb-4">
-            Die Nutzung von Calendly erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) sowie Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer effizienten Terminplanung.
+            Rechtsgrundlage für das Laden des Buchungsfensters und für die dabei gesetzten Cookies ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Ihre Einwilligung umfasst ausdrücklich auch die Übermittlung Ihrer Daten in die USA (Art. 49 Abs. 1 lit. a DSGVO). Sie ist jederzeit mit Wirkung für die Zukunft widerrufbar. Die anschließende Verarbeitung des vereinbarten Termins erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung).
           </p>
           <p className="text-muted-foreground">
             Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly:{' '}

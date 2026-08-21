@@ -136,10 +136,10 @@ const nextConfig = {
           // X-XSS-Protection ist bewusst nicht gesetzt: Der Filter existiert in
           // keinem aktuellen Browser mehr und konnte selbst Lücken aufreißen.
           // Die Aufgabe übernimmt die CSP.
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
+          //
+          // X-DNS-Prefetch-Control stand auf "on". Da die Seite keine
+          // Fremdhosts mehr vorab auflösen soll, bleibt es beim
+          // Standardverhalten des Browsers.
         ],
       },
       { source: '/images/:path*', headers: cacheForever },

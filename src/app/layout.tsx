@@ -366,10 +366,18 @@ export default function RootLayout({
           (Google Consent Mode "basic").
         */}
 
-        {/* Preconnect nur zu Zielen ohne Drittanbieter-Datenabfluss.
-            Schriften werden über next/font lokal ausgeliefert. */}
-        <link rel="dns-prefetch" href="https://calendly.com" />
-        <link rel="dns-prefetch" href="https://assets.calendly.com" />
+        {/*
+          Bewusst keine Verbindungshinweise auf Fremdhosts.
+
+          Hier standen dns-prefetch-Angaben für Calendly. Der Browser löst die
+          Namen dann schon beim Seitenaufruf auf — also bevor der Besucher der
+          Einbindung zugestimmt hat. Das widerspricht der Zusage in der
+          Datenschutzerklärung, dass bis zur Zustimmung keine Verbindung zu
+          Calendly aufgebaut wird.
+
+          Schriften brauchen ohnehin keinen Hinweis: next/font liefert Inter
+          beim Build lokal aus.
+        */}
 
         {/* Structured Data */}
         <script
