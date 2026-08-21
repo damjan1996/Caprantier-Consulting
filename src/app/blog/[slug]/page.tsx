@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: 'Artikel nicht gefunden | Carpantier Consulting',
+      title: 'Artikel nicht gefunden',
     }
   }
 
   return {
-    title: `${post.title} | Carpantier Consulting Blog`,
+    title: `${post.title} | Blog`,
     description: post.description,
     keywords: post.tags,
     authors: [{ name: post.author }],

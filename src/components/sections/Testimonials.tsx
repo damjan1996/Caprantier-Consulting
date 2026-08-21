@@ -20,7 +20,7 @@ export default function Testimonials() {
                 <div className="relative h-full w-full rounded-2xl overflow-hidden border border-border shadow-lg">
                   <Image
                     src={nicoConsulting}
-                    alt="Nico Carpantier - Gründer von Carpantier Consulting, Köln"
+                    alt="Nico Carpantier, Gründer von Carpantier Consulting, Köln (KI-generiertes Bild)"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

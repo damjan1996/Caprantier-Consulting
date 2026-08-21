@@ -75,6 +75,9 @@ const keywords = [
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://carpantier-consulting.de'),
+  // Die Vorlage haengt den Firmennamen an jeden Seitentitel an. Seitentitel
+  // duerfen ihn deshalb nicht selbst mitbringen, sonst steht er doppelt im
+  // Browser-Tab und in den Suchergebnissen.
   title: {
     default: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
     template: '%s | Carpantier Consulting',
@@ -160,8 +163,11 @@ const jsonLd = {
         width: 512,
         height: 512,
       },
+      // Nur Bilder, die ihre KI-Herkunft selbst mitbringen: og-image.jpg trägt
+      // den Hinweis im Bild, das Logo ist keine Aufnahme. Ein unbeschriftetes
+      // KI-Porträt hier würde in Rich Results als Foto des Unternehmens
+      // erscheinen, ohne dass der Hinweis mitgeliefert wird (Art. 50 KI-VO).
       image: [
-        'https://carpantier-consulting.de/images/nico-portrait-new.jpg',
         'https://carpantier-consulting.de/images/og-image.jpg',
         'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
       ],

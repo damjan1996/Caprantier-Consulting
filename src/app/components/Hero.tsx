@@ -71,7 +71,7 @@ export default function Hero() {
               <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-xl bg-white transition-all duration-500 group-hover:shadow-2xl">
                 <Image
                   src={nicoPortrait}
-                  alt="Nico Carpantier - B2B Kaltakquise & Leadgenerierung aus Köln"
+                  alt="Nico Carpantier, B2B-Kaltakquise und Leadgenerierung aus Köln (KI-generiertes Bild)"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-top"

@@ -27,7 +27,9 @@ function generateCityJsonLd(city: City) {
         description: `Vertrieb ${city.name}: Ihre Vertriebsagentur für B2B Leadgenerierung & Telefonakquise. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen ${city.businessContext}.`,
         url: `https://carpantier-consulting.de/leistungen/${city.slug}`,
         logo: 'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
-        image: 'https://carpantier-consulting.de/images/nico-portrait.png',
+        // Siehe layout.tsx: kein unbeschriftetes KI-Porträt in strukturierten
+        // Daten.
+        image: 'https://carpantier-consulting.de/images/og-image.jpg',
         telephone: '+4915738186221',
         email: 'nico@carpantier-consulting.de',
         address: {

@@ -11,10 +11,11 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "verify": "pnpm run typecheck && pnpm run lint && pnpm run build",
+    "verify": "pnpm run typecheck && pnpm run lint && pnpm run check:compliance && pnpm run build",
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "check:compliance": "node scripts/check-compliance.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

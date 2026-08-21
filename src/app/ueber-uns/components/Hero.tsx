@@ -111,7 +111,7 @@ export default function Hero() {
               <div className="relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10">
                 <Image
                   src={nicoOffice}
-                  alt="Nico Carpantier - B2B Sales Consultant"
+                  alt="Nico Carpantier, B2B Sales Consultant (KI-generiertes Bild)"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 540px"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

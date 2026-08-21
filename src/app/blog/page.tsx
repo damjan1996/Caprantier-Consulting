@@ -6,7 +6,7 @@ import { getBlogPostPreviews, getAllCategories } from '@/lib/blog'
 import BlogGrid from './components/BlogGrid'
 
 export const metadata: Metadata = {
-  title: 'Blog | B2B Vertrieb, Kaltakquise & Leadgenerierung | Carpantier Consulting',
+  title: 'Blog | B2B Vertrieb, Kaltakquise & Leadgenerierung',
   description: 'B2B Vertriebswissen: Kaltakquise Tipps, Leadgenerierung Strategien, Vertriebsoutsourcing, BANT-Methode, Einwandbehandlung. 50+ Fachartikel von Vertriebsprofis aus Köln.',
   keywords: [
     'B2B Vertrieb Blog',

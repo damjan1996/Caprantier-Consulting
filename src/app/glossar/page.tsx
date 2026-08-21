@@ -13,7 +13,7 @@ import AiContentNotice from '@/components/ui/AiContentNotice'
 const LAST_REVIEWED = '2026-08-21'
 
 export const metadata: Metadata = {
-  title: 'Vertrieb Glossar | B2B Begriffe erklärt | Carpantier Consulting',
+  title: 'Vertrieb Glossar | B2B Begriffe erklärt',
   description:
     'Vertrieb Glossar: Alle wichtigen B2B-Begriffe verständlich erklärt. Von Kaltakquise über BANT bis SDR - lernen Sie die Fachbegriffe der Vertriebswelt kennen.',
   keywords: [

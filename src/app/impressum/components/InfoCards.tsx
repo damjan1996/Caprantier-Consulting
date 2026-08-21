@@ -8,14 +8,21 @@ import { SectionCard } from '@/components/ui'
  * Umsatzsteuer-Identifikationsnummer nach § 27 a UStG.
  *
  * Pflichtangabe nach § 5 Abs. 1 Nr. 6 DDG, sobald eine USt-IdNr. erteilt ist.
- * Solange hier der Platzhalter steht, wird die Karte bewusst NICHT gerendert:
+ * Für dieses Unternehmen ist eine erteilt, die Nummer liegt hier aber noch
+ * nicht vor. Solange der Platzhalter steht, wird die Karte NICHT gerendert:
  * eine falsche Nummer im Impressum wiegt schwerer als eine fehlende Angabe.
+ *
+ * scripts/check-impressum.mjs bricht die Prüfung vor dem Deployment ab,
+ * solange der Platzhalter steht — so kann das Impressum nicht unvollständig
+ * live gehen.
  *
  * TODO(Carpantier): echte USt-IdNr. eintragen (Format: DE + 9 Ziffern).
  */
-const VAT_ID = 'DE_USTIDNR_EINTRAGEN'
-
 const VAT_ID_PLACEHOLDER = 'DE_USTIDNR_EINTRAGEN'
+
+// Bewusst als string typisiert: sonst hält TypeScript den Vergleich mit dem
+// Platzhalter für sinnlos, sobald die echte Nummer eingetragen ist.
+const VAT_ID: string = VAT_ID_PLACEHOLDER
 
 const ADDRESS = (
   <p className="text-muted-foreground">
