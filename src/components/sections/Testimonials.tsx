@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, ArrowRight } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
+import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
 
 import nicoConsulting from '@/../public/images/nico-consulting.jpg'
 
@@ -24,7 +25,11 @@ export default function Testimonials() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     placeholder="blur"
+                    {...AI_GENERATED_MEDIA_ATTRS}
                   />
+
+                  {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                  <AiGeneratedBadge corner="top-right" />
                 </div>
               </div>
 

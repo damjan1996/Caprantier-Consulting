@@ -1,14 +1,14 @@
 'use client'
 
 import { Cookie } from 'lucide-react'
-import { useCookieConsent } from '@/hooks/useCookieConsent'
+import { useCookieConsentContext } from '@/components/providers/CookieConsentProvider'
 
 interface CookieSettingsButtonProps {
   className?: string
 }
 
 export default function CookieSettingsButton({ className = '' }: CookieSettingsButtonProps) {
-  const { setShowBanner } = useCookieConsent()
+  const { setShowBanner } = useCookieConsentContext()
 
   return (
     <button

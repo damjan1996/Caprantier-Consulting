@@ -12,14 +12,14 @@ export default function Markdown({ content }: MarkdownProps) {
     let result = content
 
     // Headers (order matters - more specific first)
-    result = result.replace(/^#### (.*$)/gim, '<h4 class="text-lg font-bold text-white mt-6 mb-3">$1</h4>')
-    result = result.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-white mt-8 mb-4">$1</h3>')
-    result = result.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-white mt-10 mb-4">$1</h2>')
-    result = result.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-white mt-12 mb-6">$1</h1>')
+    result = result.replace(/^#### (.*$)/gim, '<h4 class="text-lg font-bold text-foreground mt-6 mb-3">$1</h4>')
+    result = result.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-foreground mt-8 mb-4">$1</h3>')
+    result = result.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-foreground mt-10 mb-4">$1</h2>')
+    result = result.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-foreground mt-12 mb-6">$1</h1>')
 
     // Bold and italic
     result = result.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-bold"><em>$1</em></strong>')
-    result = result.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
+    result = result.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
     result = result.replace(/\*(.*?)\*/g, '<em>$1</em>')
 
     // Links
@@ -31,13 +31,13 @@ export default function Markdown({ content }: MarkdownProps) {
     // Inline code
     result = result.replace(
       /`([^`]+)`/g,
-      '<code class="px-1.5 py-0.5 bg-white/10 text-primary rounded text-sm">$1</code>'
+      '<code class="px-1.5 py-0.5 bg-muted text-primary rounded text-sm">$1</code>'
     )
 
     // Blockquotes
     result = result.replace(
       /^> (.*)$/gim,
-      '<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-white/5 rounded-r italic text-muted-foreground">$1</blockquote>'
+      '<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-muted rounded-r italic text-muted-foreground">$1</blockquote>'
     )
 
     // Tables
@@ -50,9 +50,9 @@ export default function Markdown({ content }: MarkdownProps) {
         // Check if this is a header row (first row before separator)
         const isFirstRow = result.indexOf(match) < result.indexOf('|---|')
         if (isFirstRow && index >= 0) {
-          return `<th class="px-4 py-3 text-left text-sm font-semibold text-white bg-white/10">${cell}</th>`
+          return `<th class="px-4 py-3 text-left text-sm font-semibold text-foreground bg-muted">${cell}</th>`
         }
-        return `<td class="px-4 py-3 text-sm text-muted-foreground border-t border-white/10">${cell}</td>`
+        return `<td class="px-4 py-3 text-sm text-muted-foreground border-t border-border">${cell}</td>`
       }).join('')
 
       return `<tr>${cellHtml}</tr>`
@@ -61,7 +61,7 @@ export default function Markdown({ content }: MarkdownProps) {
     // Wrap tables
     const tableRegex = /(<tr>.*<\/tr>\s*)+/gs
     result = result.replace(tableRegex, (match) => {
-      return `<div class="overflow-x-auto my-6"><table class="w-full border border-white/10 rounded-lg overflow-hidden">${match}</table></div>`
+      return `<div class="overflow-x-auto my-6"><table class="w-full border border-border rounded-lg overflow-hidden">${match}</table></div>`
     })
 
     // Unordered lists

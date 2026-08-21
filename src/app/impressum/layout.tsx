@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Impressum',
   description:
-    'Impressum von Carpantier Consulting - B2B Telefonakquise & Leadgenerierung. Angaben gemäß § 5 TMG. Nico-Luca Carpantier, Köln.',
+    'Impressum von Carpantier Consulting - B2B Telefonakquise & Leadgenerierung. Angaben gemäß § 5 DDG. Nico-Luca Carpantier, Köln.',
   robots: {
     index: true,
     follow: true,

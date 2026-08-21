@@ -10,6 +10,7 @@ import { useCalendly } from '@/hooks/useCalendly'
 
 // Static import for automatic blur placeholder
 import nicoSalesCall from '@/../public/images/nico-sales-call.jpg'
+import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -89,7 +90,11 @@ export default function Hero() {
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
                   placeholder="blur"
+                  {...AI_GENERATED_MEDIA_ATTRS}
                 />
+
+                {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                <AiGeneratedBadge corner="top-right" />
 
                 {/* Floating Cards */}
                 <div className="absolute bottom-20 left-2 bg-card/90 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-xl animate-float-slow cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 group/card">

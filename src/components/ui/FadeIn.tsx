@@ -76,6 +76,9 @@ export default function FadeIn({
   return (
     <div
       ref={ref}
+      // Ankerpunkt für die noscript-Regel im Layout: ohne JavaScript wird die
+      // Animation abgeschaltet, damit der Inhalt sichtbar bleibt.
+      data-fade-in=""
       className={cn(
         // Only animate opacity and transform for GPU acceleration
         'transition-[opacity,transform] duration-300 ease-out will-change-[opacity,transform]',

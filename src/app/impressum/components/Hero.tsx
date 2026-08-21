@@ -13,7 +13,7 @@ export default function Hero() {
           Impressum
         </span>
       }
-      description="Angaben gemäß § 5 TMG und weitere rechtliche Informationen."
+      description="Angaben gemäß § 5 DDG und weitere rechtliche Informationen."
     />
   )
 }

@@ -10,6 +10,8 @@ import { getBlogImage } from '@/lib/blog-images'
 import { generateBlogPostSchema, generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
 import Markdown from '@/components/ui/Markdown'
 import BlogIllustration from './BlogIllustration'
+import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
+import AiContentNotice from '@/components/ui/AiContentNotice'
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -161,8 +163,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 900px"
                   placeholder="blur"
+                  {...AI_GENERATED_MEDIA_ATTRS}
                   priority
                 />
+                {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                <AiGeneratedBadge corner="top-right" />
               </div>
             </FadeIn>
           </div>
@@ -190,8 +195,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Markdown content={post.content} />
             </article>
 
+            {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO.
+                `updatedAt` ist das Datum der letzten redaktionellen Überarbeitung
+                und damit zugleich das der letzten Prüfung. */}
+            <AiContentNotice
+              subject="Dieser Beitrag und das zugehörige Beitragsbild"
+              reviewedOn={post.updatedAt}
+              className="mt-12"
+            />
+
             {/* Tags */}
-            <div className="mt-12 pt-8 border-t border-border">
+            <div className="mt-8 pt-8 border-t border-border">
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span

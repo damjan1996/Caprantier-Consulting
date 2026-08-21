@@ -29,7 +29,7 @@ Starten wir? calendly.com/nico-carpantier-consulting/30min`,
   },
   {
     triggers: ['termin', 'gespräch', 'buchen', 'calendly', 'kontakt'],
-    answer: `Gerne! Hier kannst du ein kostenloses 30-Min Strategiegespräch buchen:
+    answer: `Gerne! Hier können Sie ein kostenloses 30-Min Strategiegespräch buchen:
 
 calendly.com/nico-carpantier-consulting/30min
 

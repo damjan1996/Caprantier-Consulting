@@ -1,11 +1,6 @@
 // GA4 Event Tracking Utility
 
-type GTagEvent = {
-  action: string
-  category: string
-  label?: string
-  value?: number
-}
+const COOKIE_CONSENT_KEY = 'cookie-consent'
 
 declare global {
   interface Window {
@@ -19,6 +14,30 @@ declare global {
 }
 
 /**
+ * Prüft die gespeicherte Analyse-Einwilligung.
+ *
+ * Ohne Einwilligung darf kein Ereignis an Google übermittelt werden — auch nicht
+ * cookiefrei, da dabei die IP-Adresse an einen Drittanbieter übertragen würde
+ * (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
+ */
+export function hasAnalyticsConsent(): boolean {
+  if (typeof window === 'undefined') return false
+
+  try {
+    const stored = window.localStorage.getItem(COOKIE_CONSENT_KEY)
+    if (!stored) return false
+    return JSON.parse(stored)?.consent?.analytics === true
+  } catch {
+    return false
+  }
+}
+
+/** Zentrale Freigabe für jeden Tracking-Aufruf. */
+function canTrack(): boolean {
+  return typeof window !== 'undefined' && !!window.gtag && hasAnalyticsConsent()
+}
+
+/**
  * Track a custom event in Google Analytics 4
  */
 export function trackEvent(
@@ -27,12 +46,9 @@ export function trackEvent(
   label?: string,
   value?: number
 ): void {
-  if (typeof window === 'undefined' || !window.gtag) {
-    // GA not loaded or SSR
-    return
-  }
+  if (!canTrack()) return
 
-  window.gtag('event', action, {
+  window.gtag!('event', action, {
     event_category: category,
     event_label: label,
     value: value,
@@ -43,14 +59,12 @@ export function trackEvent(
  * Track page view (useful for SPA navigation)
  */
 export function trackPageView(url: string, title?: string): void {
-  if (typeof window === 'undefined' || !window.gtag) {
-    return
-  }
+  if (!canTrack()) return
 
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
   if (!measurementId) return
 
-  window.gtag('config', measurementId, {
+  window.gtag!('config', measurementId, {
     page_path: url,
     page_title: title,
   })
@@ -122,12 +136,10 @@ export function trackWebVitals(metric: {
   id: string
   rating: 'good' | 'needs-improvement' | 'poor'
 }): void {
-  if (typeof window === 'undefined' || !window.gtag) {
-    return
-  }
+  if (!canTrack()) return
 
   // Send to Google Analytics 4
-  window.gtag('event', metric.name, {
+  window.gtag!('event', metric.name, {
     event_category: 'Web Vitals',
     event_label: metric.id,
     value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),

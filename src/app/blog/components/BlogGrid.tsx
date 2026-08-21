@@ -7,6 +7,7 @@ import { Calendar, Clock, ArrowRight, Tag, ChevronLeft, ChevronRight } from 'luc
 import FadeIn from '@/components/ui/FadeIn'
 import { BlogPostPreview } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
+import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
 
 const POSTS_PER_PAGE = 12
 
@@ -100,9 +101,13 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
                             className="object-cover md:transition-transform md:duration-300 md:group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             placeholder="blur"
+                            {...AI_GENERATED_MEDIA_ATTRS}
                             loading={index < 6 ? 'eager' : 'lazy'}
                             priority={index < 3}
                           />
+                          {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO.
+                              `linked={false}`: die Karte ist bereits ein Link. */}
+                          <AiGeneratedBadge corner="bottom-left" size="sm" linked={false} />
                           {/* Featured Badge */}
                           {post.featured && (
                             <div className="absolute top-3 right-3">

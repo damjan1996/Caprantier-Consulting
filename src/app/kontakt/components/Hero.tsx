@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { Mail, ArrowRight, MessageSquare, Calendar } from 'lucide-react'
+import Link from 'next/link'
+import { Mail, ArrowRight, MessageSquare, Calendar, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
 import { DecorativeParticles } from '@/components/ui'
@@ -11,6 +12,7 @@ import { useCalendly } from '@/hooks/useCalendly'
 // Static imports for automatic blur placeholders
 import nicoPhone from '@/../public/images/nico-phone.jpg'
 import nicoPortrait from '@/../public/images/nico-portrait-new.jpg'
+import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
 
 export default function Hero() {
   const { openCalendly, onHover } = useCalendly()
@@ -70,19 +72,33 @@ export default function Hero() {
 
             <FadeIn delay={0.5}>
               <div className="flex items-center gap-4 justify-center lg:justify-start pt-4">
-                <div className="group h-16 w-16 rounded-full overflow-hidden border-2 border-primary/50 transition-all duration-300 hover:border-primary hover:scale-110 cursor-pointer">
-                  <Image
-                    src={nicoPortrait}
-                    alt="Nico Carpantier"
-                    width={64}
-                    height={64}
-                    className="object-cover object-top w-full h-full"
-                    placeholder="blur"
+                <div className="group relative shrink-0 transition-transform duration-300 hover:scale-110">
+                  <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-primary/50 transition-colors duration-300 group-hover:border-primary">
+                    <Image
+                      src={nicoPortrait}
+                      alt="Nico Carpantier (KI-generiertes Porträt)"
+                      width={64}
+                      height={64}
+                      className="object-cover object-top w-full h-full"
+                      placeholder="blur"
+                      {...AI_GENERATED_MEDIA_ATTRS}
+                    />
+                  </div>
+                  {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO — unmittelbar
+                      am Bild, da der Textlink allein leicht überlesen wird. */}
+                  <AiGeneratedBadge
+                    size="xs"
+                    short
+                    className="absolute -bottom-1 -right-1 z-10"
                   />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">Nico Carpantier</div>
                   <div className="text-sm text-muted-foreground">Ihr Ansprechpartner</div>
+                  <Link href="/ki-transparenz" className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary">
+                    <Sparkles className="h-3 w-3" aria-hidden="true" />
+                    KI-generiertes Porträt
+                  </Link>
                 </div>
               </div>
             </FadeIn>
@@ -102,7 +118,11 @@ export default function Hero() {
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
                   placeholder="blur"
+                  {...AI_GENERATED_MEDIA_ATTRS}
                 />
+
+                {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                <AiGeneratedBadge corner="top-right" />
 
                 {/* Floating Cards */}
                 <div className="absolute bottom-20 left-2 bg-card/90 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-xl animate-float-slow cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 group/card">

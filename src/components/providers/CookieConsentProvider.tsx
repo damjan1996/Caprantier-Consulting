@@ -16,10 +16,19 @@ type CookieConsentContextType = {
   acceptNecessary: () => void
   updateConsent: (consent: Partial<CookieConsent>) => void
   resetConsent: () => void
+  setShowBanner: (show: boolean) => void
 }
 
 const CookieConsentContext = createContext<CookieConsentContextType | null>(null)
 
+/**
+ * Zugriff auf den geteilten Einwilligungs-Zustand.
+ *
+ * Jede Komponente MUSS diesen Hook statt `useCookieConsent()` verwenden:
+ * `useCookieConsent()` legt bei jedem Aufruf einen eigenen State an, sodass
+ * z. B. der Footer-Button das Banner nicht öffnen könnte und ein Widerruf der
+ * Einwilligung faktisch unmöglich wäre (Art. 7 Abs. 3 DSGVO).
+ */
 export function useCookieConsentContext() {
   const context = useContext(CookieConsentContext)
   if (!context) {

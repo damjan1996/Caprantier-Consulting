@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Loader2, ShieldCheck } from 'lucide-react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import FadeIn from '@/components/ui/FadeIn'
 import { trackEvent } from '@/lib/analytics'
+import { CONTACT_CONSENT_TEXT } from '@/lib/contact'
 
 type FormData = {
   name: string
@@ -13,23 +15,36 @@ type FormData = {
   phone: string
   message: string
   privacyConsent: boolean
+  /** Honeypot — bleibt fuer echte Besucher leer und ist nicht sichtbar. */
+  website: string
 }
+
+const EMPTY_FORM: FormData = {
+  name: '',
+  email: '',
+  company: '',
+  phone: '',
+  message: '',
+  privacyConsent: false,
+  website: '',
+}
+
+/** Der Einwilligungstext bricht am Link auf; der Wortlaut bleibt der geteilte. */
+const [CONSENT_BEFORE_LINK, CONSENT_AFTER_LINK] =
+  CONTACT_CONSENT_TEXT.split('Datenschutzerklärung')
+
+const FALLBACK_ERROR =
+  'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an info@carpantier-consulting.de.'
 
 type FormErrors = Partial<Record<keyof FormData, string>>
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    message: '',
-    privacyConsent: false,
-  })
+  const [formData, setFormData] = useState<FormData>(EMPTY_FORM)
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState(FALLBACK_ERROR)
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
@@ -74,21 +89,25 @@ export default function ContactForm() {
     trackEvent('form_submit', 'contact_form', 'attempt')
 
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-      // In production, send to your API endpoint:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
-      // if (!response.ok) throw new Error('Failed to send')
+      if (!response.ok) {
+        const body = await response.json().catch(() => null)
+        setErrorMessage(body?.error || FALLBACK_ERROR)
+        setStatus('error')
+        trackEvent('form_submit', 'contact_form', 'error')
+        return
+      }
 
       setStatus('success')
       trackEvent('form_submit', 'contact_form', 'success')
-      setFormData({ name: '', email: '', company: '', phone: '', message: '', privacyConsent: false })
+      setFormData(EMPTY_FORM)
     } catch {
+      setErrorMessage(FALLBACK_ERROR)
       setStatus('error')
       trackEvent('form_submit', 'contact_form', 'error')
     }
@@ -135,6 +154,20 @@ export default function ContactForm() {
   return (
     <FadeIn>
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Honeypot gegen Spam-Bots: fuer Menschen und Screenreader unsichtbar. */}
+        <div className="absolute h-px w-px overflow-hidden opacity-0" aria-hidden="true">
+          <label htmlFor="website">Bitte nicht ausfüllen</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name */}
           <div>
@@ -265,7 +298,7 @@ export default function ContactForm() {
               />
             </div>
             <span className="text-sm text-muted-foreground">
-              Ich habe die{' '}
+              {CONSENT_BEFORE_LINK}
               <a
                 href="/datenschutz"
                 target="_blank"
@@ -274,8 +307,8 @@ export default function ContactForm() {
                 onClick={(e) => e.stopPropagation()}
               >
                 Datenschutzerklärung
-              </a>{' '}
-              gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *
+              </a>
+              {CONSENT_AFTER_LINK} *
             </span>
           </label>
           {errors.privacyConsent && (
@@ -291,10 +324,32 @@ export default function ContactForm() {
           <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
             <p className="text-red-500 text-sm flex items-center gap-2">
               <AlertCircle className="h-4 w-4" />
-              Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail.
+              {errorMessage}
             </p>
           </div>
         )}
+
+        {/* Transparenzhinweis nach Art. 13 DSGVO — unmittelbar an der Erhebung,
+            damit der Zweck ohne Umweg über die Datenschutzerklärung erkennbar ist. */}
+        <div className="flex gap-3 rounded-xl border border-border bg-muted/40 p-4">
+          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Ihre Angaben nutzen wir ausschließlich, um Ihre Anfrage zu beantworten
+            (Art. 6 Abs. 1 lit. b und lit. a DSGVO). Der Versand an unser Postfach läuft über
+            unseren Auftragsverarbeiter Brevo (Brevo GmbH, Berlin). Wir geben die Daten nicht
+            zu Werbezwecken weiter und löschen sie, sobald Ihre Anfrage erledigt ist und keine
+            gesetzliche Aufbewahrungsfrist entgegensteht. Ihre Einwilligung können Sie jederzeit
+            formlos an{' '}
+            <a href="mailto:info@carpantier-consulting.de" className="underline hover:text-foreground">
+              info@carpantier-consulting.de
+            </a>{' '}
+            widerrufen. Einzelheiten und Ihre Betroffenenrechte:{' '}
+            <Link href="/datenschutz" className="underline hover:text-foreground">
+              Datenschutzerklärung
+            </Link>
+            .
+          </p>
+        </div>
 
         {/* Submit button */}
         <Button

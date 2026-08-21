@@ -1,11 +1,11 @@
 'use client'
 
 import Image from 'next/image'
+import { DecorativeParticles, Breadcrumbs, AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
 import Link from 'next/link'
 import { Phone, Target, CheckCircle, ArrowRight, MapPin } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
-import { DecorativeParticles, Breadcrumbs } from '@/components/ui'
 import { useCalendly } from '@/hooks/useCalendly'
 import { type City, getSlugFromName } from '@/lib/cities'
 
@@ -136,7 +136,11 @@ export default function StadtHero({ city }: StadtHeroProps) {
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   priority
                   placeholder="blur"
+                  {...AI_GENERATED_MEDIA_ATTRS}
                 />
+
+                {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                <AiGeneratedBadge corner="top-right" />
 
                 {/* Floating Cards */}
                 <div className="absolute bottom-20 left-2 bg-card/90 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-xl animate-float-slow cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-card hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 group/card">

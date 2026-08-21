@@ -18,6 +18,7 @@ const navigation = {
   legal: [
     { name: 'Impressum', href: '/impressum' },
     { name: 'Datenschutz', href: '/datenschutz' },
+    { name: 'KI-Transparenz', href: '/ki-transparenz' },
   ],
   services: [
     { name: 'B2B Telefonakquise', href: '/leistungen' },

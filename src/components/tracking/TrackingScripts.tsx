@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 type CookieConsent = {
   necessary: boolean
@@ -19,7 +19,6 @@ const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
 export default function TrackingScripts() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
   const [consentInitialized, setConsentInitialized] = useState(false)
-  const prevAnalyticsConsent = useRef<boolean | null>(null)
 
   useEffect(() => {
     // Initial load
@@ -59,40 +58,52 @@ export default function TrackingScripts() {
     }
   }, [])
 
-  // Update Google Consent Mode when consent changes & send pageview after opt-in
+  // Consent Mode aktuell halten - auch beim Widerruf, damit ein bereits
+  // geladenes gtag.js sofort aufhoert zu speichern.
+  // Den ersten Pageview sendet gtag('config', ...) nach dem Laden selbst.
   useEffect(() => {
-    if (typeof window !== 'undefined' && consentInitialized) {
-      const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag
-      if (gtag) {
-        const analyticsGranted = consent?.analytics ? 'granted' : 'denied'
-        const marketingGranted = consent?.marketing ? 'granted' : 'denied'
+    if (typeof window === 'undefined' || !consentInitialized) return
 
-        gtag('consent', 'update', {
-          'analytics_storage': analyticsGranted,
-          'ad_storage': marketingGranted,
-          'ad_user_data': marketingGranted,
-          'ad_personalization': marketingGranted,
-        })
+    const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag
+    if (!gtag) return
 
-        // Pageview nur senden wenn Consent sich gerade von denied->granted geändert hat
-        // (nicht bei Seiten-Load mit bereits gespeichertem Consent - dort sendet gtag config den Pageview)
-        const wasGranted = prevAnalyticsConsent.current
-        const isNowGranted = consent?.analytics ?? false
-        prevAnalyticsConsent.current = isNowGranted
+    const marketingGranted = consent?.marketing ? 'granted' : 'denied'
 
-        if (!wasGranted && isNowGranted && GA_MEASUREMENT_ID) {
-          gtag('event', 'page_view', {
-            page_title: document.title,
-            page_location: window.location.href,
-            page_path: window.location.pathname,
-          })
-        }
-      }
-    }
+    gtag('consent', 'update', {
+      'analytics_storage': consent?.analytics ? 'granted' : 'denied',
+      'ad_storage': marketingGranted,
+      'ad_user_data': marketingGranted,
+      'ad_personalization': marketingGranted,
+    })
   }, [consent, consentInitialized])
 
   return (
     <>
+      {/* Google Analytics - gtag.js wird erst nach Analyse-Einwilligung geladen.
+          Vorher geht kein Request an googletagmanager.com raus (§ 25 Abs. 1 TDDDG). */}
+      {consent?.analytics && GA_MEASUREMENT_ID && (
+        <>
+          <Script
+            id="ga-loader"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script
+            id="ga-config"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  anonymize_ip: true,
+                  send_page_view: true
+                });
+              `,
+            }}
+          />
+        </>
+      )}
+
       {/* Hotjar / Contentsquare - nur bei Analytics-Einwilligung */}
       {consent?.analytics && CONTENTSQUARE_ID && (
         <Script

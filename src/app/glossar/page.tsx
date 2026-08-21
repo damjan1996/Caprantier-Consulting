@@ -1,9 +1,16 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { BookOpen, ArrowRight } from 'lucide-react'
+import { BookOpen, ArrowRight, Scale } from 'lucide-react'
 import { PageWrapper } from '@/components/ui'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import AiContentNotice from '@/components/ui/AiContentNotice'
+
+/**
+ * Datum der letzten redaktionellen Prüfung der Begriffserklärungen.
+ * Bei inhaltlichen Änderungen mitpflegen — der KI-Hinweis zeigt es an.
+ */
+const LAST_REVIEWED = '2026-08-21'
 
 export const metadata: Metadata = {
   title: 'Vertrieb Glossar | B2B Begriffe erklärt | Carpantier Consulting',
@@ -64,7 +71,7 @@ const glossaryTerms = [
     term: 'Cold Calling / Kaltakquise',
     shortDescription: 'Telefonische Erstansprache potenzieller Kunden',
     fullDescription:
-      'Cold Calling bezeichnet die telefonische Kontaktaufnahme mit potenziellen Kunden ohne vorherige Geschäftsbeziehung. Im B2B-Bereich ist Kaltakquise unter bestimmten Voraussetzungen erlaubt, wenn ein mutmaßliches Interesse des Unternehmens angenommen werden kann. Professionelle Kaltakquise erfordert gute Vorbereitung, ein überzeugendes Skript und ausgeprägte Kommunikationsfähigkeiten.',
+      'Cold Calling bezeichnet die telefonische Kontaktaufnahme mit potenziellen Kunden ohne vorherige Geschäftsbeziehung. Gegenüber Unternehmen ist Telefonwerbung nach § 7 Abs. 2 Nr. 1 UWG zulässig, wenn zumindest eine mutmaßliche Einwilligung des Angerufenen vorliegt — gegenüber Verbrauchern ist dagegen immer eine ausdrückliche vorherige Einwilligung nötig. Professionelle Kaltakquise erfordert gute Vorbereitung, ein überzeugendes Skript und ausgeprägte Kommunikationsfähigkeiten.',
     relatedTerms: ['Akquise', 'Telefonakquise', 'Einwandbehandlung'],
     category: 'Methoden',
     blogLink: '/blog/kaltakquise-rechtliche-grundlagen',
@@ -228,6 +235,14 @@ export default function GlossarPage() {
               B2B-Vertriebswelt verständlich erklärt.
             </p>
           </FadeIn>
+
+          {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+          <FadeIn delay={0.05} className="max-w-3xl mx-auto mt-8">
+            <AiContentNotice
+              subject="Die Begriffserklärungen auf dieser Seite"
+              reviewedOn={LAST_REVIEWED}
+            />
+          </FadeIn>
         </div>
       </section>
 
@@ -310,6 +325,26 @@ export default function GlossarPage() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Rechtlicher Hinweis: Einzelne Einträge geben Rechtsnormen wieder
+          (z. B. § 7 UWG). Die Wiedergabe ist keine Rechtsdienstleistung im
+          Sinne des § 2 RDG — der Hinweis stellt das ausdrücklich klar. */}
+      <section className="pb-8">
+        <div className="container-custom">
+          <FadeIn className="max-w-4xl mx-auto">
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/60 p-4 text-sm text-muted-foreground">
+              <Scale className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              <p className="leading-relaxed">
+                <strong className="font-medium text-foreground">Kein Rechtsrat:</strong> Einzelne
+                Erklärungen geben Rechtsvorschriften in vereinfachter Form wieder. Sie dienen der
+                allgemeinen Information, ersetzen keine Rechtsberatung im Einzelfall und stellen
+                keine Rechtsdienstleistung dar. Für Ihren konkreten Fall wenden Sie sich bitte an
+                eine Rechtsanwältin oder einen Rechtsanwalt.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

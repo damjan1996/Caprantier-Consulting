@@ -4,11 +4,23 @@ import { prisma } from '@/lib/prisma'
 import { findQuickAnswer } from '@/lib/chat/quick-answers'
 import { CARPANTIER_TOOLS_ANTHROPIC, ToolName } from '@/lib/chat/tools'
 import { executeToolCall } from '@/lib/chat/tool-executor'
+import { createSessionToken, readSessionToken } from '@/lib/chat/session-token'
 import { notifyNewLead } from '@/lib/notifications'
+import { clientKey, isRateLimited } from '@/lib/rate-limit'
+
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
+
+/** Längere Eingaben sind für eine Vertriebsanfrage nicht nötig (Art. 5 Abs. 1 lit. c DSGVO). */
+const MAX_MESSAGE_LENGTH = 2000
+
+const RATE_LIMIT_MESSAGES = 20
+const RATE_LIMIT_WINDOW_MS = 60_000
+
+/** So viele der jüngsten Nachrichten gehen als Gesprächskontext ans Modell. */
+const HISTORY_MESSAGE_LIMIT = 6
 
 const SYSTEM_PROMPT = `Du bist der KI-Assistent von Carpantier Consulting, B2B Vertriebsagentur aus Köln.
 
@@ -20,102 +32,176 @@ KERNINFOS:
 
 REGELN:
 - Max 2-3 Sätze, knapp und freundlich
-- Deutsch
+- Deutsch, durchgehend Sie-Form
+- Auf die Frage, ob du ein Mensch bist, IMMER offenlegen, dass du ein KI-Assistent bist
+  (Art. 50 Abs. 1 KI-VO). Niemals vorgeben, ein Mensch oder Nico zu sein.
+- Bei Fragen zu Datenschutz, gespeicherten Daten oder Löschung: auf die Datenschutzerklärung
+  unter /datenschutz und die Schaltfläche "Verlauf löschen" im Chatfenster verweisen
+- Niemals nach personenbezogenen Daten fragen, die über eine E-Mail-Adresse hinausgehen
+- Keine rechtliche, steuerliche oder medizinische Beratung; keine verbindlichen Zusagen
 - NIEMALS konkrete Preise, Kosten oder Zahlen nennen - bei Preisfragen immer auf persönliches Gespräch verweisen
 - Bei Interesse oder detaillierten Fragen → Kontakt empfehlen (Telefon, Mail oder Calendly)
 - Der Kunde soll am Ende immer Nico kontaktieren
 - KEINE Markdown-Formatierung (kein **, kein *, keine #)
 - KEINE Emojis`
 
+/**
+ * Entfernt Query-String und Fragment aus der Seiten-URL.
+ *
+ * Kampagnen- und Tracking-Parameter können personenbezogene Daten enthalten,
+ * die für den Chat-Kontext nicht erforderlich sind (Art. 5 Abs. 1 lit. c DSGVO).
+ */
+function stripQueryString(rawUrl: unknown): string | null {
+  if (typeof rawUrl !== 'string' || !rawUrl) return null
+
+  try {
+    const url = new URL(rawUrl)
+    return `${url.origin}${url.pathname}`
+  } catch {
+    return null
+  }
+}
+
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+type ChatSessionWithHistory = {
+  id: string
+  pageUrl: string | null
+  visitorEmail: string | null
+  messages: { role: string; content: string }[]
+}
+
+/**
+ * Lädt die signierte Sitzung oder legt eine neue an.
+ *
+ * Eine fehlende oder nicht gültig signierte Kennung führt bewusst zu einer
+ * neuen Sitzung statt zu einem Fehler: der Verlauf einer fremden Person darf
+ * nicht fortgesetzt werden, der Chat soll aber weiter benutzbar bleiben.
+ */
+async function resolveSession(
+  rawToken: unknown,
+  pageUrl: string | null
+): Promise<ChatSessionWithHistory> {
+  const sessionId = readSessionToken(rawToken)
+
+  if (sessionId) {
+    // Absteigend sortiert und danach gedreht: `take` schneidet vom Anfang der
+    // Sortierung ab, aufsteigend lieferte es also die ÄLTESTEN Nachrichten und
+    // der Assistent verlöre in längeren Gesprächen den aktuellen Faden.
+    const existing = await prisma.chatSession.findUnique({
+      where: { id: sessionId },
+      include: { messages: { orderBy: { createdAt: 'desc' }, take: HISTORY_MESSAGE_LIMIT } },
+    })
+    if (existing) return { ...existing, messages: [...existing.messages].reverse() }
+  }
+
+  return prisma.chatSession.create({
+    data: { pageUrl },
+    include: { messages: true },
+  })
+}
+
+/**
+ * Übernimmt eine im Chat genannte E-Mail-Adresse als Kontaktwunsch.
+ *
+ * Die Angabe erfolgt freiwillig und aktiv; gespeichert wird nur die erste
+ * genannte Adresse je Sitzung (Art. 6 Abs. 1 lit. a und lit. b DSGVO).
+ */
+async function captureEmail(session: ChatSessionWithHistory, message: string): Promise<void> {
+  if (session.visitorEmail) return
+
+  const emailMatch = message.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)
+  if (!emailMatch) return
+
+  const capturedEmail = emailMatch[0]
+
+  await prisma.chatSession.update({
+    where: { id: session.id },
+    data: { visitorEmail: capturedEmail },
+  })
+
+  const allMessages = await prisma.chatMessage.findMany({
+    where: { sessionId: session.id },
+    orderBy: { createdAt: 'asc' },
+  })
+  const chatHistory = allMessages
+    .map((m) => `${m.role === 'user' ? 'Kunde' : 'Bot'}: ${m.content}`)
+    .join('\n\n')
+
+  // Bewusst abgewartet: in einer Serverless-Umgebung endet die Ausführung mit
+  // der Antwort, eine nur angestoßene Zustellung ginge dann verloren. Ein
+  // Fehlschlag darf den Chat aber nicht abbrechen.
+  try {
+    await notifyNewLead({
+      email: capturedEmail,
+      pageUrl: session.pageUrl,
+      chatHistory,
+    })
+  } catch (error) {
+    console.error('Lead-Benachrichtigung fehlgeschlagen:', error)
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { message, sessionId, pageUrl } = await request.json()
+    if (isRateLimited(clientKey(request), RATE_LIMIT_MESSAGES, RATE_LIMIT_WINDOW_MS)) {
+      return jsonResponse(
+        { error: 'Zu viele Anfragen. Bitte versuchen Sie es in einer Minute erneut.' },
+        429
+      )
+    }
+
+    const { message, sessionToken: rawToken, pageUrl: rawPageUrl } = await request.json()
+    const pageUrl = stripQueryString(rawPageUrl)
 
     if (!message || typeof message !== 'string') {
-      return new Response(JSON.stringify({ error: 'Message is required' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      })
+      return jsonResponse({ error: 'Message is required' }, 400)
     }
 
-    // 1. Check for quick answer (instant, no streaming needed)
-    const quickAnswer = findQuickAnswer(message)
-    if (quickAnswer) {
-      saveMessages(sessionId, pageUrl, message, quickAnswer)
-      return new Response(JSON.stringify({ message: quickAnswer, sessionId, done: true }), {
-        headers: { 'Content-Type': 'application/json' },
-      })
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return jsonResponse({ error: 'Nachricht ist zu lang.' }, 413)
     }
 
-    // 2. Get or create session
-    let session
-    if (sessionId) {
-      session = await prisma.chatSession.findUnique({
-        where: { id: sessionId },
-        include: { messages: { orderBy: { createdAt: 'asc' }, take: 6 } },
-      })
-    }
+    const session = await resolveSession(rawToken, pageUrl)
+    const sessionToken = createSessionToken(session.id)
 
-    if (!session) {
-      session = await prisma.chatSession.create({
-        data: { pageUrl },
-        include: { messages: true },
-      })
-    }
-
-    // Save user message
-    await prisma.chatMessage.create({
-      data: { sessionId: session.id, role: 'user', content: message },
-    })
-
-    // Extract and save email if found in message
-    const emailMatch = message.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)
-    if (emailMatch && !session.visitorEmail) {
-      const capturedEmail = emailMatch[0]
-
-      await prisma.chatSession.update({
-        where: { id: session.id },
-        data: { visitorEmail: capturedEmail },
-      })
-
-      // Build chat history for notification
-      const allMessages = await prisma.chatMessage.findMany({
-        where: { sessionId: session.id },
-        orderBy: { createdAt: 'asc' },
-      })
-      const chatHistory = allMessages
-        .map((m) => `${m.role === 'user' ? 'Kunde' : 'Bot'}: ${m.content}`)
-        .join('\n\n')
-
-      // Send notification (don't await - fire and forget)
-      notifyNewLead({
-        email: capturedEmail,
-        pageUrl: session.pageUrl,
-        chatHistory,
-      })
-    }
-
-    // Build conversation history
-    const history: Anthropic.MessageParam[] = session.messages.slice(-4).map((msg) => ({
+    // Die Abfrage begrenzt den Verlauf bereits auf HISTORY_MESSAGE_LIMIT.
+    const history: Anthropic.MessageParam[] = session.messages.map((msg) => ({
       role: msg.role as 'user' | 'assistant',
       content: msg.content,
     }))
+
+    await prisma.chatMessage.create({
+      data: { sessionId: session.id, role: 'user', content: message },
+    })
+    await captureEmail(session, message)
+
     history.push({ role: 'user', content: message })
 
-    // 3. Check if needs tools (no streaming for tool calls)
-    const needsTools = requiresTools(message)
+    // 1. Vordefinierte Antwort — kein Modellaufruf, keine Übermittlung in die USA.
+    const quickAnswer = findQuickAnswer(message)
+    if (quickAnswer) {
+      await prisma.chatMessage.create({
+        data: { sessionId: session.id, role: 'assistant', content: quickAnswer },
+      })
+      return jsonResponse({ message: quickAnswer, sessionToken, done: true })
+    }
 
-    if (needsTools) {
+    // 2. Werkzeugaufrufe brauchen die vollständige Antwort und werden nicht gestreamt.
+    if (requiresTools(message)) {
       const result = await handleWithTools(history)
       await prisma.chatMessage.create({
         data: { sessionId: session.id, role: 'assistant', content: result },
       })
-      return new Response(JSON.stringify({ message: result, sessionId: session.id, done: true }), {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      return jsonResponse({ message: result, sessionToken, done: true })
     }
 
-    // 4. Stream response
+    // 3. Gestreamte Modellantwort.
     const currentSessionId = session.id
     const encoder = new TextEncoder()
 
@@ -135,20 +221,25 @@ export async function POST(request: NextRequest) {
             if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
               const text = event.delta.text
               fullResponse += text
-              controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text, sessionId: currentSessionId })}\n\n`))
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({ text, sessionToken })}\n\n`)
+              )
             }
           }
 
-          // Save complete message
           await prisma.chatMessage.create({
             data: { sessionId: currentSessionId, role: 'assistant', content: fullResponse },
           })
 
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, sessionId: currentSessionId })}\n\n`))
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify({ done: true, sessionToken })}\n\n`)
+          )
           controller.close()
         } catch (error) {
           console.error('Streaming error:', error)
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: 'Streaming failed' })}\n\n`))
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify({ error: 'Streaming failed' })}\n\n`)
+          )
           controller.close()
         }
       },
@@ -163,33 +254,37 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('Chat API error:', error)
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    })
+    return jsonResponse({ error: 'Internal server error' }, 500)
   }
 }
 
-async function saveMessages(
-  sessionId: string | null,
-  pageUrl: string,
-  userMsg: string,
-  assistantMsg: string
-) {
+/**
+ * Löscht die eigene Chat-Sitzung samt Nachrichten.
+ *
+ * Setzt das Recht auf Löschung ohne Umweg über eine E-Mail an uns um
+ * (Art. 17 Abs. 1 DSGVO). Löschbar ist nur die Sitzung, zu der der Aufrufer
+ * ein gültig signiertes Token besitzt.
+ */
+export async function DELETE(request: NextRequest) {
   try {
-    let sid = sessionId
-    if (!sid) {
-      const session = await prisma.chatSession.create({ data: { pageUrl } })
-      sid = session.id
+    if (isRateLimited(clientKey(request), RATE_LIMIT_MESSAGES, RATE_LIMIT_WINDOW_MS)) {
+      return jsonResponse({ error: 'Zu viele Anfragen.' }, 429)
     }
-    await prisma.chatMessage.createMany({
-      data: [
-        { sessionId: sid, role: 'user', content: userMsg },
-        { sessionId: sid, role: 'assistant', content: assistantMsg },
-      ],
-    })
-  } catch (e) {
-    console.error('Failed to save messages:', e)
+
+    const { sessionToken } = await request.json()
+    const sessionId = readSessionToken(sessionToken)
+
+    if (!sessionId) {
+      return jsonResponse({ error: 'Ungültige Sitzung.' }, 400)
+    }
+
+    // ChatMessage hängt per onDelete: Cascade an ChatSession.
+    await prisma.chatSession.deleteMany({ where: { id: sessionId } })
+
+    return jsonResponse({ deleted: true })
+  } catch (error) {
+    console.error('Chat-Löschung fehlgeschlagen:', error)
+    return jsonResponse({ error: 'Internal server error' }, 500)
   }
 }
 

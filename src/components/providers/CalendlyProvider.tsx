@@ -1,8 +1,11 @@
 'use client'
 
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react'
+import { trackCalendlyScheduled } from '@/lib/analytics'
 
-const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min?hide_gdpr_banner=1'
+// hide_gdpr_banner darf NICHT gesetzt werden: Calendly setzt eigene Cookies und
+// muss dafuer selbst einwilligen lassen (§ 25 Abs. 1 TDDDG).
+const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min'
 
 interface CalendlyContextType {
   openCalendly: () => void
@@ -12,19 +15,6 @@ interface CalendlyContextType {
 }
 
 const CalendlyContext = createContext<CalendlyContextType | null>(null)
-
-// Prefetch Calendly resources on hover
-let prefetched = false
-function prefetchCalendly() {
-  if (prefetched || typeof window === 'undefined') return
-  prefetched = true
-
-  const link = document.createElement('link')
-  link.rel = 'prefetch'
-  link.href = CALENDLY_URL
-  link.as = 'document'
-  document.head.appendChild(link)
-}
 
 // Calendly Modal Component - only loaded on client
 function CalendlyModal({ isOpen, onClose, rootElement }: {
@@ -36,7 +26,8 @@ function CalendlyModal({ isOpen, onClose, rootElement }: {
 
   useCalendlyEventListener({
     onEventScheduled: (e: { data: { payload: unknown } }) => {
-      console.log('Calendly: Event scheduled', e.data.payload)
+      // Kein Logging des Payloads: er enthaelt Name und E-Mail-Adresse des Buchenden.
+      trackCalendlyScheduled()
     },
   })
 
@@ -69,7 +60,9 @@ export function CalendlyProvider({ children }: { children: ReactNode }) {
 
   const openCalendly = useCallback(() => setIsOpen(true), [])
   const closeCalendly = useCallback(() => setIsOpen(false), [])
-  const onHover = useCallback(() => prefetchCalendly(), [])
+  // Bewusst ein No-op: Vorladen von Calendly beim Hover wuerde die IP-Adresse
+  // des Besuchers ohne Einwilligung in die USA uebertragen.
+  const onHover = useCallback(() => {}, [])
 
   return (
     <CalendlyContext.Provider value={{ openCalendly, closeCalendly, onHover, isOpen }}>

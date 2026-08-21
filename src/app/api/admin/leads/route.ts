@@ -5,9 +5,15 @@ import { prisma } from '@/lib/prisma'
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY
 
 export async function GET(request: NextRequest) {
-  // Check API key
-  const apiKey = request.headers.get('x-api-key')
-  if (ADMIN_API_KEY && apiKey !== ADMIN_API_KEY) {
+  // Ohne konfigurierten Schlüssel bleibt der Endpunkt geschlossen. Andernfalls
+  // wären sämtliche Lead-E-Mail-Adressen und Chatverläufe öffentlich abrufbar
+  // (Art. 32 DSGVO).
+  if (!ADMIN_API_KEY) {
+    console.error('ADMIN_API_KEY ist nicht gesetzt — /api/admin/leads ist deaktiviert.')
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
+  if (request.headers.get('x-api-key') !== ADMIN_API_KEY) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

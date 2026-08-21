@@ -1,8 +1,88 @@
 'use client'
 
-import { Shield, Eye, Server, Cookie, Calendar, UserCheck, AlertCircle, Lock, FileText, Mail, Ban, Globe, BarChart3 } from 'lucide-react'
+import Link from 'next/link'
+import { Shield, Eye, Server, Cookie, Calendar, UserCheck, AlertCircle, Lock, FileText, Mail, Ban, Globe, BarChart3, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
+
+const STORAGE_TABLE_HEADERS = [
+  'Name',
+  'Anbieter',
+  'Speicherort',
+  'Zweck',
+  'Speicherdauer',
+  'Kategorie',
+] as const
+
+/**
+ * Was diese Website auf dem Endgerät ablegt.
+ *
+ * § 25 Abs. 1 TDDDG knüpft an die Speicherung von Informationen auf dem
+ * Endgerät an, nicht an die Technik „Cookie“. Local-Storage-Einträge gehören
+ * deshalb in dieselbe Übersicht — und mit ihrer tatsächlichen Lebensdauer:
+ * anders als ein Cookie laufen sie nicht von selbst ab.
+ *
+ * Die Einträge müssen zu dem passen, was der Code wirklich schreibt:
+ * `useCookieConsent` (cookie-consent) und `ChatWidget` (chat-ai-notice).
+ */
+const STORAGE_ENTRIES = [
+  {
+    name: 'cookie-consent',
+    provider: 'Eigene',
+    storage: 'Local Storage',
+    purpose: 'Speichert Ihre Cookie-Einstellungen und den Zeitpunkt der Entscheidung',
+    duration: 'Bis Sie die Websitedaten löschen',
+    category: 'Notwendig',
+  },
+  {
+    name: 'chat-ai-notice',
+    provider: 'Eigene',
+    storage: 'Local Storage',
+    purpose: 'Merkt, dass Sie den KI-Hinweis im Chatfenster gelesen haben',
+    duration: 'Bis Sie die Websitedaten löschen',
+    category: 'Notwendig',
+  },
+  {
+    name: '_ga',
+    provider: 'Google Analytics',
+    storage: 'Cookie',
+    purpose: 'Unterscheidung von Nutzern',
+    duration: '2 Jahre',
+    category: 'Analyse',
+  },
+  {
+    name: '_ga_*',
+    provider: 'Google Analytics',
+    storage: 'Cookie',
+    purpose: 'Speicherung des Session-Status',
+    duration: '2 Jahre',
+    category: 'Analyse',
+  },
+  {
+    name: '_hjSession*',
+    provider: 'Hotjar (Contentsquare)',
+    storage: 'Cookie',
+    purpose: 'Session-Tracking für Heatmaps',
+    duration: '30 Minuten',
+    category: 'Analyse',
+  },
+  {
+    name: '_hjSessionUser*',
+    provider: 'Hotjar (Contentsquare)',
+    storage: 'Cookie',
+    purpose: 'Benutzer-ID für Hotjar',
+    duration: '1 Jahr',
+    category: 'Analyse',
+  },
+  {
+    name: 'sib_cuid',
+    provider: 'Brevo',
+    storage: 'Cookie',
+    purpose: 'Benutzer-Identifikation',
+    duration: '13 Monate',
+    category: 'Marketing',
+  },
+] as const
 
 const sections = [
   {
@@ -288,82 +368,60 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-foreground mb-3">Cookie-Übersicht</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">
+            Übersicht: Cookies und lokale Speicherung
+          </h3>
           <p className="text-muted-foreground mb-4">
-            Auf unserer Website setzen wir folgende Cookies ein:
+            § 25 TDDDG erfasst jede Speicherung von Informationen auf Ihrem Endgerät &ndash; nicht
+            nur Cookies. Deshalb führen wir hier auch die Einträge im lokalen Speicher
+            (Local Storage) Ihres Browsers auf. Local-Storage-Einträge haben keine
+            technische Ablauffrist; sie bleiben, bis Sie sie oder die Websitedaten löschen.
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-3 px-4 text-foreground font-medium">Cookie-Name</th>
-                  <th className="text-left py-3 px-4 text-foreground font-medium">Anbieter</th>
-                  <th className="text-left py-3 px-4 text-foreground font-medium">Zweck</th>
-                  <th className="text-left py-3 px-4 text-foreground font-medium">Speicherdauer</th>
-                  <th className="text-left py-3 px-4 text-foreground font-medium">Typ</th>
+                  {STORAGE_TABLE_HEADERS.map((header) => (
+                    <th key={header} className="text-left py-3 px-4 text-foreground font-medium">
+                      {header}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">cookie-consent</td>
-                  <td className="py-3 px-4">Eigene</td>
-                  <td className="py-3 px-4">Speichert Ihre Cookie-Einstellungen</td>
-                  <td className="py-3 px-4">1 Jahr</td>
-                  <td className="py-3 px-4">Notwendig</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">_ga</td>
-                  <td className="py-3 px-4">Google Analytics</td>
-                  <td className="py-3 px-4">Unterscheidung von Nutzern</td>
-                  <td className="py-3 px-4">2 Jahre</td>
-                  <td className="py-3 px-4">Analyse</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">_ga_*</td>
-                  <td className="py-3 px-4">Google Analytics</td>
-                  <td className="py-3 px-4">Speicherung des Session-Status</td>
-                  <td className="py-3 px-4">2 Jahre</td>
-                  <td className="py-3 px-4">Analyse</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">_hjSession*</td>
-                  <td className="py-3 px-4">Hotjar</td>
-                  <td className="py-3 px-4">Session-Tracking für Heatmaps</td>
-                  <td className="py-3 px-4">30 Minuten</td>
-                  <td className="py-3 px-4">Analyse</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">_hjSessionUser*</td>
-                  <td className="py-3 px-4">Hotjar</td>
-                  <td className="py-3 px-4">Benutzer-ID für Hotjar</td>
-                  <td className="py-3 px-4">1 Jahr</td>
-                  <td className="py-3 px-4">Analyse</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-3 px-4">sib_cuid</td>
-                  <td className="py-3 px-4">Brevo</td>
-                  <td className="py-3 px-4">Benutzer-Identifikation</td>
-                  <td className="py-3 px-4">13 Monate</td>
-                  <td className="py-3 px-4">Marketing</td>
-                </tr>
+                {STORAGE_ENTRIES.map((entry) => (
+                  <tr key={entry.name} className="border-b border-border/50">
+                    <td className="py-3 px-4">{entry.name}</td>
+                    <td className="py-3 px-4">{entry.provider}</td>
+                    <td className="py-3 px-4">{entry.storage}</td>
+                    <td className="py-3 px-4">{entry.purpose}</td>
+                    <td className="py-3 px-4">{entry.duration}</td>
+                    <td className="py-3 px-4">{entry.category}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
           <p className="text-muted-foreground mt-4 text-sm">
             Sie können Ihre Cookie-Einstellungen jederzeit über den Link &bdquo;Cookie-Einstellungen&ldquo; im Footer dieser Website anpassen.
+            Die Einträge der Anbieter Google Analytics, Hotjar und Brevo entstehen erst, nachdem Sie die
+            jeweilige Einwilligung erteilt haben.
           </p>
         </div>
 
         <div>
           <h3 className="text-lg font-medium text-foreground mb-3">Kontaktformular</h3>
           <p className="text-muted-foreground mb-4">
-            Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+            Wenn Sie uns über das Kontaktformular schreiben, verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse, Ihr Unternehmen, Ihre Nachricht und &ndash; falls angegeben &ndash; Ihre Telefonnummer, um Ihre Anfrage zu beantworten. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
           </p>
           <p className="text-muted-foreground mb-4">
-            Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.
+            Die Angaben werden <strong className="text-foreground">nicht in einer Datenbank gespeichert</strong>, sondern ausschließlich als E-Mail an unser Postfach weitergeleitet. Für den Versand dieser E-Mail nutzen wir die Brevo GmbH, Köpenicker Str. 126, 10179 Berlin, als Auftragsverarbeiter nach Art. 28 DSGVO; die Zustellung erfolgt über Server innerhalb der EU. Ihre Anfrage verbleibt danach in unserem E-Mail-Postfach.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf Ihrer im Formular erteilten Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit für die Zukunft widerrufen können, sowie auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
           </p>
           <p className="text-muted-foreground">
-            Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
+            Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen &ndash; insbesondere Aufbewahrungsfristen &ndash; bleiben unberührt.
           </p>
         </div>
 
@@ -500,31 +558,12 @@ const sections = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-foreground mb-3">Google Fonts</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Schriftarten (Google Fonts, lokal gehostet)</h3>
           <p className="text-muted-foreground mb-4">
-            Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde. Die Nutzung von Google Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der einheitlichen Darstellung des Schriftbildes auf seiner Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Wenn Ihr Browser Google Fonts nicht unterstützt, wird eine Standardschrift von Ihrem Computer genutzt.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Weitere Informationen zu Google Fonts finden Sie unter{' '}
-            <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://developers.google.com/fonts/faq
-            </a>
-            {' '}und in der Datenschutzerklärung von Google:{' '}
-            <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://policies.google.com/privacy?hl=de
-            </a>.
+            Diese Website nutzt zur einheitlichen Darstellung von Schriftarten die Schriftart &bdquo;Inter&ldquo; aus dem Google-Fonts-Projekt. Die Schriftdateien werden nicht von Google-Servern nachgeladen, sondern beim Erstellen der Website heruntergeladen und von unserem eigenen Server ausgeliefert.
           </p>
           <p className="text-muted-foreground">
-            Das Unternehmen verfügt über eine Zertifizierung nach dem &bdquo;EU-US Data Privacy Framework&ldquo; (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{' '}
-            <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://www.dataprivacyframework.gov/participant/5780
-            </a>.
+            Beim Aufruf dieser Website wird deshalb <strong className="text-foreground">keine Verbindung zu Servern von Google aufgebaut</strong> und Ihre IP-Adresse wird zu diesem Zweck nicht an Google übermittelt. Rechtsgrundlage für die lokale Auslieferung ist unser berechtigtes Interesse an einer einheitlichen und datensparsamen Darstellung (Art. 6 Abs. 1 lit. f DSGVO).
           </p>
         </div>
 
@@ -551,6 +590,9 @@ const sections = [
               </li>
             ))}
           </ul>
+          <p className="text-muted-foreground mb-4">
+            Das Buchungsfenster wird <strong className="text-foreground">erst geladen, wenn Sie eine Schaltfläche zur Terminbuchung anklicken</strong>. Bis dahin wird keine Verbindung zu Calendly aufgebaut und es werden keine Daten an Calendly übermittelt. Innerhalb des Buchungsfensters setzt Calendly eigene Cookies und weist Sie darauf mit einem eigenen Hinweis hin.
+          </p>
           <p className="text-muted-foreground mb-4">
             Diese Daten werden an die Server von Calendly in den USA übertragen. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission.
           </p>
@@ -588,7 +630,7 @@ const sections = [
             ))}
           </ul>
           <p className="text-muted-foreground mb-4">
-            Die Chatnachrichten werden zur Verarbeitung an die Server von Anthropic in den USA übermittelt. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission. Die Chatverläufe werden in unserer Datenbank gespeichert, um den Gesprächsverlauf aufrechtzuerhalten und um unseren Service zu verbessern.
+            Die Chatnachrichten werden zur Verarbeitung an die Server von Anthropic in den USA übermittelt. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission; Anthropic verarbeitet die Daten als Auftragsverarbeiter und nutzt sie nicht zum Training seiner Modelle. Die Chatverläufe werden in unserer Datenbank gespeichert, um den Gesprächsverlauf innerhalb einer Sitzung aufrechtzuerhalten und Ihre Anfrage bearbeiten zu können.
           </p>
           <p className="text-muted-foreground mb-4">
             Die Nutzung des Chatbots erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen und Kundenservice) sowie Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer effizienten Kundenkommunikation und der schnellen Beantwortung von Anfragen.
@@ -597,7 +639,7 @@ const sections = [
             Sofern Sie Ihre E-Mail-Adresse im Chat angeben, wird diese zur Kontaktaufnahme und ggf. zur Zusendung weiterer Informationen genutzt. In diesem Fall erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Angabe).
           </p>
           <p className="text-muted-foreground mb-4">
-            Die Chatverläufe werden gespeichert, bis der Zweck für die Datenspeicherung entfällt oder Sie uns zur Löschung auffordern. Sie können jederzeit die Löschung Ihrer Chatdaten verlangen, indem Sie uns unter{' '}
+            Chatverläufe ohne von Ihnen hinterlassene Kontaktdaten löschen wir automatisiert nach <strong className="text-foreground">90 Tagen</strong>. Haben Sie im Chat eine E-Mail-Adresse angegeben, löschen wir den Verlauf nach <strong className="text-foreground">12 Monaten</strong>, sofern daraus kein Vertragsverhältnis entstanden ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen. Unabhängig davon können Sie jederzeit die sofortige Löschung Ihrer Chatdaten verlangen, indem Sie uns unter{' '}
             <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
               nico@carpantier-consulting.de
             </a>
@@ -608,6 +650,39 @@ const sections = [
             <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               https://www.anthropic.com/privacy
             </a>
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    icon: Sparkles,
+    title: '7. Einsatz künstlicher Intelligenz',
+    iconColor: 'text-pink-400',
+    iconBg: 'bg-pink-400/10',
+    content: (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium text-foreground mb-3">KI-generierte Bilder</h3>
+          <p className="text-muted-foreground mb-4">
+            Die fotorealistischen Personen- und Situationsbilder auf dieser Website wurden mit generativer künstlicher Intelligenz erzeugt. Sie zeigen keine realen fotografischen Aufnahmen. Jedes betroffene Bild ist unmittelbar am Bild mit dem Hinweis &bdquo;KI-generiert&ldquo; gekennzeichnet (Art. 50 Abs. 4 der Verordnung (EU) 2024/1689 &ndash; KI-VO).
+          </p>
+          <p className="text-muted-foreground">
+            Eine personenbezogene Datenverarbeitung findet dabei nicht statt: Die Bilder wurden vorab erzeugt und werden als statische Dateien von unserem Server ausgeliefert.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-medium text-foreground mb-3">Automatisierte Kommunikation</h3>
+          <p className="text-muted-foreground mb-4">
+            Der Chat auf dieser Website wird von einem KI-System beantwortet, nicht von einem Menschen. Darauf weisen wir Sie vor der ersten Nachricht hin (Art. 50 Abs. 1 KI-VO). Eine automatisierte Entscheidung im Einzelfall mit rechtlicher Wirkung oder ähnlich erheblicher Beeinträchtigung im Sinne des Art. 22 DSGVO findet nicht statt.
+          </p>
+          <p className="text-muted-foreground">
+            Welche Daten dabei verarbeitet werden, steht im Abschnitt &bdquo;KI-Chatbot (Claude)&ldquo;. Eine Gesamtübersicht über unseren KI-Einsatz finden Sie unter{' '}
+            <Link href="/ki-transparenz" className="text-primary hover:underline">
+              KI-Transparenz
+            </Link>
+            .
           </p>
         </div>
       </div>

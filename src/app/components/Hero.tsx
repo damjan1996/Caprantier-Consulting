@@ -1,6 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import AiGeneratedBadge from '@/components/ui/AiGeneratedBadge'
+import { AI_GENERATED_MEDIA_ATTRS } from '@/components/ui/ai-media'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useCalendly } from '@/hooks/useCalendly'
@@ -76,8 +78,12 @@ export default function Hero() {
                   priority
                   fetchPriority="high"
                   placeholder="blur"
+                  {...AI_GENERATED_MEDIA_ATTRS}
                   quality={85}
                 />
+
+                {/* Transparenzhinweis nach Art. 50 Abs. 4 KI-VO */}
+                <AiGeneratedBadge corner="top-right" />
 
                 {/* Floating Cards */}
                 <div className="absolute bottom-20 left-2 bg-white/95 backdrop-blur-md border border-border p-3 md:p-4 rounded-xl shadow-lg animate-float-slow">

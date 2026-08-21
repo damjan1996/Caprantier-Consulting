@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { MessageCircle, X, Send, Loader2 } from 'lucide-react'
+import Link from 'next/link'
+import { MessageCircle, X, Send, Loader2, Sparkles, ShieldCheck, Trash2 } from 'lucide-react'
 
 interface Message {
   id: string
@@ -14,6 +15,27 @@ const QUICK_REPLIES = [
   'Wie läuft das ab?',
   'Termin buchen',
 ]
+
+/**
+ * Merkt die Kenntnisnahme des KI- und Datenschutzhinweises, damit dieser pro
+ * Browser nur einmal erscheint. Die Version erzwingt ein erneutes Einblenden,
+ * sobald sich der Hinweistext inhaltlich ändert.
+ */
+const CHAT_NOTICE_KEY = 'chat-ai-notice'
+const CHAT_NOTICE_VERSION = '2'
+
+const WELCOME_MESSAGE =
+  'Hallo! Ich bin der KI-Assistent von Carpantier Consulting — kein Mitarbeiter, sondern ein automatisiertes System. '
+  + 'Wie kann ich Ihnen helfen?'
+
+const RATE_LIMIT_MESSAGE =
+  'Sie haben in kurzer Zeit sehr viele Nachrichten gesendet. Bitte versuchen Sie es in einer Minute erneut.'
+
+const DELETED_MESSAGE =
+  'Ihr Chatverlauf wurde gelöscht. Sie können jederzeit ein neues Gespräch beginnen.'
+
+const ERROR_MESSAGE =
+  'Entschuldigung, es ist ein Fehler aufgetreten. Bitte kontaktieren Sie uns direkt unter nico@carpantier-consulting.de'
 
 // Convert URLs, emails, and phone numbers to clickable links
 function linkify(text: string): React.ReactNode[] {
@@ -83,14 +105,21 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [sessionId, setSessionId] = useState<string | null>(null)
+  const [sessionToken, setSessionToken] = useState<string | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [showQuickReplies, setShowQuickReplies] = useState(true)
+  const [noticeAccepted, setNoticeAccepted] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Ensure component only renders after hydration
   useEffect(() => {
     setMounted(true)
+    try {
+      setNoticeAccepted(localStorage.getItem(CHAT_NOTICE_KEY) === CHAT_NOTICE_VERSION)
+    } catch {
+      // Privater Modus o. Ä. — Hinweis wird dann bei jedem Öffnen gezeigt.
+    }
   }, [])
 
   useEffect(() => {
@@ -98,23 +127,26 @@ export default function ChatWidget() {
   }, [messages])
 
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus()
-  }, [isOpen])
+    if (isOpen && noticeAccepted) inputRef.current?.focus()
+  }, [isOpen, noticeAccepted])
 
   useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      setMessages([
-        {
-          id: 'welcome',
-          role: 'assistant',
-          content: 'Hallo! Ich bin der KI-Assistent von Carpantier Consulting. Wie kann ich dir helfen?',
-        },
-      ])
+    if (isOpen && noticeAccepted && messages.length === 0) {
+      setMessages([{ id: 'welcome', role: 'assistant', content: WELCOME_MESSAGE }])
     }
-  }, [isOpen, messages.length])
+  }, [isOpen, noticeAccepted, messages.length])
 
   // Don't render until mounted on client
   if (!mounted) return null
+
+  const acceptNotice = () => {
+    try {
+      localStorage.setItem(CHAT_NOTICE_KEY, CHAT_NOTICE_VERSION)
+    } catch {
+      // Ohne Speicher bleibt die Kenntnisnahme auf diese Sitzung beschränkt.
+    }
+    setNoticeAccepted(true)
+  }
 
   const sendMessage = async (text?: string) => {
     const messageText = text || input.trim()
@@ -145,10 +177,20 @@ export default function ChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: messageText,
-          sessionId,
+          sessionToken,
           pageUrl: window.location.href,
         }),
       })
+
+      // Eigene Behandlung, damit der Hinweis zur Ursache passt.
+      if (response.status === 429) {
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === assistantMsgId ? { ...msg, content: RATE_LIMIT_MESSAGE } : msg
+          )
+        )
+        return
+      }
 
       const contentType = response.headers.get('content-type')
 
@@ -172,8 +214,8 @@ export default function ChatWidget() {
                 try {
                   const data = JSON.parse(line.slice(6))
 
-                  if (data.sessionId) {
-                    setSessionId(data.sessionId)
+                  if (data.sessionToken) {
+                    setSessionToken(data.sessionToken)
                   }
 
                   if (data.text) {
@@ -205,18 +247,16 @@ export default function ChatWidget() {
         // Handle JSON response (quick answers, tool calls)
         const data = await response.json()
 
-        if (response.ok) {
-          setSessionId(data.sessionId)
-          setMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === assistantMsgId
-                ? { ...msg, content: data.message }
-                : msg
-            )
-          )
-        } else {
-          throw new Error('API error')
+        if (!response.ok) {
+          throw new Error(data.error || 'API error')
         }
+
+        setSessionToken(data.sessionToken)
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === assistantMsgId ? { ...msg, content: data.message } : msg
+          )
+        )
       }
     } catch {
       setMessages((prev) =>
@@ -224,13 +264,42 @@ export default function ChatWidget() {
           msg.id === assistantMsgId
             ? {
                 ...msg,
-                content: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte kontaktiere uns direkt unter nico@carpantier-consulting.de',
+                content: ERROR_MESSAGE,
               }
             : msg
         )
       )
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  /**
+   * Löscht den Verlauf serverseitig und lokal.
+   *
+   * Setzt das Recht auf Löschung unmittelbar im Chatfenster um
+   * (Art. 17 Abs. 1 DSGVO), statt es nur in der Datenschutzerklärung zu nennen.
+   */
+  const deleteHistory = async () => {
+    if (isDeleting) return
+    setIsDeleting(true)
+
+    try {
+      if (sessionToken) {
+        await fetch('/api/chat', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionToken }),
+        })
+      }
+    } catch {
+      // Der lokale Verlauf wird trotzdem geleert; die Serverdaten verfallen
+      // spätestens über die Aufbewahrungsfrist.
+    } finally {
+      setSessionToken(null)
+      setMessages([{ id: 'deleted', role: 'assistant', content: DELETED_MESSAGE }])
+      setShowQuickReplies(true)
+      setIsDeleting(false)
     }
   }
 
@@ -249,9 +318,15 @@ export default function ChatWidget() {
         className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-all hover:bg-blue-700 hover:scale-105 ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         }`}
-        aria-label="Chat öffnen"
+        aria-label="KI-Chat öffnen — Sie chatten mit einem KI-Assistenten, nicht mit einem Menschen"
+        title="KI-Chat öffnen"
       >
         <MessageCircle className="h-6 w-6" />
+        {/* Kennzeichnung nach Art. 50 Abs. 1 KI-VO — bereits am geschlossenen Widget sichtbar */}
+        <span className="absolute -top-1 -right-1 flex items-center gap-0.5 rounded-full bg-white px-1.5 py-0.5 text-[9px] font-bold leading-none text-blue-700 shadow-sm ring-1 ring-blue-600/20">
+          <Sparkles className="h-2 w-2" aria-hidden="true" />
+          KI
+        </span>
       </button>
 
       {/* Chat Window */}
@@ -267,19 +342,91 @@ export default function ChatWidget() {
               <MessageCircle className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white text-sm">Carpantier Consulting</h3>
-              <p className="text-xs text-white/80">Meist sofortige Antwort</p>
+              <h3 className="font-semibold text-white text-sm">KI-Assistent</h3>
+              <p className="text-xs text-white/80">Automatisierte Antworten · Carpantier Consulting</p>
             </div>
           </div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="rounded-full p-1 text-white/80 hover:bg-white/20 hover:text-white"
-            aria-label="Schließen"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-1">
+            {noticeAccepted && (
+              <button
+                onClick={deleteHistory}
+                disabled={isDeleting}
+                className="rounded-full p-1 text-white/80 hover:bg-white/20 hover:text-white disabled:opacity-50"
+                aria-label="Chatverlauf löschen"
+                title="Chatverlauf löschen (Art. 17 DSGVO)"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            )}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="rounded-full p-1 text-white/80 hover:bg-white/20 hover:text-white"
+              aria-label="Schließen"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
+        {/* KI- und Datenschutzhinweis: erscheint vor der ersten Nachricht
+            (Art. 50 Abs. 1 KI-VO, Art. 13 DSGVO) */}
+        {!noticeAccepted ? (
+          <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex h-full flex-col">
+              <div className="mb-3 flex items-center gap-2 text-foreground">
+                <ShieldCheck className="h-5 w-5 text-blue-600" aria-hidden="true" />
+                <h4 className="text-sm font-semibold">Bevor Sie starten</h4>
+              </div>
+              <ul className="space-y-2.5 text-xs leading-relaxed text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" />
+                  <span>
+                    Sie schreiben mit einem <strong className="font-semibold text-foreground">KI-Assistenten</strong>,
+                    nicht mit einem Menschen. Antworten sind automatisiert erzeugt und können Fehler enthalten.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" />
+                  <span>
+                    Ihre Nachrichten werden zur Beantwortung an Anthropic (USA) übermittelt und bei uns
+                    gespeichert. Geben Sie bitte keine sensiblen Daten ein.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" />
+                  <span>
+                    Nennen Sie im Chat Ihre E-Mail-Adresse, speichern wir diese, um Sie zu kontaktieren.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" />
+                  <span>
+                    Ihren Verlauf können Sie jederzeit über das Papierkorb-Symbol oben im
+                    Chatfenster löschen.
+                  </span>
+                </li>
+              </ul>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Details:{' '}
+                <Link href="/datenschutz" className="text-primary underline hover:text-primary/80">
+                  Datenschutzerklärung
+                </Link>{' '}
+                und{' '}
+                <Link href="/ki-transparenz" className="text-primary underline hover:text-primary/80">
+                  KI-Transparenz
+                </Link>
+                .
+              </p>
+              <button
+                onClick={acceptNotice}
+                className="mt-5 w-full rounded-full bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+              >
+                Verstanden — Chat starten
+              </button>
+            </div>
+          </div>
+        ) : (
+        <>
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {messages.map((msg) => (
@@ -343,7 +490,19 @@ export default function ChatWidget() {
               <Send className="h-4 w-4" />
             </button>
           </div>
+          <p className="mt-2 text-center text-[10px] leading-snug text-muted-foreground">
+            KI-generierte Antworten — Fehler möglich.{' '}
+            <Link href="/datenschutz" className="underline hover:text-foreground">
+              Datenschutz
+            </Link>{' '}
+            ·{' '}
+            <Link href="/ki-transparenz" className="underline hover:text-foreground">
+              KI-Transparenz
+            </Link>
+          </p>
         </div>
+        </>
+        )}
       </div>
     </>
   )

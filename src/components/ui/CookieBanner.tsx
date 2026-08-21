@@ -1,19 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Cookie, X, Settings, Check } from 'lucide-react'
-import { useCookieConsent, CookieConsent } from '@/hooks/useCookieConsent'
+import { Cookie, X, Settings, Check, Ban } from 'lucide-react'
+import { CookieConsent } from '@/hooks/useCookieConsent'
+import { useCookieConsentContext } from '@/components/providers/CookieConsentProvider'
 import { Button } from './Button'
 
 export default function CookieBanner() {
-  const { showBanner, acceptAll, acceptNecessary, updateConsent, setShowBanner } = useCookieConsent()
+  const { showBanner, consent, acceptAll, acceptNecessary, updateConsent } = useCookieConsentContext()
   const [showSettings, setShowSettings] = useState(false)
   const [customConsent, setCustomConsent] = useState<CookieConsent>({
     necessary: true,
     analytics: false,
     marketing: false,
   })
+
+  // Bereits erteilte Einwilligung vorbelegen, damit ein erneutes Öffnen der
+  // Einstellungen die getroffene Auswahl nicht stillschweigend zurücksetzt.
+  useEffect(() => {
+    if (consent) setCustomConsent(consent)
+  }, [consent])
 
   if (!showBanner) return null
 
@@ -42,27 +49,39 @@ export default function CookieBanner() {
                     <h3 className="text-xl font-semibold text-foreground mb-2">
                       Cookie-Einstellungen
                     </h3>
+                    {/* Impressum und Datenschutz gehören in die erste Ebene:
+                        Der Backdrop legt sich über die Seite samt Footer, sonst
+                        wären beide bis zur Entscheidung nicht erreichbar
+                        (§ 5 DDG „unmittelbar erreichbar“, Art. 13 DSGVO). */}
                     <p className="text-muted-foreground text-sm md:text-base mb-6">
                       Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
                       Einige Cookies sind notwendig für den Betrieb der Website, während andere uns helfen,
                       die Website zu verbessern und Ihnen personalisierte Inhalte anzubieten.{' '}
                       <Link href="/datenschutz" className="text-primary underline hover:text-primary/80">
-                        Mehr erfahren
+                        Datenschutzerklärung
+                      </Link>{' '}
+                      ·{' '}
+                      <Link href="/impressum" className="text-primary underline hover:text-primary/80">
+                        Impressum
                       </Link>
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button onClick={acceptAll} className="flex-1 sm:flex-none">
+                    {/* Annehmen und Ablehnen sind bewusst identisch gestaltet:
+                        eine hervorgehobene Zustimmung macht die Einwilligung unfreiwillig
+                        (Art. 4 Nr. 11 DSGVO, Beschluss der DSK zu Einwilligungsbannern). */}
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      <Button onClick={acceptAll} className="w-full">
                         <Check className="h-4 w-4 mr-2" />
                         Alle akzeptieren
                       </Button>
-                      <Button variant="secondary" onClick={acceptNecessary} className="flex-1 sm:flex-none">
-                        Nur notwendige
+                      <Button onClick={acceptNecessary} className="w-full">
+                        <Ban className="h-4 w-4 mr-2" />
+                        Alle ablehnen
                       </Button>
                       <Button
                         variant="outline"
                         onClick={() => setShowSettings(true)}
-                        className="flex-1 sm:flex-none"
+                        className="w-full"
                       >
                         <Settings className="h-4 w-4 mr-2" />
                         Einstellungen
@@ -101,7 +120,8 @@ export default function CookieBanner() {
                           Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
                         </p>
                         <p className="text-xs text-muted-foreground/70">
-                          Dienste: Cookie-Einstellungen, KI-Chatbot, Calendly (Terminbuchung)
+                          Dienste: Speicherung Ihrer Cookie-Einstellungen. Der KI-Chatbot und das
+                          Calendly-Buchungsfenster laden erst, wenn Sie sie selbst öffnen.
                         </p>
                       </div>
                       <div className="shrink-0 ml-4">
@@ -168,8 +188,9 @@ export default function CookieBanner() {
                     <Check className="h-4 w-4 mr-2" />
                     Auswahl speichern
                   </Button>
-                  <Button variant="secondary" onClick={acceptAll} className="flex-1">
-                    Alle akzeptieren
+                  <Button variant="outline" onClick={acceptNecessary} className="flex-1">
+                    <Ban className="h-4 w-4 mr-2" />
+                    Alle ablehnen
                   </Button>
                 </div>
 
@@ -177,6 +198,10 @@ export default function CookieBanner() {
                   Weitere Informationen finden Sie in unserer{' '}
                   <Link href="/datenschutz" className="text-primary underline hover:text-primary/80">
                     Datenschutzerklärung
+                  </Link>{' '}
+                  und im{' '}
+                  <Link href="/impressum" className="text-primary underline hover:text-primary/80">
+                    Impressum
                   </Link>
                 </p>
               </div>

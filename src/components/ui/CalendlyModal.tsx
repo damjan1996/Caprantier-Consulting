@@ -2,8 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { PopupModal, useCalendlyEventListener } from 'react-calendly'
+import { trackCalendlyScheduled } from '@/lib/analytics'
 
-const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min?hide_gdpr_banner=1'
+// hide_gdpr_banner darf NICHT gesetzt werden: Calendly setzt eigene Cookies und
+// muss dafuer selbst einwilligen lassen (§ 25 Abs. 1 TDDDG).
+const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min'
 
 interface CalendlyModalProps {
   isOpen: boolean
@@ -20,8 +23,8 @@ export function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
   // Event listener for analytics
   useCalendlyEventListener({
     onEventScheduled: (e) => {
-      console.log('Event scheduled:', e.data.payload)
-      // Analytics tracking hier hinzufügen
+      // Kein Logging des Payloads: er enthaelt Name und E-Mail-Adresse des Buchenden.
+      trackCalendlyScheduled()
     },
   })
 

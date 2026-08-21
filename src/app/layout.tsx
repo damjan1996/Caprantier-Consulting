@@ -319,7 +319,7 @@ export default function RootLayout({
     <html lang="de" className="dark">
       <head>
         {/* Google Analytics mit Consent Mode v2 - DSGVO-konform */}
-        {/* Schritt 1: Consent-Defaults setzen (vor gtag.js!) */}
+        {/* Consent-Defaults setzen — rein lokal, kein Netzwerk-Request */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -353,51 +353,16 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Schritt 2: gtag.js laden */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-1JZ5EDZ26R'}`} />
-        {/* Schritt 3: GA4 konfigurieren + Consent-Listener */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-1JZ5EDZ26R'}', {
-                anonymize_ip: true,
-                send_page_view: true
-              });
+        {/*
+          gtag.js selbst wird NICHT hier geladen. Der Request an googletagmanager.com
+          würde die IP-Adresse des Besuchers vor jeder Einwilligung an Google übertragen
+          (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Das Laden und Konfigurieren
+          übernimmt TrackingScripts erst nach erteilter Analyse-Einwilligung
+          (Google Consent Mode "basic").
+        */}
 
-              // Nativer Consent-Update-Listener (funktioniert ohne React-Hydration)
-              window.addEventListener('cookie-consent-update', function() {
-                try {
-                  var s = localStorage.getItem('cookie-consent');
-                  if (s) {
-                    var p = JSON.parse(s);
-                    if (p.consent) {
-                      gtag('consent', 'update', {
-                        'analytics_storage': p.consent.analytics ? 'granted' : 'denied',
-                        'ad_storage': p.consent.marketing ? 'granted' : 'denied',
-                        'ad_user_data': p.consent.marketing ? 'granted' : 'denied',
-                        'ad_personalization': p.consent.marketing ? 'granted' : 'denied'
-                      });
-                      if (p.consent.analytics) {
-                        gtag('event', 'page_view', {
-                          page_title: document.title,
-                          page_location: window.location.href,
-                          page_path: window.location.pathname
-                        });
-                      }
-                    }
-                  }
-                } catch(e) {}
-              });
-            `,
-          }}
-        />
-
-        {/* Preconnect für externe Ressourcen - Performance Optimierung */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect nur zu Zielen ohne Drittanbieter-Datenabfluss.
+            Schriften werden über next/font lokal ausgeliefert. */}
         <link rel="dns-prefetch" href="https://calendly.com" />
         <link rel="dns-prefetch" href="https://assets.calendly.com" />
 
@@ -433,6 +398,17 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Carpantier" />
+
+        {/*
+          Ohne JavaScript bleiben alle FadeIn-Container auf opacity:0 stehen —
+          Impressum und Datenschutzerklärung wären dann zwar im HTML vorhanden,
+          aber für Besucher unsichtbar. § 5 DDG verlangt „leicht erkennbar“,
+          Art. 12 Abs. 1 DSGVO „leicht zugänglich“. Deshalb blenden wir die
+          Einblende-Animation ohne JavaScript vollständig aus.
+        */}
+        <noscript>
+          <style>{`[data-fade-in]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
 
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
