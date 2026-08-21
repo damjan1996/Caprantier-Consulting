@@ -13,7 +13,6 @@ Allow: /leistungen/
 Allow: /blog
 Allow: /blog/
 Allow: /glossar
-Allow: /case-studies
 Allow: /ueber-uns
 Allow: /kontakt
 

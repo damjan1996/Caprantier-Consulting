@@ -24,7 +24,6 @@ const navigation = {
     { name: 'B2B Telefonakquise', href: '/leistungen' },
     { name: 'Leadgenerierung', href: '/leistungen' },
     { name: 'Vertriebsoutsourcing', href: '/leistungen' },
-    { name: 'Case Studies', href: '/case-studies' },
   ],
   cities: cities.map((city) => ({
     name: `Vertrieb ${city.name}`,

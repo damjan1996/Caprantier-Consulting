@@ -204,13 +204,12 @@ const jsonLd = {
         { '@type': 'State', name: 'Sachsen' },
         { '@type': 'Country', name: 'Deutschland' },
       ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        reviewCount: '12',
-        bestRating: '5',
-        worstRating: '1',
-      },
+      // Bewusst kein aggregateRating: Die frueher hier gesetzten 5,0 Sterne aus
+      // 12 Bewertungen waren frei erfunden. Erfundene Bewertungsdaten sind eine
+      // irrefuehrende geschaeftliche Handlung (§ 5 UWG) und verstossen zugleich
+      // gegen die Richtlinien fuer strukturierte Daten. Google wertet
+      // aggregateRating bei LocalBusiness ohnehin nur fuer Seiten aus, die
+      // Bewertungen ueber andere Unternehmen sammeln.
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

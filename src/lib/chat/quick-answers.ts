@@ -49,13 +49,15 @@ Voraussetzung: Gutes Angebot, zufriedene Kunden - es fehlt nur der konstante Zus
   },
   {
     triggers: ['wie schnell', 'erste ergebnisse', 'wann'],
-    answer: `Typischer Zeitplan:
+    // Bewusst ohne Zahlen zu Ergebnissen oder Amortisation: unbelegte
+    // Erfolgsversprechen sind irreführend im Sinne des § 5 UWG — erst recht,
+    // wenn ein KI-Assistent sie automatisiert ausgibt.
+    answer: `So läuft der Start ab:
 
-• Woche 1: Onboarding & Setup
-• Woche 2: Erste Termine
-• Monat 2-3: ROI erreicht
+• Woche 1: Onboarding, Zielgruppe und Gesprächsleitfaden
+• Ab Woche 2: aktive Akquise und erste Terminvereinbarungen
 
-Die meisten Kunden sehen erste Termine schon in der ersten Akquise-Woche.`,
+Wie schnell sich das rechnet, hängt von Zielgruppe, Angebot und Deal-Wert ab. Das sehen wir uns im Strategiegespräch konkret für Ihren Fall an.`,
   },
   {
     triggers: ['was macht ihr', 'was bietet', 'leistungen', 'services', 'dienstleistung'],

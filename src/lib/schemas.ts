@@ -1,70 +1,16 @@
 import type { City } from './cities'
 
-// Testimonials data for schema generation - mit Vertrieb-Keywords
-const TESTIMONIALS_DATA = [
-  {
-    id: 1,
-    name: 'Michael Weber',
-    company: 'WebTech Solutions GmbH',
-    location: 'Köln',
-    rating: 5,
-    text: 'Carpantier Consulting ist die beste Vertriebsagentur in Köln. Innerhalb von 3 Monaten hatten wir 12 qualifizierte Termine mit Entscheidern, von denen 4 zu Neukunden wurden. Vertrieb auslagern war die beste Entscheidung für unser Unternehmen.',
-  },
-  {
-    id: 2,
-    name: 'Sandra Müller',
-    company: 'Digital First Agency',
-    location: 'Düsseldorf',
-    rating: 5,
-    text: 'Endlich planbarer Vertrieb! Wir haben jahrelang versucht, selbst Vertrieb zu machen - ohne Erfolg. Mit Carpantier als Vertriebspartner haben wir jetzt einen konstanten Strom an qualifizierten Leads. Die Vertriebsagentur versteht unser Geschäft.',
-  },
-  {
-    id: 3,
-    name: 'Thomas Schneider',
-    company: 'Schneider IT Consulting',
-    location: 'Frankfurt',
-    rating: 5,
-    text: 'Als Einzelunternehmer hatte ich keine Zeit für Vertrieb. Carpantier ermöglicht mir, mich auf mein Kerngeschäft zu konzentrieren, während sie meinen Vertrieb übernehmen. ROI nach 2 Monaten erreicht. Beste Vertriebsagentur in Frankfurt!',
-  },
-]
-
-// Generate Review Schema for Testimonials
-export function generateTestimonialsSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Carpantier Consulting',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: TESTIMONIALS_DATA.length.toString(),
-      bestRating: '5',
-      worstRating: '1',
-    },
-    review: TESTIMONIALS_DATA.map((t) => ({
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: t.rating.toString(),
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: t.name,
-      },
-      reviewBody: t.text,
-      publisher: {
-        '@type': 'Organization',
-        name: t.company,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: t.location,
-          addressCountry: 'DE',
-        },
-      },
-    })),
-  }
-}
+/*
+ * Kein Bewertungs-Markup.
+ *
+ * Hier standen bis zuletzt drei erfundene Kundenstimmen samt Namen, Firmen und
+ * 5-Sterne-Wertungen, die als Review- und AggregateRating-Markup ausgegeben
+ * wurden. Erfundene Bewertungen sind irrefuehrend im Sinne des § 5 UWG und
+ * verstossen gegen die Richtlinien fuer strukturierte Daten.
+ *
+ * Bewertungs-Markup darf erst zurueckkehren, wenn es echte, schriftlich
+ * freigegebene Kundenstimmen gibt, die auf der Seite auch sichtbar sind.
+ */
 
 // Generate city-specific FAQs - optimiert für "Vertrieb [Stadt]" Keywords
 function getCityFAQs(city: City) {
