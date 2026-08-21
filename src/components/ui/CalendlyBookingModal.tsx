@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { PopupModal, useCalendlyEventListener } from 'react-calendly'
 import { trackCalendlyScheduled } from '@/lib/analytics'
 
@@ -17,10 +18,16 @@ const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min'
 
 type CalendlyBookingModalProps = {
   onClose: () => void
-  rootElement: HTMLElement
 }
 
-export default function CalendlyBookingModal({ onClose, rootElement }: CalendlyBookingModalProps) {
+export default function CalendlyBookingModal({ onClose }: CalendlyBookingModalProps) {
+  // Die Komponente wird ausschließlich im Browser geladen (dynamic ssr:false),
+  // deshalb steht document beim ersten Rendern bereits zur Verfügung. Der
+  // Wert wird einmal ermittelt und nicht erneut gesucht.
+  const [rootElement] = useState<HTMLElement>(
+    () => document.getElementById('__next') || document.body
+  )
+
   useCalendlyEventListener({
     // Kein Logging des Payloads: er enthält Name und E-Mail-Adresse des Buchenden.
     onEventScheduled: () => trackCalendlyScheduled(),

@@ -25,7 +25,12 @@ export function useCookieConsent() {
   const [consent, setConsent] = useState<CookieConsent | null>(null)
   const [showBanner, setShowBanner] = useState(false)
 
-  // Load consent from localStorage on mount
+  // Die gespeicherte Einwilligung liegt in localStorage und ist auf dem
+  // Server nicht lesbar. Der Banner startet deshalb bewusst im Zustand
+  // "unbekannt" und wird erst im Browser aufgelöst — andernfalls würde die
+  // erste Ausgabe entweder den Banner fälschlich zeigen oder fälschlich
+  // unterdrücken.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const stored = localStorage.getItem(COOKIE_CONSENT_KEY)
     if (stored) {
@@ -45,6 +50,7 @@ export function useCookieConsent() {
       setShowBanner(true)
     }
   }, [])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const saveConsent = useCallback((newConsent: CookieConsent) => {
     const data = {

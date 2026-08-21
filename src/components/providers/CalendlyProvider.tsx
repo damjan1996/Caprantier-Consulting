@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import CalendlyConsentCard from '@/components/ui/CalendlyConsentCard'
 
@@ -33,11 +33,6 @@ const CalendlyContext = createContext<CalendlyContextType | null>(null)
 
 export function CalendlyProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<Stage>('closed')
-  const [rootElement, setRootElement] = useState<HTMLElement | null>(null)
-
-  useEffect(() => {
-    setRootElement(document.getElementById('__next') || document.body)
-  }, [])
 
   const openCalendly = useCallback(() => setStage('notice'), [])
   const closeCalendly = useCallback(() => setStage('closed'), [])
@@ -57,9 +52,7 @@ export function CalendlyProvider({ children }: { children: ReactNode }) {
         <CalendlyConsentCard onAccept={acceptCalendly} onDismiss={closeCalendly} />
       )}
 
-      {stage === 'booking' && rootElement && (
-        <CalendlyBookingModal onClose={closeCalendly} rootElement={rootElement} />
-      )}
+      {stage === 'booking' && <CalendlyBookingModal onClose={closeCalendly} />}
     </CalendlyContext.Provider>
   )
 }

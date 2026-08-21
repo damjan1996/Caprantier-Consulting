@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -29,10 +29,13 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE
   const paginatedPosts = filteredPosts.slice(startIndex, startIndex + POSTS_PER_PAGE)
 
-  // Reset to page 1 when category changes
-  useEffect(() => {
+  // Beim Wechsel der Kategorie beginnt die Liste wieder auf Seite 1. Das
+  // passiert im Klickhandler und nicht in einem Effekt: sonst rendert die
+  // Seite einmal mit der alten Seitenzahl, bevor der Effekt sie korrigiert.
+  const selectCategory = (category: string | null) => {
+    setSelectedCategory(category)
     setCurrentPage(1)
-  }, [selectedCategory])
+  }
 
   // Scroll to top when page changes
   const handlePageChange = (page: number) => {
@@ -48,7 +51,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
           <FadeIn delay={0}>
             <div className="flex flex-wrap justify-center gap-2">
               <button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => selectCategory(null)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                   selectedCategory === null
                     ? 'bg-primary/20 text-primary border border-primary/30'
@@ -60,7 +63,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => selectCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
                     selectedCategory === category
                       ? 'bg-primary/20 text-primary border border-primary/30'

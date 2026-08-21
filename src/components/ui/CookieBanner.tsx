@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Cookie, X, Settings, Check, Ban } from 'lucide-react'
 import { CookieConsent } from '@/hooks/useCookieConsent'
@@ -18,9 +18,12 @@ export default function CookieBanner() {
 
   // Bereits erteilte Einwilligung vorbelegen, damit ein erneutes Öffnen der
   // Einstellungen die getroffene Auswahl nicht stillschweigend zurücksetzt.
-  useEffect(() => {
+  // Das passiert beim Öffnen und nicht in einem Effekt: die Schalter zeigen
+  // sonst für einen Renderdurchlauf die Grundeinstellung statt der Auswahl.
+  const openSettings = () => {
     if (consent) setCustomConsent(consent)
-  }, [consent])
+    setShowSettings(true)
+  }
 
   if (!showBanner) return null
 
@@ -80,7 +83,7 @@ export default function CookieBanner() {
                       </Button>
                       <Button
                         variant="outline"
-                        onClick={() => setShowSettings(true)}
+                        onClick={openSettings}
                         className="w-full"
                       >
                         <Settings className="h-4 w-4 mr-2" />

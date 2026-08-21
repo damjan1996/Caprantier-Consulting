@@ -84,3 +84,11 @@ logs
 .worktrees/
 .security-key
 logs/security/
+
+# Playwright
+/tests/results/
+/playwright-report/
+/.playwright-mcp/
+
+# Claude Code Arbeitsverzeichnisse
+.claude/worktrees/

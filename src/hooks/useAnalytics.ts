@@ -10,7 +10,10 @@ import { useWebVitals } from './useWebVitals'
  */
 export function usePageTracking() {
   const pathname = usePathname()
-  const startTime = useRef<number>(Date.now())
+  // Bewusst ohne Startwert: Date.now() im Render wäre nicht idempotent. Der
+  // Effekt unten setzt den Zeitpunkt beim ersten Lauf und bei jedem
+  // Seitenwechsel.
+  const startTime = useRef<number>(0)
 
   // Track page views on route change
   useEffect(() => {

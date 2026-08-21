@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Shield, Eye, Server, Cookie, Calendar, UserCheck, AlertCircle, Lock, FileText, Mail, Ban, Globe, BarChart3, Sparkles } from 'lucide-react'
+import { Shield, Eye, Server, Cookie, UserCheck, Lock, Ban, Globe, BarChart3, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
 

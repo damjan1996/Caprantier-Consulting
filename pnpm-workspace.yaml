@@ -1,0 +1,9 @@
+# pnpm 11 liest die Einstellung nicht mehr aus dem "pnpm"-Feld in package.json.
+# Nur diese Pakete duerfen Installations-Skripte ausfuehren.
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - esbuild
+  - prisma
+  - puppeteer
+  - sharp

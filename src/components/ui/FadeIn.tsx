@@ -34,6 +34,10 @@ export default function FadeIn({
   useEffect(() => {
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    // Die Einstellung des Betriebssystems steht auf dem Server nicht zur
+    // Verfügung. Sie im Render zu lesen würde eine Hydration-Abweichung
+    // erzeugen, deshalb bleibt es beim Setzen im Effekt.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefersReducedMotion(mediaQuery.matches)
 
     if (mediaQuery.matches || disabled) {
