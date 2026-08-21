@@ -32,7 +32,15 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  // Custom Headers für SEO & Security
+  /**
+   * Sicherheits- und Cache-Header.
+   *
+   * Bewusst die einzige Stelle im Projekt, an der Sicherheits-Header gesetzt
+   * werden. Zuvor standen dieselben Header zusaetzlich in vercel.json — mit
+   * widerspruechlichen Werten (X-Frame-Options: SAMEORIGIN hier, DENY dort).
+   * Zwei Quellen fuer denselben Header sind nicht pruefbar, deshalb haelt
+   * vercel.json jetzt nur noch Region und Cron-Zeitplan.
+   */
   async headers() {
     // Content Security Policy.
     //
@@ -40,46 +48,70 @@ const nextConfig = {
     // das der Browser die IP-Adresse der Besucher senden darf. Hosts, die erst
     // nach einer Einwilligung geladen werden (Analytics, Calendly), müssen
     // trotzdem gelistet sein — die CSP erlaubt sie, geladen werden sie aber
-    // ausschließlich durch TrackingScripts bzw. durch Öffnen des Buchungsfensters.
+    // ausschließlich durch TrackingScripts bzw. durch die Zwischenkarte vor
+    // dem Buchungsfenster.
     //
     // Nicht gelistet und auch nicht nötig:
     // - fonts.googleapis.com / fonts.gstatic.com: next/font liefert Inter beim
     //   Build lokal aus, zur Laufzeit geht kein Request an Google (§ 25 TDDDG).
     // - api.anthropic.com: der Chat läuft serverseitig über /api/chat.
+    // - t.contentsquare.net: Hotjar wurde ersatzlos entfernt.
+
+    // 'unsafe-eval' braucht ausschließlich der Entwicklungsserver (React
+    // Refresh). Im Produktionsbuild ist es eine offene Tür für XSS und deshalb
+    // nicht gesetzt.
+    const isDev = process.env.NODE_ENV === 'development'
+    const scriptSrc = [
+      "'self'",
+      // TODO: durch eine Nonce ersetzen. Dafür muss eine Middleware pro Antwort
+      // eine Nonce erzeugen und an next/script durchreichen — das erzwingt
+      // dynamisches Rendering und wird deshalb getrennt umgesetzt.
+      "'unsafe-inline'",
+      ...(isDev ? ["'unsafe-eval'"] : []),
+      'https://assets.calendly.com',
+      'https://www.googletagmanager.com',
+      'https://www.google-analytics.com',
+      'https://sibautomation.com',
+    ].join(' ')
+
     const cspDirectives = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://www.googletagmanager.com https://www.google-analytics.com https://t.contentsquare.net https://sibautomation.com",
+      `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
       // Kein pauschales `https:`/`http:`: Bilder kommen ausschließlich vom
       // eigenen Server, Calendly liefert Avatare im Buchungs-Iframe.
       "img-src 'self' data: blob: https://assets.calendly.com https://*.calendly.com",
       "font-src 'self'",
-      "connect-src 'self' https://calendly.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://t.contentsquare.net https://sibautomation.com",
+      "connect-src 'self' https://calendly.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://sibautomation.com",
       "frame-src 'self' https://calendly.com",
-      "frame-ancestors 'self'",
+      // Niemand darf diese Seite einbetten. Deckungsgleich mit
+      // X-Frame-Options: DENY weiter unten — beide Angaben müssen dasselbe
+      // sagen, sonst entscheidet der Browser je nach Version anders.
+      "frame-ancestors 'none'",
       "form-action 'self'",
       "base-uri 'self'",
       "object-src 'none'",
-      "upgrade-insecure-requests",
+      'upgrade-insecure-requests',
     ].join('; ')
+
+    const cacheForever = [
+      {
+        key: 'Cache-Control',
+        value: 'public, max-age=31536000, immutable',
+      },
+    ]
 
     return [
       {
         source: '/:path*',
         headers: [
-          // HSTS - Enforce HTTPS
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains; preload',
+            value: 'max-age=63072000; includeSubDomains; preload',
           },
-          // Content Security Policy
           {
             key: 'Content-Security-Policy',
             value: cspDirectives,
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
           },
           {
             key: 'X-Content-Type-Options',
@@ -87,11 +119,7 @@ const nextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            value: 'DENY',
           },
           {
             key: 'Referrer-Policy',
@@ -99,39 +127,24 @@ const nextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
           },
-        ],
-      },
-      {
-        // Cache für statische Assets
-        source: '/images/:path*',
-        headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
           },
-        ],
-      },
-      {
-        source: '/logo/:path*',
-        headers: [
+          // X-XSS-Protection ist bewusst nicht gesetzt: Der Filter existiert in
+          // keinem aktuellen Browser mehr und konnte selbst Lücken aufreißen.
+          // Die Aufgabe übernimmt die CSP.
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },
-      {
-        // Cache für Fonts
-        source: '/:path*.woff2',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      { source: '/images/:path*', headers: cacheForever },
+      { source: '/logo/:path*', headers: cacheForever },
+      { source: '/:path*.woff2', headers: cacheForever },
     ]
   },
 

@@ -141,7 +141,7 @@ export default function CookieBanner() {
                           Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen.
                         </p>
                         <p className="text-xs text-muted-foreground/70">
-                          Dienste: Google Analytics, Hotjar
+                          Dienst: Google Analytics
                         </p>
                       </div>
                       <div className="shrink-0 ml-4">

@@ -13,7 +13,6 @@ const COOKIE_CONSENT_KEY = 'cookie-consent'
 
 // Environment variables for tracking IDs
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-const CONTENTSQUARE_ID = process.env.NEXT_PUBLIC_CONTENTSQUARE_ID
 const BREVO_CLIENT_KEY = process.env.NEXT_PUBLIC_BREVO_CLIENT_KEY
 
 export default function TrackingScripts() {
@@ -104,13 +103,6 @@ export default function TrackingScripts() {
         </>
       )}
 
-      {/* Hotjar / Contentsquare - nur bei Analytics-Einwilligung */}
-      {consent?.analytics && CONTENTSQUARE_ID && (
-        <Script
-          src={`https://t.contentsquare.net/uxa/${CONTENTSQUARE_ID}.js`}
-          strategy="lazyOnload"
-        />
-      )}
 
       {/* Brevo (Sendinblue) - nur bei Marketing-Einwilligung */}
       {consent?.marketing && BREVO_CLIENT_KEY && (

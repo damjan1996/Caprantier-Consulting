@@ -9,7 +9,11 @@ export type CookieConsent = {
 }
 
 const COOKIE_CONSENT_KEY = 'cookie-consent'
-const COOKIE_CONSENT_VERSION = '2' // Updated for Google Analytics, Hotjar, Brevo
+// Version der Einwilligung. Erhoehen, sobald eine Kategorie einen zusaetzlichen
+// Dienst bekommt — dann muss neu eingewilligt werden. Beim Wegfall eines
+// Dienstes bleibt die Version stehen: eine bestehende Einwilligung deckt den
+// kleineren Umfang weiterhin ab.
+const COOKIE_CONSENT_VERSION = '2'
 
 const defaultConsent: CookieConsent = {
   necessary: true, // Always required

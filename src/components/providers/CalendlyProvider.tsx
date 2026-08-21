@@ -1,11 +1,26 @@
 'use client'
 
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react'
-import { trackCalendlyScheduled } from '@/lib/analytics'
+import dynamic from 'next/dynamic'
+import CalendlyConsentCard from '@/components/ui/CalendlyConsentCard'
 
-// hide_gdpr_banner darf NICHT gesetzt werden: Calendly setzt eigene Cookies und
-// muss dafuer selbst einwilligen lassen (§ 25 Abs. 1 TDDDG).
-const CALENDLY_URL = 'https://calendly.com/nico-carpantier-consulting/30min'
+/**
+ * Calendly wird in zwei Schritten geladen.
+ *
+ * Ein Klick auf einen Buchungs-Button öffnet zunächst nur eine Zwischenkarte,
+ * die den Drittlandtransfer erklärt. Erst der zweite Klick lädt das Paket
+ * react-calendly nach und öffnet das Buchungsfenster. Ohne diesen Zwischenschritt
+ * ginge die IP-Adresse des Besuchers ungefragt an einen Anbieter in den USA.
+ */
+
+// Das Paket wird bewusst erst nach der Zustimmung geholt: Ein statischer Import
+// würde react-calendly in jedes Seiten-Bundle ziehen, obwohl die meisten
+// Besucher nie buchen.
+const CalendlyBookingModal = dynamic(() => import('@/components/ui/CalendlyBookingModal'), {
+  ssr: false,
+})
+
+type Stage = 'closed' | 'notice' | 'booking'
 
 interface CalendlyContextType {
   openCalendly: () => void
@@ -16,63 +31,34 @@ interface CalendlyContextType {
 
 const CalendlyContext = createContext<CalendlyContextType | null>(null)
 
-// Calendly Modal Component - only loaded on client
-function CalendlyModal({ isOpen, onClose, rootElement }: {
-  isOpen: boolean
-  onClose: () => void
-  rootElement: HTMLElement
-}) {
-  const { PopupModal, useCalendlyEventListener } = require('react-calendly')
-
-  useCalendlyEventListener({
-    onEventScheduled: (e: { data: { payload: unknown } }) => {
-      // Kein Logging des Payloads: er enthaelt Name und E-Mail-Adresse des Buchenden.
-      trackCalendlyScheduled()
-    },
-  })
-
-  return (
-    <PopupModal
-      url={CALENDLY_URL}
-      onModalClose={onClose}
-      open={isOpen}
-      rootElement={rootElement}
-      pageSettings={{
-        backgroundColor: 'ffffff',
-        primaryColor: '3b82f6',
-        textColor: '1f2937',
-        hideEventTypeDetails: false,
-        hideLandingPageDetails: false,
-      }}
-    />
-  )
-}
-
 export function CalendlyProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [stage, setStage] = useState<Stage>('closed')
   const [rootElement, setRootElement] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
-    setMounted(true)
     setRootElement(document.getElementById('__next') || document.body)
   }, [])
 
-  const openCalendly = useCallback(() => setIsOpen(true), [])
-  const closeCalendly = useCallback(() => setIsOpen(false), [])
-  // Bewusst ein No-op: Vorladen von Calendly beim Hover wuerde die IP-Adresse
-  // des Besuchers ohne Einwilligung in die USA uebertragen.
+  const openCalendly = useCallback(() => setStage('notice'), [])
+  const closeCalendly = useCallback(() => setStage('closed'), [])
+  const acceptCalendly = useCallback(() => setStage('booking'), [])
+
+  // Bewusst ein No-op: Vorladen von Calendly beim Hover würde die IP-Adresse
+  // des Besuchers ohne Einwilligung in die USA übertragen.
   const onHover = useCallback(() => {}, [])
 
   return (
-    <CalendlyContext.Provider value={{ openCalendly, closeCalendly, onHover, isOpen }}>
+    <CalendlyContext.Provider
+      value={{ openCalendly, closeCalendly, onHover, isOpen: stage !== 'closed' }}
+    >
       {children}
-      {mounted && rootElement && (
-        <CalendlyModal
-          isOpen={isOpen}
-          onClose={closeCalendly}
-          rootElement={rootElement}
-        />
+
+      {stage === 'notice' && (
+        <CalendlyConsentCard onAccept={acceptCalendly} onDismiss={closeCalendly} />
+      )}
+
+      {stage === 'booking' && rootElement && (
+        <CalendlyBookingModal onClose={closeCalendly} rootElement={rootElement} />
       )}
     </CalendlyContext.Provider>
   )

@@ -59,22 +59,6 @@ const STORAGE_ENTRIES = [
     category: 'Analyse',
   },
   {
-    name: '_hjSession*',
-    provider: 'Hotjar (Contentsquare)',
-    storage: 'Cookie',
-    purpose: 'Session-Tracking für Heatmaps',
-    duration: '30 Minuten',
-    category: 'Analyse',
-  },
-  {
-    name: '_hjSessionUser*',
-    provider: 'Hotjar (Contentsquare)',
-    storage: 'Cookie',
-    purpose: 'Benutzer-ID für Hotjar',
-    duration: '1 Jahr',
-    category: 'Analyse',
-  },
-  {
     name: 'sib_cuid',
     provider: 'Brevo',
     storage: 'Cookie',
@@ -404,7 +388,7 @@ const sections = [
           </div>
           <p className="text-muted-foreground mt-4 text-sm">
             Sie können Ihre Cookie-Einstellungen jederzeit über den Link &bdquo;Cookie-Einstellungen&ldquo; im Footer dieser Website anpassen.
-            Die Einträge der Anbieter Google Analytics, Hotjar und Brevo entstehen erst, nachdem Sie die
+            Die Einträge der Anbieter Google Analytics und Brevo entstehen erst, nachdem Sie die
             jeweilige Einwilligung erteilt haben.
           </p>
         </div>
@@ -475,43 +459,6 @@ const sections = [
             <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               https://www.dataprivacyframework.gov/participant/5780
             </a>.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-lg font-medium text-foreground mb-3">Hotjar (Contentsquare)</h3>
-          <p className="text-muted-foreground mb-4">
-            Diese Website nutzt Hotjar, einen Dienst der Contentsquare GmbH. Hotjar ist ein Analyse-Tool, das uns hilft, die Nutzererfahrung auf unserer Website zu verstehen und zu verbessern.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Hotjar verwendet Cookies und andere Technologien, um Informationen über das Verhalten unserer Nutzer und deren Endgeräte zu sammeln. Dazu gehören insbesondere:
-          </p>
-          <ul className="space-y-2 mb-4">
-            {[
-              'Die IP-Adresse des Geräts (wird während Ihrer Sitzung erfasst und in anonymisierter Form gespeichert)',
-              'Bildschirmgröße des Geräts',
-              'Gerätetyp und Browserinformationen',
-              'Geografischer Standort (nur Land)',
-              'Die bevorzugte Sprache zur Anzeige unserer Website',
-              'Nutzerinteraktionen (Mausbewegungen, Klicks, Scrollverhalten)',
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="text-muted-foreground mb-4">
-            Hotjar speichert diese Informationen in einem pseudonymisierten Nutzerprofil. Die Informationen werden weder von Hotjar noch von uns dazu verwendet, einzelne Nutzer zu identifizieren oder mit weiteren Daten über einzelne Nutzer zusammenzuführen.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
-          </p>
-          <p className="text-muted-foreground">
-            Weitere Informationen finden Sie in der Datenschutzerklärung von Hotjar:{' '}
-            <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://www.hotjar.com/legal/policies/privacy/
-            </a>
           </p>
         </div>
 
