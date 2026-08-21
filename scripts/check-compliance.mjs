@@ -40,11 +40,10 @@ const rules = [
   {
     name: 'Platzhalter statt Umsatzsteuer-Identifikationsnummer',
     pattern: /DE_USTIDNR_EINTRAGEN/,
-    // In InfoCards.tsx ist der Platzhalter als Konstante vorgesehen; dass er
-    // dort noch der aktive Wert ist, prüft die Sonderregel weiter unten.
-    allow: ['src/app/impressum/components/InfoCards.tsx'],
     reason:
-      'Der Platzhalter darf nirgends als sichtbarer Text auftauchen.',
+      'Für dieses Einzelunternehmen ist keine USt-IdNr. erteilt, die Angabe ' +
+      'entfällt deshalb. Sollte später eine erteilt werden, gehört die echte ' +
+      'Nummer ins Impressum — niemals ein Platzhalter.',
   },
 ]
 
@@ -78,26 +77,8 @@ for (const file of sourceFiles(SOURCE_DIR)) {
   }
 }
 
-// Eine erteilte USt-IdNr. ist Pflichtangabe nach § 5 Abs. 1 Nr. 6 DDG. Solange
-// der Platzhalter der aktive Wert ist, fehlt sie im Impressum.
-const infoCards = path.join(SOURCE_DIR, 'app', 'impressum', 'components', 'InfoCards.tsx')
-if (fs.readFileSync(infoCards, 'utf8').includes('const VAT_ID: string = VAT_ID_PLACEHOLDER')) {
-  findings.push({
-    rule: {
-      name: 'Umsatzsteuer-Identifikationsnummer fehlt',
-      reason:
-        'Für dieses Unternehmen ist eine USt-IdNr. erteilt und damit ' +
-        'Pflichtangabe nach § 5 Abs. 1 Nr. 6 DDG. In InfoCards.tsx die echte ' +
-        'Nummer eintragen (Format: DE + 9 Ziffern).',
-    },
-    file: 'src/app/impressum/components/InfoCards.tsx',
-    line: 0,
-    text: 'VAT_ID steht noch auf dem Platzhalter',
-  })
-}
-
-// Die entfernte Fallstudienseite darf nicht zurückkehren, solange die Fälle
-// nicht belegbar sind.
+// Die Fallstudienseite darf keine benannten Unternehmen, Personen oder ihnen
+// zugeschriebene Zitate enthalten.
 const caseStudies = path.join(SOURCE_DIR, 'app', 'case-studies')
 if (fs.existsSync(caseStudies)) {
   findings.push({

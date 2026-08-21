@@ -1,28 +1,23 @@
 'use client'
 
-import { User, Building, Phone, Receipt } from 'lucide-react'
+import { User, Building, Phone } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
 
 /**
- * Umsatzsteuer-Identifikationsnummer nach § 27 a UStG.
+ * Bewusst ohne Angabe zur Umsatzsteuer-Identifikationsnummer.
  *
- * Pflichtangabe nach § 5 Abs. 1 Nr. 6 DDG, sobald eine USt-IdNr. erteilt ist.
- * Für dieses Unternehmen ist eine erteilt, die Nummer liegt hier aber noch
- * nicht vor. Solange der Platzhalter steht, wird die Karte NICHT gerendert:
- * eine falsche Nummer im Impressum wiegt schwerer als eine fehlende Angabe.
+ * § 5 Abs. 1 Nr. 6 DDG verlangt die USt-IdNr. nur, wenn eine erteilt ist. Für
+ * dieses Einzelunternehmen ist keine erteilt, also entfällt die Angabe.
  *
- * scripts/check-impressum.mjs bricht die Prüfung vor dem Deployment ab,
- * solange der Platzhalter steht — so kann das Impressum nicht unvollständig
- * live gehen.
+ * Ebenso bewusst fehlt ein Satz wie „keine USt-IdNr. vorhanden" oder ein
+ * Hinweis auf § 19 UStG: Beides ist keine Impressumspflicht, und eine Aussage
+ * über den eigenen Steuerstatus gehört nicht ohne steuerliche Bestätigung auf
+ * die Website.
  *
- * TODO(Carpantier): echte USt-IdNr. eintragen (Format: DE + 9 Ziffern).
+ * Wird später eine USt-IdNr. erteilt, gehört sie hier als weitere Karte hinein
+ * (Format: DE + 9 Ziffern) — dann ist sie Pflichtangabe.
  */
-const VAT_ID_PLACEHOLDER = 'DE_USTIDNR_EINTRAGEN'
-
-// Bewusst als string typisiert: sonst hält TypeScript den Vergleich mit dem
-// Platzhalter für sinnlos, sobald die echte Nummer eingetragen ist.
-const VAT_ID: string = VAT_ID_PLACEHOLDER
 
 const ADDRESS = (
   <p className="text-muted-foreground">
@@ -69,22 +64,6 @@ const infoCards = [
     iconColor: 'text-orange-400',
     iconBg: 'bg-orange-400/10',
   },
-  ...(VAT_ID === VAT_ID_PLACEHOLDER
-    ? []
-    : [
-        {
-          icon: Receipt,
-          title: 'Umsatzsteuer-ID',
-          content: (
-            <p className="text-muted-foreground">
-              Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-              <span className="text-foreground">{VAT_ID}</span>
-            </p>
-          ),
-          iconColor: 'text-green-400',
-          iconBg: 'bg-green-400/10',
-        },
-      ]),
 ]
 
 export default function InfoCards() {
