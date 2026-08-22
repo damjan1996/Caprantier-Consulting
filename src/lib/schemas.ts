@@ -347,3 +347,36 @@ export function generateServiceAreaSchema() {
     },
   }
 }
+
+/**
+ * VideoObject für das Video auf der Startseite.
+ *
+ * Ohne dieses Markup weiß Google nur, dass irgendwo ein Bild und ein Link
+ * stehen. Mit ihm kann die Seite als Video-Treffer erscheinen — der Verweis
+ * geht dabei auf die eigene Seite, nicht auf YouTube.
+ *
+ * `uploadDate` und `duration` stehen fest, weil sie sich für ein bereits
+ * veröffentlichtes Video nicht mehr ändern. `duration` ist nach ISO 8601
+ * angegeben (PT7M49S = 7 Minuten, 49 Sekunden).
+ */
+export function generateHomepageVideoSchema() {
+  const videoId = 'FHfhaN-SG3Q'
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'Warum eure Akquise immer wieder einschläft',
+    description:
+      'Ein guter Monat, dann zwei Wochen Funkstille — warum Neukundengewinnung im B2B fast nie am Angebot scheitert, sondern daran, dass nie ein richtiger Prozess daraus gemacht wurde.',
+    thumbnailUrl: `https://carpantier-consulting.de/api/youtube/thumbnail/${videoId}`,
+    uploadDate: '2026-08-14T18:00:11+00:00',
+    duration: 'PT7M49S',
+    contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Carpantier Consulting',
+      url: 'https://carpantier-consulting.de',
+    },
+  }
+}

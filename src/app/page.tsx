@@ -6,6 +6,7 @@ import {
   generateHowToSchema,
   generateHomepageFAQSchema,
   generateServiceAreaSchema,
+  generateHomepageVideoSchema,
 } from '@/lib/schemas'
 
 // Dynamic imports for below the fold components
@@ -17,6 +18,10 @@ const ServiceAreas = dynamic(() => import('./components/ServiceAreas'), {
   loading: () => <div className="section-padding" />,
 })
 
+const VideoHighlight = dynamic(() => import('@/components/sections/VideoHighlight'), {
+  loading: () => <div className="section-padding" />,
+})
+
 const CTA = dynamic(() => import('@/components/sections/CTA'), {
   loading: () => <div className="section-padding" />,
 })
@@ -25,6 +30,7 @@ export default function Home() {
   const howToSchema = generateHowToSchema()
   const faqSchema = generateHomepageFAQSchema()
   const serviceAreaSchema = generateServiceAreaSchema()
+  const videoSchema = generateHomepageVideoSchema()
 
   return (
     <PageWrapper>
@@ -43,11 +49,20 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreaSchema) }}
       />
+      {/* VideoObject Schema für das Video im Abschnitt "Aus der Praxis" */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+      />
 
       {/* 1. Hero */}
       <Hero />
       {/* 1b. Trusted-by Logo Marquee */}
       <ClientLogos />
+      {/* 1c. Aus der Praxis — Nico erklärt das Problem im Video */}
+      <Suspense fallback={<div className="section-padding" />}>
+        <VideoHighlight />
+      </Suspense>
       {/* 2. Warum unsere Akquise-Strategie so gut funktioniert */}
       <Suspense fallback={<div className="section-padding" />}>
         <Problem />
