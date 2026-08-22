@@ -21,6 +21,10 @@ const nextConfig = {
     // Bewusst keine remotePatterns: alle Bilder liegen unter /public und werden
     // vom eigenen Server ausgeliefert. Ein freigegebener Fremdhost würde die
     // IP-Adresse der Besucher ohne Einwilligung an Dritte übertragen.
+    //
+    // Auch die YouTube-Vorschaubilder sind kein Grund, das zu ändern: Sie
+    // laufen über /api/youtube/thumbnail/[id] und kommen damit ebenfalls vom
+    // eigenen Server. i.ytimg.com gehört deshalb nicht hierher.
   },
 
   // Performance & Security Headers
@@ -83,7 +87,10 @@ const nextConfig = {
       "img-src 'self' data: blob: https://assets.calendly.com https://*.calendly.com",
       "font-src 'self'",
       "connect-src 'self' https://calendly.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://sibautomation.com",
-      "frame-src 'self' https://calendly.com",
+      // youtube-nocookie.com wird ausschließlich vom Video-Player geladen,
+      // und der entsteht erst nach einer Einwilligung. Die CSP muss den Host
+      // trotzdem kennen, sonst blockiert der Browser das Fenster danach.
+      "frame-src 'self' https://calendly.com https://www.youtube-nocookie.com",
       // Niemand darf diese Seite einbetten. Deckungsgleich mit
       // X-Frame-Options: DENY weiter unten — beide Angaben müssen dasselbe
       // sagen, sonst entscheidet der Browser je nach Version anders.

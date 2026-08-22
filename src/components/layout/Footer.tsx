@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, MapPin } from 'lucide-react'
+import { Mail, MapPin, Youtube } from 'lucide-react'
 import { cities } from '@/lib/cities'
+import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube'
 import CookieSettingsButton from '@/components/ui/CookieSettingsButton'
 
 import logoBlack from '@/../public/logo/Logo - Schwarz.png'
@@ -10,7 +11,9 @@ const navigation = {
   main: [
     { name: 'Home', href: '/' },
     { name: 'Leistungen', href: '/leistungen' },
+    { name: 'Wissen', href: '/wissen' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Videos', href: '/wissen/videos' },
     { name: 'Glossar', href: '/glossar' },
     { name: 'Über uns', href: '/ueber-uns' },
     { name: 'Kontakt', href: '/kontakt' },
@@ -63,6 +66,17 @@ export default function Footer() {
                 <MapPin className="h-4 w-4" />
                 Köln, Deutschland
               </div>
+              {/* Reiner Verweis: Es wird nichts von YouTube geladen, solange
+                  niemand darauf klickt. */}
+              <a
+                href={YOUTUBE_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Youtube className="h-4 w-4" />
+                YouTube-Kanal
+              </a>
             </div>
           </div>
 

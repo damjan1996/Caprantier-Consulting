@@ -48,6 +48,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Blog-Artikel
     ...blogPages,
+    // Wissen - Einstieg zu Blog, Videos und Glossar
+    {
+      url: `${baseUrl}/wissen`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    // Videos - folgt dem Kanal, ändert sich mit jedem Upload
+    {
+      url: `${baseUrl}/wissen/videos`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
     // Kontakt - wichtig für Conversions
     {
       url: `${baseUrl}/kontakt`,
