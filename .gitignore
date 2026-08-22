@@ -92,3 +92,47 @@ logs/security/
 
 # Claude Code Arbeitsverzeichnisse
 .claude/worktrees/
+
+# Claude Code lokale Einstellungen
+.claude/settings.local.json
+
+# Arbeitsmaterial, das lokal bleibt und nicht zur Website gehoert
+# (Quellbilder, Entwuerfe, Screenshots, Exporte)
+/Nico/
+/bilder_blog/
+/Google Tag/
+*.ai
+/damjan_savic_cv_DE.html
+/pitchdeck_carpantier_consulting.html
+/pitchdeck_carpantier_consulting.pdf
+/weitere_information.pdf
+/screencapture-*.png
+/screencapture-*.pdf
+/aktuelle_einstellungen.png
+/tracking_analytics.png
+/WhatsApp Image *.jpeg
+/02 - Damjan - *.png
+/04 - Damjan - *.png
+/ki_b2b_vertrieb.png
+/leadgenerierung_it_dienstleister.png
+/vertrieb_auslagern_image.png
+
+# Persoenliche Arbeitsnotizen (kein Website-Inhalt)
+/BLOG_CONTENT_PLAN.md
+/CLAUDE_CODE_WEBSITE_WORKFLOW_V3_AUTOMATED.md
+/WORKFLOW_FLOWCHART.md
+
+# Unfertige Hilfsskripte
+/generate-pdf.js
+/html-to-pdf.js
+/scripts/test-overflow.mjs
+/scripts/test-responsive.js
+/.tmp-shot.mjs
+
+# Berichte und Werkzeugausgaben
+/accessibility-report.json
+/ncu-output.txt
+/npm_output.txt
+
+# Windows-Artefakt aus fehlgeleiteter Umleitung (> nul)
+nul
