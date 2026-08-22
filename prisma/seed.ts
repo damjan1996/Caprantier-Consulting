@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../src/generated/prisma'
 import { blogPosts } from '../src/lib/blog'
 import { cities } from '../src/lib/cities'
 

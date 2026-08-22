@@ -29,7 +29,6 @@ export default defineConfig([
     'scripts/**',
     '.claude/**',
     '.playwright-mcp/**',
-    'carpantier-landing/**',
     'docs/**',
     'public/sw.js',
     '*.js',

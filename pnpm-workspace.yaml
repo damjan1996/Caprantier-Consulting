@@ -1,9 +1,26 @@
-# pnpm 11 liest die Einstellung nicht mehr aus dem "pnpm"-Feld in package.json.
-# Nur diese Pakete duerfen Installations-Skripte ausfuehren.
-onlyBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - esbuild
-  - prisma
-  - puppeteer
-  - sharp
+# pnpm fuehrt Installations-Skripte von Abhaengigkeiten nur aus, wenn sie hier
+# ausdruecklich erlaubt sind. Seit pnpm 11 heisst die Einstellung "allowBuilds"
+# und ist eine Zuordnung Paket -> true/false; "onlyBuiltDependencies" und das
+# Feld "pnpm" in der package.json werden nicht mehr gelesen.
+#
+# Was pnpm noch nicht kennt, traegt es beim Installieren mit einem Platzhalter
+# ein. Ein Platzhalter gilt als ungeprueft und laesst "pnpm install" mit
+# ERR_PNPM_IGNORED_BUILDS abbrechen -- und damit auch "pnpm run verify".
+# Neue Eintraege gehoeren deshalb sofort auf true oder false gesetzt.
+allowBuilds:
+  # Prisma erzeugt den Client und laedt die Query-Engine. Ohne diese Schritte
+  # bricht der Build ab.
+  '@prisma/client': true
+  '@prisma/engines': true
+  prisma: true
+  # Native Binaerdateien, die beim Installieren entpackt werden.
+  esbuild: true
+  # Next.js optimiert Bilder darueber. Fehlt sharp, faellt die Bildauslieferung
+  # unbemerkt auf die langsame Variante zurueck.
+  sharp: true
+  # Nur fuer scripts/generate-og-image.mjs und die Messskripte. Laedt beim
+  # Installieren Chromium herunter.
+  puppeteer: true
+  # Aufloeser fuer ESLint. Liefert vorgebaute Binaerdateien mit, das
+  # Installations-Skript ist nur ein Notnagel und wird nicht gebraucht.
+  unrs-resolver: false

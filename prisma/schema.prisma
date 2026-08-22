@@ -1,5 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  // Ohne festen Ausgabeort legt Prisma den Client neben das aufgeloeste
+  // @prisma/client-Paket. Unter pnpm liegt das hinter einem Symlink: der
+  // Generator schreibt nach node_modules/.prisma/client, TypeScript folgt
+  // aber dem Symlink in den Store und findet dort nur den mitgelieferten
+  // Platzhalter ohne Modelle. Saemtliche Modelltypen waren dadurch `any`.
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
