@@ -36,18 +36,18 @@ export default function VideoHighlight() {
       <div className="container-custom">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-10 text-center md:mb-14">
+            {/*
+              Die Laufzeit steht hier oben statt in einem eigenen Satz darunter.
+              Sie ist die einzige Angabe, die Besucher vor dem Klick wirklich
+              brauchen — worum es geht, sagen Überschrift und Stichpunkte.
+            */}
             <span className="mb-4 inline-block text-sm font-medium uppercase tracking-wider text-primary">
-              Aus der Praxis
+              Aus der Praxis · {VIDEO.duration}
             </span>
-            <h2 className="mb-6 text-3xl font-bold leading-[1.15] text-foreground md:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-bold leading-[1.15] text-foreground md:text-4xl lg:text-5xl">
               Warum eure Akquise{' '}
               <span className="text-primary">immer wieder einschläft</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
-              In {VIDEO.duration} erklärt Nico-Luca Carpantier, woran planbare Neukundengewinnung
-              im B2B tatsächlich scheitert — und was es braucht, damit sie nicht jedes Quartal von
-              vorn beginnt.
-            </p>
           </FadeIn>
 
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-5 lg:gap-12">
