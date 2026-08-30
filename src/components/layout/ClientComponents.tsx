@@ -8,15 +8,9 @@ const TrackingScripts = dynamic(
   { ssr: false }
 )
 
-const ChatWidget = dynamic(
-  () => import('@/components/chat/ChatWidget'),
-  { ssr: false }
-)
-
 export function ClientSideComponents() {
   return (
     <>
-      <ChatWidget />
       <TrackingScripts />
     </>
   )

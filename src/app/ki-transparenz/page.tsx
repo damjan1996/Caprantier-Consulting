@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Sparkles, Bot, ImageIcon, Scale, UserCheck } from 'lucide-react'
+import { Sparkles, ImageIcon, Scale, UserCheck } from 'lucide-react'
 import { PageWrapper, PageHero, SectionCard, FadeIn } from '@/components/ui'
 
 const AI_IMAGE_LOCATIONS = [
@@ -11,13 +11,6 @@ const AI_IMAGE_LOCATIONS = [
   'Über uns — Hero-Bild und Porträt',
   'Kontakt — Hero-Bild und Porträt',
   'Blog — Beitragsbilder',
-]
-
-const CHATBOT_FACTS = [
-  'Sie kommunizieren ausschließlich mit einem KI-System, nicht mit einem Menschen.',
-  'Antworten werden automatisiert erzeugt und können unvollständig oder fehlerhaft sein.',
-  'Verbindliche Auskünfte — insbesondere zu Preisen und Vertragsinhalten — erhalten Sie nur von uns persönlich.',
-  'Es findet keine automatisierte Entscheidung mit rechtlicher Wirkung im Sinne des Art. 22 DSGVO statt.',
 ]
 
 export default function KiTransparenzPage() {
@@ -70,39 +63,6 @@ export default function KiTransparenzPage() {
                   </ul>
                   <p className="text-sm">
                     Rechtsgrundlage der Kennzeichnung: Art. 50 Abs. 4 KI-VO.
-                  </p>
-                </div>
-              </SectionCard>
-            </FadeIn>
-
-            <FadeIn delay={0.15}>
-              <SectionCard
-                icon={Bot}
-                iconColor="text-blue-400"
-                iconBg="bg-blue-400/10"
-                title="KI-Chatbot"
-              >
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Der Chat unten rechts auf dieser Website ist ein KI-Assistent. Er basiert auf dem
-                    Sprachmodell Claude von Anthropic, PBC (548 Market St, PMB 90375, San Francisco,
-                    CA 94104, USA).
-                  </p>
-                  <ul className="space-y-2">
-                    {CHATBOT_FACTS.map((fact) => (
-                      <li key={fact} className="flex items-start gap-2 text-sm">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
-                        {fact}
-                      </li>
-                    ))}
-                  </ul>
-                  <p>
-                    Wie Ihre Chatnachrichten verarbeitet, gespeichert und übermittelt werden und wie
-                    Sie deren Löschung verlangen können, steht im Abschnitt „KI-Chatbot (Claude)“ der{' '}
-                    <Link href="/datenschutz" className="text-primary hover:underline">
-                      Datenschutzerklärung
-                    </Link>
-                    .
                   </p>
                 </div>
               </SectionCard>

@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI-Transparenz',
   description:
-    'Transparenzangaben nach Art. 50 der KI-Verordnung (EU) 2024/1689: Wo auf carpantier-consulting.de künstliche Intelligenz eingesetzt wird — KI-generierte Bilder und KI-Chatbot.',
+    'Transparenzangaben nach Art. 50 der KI-Verordnung (EU) 2024/1689: Wo auf carpantier-consulting.de künstliche Intelligenz eingesetzt wird — KI-generierte Bilder und KI-gestützte Texte.',
   robots: {
     index: true,
     follow: true,
