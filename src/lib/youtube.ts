@@ -97,13 +97,7 @@ function firstParagraph(description: string, maxLength = 220): string {
  * die Fassung aus dem Feed (mit Beschreibung), der Eintrag hier fällt weg.
  * Er kann dann ersatzlos gelöscht werden, muss aber nicht.
  */
-const PINNED: Array<Pick<YouTubeVideo, 'id' | 'title' | 'published'> & { description?: string }> = [
-  {
-    id: 'SDBkYKZVAcg',
-    title: '7 Gründe, warum eure Telefonakquise keine Termine bringt',
-    published: '2026-08-29T00:00:00+00:00',
-  },
-]
+const PINNED: Array<Pick<YouTubeVideo, 'id' | 'title' | 'published'> & { description?: string }> = []
 
 function fromPinned(entry: (typeof PINNED)[number]): YouTubeVideo {
   return {

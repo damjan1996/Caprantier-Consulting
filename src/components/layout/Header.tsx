@@ -34,12 +34,12 @@ type NavItem = {
 const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
   { name: 'Leistungen', href: '/leistungen' },
+  { name: 'Videos', href: '/wissen/videos' },
   {
     name: 'Wissen',
     href: '/wissen',
     children: [
       { name: 'Blog', href: '/blog' },
-      { name: 'Videos', href: '/wissen/videos', isNew: true },
       { name: 'Glossar', href: '/glossar' },
     ],
   },
