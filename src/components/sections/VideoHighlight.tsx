@@ -18,16 +18,15 @@ import LiteYouTube from '@/components/ui/LiteYouTube'
  */
 
 const VIDEO = {
-  id: 'FHfhaN-SG3Q',
-  title: 'Warum eure Akquise immer wieder einschläft',
-  duration: '7:49 Min.',
+  id: 'LevIt3mHrng',
+  title: 'Was passiert, wenn du keine Kaltakquise machst',
 }
 
 /** Die drei Kernaussagen des Videos, in der Ansprache der Website. */
 const KEY_POINTS = [
-  'Ein guter Monat, dann zwei Wochen Funkstille — und die Pipeline ist genau dann leer, wenn Sie sie am dringendsten brauchen.',
-  'Das Problem ist selten Ihr Angebot. Akquise passiert nur dann, wenn gerade Zeit ist oder der Druck groß genug wird.',
-  'Das Ziel sind nicht möglichst viele Termine, sondern Gespräche mit Unternehmen, bei denen realistisch eine Chance besteht.',
+  'Ohne konstante Ansprache bleibt nur, was von allein kommt — Empfehlungen, alte Kontakte, Zufall. Planbar ist das nicht.',
+  'Der Ausfall zeigt sich nicht sofort. Er zeigt sich zwei, drei Monate später, wenn vorne in der Pipeline nichts mehr nachkommt.',
+  'Wer erst anfängt, wenn es eng wird, verhandelt aus der schwächeren Position — und nimmt Aufträge an, die eigentlich nicht passen.',
 ]
 
 export default function VideoHighlight() {
@@ -37,16 +36,17 @@ export default function VideoHighlight() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-10 text-center md:mb-14">
             {/*
-              Die Laufzeit steht hier oben statt in einem eigenen Satz darunter.
-              Sie ist die einzige Angabe, die Besucher vor dem Klick wirklich
-              brauchen — worum es geht, sagen Überschrift und Stichpunkte.
+              Zuvor stand hier zusaetzlich die Laufzeit. Fuer dieses Video liegt
+              sie nicht gesichert vor — lieber gar keine Angabe als eine
+              geschaetzte. Sobald sie bekannt ist, kann sie hier wieder hinter
+              "Aus der Praxis" ergaenzt werden (Feld `duration` in VIDEO).
             */}
             <span className="mb-4 inline-block text-sm font-medium uppercase tracking-wider text-primary">
-              Aus der Praxis · {VIDEO.duration}
+              Aus der Praxis
             </span>
             <h2 className="text-3xl font-bold leading-[1.15] text-foreground md:text-4xl lg:text-5xl">
-              Warum eure Akquise{' '}
-              <span className="text-primary">immer wieder einschläft</span>
+              Was passiert, wenn Sie{' '}
+              <span className="text-primary">keine Kaltakquise machen</span>
             </h2>
           </FadeIn>
 

@@ -355,22 +355,23 @@ export function generateServiceAreaSchema() {
  * stehen. Mit ihm kann die Seite als Video-Treffer erscheinen — der Verweis
  * geht dabei auf die eigene Seite, nicht auf YouTube.
  *
- * `uploadDate` und `duration` stehen fest, weil sie sich für ein bereits
- * veröffentlichtes Video nicht mehr ändern. `duration` ist nach ISO 8601
- * angegeben (PT7M49S = 7 Minuten, 49 Sekunden).
+ * `uploadDate` steht fest, weil er sich für ein bereits veröffentlichtes Video
+ * nicht mehr ändert. `duration` ist bewusst nicht gesetzt: Das Feld ist
+ * optional, und eine geschätzte Laufzeit im strukturierten Markup waere eine
+ * falsche Angabe gegenüber Google. Sobald die echte Laufzeit vorliegt, kann
+ * sie nach ISO 8601 ergänzt werden (z. B. PT7M49S für 7:49).
  */
 export function generateHomepageVideoSchema() {
-  const videoId = 'FHfhaN-SG3Q'
+  const videoId = 'LevIt3mHrng'
 
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'Warum eure Akquise immer wieder einschläft',
+    name: 'Was passiert, wenn du keine Kaltakquise machst',
     description:
-      'Ein guter Monat, dann zwei Wochen Funkstille — warum Neukundengewinnung im B2B fast nie am Angebot scheitert, sondern daran, dass nie ein richtiger Prozess daraus gemacht wurde.',
+      'Was mit einer B2B-Pipeline passiert, wenn niemand konstant neue Unternehmen anspricht — und warum sich das erst Monate später zeigt.',
     thumbnailUrl: `https://carpantier-consulting.de/api/youtube/thumbnail/${videoId}`,
-    uploadDate: '2026-08-14T18:00:11+00:00',
-    duration: 'PT7M49S',
+    uploadDate: '2026-09-05T13:16:38+00:00',
     contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
     embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
     publisher: {
