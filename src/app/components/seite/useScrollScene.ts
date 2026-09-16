@@ -109,10 +109,117 @@ export function useScrollScene<T extends HTMLElement>(
       optionsRef.current.apply(1)
     }
 
+    /*
+     * Gestapelt: jeder Eintrag blendet beim Hereinscrollen einzeln ein.
+     *
+     * Unter `STACK_BREAKPOINT` gibt es keine Klebe-Bühne — die Einträge stehen
+     * untereinander im Fluss. Bis zum 16.09.2026 standen sie damit auch alle
+     * sofort sichtbar da: Auf dem Telefon war von der scrollgebundenen
+     * Bewegung, die diese Website ausmacht, nichts mehr übrig.
+     *
+     * Die Bühne zurückzuholen ist keine Option. 100vh-Kleben kämpft auf
+     * Telefonen mit der ein- und ausfahrenden Browserleiste, und 420vh
+     * Scrollstrecke je Abschnitt sind auf einem Daumen kein Vergnügen.
+     * Stattdessen übernimmt hier ein Beobachter, was auf dem Desktop die Bühne
+     * tut: Ein Eintrag wird sichtbar, wenn er an der Reihe ist.
+     *
+     * **Warum kein `IntersectionObserver`.** Der erste Entwurf nutzte einen.
+     * Er meldet aber nichts, wenn ein Element in einem einzigen Frame von
+     * unterhalb des Fensters nach oberhalb springt — `isIntersecting` bleibt
+     * dabei durchgehend `false`. Nach einem Ankersprung (`#formular`), einer
+     * wiederhergestellten Scrollposition oder einem schnellen Wisch blieben
+     * sämtliche Einträge dauerhaft auf `opacity: 0.25` stehen. Gemessen auf
+     * `/` waren das 38 von 38.
+     *
+     * Die Messung gegen die Auslöselinie hat den Fall nicht: Ein Eintrag weit
+     * oberhalb des Fensters hat eine stark negative `top` und liegt damit
+     * ebenfalls über der Linie.
+     *
+     * Ein Zuhörer je Abschnitt, über `requestAnimationFrame` gedrosselt, und
+     * er hängt sich selbst aus, sobald alle Einträge sichtbar sind.
+     *
+     * **`data-stapel` setzt das Skript, nicht der Server.** Nur unter diesem
+     * Attribut versteckt das Stylesheet die Einträge. Ohne JavaScript wird es
+     * nie gesetzt, und alles steht da — dieselbe Absicherung wie
+     * `data-fade-in` bei den Einblendungen.
+     */
+    let stapelFrame = 0
+    let stapelAktiv = false
+
+    /** Die Linie, ab der ein Eintrag als „an der Reihe" gilt. */
+    const AUSLOESELINIE = 0.88
+
+    const stapelEintraege = () =>
+      element.querySelectorAll('li[class*="sceneItem"]:not([data-sichtbar])')
+
+    const stapelMessen = () => {
+      stapelFrame = 0
+      const offen = stapelEintraege()
+      if (offen.length === 0) {
+        // Fertig, nicht abgeschaltet: Der Zuhörer geht, die Markierungen
+        // bleiben. Sie abzuräumen würde die Einträge beim nächsten
+        // Grössenwechsel grundlos noch einmal einblenden lassen.
+        stapelZuhoererAus()
+        return
+      }
+      const linie = window.innerHeight * AUSLOESELINIE
+      for (const eintrag of offen) {
+        if (eintrag.getBoundingClientRect().top <= linie) {
+          eintrag.setAttribute('data-sichtbar', '')
+        }
+      }
+    }
+
+    const aufStapelScroll = () => {
+      if (stapelFrame) return
+      stapelFrame = requestAnimationFrame(stapelMessen)
+    }
+
+    /** Nur den Zuhörer lösen — die Markierungen bleiben stehen. */
+    const stapelZuhoererAus = () => {
+      window.removeEventListener('scroll', aufStapelScroll)
+      if (stapelFrame) {
+        cancelAnimationFrame(stapelFrame)
+        stapelFrame = 0
+      }
+    }
+
+    /** Vollständig zurückbauen: Desktop, reduzierte Bewegung, Abbau. */
+    const stapelAus = () => {
+      if (!stapelAktiv) return
+      stapelAktiv = false
+      stapelZuhoererAus()
+      element.removeAttribute('data-stapel')
+      for (const eintrag of element.querySelectorAll('li[class*="sceneItem"]')) {
+        eintrag.removeAttribute('data-sichtbar')
+      }
+    }
+
+    const stapelAn = () => {
+      if (stapelAktiv) return
+      if (element.querySelectorAll('li[class*="sceneItem"]').length === 0) return
+
+      stapelAktiv = true
+      element.setAttribute('data-stapel', 'an')
+      window.addEventListener('scroll', aufStapelScroll, { passive: true })
+      // Einmal sofort: Die Seite kann bereits gescrollt geladen worden sein
+      // (Ankersprung, wiederhergestellte Position).
+      stapelMessen()
+    }
+
+    const stapelPruefen = () => {
+      if (reducedMotion.matches) return
+      if (isStacked()) stapelAn()
+      else stapelAus()
+    }
+
     if (reducedMotion.matches) {
       applyFinalState()
       return
     }
+
+    stapelPruefen()
+    window.addEventListener('resize', stapelPruefen)
 
     // Startzustand setzen, bevor der erste Frame gemessen wird: Die Elemente
     // liegen per CSS auf `opacity: 0`, das Skript übernimmt ab hier.
@@ -140,6 +247,7 @@ export function useScrollScene<T extends HTMLElement>(
       observer?.disconnect()
       observer = null
       stop()
+      stapelAus()
       applyFinalState()
     }
     reducedMotion.addEventListener('change', onMotionPreferenceChange)
@@ -147,6 +255,8 @@ export function useScrollScene<T extends HTMLElement>(
     return () => {
       observer?.disconnect()
       stop()
+      stapelAus()
+      window.removeEventListener('resize', stapelPruefen)
       reducedMotion.removeEventListener('change', onMotionPreferenceChange)
       if (measureFrame) cancelAnimationFrame(measureFrame)
       if (loopFrame) cancelAnimationFrame(loopFrame)

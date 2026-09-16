@@ -318,6 +318,21 @@ Bühnenlänge. Vier Regeln dazu:
    alle Einträge gleichzeitig da; jede Logik der Art `i === active` muss dann
    `stacked || i === active` lauten, sonst bleiben alle bis auf einen leer
    oder gedimmt.
+5. **Gestapelt blendet jeder Eintrag einzeln ein.** Seit dem 16.09.2026
+   übernimmt `useScrollScene` unter 1100 px eine zweite Aufgabe: Ein Beobachter
+   je Abschnitt setzt `data-sichtbar` an jedem Eintrag, sobald er ins Bild
+   läuft; das Stylesheet hält ihn davor auf `opacity: 0.25`. Der Abschnitt
+   bekommt dazu `data-stapel="an"` — und zwar vom Skript, nicht vom Server,
+   damit ohne JavaScript nichts versteckt wird.
+
+   Der Grund steht im [Designleitfaden § 8.2](seitendesign.md). Kurz: Ohne das
+   war auf dem Telefon von der scrollgebundenen Bewegung dieser Website
+   **nichts** übrig — die Bühne ist dort abgeschaltet, und alle Einträge
+   standen sofort sichtbar da.
+
+   Wer eine neue Bühne baut, bekommt das geschenkt, solange die Einträge `<li>`
+   mit der Klasse `sceneItem` in einem `sceneSlot` sind. Wer eine eigene
+   Stapel-Mechanik erfindet, muss den Fall selbst bedenken.
 
 ### 4.5 Aufklappbereich
 

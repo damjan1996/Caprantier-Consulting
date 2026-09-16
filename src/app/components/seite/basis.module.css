@@ -280,6 +280,35 @@
     min-height: 0;
   }
 
+  /*
+   * Was auf dem Desktop die Bühne tut, macht hier der Beobachter aus
+   * `useScrollScene`: Jeder Eintrag blendet ein, wenn er an der Reihe ist.
+   *
+   * Bis zum 16.09.2026 endete die Regel eine Zeile darüber — die Einträge
+   * standen gestapelt sofort alle sichtbar da, und auf dem Telefon war von
+   * der scrollgebundenen Bewegung dieser Website nichts mehr übrig.
+   *
+   * `[data-stapel='an']` setzt ausschliesslich das Skript. Ohne JavaScript
+   * greift keine dieser beiden Regeln, und alles bleibt sichtbar — dieselbe
+   * Absicherung wie `data-fade-in` bei den Einblendungen.
+   *
+   * Die Deckkraft ist nicht auf 0: Ein Eintrag, der erst am Umbruchpunkt
+   * einblendet, wäre sonst für den Moment davor ein Loch in der Seite. 0.25
+   * lässt ihn ahnen, bevor er steht.
+   */
+  [data-stapel='an'] .sceneItem {
+    opacity: 0.25;
+    transform: translateY(18px);
+    transition:
+      opacity var(--reveal-dur) var(--ease),
+      transform var(--reveal-dur) var(--ease);
+  }
+
+  [data-stapel='an'] .sceneItem[data-sichtbar] {
+    opacity: 1;
+    transform: none;
+  }
+
   .sceneAfter {
     padding-top: clamp(40px, 6vw, 64px);
   }

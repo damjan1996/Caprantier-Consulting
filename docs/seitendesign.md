@@ -367,6 +367,34 @@ Vier Sätze zum Charakter:
   aus" — sondern das Klebe-Verhalten fällt weg und alle Einträge stehen
   untereinander. Wer das vergisst, zeigt von neun Antworten eine.
 
+### 8.2 Auf dem Telefon bewegt sich etwas anderes
+
+Die Klebe-Bühne ist unter 1100 px abgeschaltet, und das bleibt so:
+100vh-Kleben kämpft dort mit der ein- und ausfahrenden Browserleiste, und
+420vh Scrollstrecke je Abschnitt sind auf einem Daumen kein Vergnügen.
+
+**Daraus folgte bis zum 16.09.2026 aber ein Fehler:** Weil die Einträge
+gestapelt sofort alle sichtbar standen, war auf dem Telefon von der
+scrollgebundenen Bewegung dieser Website nichts übrig. Gemessen an einem
+390 × 844-Fenster: 38 Bühneneinträge auf der Startseite, alle von Anfang an
+auf voller Deckkraft. Die Einblendungen (`useReveal`) liefen zwar weiter —
+nur sind die der leise Teil.
+
+**Der Ersatz ist nicht die Bühne im Kleinen, sondern ihr Kern:** Ein Eintrag
+wird sichtbar, wenn er an der Reihe ist. Auf dem Desktop entscheidet das der
+Scrollstand innerhalb der Klebestrecke, auf dem Telefon die Bildkante.
+Technisch in [Baukasten § 4.4](seitenbaukasten.md), Regel 5.
+
+Zwei Werte hängen daran:
+
+| Größe | Wert | Warum |
+|---|---|---|
+| Ausgangsdeckkraft | `0.25`, nicht `0` | Ein Eintrag, der erst am Auslösepunkt erscheint, wäre davor ein Loch in der Seite |
+| Auslöser | `rootMargin: 0px 0px -12% 0px` | Der Eintrag muss ins Bild gelaufen sein. Mit Vorlauf wäre die halbe Sekunde vorbei, bevor man ihn sieht — derselbe Fehler, den die Einblendungen der Startseite schon einmal hatten |
+
+Nachgemessen an einem Eintrag auf `/ueber-uns`: Deckkraft `0.25` vor der
+Schwelle, `0.88` 160 ms nach dem Auslösen, `1.00` am Ende.
+
 ---
 
 ### 8.1 Scroll-Bindung ohne Bühne
