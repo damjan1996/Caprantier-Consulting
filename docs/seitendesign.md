@@ -367,46 +367,67 @@ Vier Sätze zum Charakter:
   aus" — sondern das Klebe-Verhalten fällt weg und alle Einträge stehen
   untereinander. Wer das vergisst, zeigt von neun Antworten eine.
 
-### 8.2 Auf dem Telefon klebt der Kasten, nicht der Abschnitt
+### 8.2 Auf dem Telefon bewegt sich etwas anderes
 
-Unter 1100 px gibt es die Klebe-Bühne — aber in anderer Form. **Nicht der
-Abschnitt bleibt stehen, sondern nur der Kasten mit den Einträgen.** Die
-Textspalte scrollt normal vorbei, dann bleibt der Kasten mittig im Fenster
-stehen und arbeitet seine Einträge ab, genau wie auf dem Desktop.
+Die Klebe-Bühne ist unter 1100 px abgeschaltet. **Das wurde am 17.09.2026 einmal
+gründlich geprüft und bleibt so.** Was stattdessen greift: Jeder Eintrag steht
+zurückgenommen da und blendet ein, wenn er an der Reihe ist — der Kern der
+Bühne, ohne ihre Mechanik.
 
-**Warum nicht die Desktop-Bühne 1:1.** Dort klebt der ganze Abschnitt über
-100 vh und nimmt Textspalte *und* Kasten mit. Gemessen über sieben Seiten und
-vier Telefongrössen braucht allein die Textspalte — Auszeichnung, Überschrift,
-Fliesstext, Schaltfläche — zwischen 300 und 620 px. Zusammen mit dem höchsten
-Eintrag stehen **14 von 22 Szenen** auf einem 390 × 844-Fenster über der
-Fensterhöhe, die schlimmste um 450 px. Einrichten liesse sich das nur, indem
-auf dem Telefon der Fliesstext verschwindet — und dann fehlt genau der Satz,
+#### Warum nicht kleben
+
+Zwei Bauarten wurden gebaut und gemessen, beide verworfen:
+
+**Die ganze Bühne kleben, wie auf dem Desktop.** Dort hält ein Abschnitt über
+100 vh Textspalte *und* Kasten zusammen. Gestapelt braucht dieselbe Komposition
+mehr Höhe, als ein Telefon hat — selbst gestaucht: engere Abstände, 26 px
+Überschrift, ohne Schaltfläche in der Bühne.
+
+| Fenster | Szenen, die hineinpassen |
+|---|---|
+| 375 × 667 (iPhone SE) | 1 von 22 |
+| 390 × 844 (iPhone 14) | 9 von 22 |
+| 430 × 932 | 16 von 22 |
+| 768 × 1024 (Tablet) | 20 von 22 |
+
+Die Fehlbeträge lagen bei 150 bis 550 px. Passend zu bekommen wäre das nur,
+indem auf dem Telefon der Fliesstext verschwindet — und dann fehlt der Satz,
 für den der Abschnitt gebaut wurde.
 
-Klebt nur der Kasten, muss auch nur der höchste Eintrag passen.
+**Nur den Kasten kleben, Textspalte vorbeiscrollen lassen.** Passt immer, sieht
+aber schlechter aus als gar keine Bewegung: Der Kasten ist so hoch wie sein
+höchster Eintrag, bei den kurzen Szenen 128 px. Übrig bleibt ein schmaler
+Streifen mitten in einem sonst leeren Bildschirm — und das über die ganze
+Klebestrecke, bei „Am Telefon" gut 3.000 px weit. Die Startseite wuchs davon
+von 22.000 auf 32.000 px.
 
-**Passt der nicht, fällt die Szene zurück** auf die gestapelte Einblendung: Die
-Einträge stehen untereinander und blenden einzeln ein, sobald sie an der Reihe
-sind. Die Entscheidung fällt **je Szene und je Fenster aus der Messung**, nicht
-aus einer gepflegten Liste von Ausnahmen — auf einem iPhone SE bekommen 11 von
-22 Szenen die Bühne, auf einem iPhone 14 sind es 14, auf einem Tablet 15.
-Abgeschnitten wird nie etwas.
+#### Was stattdessen gilt
 
-Vier Werte hängen daran:
+Ein Eintrag wird sichtbar, wenn er an der Reihe ist. Auf dem Desktop
+entscheidet das der Scrollstand innerhalb der Klebestrecke, auf dem Telefon die
+Bildkante. Technisch in [Baukasten § 4.4](seitenbaukasten.md), Regel 5.
 
 | Größe | Wert | Warum |
 |---|---|---|
-| Lage des Kastens | mittig zwischen Kopfzeile und belegtem Rand | Oben festgenagelt liesse er bei kurzen Einträgen ein halbes Fenster leer |
-| Klebestrecke je Eintrag | 62 % der Fensterhöhe, mindestens 300 px | Quer gehalten ist ein Telefon rund 390 px hoch; 62 % davon sind 242 px, und bei einer halben Sekunde Überblendung laufen die Karten dann ineinander |
-| Fortschrittsleiste | eigene, unter dem Kasten | Die Leiste der Szene sitzt in der Textspalte und ist aus dem Bild, sobald der Kasten zu arbeiten anfängt |
-| Ausgangsdeckkraft **gestapelt** | `0.25`, nicht `0` | Ein Eintrag, der erst am Auslösepunkt erscheint, wäre davor ein Loch in der Seite |
+| Ausgangsdeckkraft | `0.25`, nicht `0` | Ein Eintrag, der erst am Auslösepunkt erscheint, wäre davor ein Loch in der Seite |
+| Auslöselinie | 88 % der Fensterhöhe | Der Eintrag muss ins Bild gelaufen sein. Mit Vorlauf wäre die halbe Sekunde vorbei, bevor man ihn sieht — derselbe Fehler, den die Einblendungen der Startseite schon einmal hatten |
 
-Zwei Szenenarten bekommen die Bühne nie: solche, deren Kasten in einer Karte
-mit `overflow: hidden` steckt — ein klebender Kasten wird darin abgeschnitten
-—, und solche, die im Stylesheet der Seite `--buehne-mobil: aus` setzen. Der
-erste Fall sind die Terminszenen aller sieben Seiten.
+#### Der Abstandstakt ist auf dem Telefon ein anderer
 
-Technisch in [Baukasten § 4.4](seitenbaukasten.md), Regeln 5 und 6.
+`--section-y` steht auf `clamp(104px, 15vw, 260px)`. Auf einem 390 px-Fenster
+greift davon die Untergrenze — 104 px oben *und* unten, zwischen zwei
+Abschnitten also 208 px ohne Inhalt, ein Viertel Bildschirm. Auf einem breiten
+Fenster ist derselbe Wert richtig, weil ihn die Fläche daneben trägt.
+
+Deshalb eine eigene Stufe unter 768 px: `clamp(48px, 10vw, 80px)`, dazu engere
+Abstände in der Textspalte, im Eintragsstapel und vor dem Aufruf.
+
+Gemessen an der Startseite, Bänder ab 80 px ohne Text oder Bild:
+
+| | Leerraum | Anteil | Seitenhöhe |
+|---|---|---|---|
+| vorher | 2.656 px in 21 Bändern | 12 % | 22.383 px |
+| nachher | 1.087 px in 9 Bändern | 5 % | 21.515 px |
 
 ---
 

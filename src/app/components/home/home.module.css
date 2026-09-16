@@ -692,18 +692,28 @@
     );
 }
 
+/*
+ * Ein Termin im Raster.
+ *
+ * Die Höhe ist nicht frei wählbar: Sie ist der Anteil einer Stunde an
+ * `--cal-h` und liegt damit je nach Fenster bei 26 bis 30px. Zwei Zeilen
+ * brauchten mit der alten Schreibweise — 1,2 Zeilenabstand, 1px Spalt,
+ * 4px Innenrand oben und unten — rund 34px. Gemessen von 560 bis 1440px
+ * war die zweite Zeile deshalb **auf jeder Breite** angeschnitten, unten am
+ * deutlichsten. Die Masse hier sind so gewählt, dass zwei Zeilen in 28px
+ * passen; darunter trägt nur die erste (siehe Medienabfragen weiter unten).
+ */
 .calBlock {
   position: absolute;
   width: calc(20% - 6px);
   background: var(--accent);
   border-radius: 7px;
-  padding: 4px 7px;
+  padding: 2px 7px;
   color: #fff;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1px;
   justify-content: center;
   opacity: 0;
 }
@@ -711,7 +721,7 @@
 .calBlockRole {
   font-size: 11px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -719,7 +729,7 @@
 
 .calBlockIndustry {
   font-size: 10px;
-  line-height: 1.2;
+  line-height: 1.1;
   opacity: 0.85;
   white-space: nowrap;
   overflow: hidden;
@@ -1867,6 +1877,9 @@
   letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  /* „3–8" ist eine Spanne, keine zwei Zahlen: Auf dem Telefon brach sie nach
+     dem Halbgeviertstrich um und stand als „3–" über „8". */
+  white-space: nowrap;
 }
 
 .procCountLabel {
@@ -3124,15 +3137,6 @@
   .mobileBar {
     display: flex;
   }
-
-  /*
-   * Ab hier steht die Buchungsleiste im Bild — 65px, gemessen bei 390px
-   * Fensterbreite. Die Telefon-Bühne hält den Platz frei, sonst liegt der
-   * untere Rand der höchsten Karte dahinter.
-   */
-  .page {
-    --buehne-unten: 65px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -3232,6 +3236,46 @@
   }
 }
 
+/*
+ * Der Wochenkalender auf dem Telefon.
+ *
+ * Fünf Tagesspalten auf 330px Gitterbreite sind 66px je Spalte; ein Block ist
+ * damit 60px breit. „Geschäftsführer" braucht bei 11px rund 85px — die
+ * Beschriftung wurde also in jedem Fall abgeschnitten („Gesc…"), und bis
+ * 380px standen sogar zwei Zeilen in einem 30px hohen Block, wodurch die
+ * Schrift mitten im Buchstaben abriss.
+ *
+ * Auf dem Telefon tragen deshalb die Blöcke allein: Eine volle Woche sieht man
+ * am Muster, nicht an den Beschriftungen. Der Inhalt geht nicht verloren — die
+ * Kachel ist `role="img"` mit einer `aria-label`, die alle acht Termine
+ * ausschreibt, und die Zahl darüber nennt sie ohnehin.
+ */
+/*
+ * Unter 768px ist ein Block nur 26px hoch — Platz für eine Zeile. Die Branche
+ * steht dann nicht mehr da; die Rolle ist die Aussage („Entscheider"), die
+ * Branche die Verzierung.
+ */
+@media (max-width: 767px) {
+  .calBlockIndustry {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .calBlockRole,
+  .calBlockIndustry {
+    display: none;
+  }
+
+  /* Ohne Beschriftung braucht der Block keine Innenluft mehr und darf die
+     Spalte ausfüllen. */
+  .calBlock {
+    padding: 0;
+    width: calc(20% - 8px);
+    border-radius: 5px;
+  }
+}
+
 @media (max-width: 520px) {
 
   .calGutter,
@@ -3277,6 +3321,25 @@
   .mobileBarBtn {
     flex: 1;
     justify-content: center;
+  }
+}
+
+/*
+ * Der Diagrammkopf bricht auf dem Telefon um.
+ *
+ * Titel und Einheit („Pipeline · 8 Monate") stehen nebeneinander; auf 390px
+ * bleiben dem Titel rund 200px, und „Anfragen, die von allein kommen" endete
+ * als „Anfragen, die von allein ko…". Untereinander hat er die volle Breite.
+ */
+@media (max-width: 560px) {
+  .chartHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .chartTitles {
+    width: 100%;
   }
 }
 
