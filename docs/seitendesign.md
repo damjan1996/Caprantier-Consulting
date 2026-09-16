@@ -367,33 +367,46 @@ Vier Sätze zum Charakter:
   aus" — sondern das Klebe-Verhalten fällt weg und alle Einträge stehen
   untereinander. Wer das vergisst, zeigt von neun Antworten eine.
 
-### 8.2 Auf dem Telefon bewegt sich etwas anderes
+### 8.2 Auf dem Telefon klebt der Kasten, nicht der Abschnitt
 
-Die Klebe-Bühne ist unter 1100 px abgeschaltet, und das bleibt so:
-100vh-Kleben kämpft dort mit der ein- und ausfahrenden Browserleiste, und
-420vh Scrollstrecke je Abschnitt sind auf einem Daumen kein Vergnügen.
+Unter 1100 px gibt es die Klebe-Bühne — aber in anderer Form. **Nicht der
+Abschnitt bleibt stehen, sondern nur der Kasten mit den Einträgen.** Die
+Textspalte scrollt normal vorbei, dann bleibt der Kasten mittig im Fenster
+stehen und arbeitet seine Einträge ab, genau wie auf dem Desktop.
 
-**Daraus folgte bis zum 16.09.2026 aber ein Fehler:** Weil die Einträge
-gestapelt sofort alle sichtbar standen, war auf dem Telefon von der
-scrollgebundenen Bewegung dieser Website nichts übrig. Gemessen an einem
-390 × 844-Fenster: 38 Bühneneinträge auf der Startseite, alle von Anfang an
-auf voller Deckkraft. Die Einblendungen (`useReveal`) liefen zwar weiter —
-nur sind die der leise Teil.
+**Warum nicht die Desktop-Bühne 1:1.** Dort klebt der ganze Abschnitt über
+100 vh und nimmt Textspalte *und* Kasten mit. Gemessen über sieben Seiten und
+vier Telefongrössen braucht allein die Textspalte — Auszeichnung, Überschrift,
+Fliesstext, Schaltfläche — zwischen 300 und 620 px. Zusammen mit dem höchsten
+Eintrag stehen **14 von 22 Szenen** auf einem 390 × 844-Fenster über der
+Fensterhöhe, die schlimmste um 450 px. Einrichten liesse sich das nur, indem
+auf dem Telefon der Fliesstext verschwindet — und dann fehlt genau der Satz,
+für den der Abschnitt gebaut wurde.
 
-**Der Ersatz ist nicht die Bühne im Kleinen, sondern ihr Kern:** Ein Eintrag
-wird sichtbar, wenn er an der Reihe ist. Auf dem Desktop entscheidet das der
-Scrollstand innerhalb der Klebestrecke, auf dem Telefon die Bildkante.
-Technisch in [Baukasten § 4.4](seitenbaukasten.md), Regel 5.
+Klebt nur der Kasten, muss auch nur der höchste Eintrag passen.
 
-Zwei Werte hängen daran:
+**Passt der nicht, fällt die Szene zurück** auf die gestapelte Einblendung: Die
+Einträge stehen untereinander und blenden einzeln ein, sobald sie an der Reihe
+sind. Die Entscheidung fällt **je Szene und je Fenster aus der Messung**, nicht
+aus einer gepflegten Liste von Ausnahmen — auf einem iPhone SE bekommen 11 von
+22 Szenen die Bühne, auf einem iPhone 14 sind es 14, auf einem Tablet 15.
+Abgeschnitten wird nie etwas.
+
+Vier Werte hängen daran:
 
 | Größe | Wert | Warum |
 |---|---|---|
-| Ausgangsdeckkraft | `0.25`, nicht `0` | Ein Eintrag, der erst am Auslösepunkt erscheint, wäre davor ein Loch in der Seite |
-| Auslöser | `rootMargin: 0px 0px -12% 0px` | Der Eintrag muss ins Bild gelaufen sein. Mit Vorlauf wäre die halbe Sekunde vorbei, bevor man ihn sieht — derselbe Fehler, den die Einblendungen der Startseite schon einmal hatten |
+| Lage des Kastens | mittig zwischen Kopfzeile und belegtem Rand | Oben festgenagelt liesse er bei kurzen Einträgen ein halbes Fenster leer |
+| Klebestrecke je Eintrag | 62 % der Fensterhöhe, mindestens 300 px | Quer gehalten ist ein Telefon rund 390 px hoch; 62 % davon sind 242 px, und bei einer halben Sekunde Überblendung laufen die Karten dann ineinander |
+| Fortschrittsleiste | eigene, unter dem Kasten | Die Leiste der Szene sitzt in der Textspalte und ist aus dem Bild, sobald der Kasten zu arbeiten anfängt |
+| Ausgangsdeckkraft **gestapelt** | `0.25`, nicht `0` | Ein Eintrag, der erst am Auslösepunkt erscheint, wäre davor ein Loch in der Seite |
 
-Nachgemessen an einem Eintrag auf `/ueber-uns`: Deckkraft `0.25` vor der
-Schwelle, `0.88` 160 ms nach dem Auslösen, `1.00` am Ende.
+Zwei Szenenarten bekommen die Bühne nie: solche, deren Kasten in einer Karte
+mit `overflow: hidden` steckt — ein klebender Kasten wird darin abgeschnitten
+—, und solche, die im Stylesheet der Seite `--buehne-mobil: aus` setzen. Der
+erste Fall sind die Terminszenen aller sieben Seiten.
+
+Technisch in [Baukasten § 4.4](seitenbaukasten.md), Regeln 5 und 6.
 
 ---
 

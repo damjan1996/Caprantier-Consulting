@@ -299,7 +299,7 @@ Bildschirmhöhe lang stehen, während ihre Einträge an Ort und Stelle wechseln.
 | `.sceneRail` | Fortschritt des Abschnitts, aus `apply` per `scaleX` |
 
 Ein neuer Abschnitt braucht damit etwa sechs Zeilen CSS: Spalten, Slot-Höhe,
-Bühnenlänge. Vier Regeln dazu:
+Bühnenlänge. Sechs Regeln dazu:
 
 1. **Die Bühnenlänge gehört auf `--scene-height`**, nicht auf eine eigene
    `.sceneX .sceneWrap { height: … }`-Regel. Eine solche Regel ist
@@ -318,21 +318,56 @@ Bühnenlänge. Vier Regeln dazu:
    alle Einträge gleichzeitig da; jede Logik der Art `i === active` muss dann
    `stacked || i === active` lauten, sonst bleiben alle bis auf einen leer
    oder gedimmt.
-5. **Gestapelt blendet jeder Eintrag einzeln ein.** Seit dem 16.09.2026
-   übernimmt `useScrollScene` unter 1100 px eine zweite Aufgabe: Ein Beobachter
-   je Abschnitt setzt `data-sichtbar` an jedem Eintrag, sobald er ins Bild
-   läuft; das Stylesheet hält ihn davor auf `opacity: 0.25`. Der Abschnitt
-   bekommt dazu `data-stapel="an"` — und zwar vom Skript, nicht vom Server,
-   damit ohne JavaScript nichts versteckt wird.
+5. **Unter 1100 px klebt der Kasten, nicht der Abschnitt.** `useScrollScene`
+   misst beim Laden, ob der höchste Eintrag zwischen Kopfzeile und belegtem
+   unteren Rand Platz hat. Wenn ja, bekommt der Abschnitt
+   `data-buehne="mobil"`, und das Stylesheet macht den `sceneSlot` klebend: Die
+   Textspalte scrollt vorbei, der Kasten bleibt stehen und tauscht seine
+   Einträge. Den Fortschritt liefert derselbe Haken, nur aus der Klebestrecke
+   statt aus der Bühnenhöhe — die Szene selbst merkt davon nichts und braucht
+   keine Zeile dafür.
 
-   Der Grund steht im [Designleitfaden § 8.2](seitendesign.md). Kurz: Ohne das
-   war auf dem Telefon von der scrollgebundenen Bewegung dieser Website
-   **nichts** übrig — die Bühne ist dort abgeschaltet, und alle Einträge
-   standen sofort sichtbar da.
+   Drei Dinge hängen daran:
 
-   Wer eine neue Bühne baut, bekommt das geschenkt, solange die Einträge `<li>`
-   mit der Klasse `sceneItem` in einem `sceneSlot` sind. Wer eine eigene
-   Stapel-Mechanik erfindet, muss den Fall selbst bedenken.
+   - **Die Klebestrecke ist ein Platzhalter hinter dem Kasten**
+     (`:has(> .sceneSlot)::after`), kein Aussenabstand am Kasten selbst. Ein
+     klebender Kasten darf mit seinem *Aussenrand* den Elternteil nicht
+     verlassen; trägt er die Strecke als eigenen Abstand, füllt er den
+     Elternteil bereits vollständig aus und scrollt einfach mit. Ein
+     Innenabstand am Elternteil wirkt ebenso wenig — der Rahmen ist dessen
+     **Inhaltskasten**. Beides gemessen, beides sah nach „sticky greift nicht"
+     aus.
+   - **Ein beschneidender Elternteil verhindert die Bühne.** `overflow` alles
+     ausser `visible` irgendwo zwischen Kasten und Abschnitt, und der Kasten
+     klebt entweder nicht oder wird abgeschnitten. Das Skript prüft das und
+     fällt dann auf Regel 6 zurück. Betroffen sind die Terminszenen aller
+     Seiten: Ihr Kasten liegt in der dunklen Karte.
+   - **Eine feste Leiste am unteren Rand muss gemeldet werden.** Sie fährt
+     erst beim Scrollen ein und lässt sich beim Laden nicht messen; die Seite
+     gibt ihre Höhe deshalb als `--buehne-unten` an (siehe `.mobileBar` in
+     `home.module.css`). Ohne das verschwindet der untere Rand der höchsten
+     Karte dahinter.
+
+   Abschalten je Szene: `--buehne-mobil: aus` im Stylesheet der Seite.
+
+6. **Passt der Kasten nicht, blendet jeder Eintrag einzeln ein.** Dann setzt
+   `useScrollScene` stattdessen `data-stapel="an"` am Abschnitt und
+   `data-sichtbar` an jedem Eintrag, sobald er die Auslöselinie bei 88 % der
+   Fensterhöhe erreicht; das Stylesheet hält ihn davor auf `opacity: 0.25`.
+
+   **Gemessen statt gepflegt:** Auf einem kleinen Telefon fallen die hohen
+   Karten von selbst in diese Fassung, auf einem grossen bekommen sie die
+   Bühne. Es gibt keine Liste von Ausnahmen, die beim nächsten Umbau falsch
+   wäre.
+
+   Beide Attribute setzt das Skript, nicht der Server — ohne JavaScript wird
+   nichts versteckt.
+
+   Der Grund für beides steht im
+   [Designleitfaden § 8.2](seitendesign.md). Wer eine neue Bühne baut, bekommt
+   es geschenkt, solange die Einträge `<li>` mit der Klasse `sceneItem` in
+   einem `sceneSlot` sind. Wer eine eigene Stapel-Mechanik erfindet, muss
+   beide Fälle selbst bedenken.
 
 ### 4.5 Aufklappbereich
 
@@ -687,7 +722,8 @@ Dazu von Hand oder per Skript:
 | Kantenausrichtung | Logo, Eyebrow, H1, H2, Fußzeile bei 390–1920 px: **0 px Abweichung** |
 | Einblendungen | jede Überschrift bei Sichtkontakt ≥ 60 % Deckkraft |
 | Waagerechter Überlauf | `scrollWidth === innerWidth` bei allen sieben Breiten |
-| Bühne gestapelt | unter 1100 px: Abschnittshöhe = Inhaltshöhe, kein Leerraum darunter |
+| Bühne gestapelt | unter 1100 px ohne Klebe-Kasten: Abschnittshöhe = Inhaltshöhe, kein Leerraum darunter |
+| Bühne auf dem Telefon | jede Szene trägt `data-buehne="mobil"` **oder** `data-stapel="an"`, keine ohne; der klebende Kasten bleibt zwischen Kopfzeile und unterem Rand |
 | Bühne ohne Bewegung | bei `prefers-reduced-motion`: **jeder** Eintrag sichtbar, nicht nur der letzte |
 | Restzeile der Überschriften | letzte Zeile ≥ 25 % der breitesten — messbar über die Zeilenkästen (`Range.getClientRects()`), nicht nach Gefühl |
 | Konsole | keine Fehler — insbesondere keine Bild- oder Preload-Warnung |

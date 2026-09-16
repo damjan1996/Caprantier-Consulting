@@ -86,6 +86,17 @@
   --section-y: clamp(104px, 15vw, 260px);
   --header-h: 80px;
 
+  /*
+   * Was am unteren Fensterrand dauerhaft belegt ist.
+   *
+   * Die Telefon-Bühne rechnet damit, wie viel Platz ein Eintrag hat. Eine
+   * feste Leiste am unteren Rand lässt sich dabei nicht messen: Sie fährt
+   * erst beim Scrollen ein, die Messung läuft aber beim Laden. Seiten mit
+   * einer solchen Leiste melden deren Höhe hier an — sonst verschwindet der
+   * untere Rand der höchsten Karte dahinter.
+   */
+  --buehne-unten: 0px;
+
   background: #fff;
   color: var(--ink);
   letter-spacing: -0.011em;
@@ -307,6 +318,127 @@
   [data-stapel='an'] .sceneItem[data-sichtbar] {
     opacity: 1;
     transform: none;
+  }
+
+  /* --------------------------------------------- Klebe-Bühne auf dem Telefon */
+
+  /*
+   * Auf dem Telefon klebt nicht der Abschnitt, sondern der Kasten.
+   *
+   * Über 1100px bleibt `.sceneStage` über 100vh stehen und nimmt Textspalte
+   * und Kasten mit. Darunter geht das nicht: Gemessen über sieben Seiten und
+   * vier Telefongrössen braucht allein die Textspalte zwischen 300 und 620px,
+   * und mit dem höchsten Eintrag zusammen stehen 14 von 22 Szenen auf einem
+   * 390x844-Fenster über der Fensterhöhe. Die Bühne einzurichten hiesse, auf
+   * dem Telefon den Fliesstext wegzunehmen.
+   *
+   * Hier scrollt die Textspalte deshalb normal vorbei, und erst der Kasten
+   * bleibt stehen. Passen muss damit nur noch der höchste Eintrag — und ob er
+   * das tut, misst `useScrollScene`, bevor es `data-buehne` setzt. Passt er
+   * nicht, greifen stattdessen die `[data-stapel]`-Regeln darüber.
+   *
+   * Alle Masse kommen von dort als Inline-Eigenschaften am Abschnitt:
+   * `--buehne-oben` (Klebekante unter der Kopfzeile), `--buehne-slot` (Höhe
+   * des höchsten Eintrags), `--buehne-reise` (Klebestrecke) und
+   * `--buehne-fortschritt` (0–1, je Frame).
+   *
+   * Ohne JavaScript wird `data-buehne` nie gesetzt, und alles steht
+   * untereinander da — dieselbe Absicherung wie bei `data-stapel`.
+   */
+
+  /* Der Kasten gehört unter die Überschrift, nicht wie sonst darüber: Er
+     bleibt stehen, während sie vorbeizieht. */
+  [data-buehne='mobil'] .sceneAside {
+    order: 0;
+  }
+
+  [data-buehne='mobil'] .sceneSlot {
+    display: block;
+    position: sticky;
+    top: var(--buehne-oben);
+    min-height: var(--buehne-slot);
+    /* Deckt, was von unten heranscrollt. Ohne das läuft der nächste
+       Abschnitt durch den stehenden Kasten hindurch. */
+    z-index: 1;
+    background: var(--buehne-grund, #fff);
+  }
+
+  /*
+   * Die Klebestrecke — als eigener Platzhalter hinter dem Kasten.
+   *
+   * Nicht als Aussenabstand am Kasten selbst: Ein klebender Kasten darf mit
+   * seinem **Aussenrand** den Elternteil nicht verlassen. Trägt er die Strecke
+   * als eigenen Abstand, füllt sein Aussenrand den Elternteil bereits
+   * vollständig aus, und es bleibt nichts übrig, worin er sich verschieben
+   * könnte — er scrollt einfach mit. Gemessen: Der Kasten lief mit 1:1 durchs
+   * Bild, obwohl `position: sticky` und `top` gesetzt waren.
+   *
+   * Auch nicht als Innenabstand am Elternteil: Der Rahmen, in dem ein
+   * klebender Kasten sich bewegen darf, ist dessen **Inhaltskasten**; ein
+   * Innenabstand liegt ausserhalb davon und wirkt genauso wenig (ebenfalls
+   * gemessen).
+   *
+   * Bleibt echter Inhalt hinter dem Kasten. `:has()` trifft dessen Elternteil,
+   * ohne dass 22 Szenen dafür ein zusätzliches `div` bekommen — und ohne dass
+   * das Skript fremdes DOM anfasst, das React gehört. Browser ohne `:has()`
+   * bekommen keine Strecke und damit die gestapelte Fassung von oben: kein
+   * Bruch, nur keine Bühne.
+   */
+  [data-buehne='mobil'] :has(> .sceneSlot)::after {
+    content: '';
+    display: block;
+    height: var(--buehne-reise);
+  }
+
+  [data-buehne='mobil'] .sceneItem {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition:
+      opacity var(--reveal-dur) var(--ease),
+      transform var(--reveal-dur) var(--ease);
+  }
+
+  /* Wie auf dem Desktop: Gelesenes geht nach oben weg, Kommendes wartet
+     unten. */
+  [data-buehne='mobil'] .sceneItemDone {
+    transform: translateY(-20px);
+  }
+
+  [data-buehne='mobil'] .sceneItemOn {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /*
+   * Fortschrittsleiste unter dem stehenden Kasten.
+   *
+   * Die Leiste der Szene (`.sceneRail`) sitzt in der Textspalte und ist aus
+   * dem Bild, sobald der Kasten zu arbeiten anfängt. Ohne Ersatz steht man vor
+   * wechselnden Karten, ohne zu sehen, wie viele noch kommen.
+   */
+  [data-buehne='mobil'] .sceneSlot::before,
+  [data-buehne='mobil'] .sceneSlot::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -16px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  [data-buehne='mobil'] .sceneSlot::before {
+    background: var(--line);
+  }
+
+  [data-buehne='mobil'] .sceneSlot::after {
+    background: var(--accent);
+    transform: scaleX(var(--buehne-fortschritt, 0));
+    transform-origin: left center;
   }
 
   .sceneAfter {
