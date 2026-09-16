@@ -29,7 +29,7 @@ Zeile.
 | Hosting | Vercel Inc., USA | Betrieb der Website | Auftragsverarbeiter | ☐ | Region `fra1` (Frankfurt), Verwaltung aus den USA | ☐ |
 | ~~Datenbank~~ | _(entfiel)_ | ~~Chat-Sitzungen~~ | — | — | — | — |
 
-> **Datenbank und Anthropic: beendet am 16.09.2026.** Der KI-Chat wurde
+> **Datenbank und Anthropic: beendet am 30.08.2026.** Der KI-Chat wurde
 > entfernt. Damit entfällt der einzige Drittlandtransfer ausserhalb von
 > Vercel, Google und Calendly; AV-Vertrag und Transfer Impact Assessment für
 > Anthropic werden nicht mehr benötigt. Der Datenbestand in `chat_sessions`

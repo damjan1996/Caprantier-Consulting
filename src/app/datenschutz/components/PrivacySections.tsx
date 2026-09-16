@@ -23,10 +23,11 @@ const STORAGE_TABLE_HEADERS = [
  * deshalb in dieselbe Übersicht — und mit ihrer tatsächlichen Lebensdauer:
  * anders als ein Cookie laufen sie nicht von selbst ab.
  *
- * Die Einträge müssen zu dem passen, was der Code wirklich schreibt. Seit dem
- * Wegfall des KI-Chats (16.09.2026) schreibt die Website selbst nur noch einen
- * einzigen Eintrag: `cookie-consent` aus `useCookieConsent`. Alles Weitere in
- * dieser Tabelle stammt von Diensten, die erst nach einer Einwilligung laden.
+ * Die Einträge müssen zu dem passen, was der Code wirklich schreibt: derzeit
+ * ausschließlich `useCookieConsent` (cookie-consent). Der Eintrag
+ * `chat-ai-notice` ist mit dem KI-Chat am 30.08.2026 entfallen. Alles Weitere
+ * in dieser Tabelle stammt von Diensten, die erst nach einer Einwilligung
+ * laden.
  */
 const STORAGE_ENTRIES = [
   {
@@ -551,6 +552,19 @@ const sections = [
           </p>
         </div>
 
+        <div>
+          <h3 className="text-lg font-medium text-foreground mb-3">Früherer KI-Chatbot (Claude)</h3>
+          <p className="text-muted-foreground mb-4">
+            Bis zum <strong className="text-foreground">30.08.2026</strong> war auf dieser Website ein KI-gestützter Chatbot auf Basis von Claude (Anthropic, PBC, 548 Market St, PMB 90375, San Francisco, CA 94104, USA) eingebunden. Der Chatbot wurde abgeschaltet; es werden über ihn keine Daten mehr erhoben oder an Anthropic übermittelt.
+          </p>
+          <p className="text-muted-foreground mb-4">
+            Mit der Abschaltung ist auch der Zweck der bereits gespeicherten Verläufe entfallen. Sie werden deshalb vollständig gelöscht, unabhängig von den früheren Fristen und ohne dass es dafür eines Antrags bedarf (Art. 5 Abs. 1 lit. e und Art. 17 Abs. 1 lit. a DSGVO). Wenn Sie den Stand dazu wissen oder die sofortige Löschung verlangen möchten, erreichen Sie uns unter{' '}
+            <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
+              nico@carpantier-consulting.de
+            </a>
+            {' '}kontaktieren.
+          </p>
+        </div>
       </div>
     ),
   },
@@ -574,7 +588,7 @@ const sections = [
         <div>
           <h3 className="text-lg font-medium text-foreground mb-3">Keine automatisierte Kommunikation</h3>
           <p className="text-muted-foreground mb-4">
-            Bis zum 16.09.2026 stand auf dieser Website ein KI-gestützter Chatbot. Er ist entfallen. Sie kommunizieren mit uns ausschließlich über das Kontaktformular, per E-Mail, per Telefon oder im vereinbarten Gespräch &ndash; in allen Fällen mit einem Menschen. Es findet keine automatisierte Entscheidung im Einzelfall im Sinne des Art. 22 DSGVO statt.
+            Bis zum 30.08.2026 stand auf dieser Website ein KI-gestützter Chatbot. Er ist entfallen. Sie kommunizieren mit uns ausschließlich über das Kontaktformular, per E-Mail, per Telefon oder im vereinbarten Gespräch &ndash; in allen Fällen mit einem Menschen. Es findet keine automatisierte Entscheidung im Einzelfall im Sinne des Art. 22 DSGVO statt.
           </p>
           <p className="text-muted-foreground">
             Eine Gesamtübersicht über unseren KI-Einsatz finden Sie unter{' '}

@@ -24,12 +24,16 @@ type NavItem = {
 }
 
 /**
- * Blog, Videos und Glossar liegen unter dem Punkt „Wissen".
+ * Blog und Glossar liegen unter dem Punkt „Wissen", die Videos daneben.
  *
- * Ohne die Gruppierung hätte die Leiste mit den Videos sechs Einträge — und
- * drei davon wären inhaltlich dasselbe. Die Adressen der Unterpunkte bleiben
- * unverändert: `/blog` und `/glossar` sind indexiert und werden nicht
- * umgezogen, nur anders einsortiert.
+ * Die Gruppierung von Blog und Glossar hält die Leiste kurz — beide sind
+ * inhaltlich dasselbe Angebot in zwei Formen. Die Videos stehen seit dem
+ * 09.09.2026 bewusst als eigener Punkt: Sie sind der Kanal, über den die
+ * Marke gerade wächst, und ein Unterpunkt wird seltener geklickt als ein
+ * eigener. Damit hat die Leiste fünf Einträge, nicht sechs.
+ *
+ * Die Adressen bleiben unverändert: `/blog`, `/glossar` und `/wissen/videos`
+ * sind indexiert und werden nicht umgezogen, nur anders einsortiert.
  */
 const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
@@ -47,12 +51,12 @@ const navigation: NavItem[] = [
       { name: 'Referenzen', href: '/referenzen' },
     ],
   },
+  { name: 'Videos', href: '/wissen/videos' },
   {
     name: 'Wissen',
     href: '/wissen',
     children: [
       { name: 'Blog', href: '/blog' },
-      { name: 'Videos', href: '/wissen/videos', isNew: true },
       { name: 'Glossar', href: '/glossar' },
     ],
   },

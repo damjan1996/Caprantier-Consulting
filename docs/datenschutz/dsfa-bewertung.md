@@ -11,8 +11,9 @@ lautet, ist die Prüfung selbst zu dokumentieren — sie ist Teil der
 Rechenschaftspflicht nach Art. 5 Abs. 2 DSGVO.
 
 > [!IMPORTANT]
-> **Der Hauptgegenstand dieser Prüfung ist am 16.09.2026 entfallen.** Der
-> KI-Chatbot wurde von der Website entfernt. Damit gibt es keine freien
+> **Der Hauptgegenstand dieser Prüfung ist am 30.08.2026 entfallen.** Der
+> KI-Chatbot wurde an diesem Tag von der Website entfernt; der verbliebene
+> Code folgte am 16.09.2026. Damit gibt es keine freien
 > Texteingaben an ein KI-System, keine Übermittlung von Besuchereingaben in
 > die USA und keine Speicherung von Gesprächsverläufen mehr.
 >
@@ -54,7 +55,7 @@ mindestens zwei der folgenden Kriterien erfüllt sind.
 
 **Summe der erfüllten Kriterien:** 1
 
-## 3. Sonderfall: freie Texteingaben im Chat _(entfallen am 16.09.2026)_
+## 3. Sonderfall: freie Texteingaben im Chat _(entfallen am 30.08.2026)_
 
 Besucher können in ein freies Textfeld schreiben, was sie möchten — theoretisch
 auch Gesundheitsdaten oder andere Angaben nach Art. 9 DSGVO. Diese Möglichkeit

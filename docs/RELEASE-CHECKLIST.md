@@ -95,7 +95,8 @@ Danach „Alle akzeptieren" klicken:
 
 ### 3.3 Kein Chatbot mehr
 
-Der KI-Chat ist am 16.09.2026 entfallen. Statt der früheren Kennzeichnungs-
+Der KI-Chat ist am 30.08.2026 von der Website entfernt worden, der
+verbliebene Code am 16.09.2026. Statt der früheren Kennzeichnungs-
 prüfungen ist jetzt zu bestätigen, dass nichts davon übrig geblieben ist:
 
 - [ ] Auf keiner Seite erscheint unten rechts eine Chat-Blase

@@ -78,7 +78,7 @@ export default function KiTransparenzPage() {
                 <div className="space-y-4 text-muted-foreground">
                   <p>
                     Auf dieser Website läuft <strong className="text-foreground">kein
-                    KI-Chatbot</strong>. Bis zum 16.09.2026 stand unten rechts ein
+                    KI-Chatbot</strong>. Bis zum 30.08.2026 stand unten rechts ein
                     KI-Assistent auf Basis eines Sprachmodells; er wurde entfernt.
                   </p>
                   <p>

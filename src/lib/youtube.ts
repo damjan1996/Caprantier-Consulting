@@ -85,6 +85,41 @@ function firstParagraph(description: string, maxLength = 220): string {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`
 }
 
+/**
+ * Manuell ergänzte Videos.
+ *
+ * Der RSS-Feed von YouTube wird über mehrere Caches ausgeliefert und braucht
+ * nach einem Upload teils Stunden, bis ihn alle Knoten kennen. In dieser Zeit
+ * kann ein frisches Video je nach Abruf mal da sein und mal nicht — auf der
+ * Seite würde es flackern. Ein Eintrag hier hält es stabil sichtbar.
+ *
+ * Doppelte Einträge sind unkritisch: Sobald der Feed das Video führt, gewinnt
+ * die Fassung aus dem Feed (mit Beschreibung), der Eintrag hier fällt weg.
+ * Er kann dann ersatzlos gelöscht werden, muss aber nicht.
+ */
+const PINNED: Array<Pick<YouTubeVideo, 'id' | 'title' | 'published'> & { description?: string }> = []
+
+function fromPinned(entry: (typeof PINNED)[number]): YouTubeVideo {
+  return {
+    id: entry.id,
+    title: entry.title,
+    description: entry.description ?? '',
+    published: entry.published,
+    watchUrl: `https://www.youtube.com/watch?v=${entry.id}`,
+    thumbnailUrl: `/api/youtube/thumbnail/${entry.id}`,
+  }
+}
+
+/** Feed und manuelle Liste zusammenführen, neueste zuerst. */
+function merge(fromFeed: YouTubeVideo[]): YouTubeVideo[] {
+  const known = new Set(fromFeed.map((video) => video.id))
+  const extra = PINNED.filter((entry) => isValidVideoId(entry.id) && !known.has(entry.id))
+
+  return [...fromFeed, ...extra.map(fromPinned)].sort(
+    (a, b) => Date.parse(b.published) - Date.parse(a.published)
+  )
+}
+
 function parseFeed(xml: string, limit: number): YouTubeVideo[] {
   const entries = xml.split('<entry>').slice(1)
 
@@ -115,14 +150,18 @@ function parseFeed(xml: string, limit: number): YouTubeVideo[] {
  * Link zum Kanal.
  */
 export async function getVideos(limit = 12): Promise<YouTubeVideo[]> {
+  let fromFeed: YouTubeVideo[] = []
+
   try {
     const response = await fetch(FEED_URL, {
       next: { revalidate: REVALIDATE_SECONDS },
     })
-    if (!response.ok) return []
-
-    return parseFeed(await response.text(), limit)
+    if (response.ok) {
+      fromFeed = parseFeed(await response.text(), limit)
+    }
   } catch {
-    return []
+    // Störung bei YouTube: Es bleibt bei den manuell gepflegten Videos.
   }
+
+  return merge(fromFeed).slice(0, limit)
 }

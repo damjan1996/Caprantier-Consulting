@@ -28,9 +28,15 @@ import styles from './home.module.css'
  * Einwilligung (`LiteYouTube`), nicht beim Aufruf der Seite.
  */
 
+/*
+ * Getauscht am 09.09.2026 (Commit d877351), damals noch in der alten
+ * `VideoHighlight`-Komponente. Die ist mit dem Umbau der Startseite entfallen;
+ * das Video steht seitdem hier. Wer es wieder tauscht, ändert nur diese zwei
+ * Zeilen — der Titel ist der Fallbacktext, solange das Vorschaubild lädt.
+ */
 const VIDEO = {
-  id: 'FHfhaN-SG3Q',
-  title: 'Warum eure Akquise immer wieder einschläft',
+  id: 'LevIt3mHrng',
+  title: 'Was passiert, wenn du keine Kaltakquise machst',
 }
 
 const STEPS = [

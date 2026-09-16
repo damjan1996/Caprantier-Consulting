@@ -45,15 +45,15 @@ fortzuschreiben.
 | Löschfrist | Im Postfach: Löschung nach Abschluss der Anfrage, spätestens nach _(Frist festlegen)_. Führt die Anfrage zu einem Vertrag, greifen handels- und steuerrechtliche Aufbewahrungspflichten |
 | Technische und organisatorische Maßnahmen | Serverseitige Prüfung der Eingaben, Mengenbegrenzung je Absender (5 Anfragen in 10 Minuten), unsichtbares Honeypot-Feld, HTML-Maskierung aller Eingaben in der Benachrichtigung |
 
-## 3. KI-Chatbot — **beendet am 16.09.2026**
+## 3. KI-Chatbot — **beendet am 30.08.2026**
 
-> **Diese Verarbeitung findet nicht mehr statt.** Der Chat wurde am 16.09.2026
-> von der Website entfernt; `/api/chat`, `/api/admin/leads` und der Löschlauf
+> **Diese Verarbeitung findet nicht mehr statt.** Der Chat wurde am 30.08.2026
+> von der Website entfernt, der verbliebene Code am 16.09.2026; `/api/chat`, `/api/admin/leads` und der Löschlauf
 > `/api/cron/cleanup-chats` sind gelöscht, ebenso das Datenmodell.
 >
 > Der Eintrag bleibt trotzdem stehen. Art. 30 DSGVO verlangt ein Verzeichnis
 > der Verarbeitungen — wer nachträglich prüft, muss erkennen können, was
-> zwischen der Inbetriebnahme und dem 16.09.2026 verarbeitet wurde. Ein
+> zwischen der Inbetriebnahme und dem 30.08.2026 verarbeitet wurde. Ein
 > gelöschter Eintrag sieht aus wie eine Verarbeitung, die es nie gab.
 >
 > **Offen und vor dem Livegang zu erledigen:** Die Tabellen `chat_sessions`
@@ -120,7 +120,7 @@ fortzuschreiben.
 | Löschfrist | 13 Monate (Laufzeit des Cookies); die serverseitige Frist ist **zu ermitteln** |
 | Hinweis | Wird das Tracking nicht aktiv ausgewertet, ist die Entfernung die einfachere Lösung: sie spart eine Einwilligungskategorie, zwei CSP-Freigaben und einen Abschnitt in der Datenschutzerklärung |
 
-## 7. Verwaltungszugriff auf Chat-Leads — **beendet am 16.09.2026**
+## 7. Verwaltungszugriff auf Chat-Leads — **beendet am 30.08.2026**
 
 > Entfallen mit der Verarbeitung unter 3. Der Endpunkt ist gelöscht,
 > `ADMIN_API_KEY` wird nicht mehr ausgewertet und gehört aus der
