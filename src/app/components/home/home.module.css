@@ -3338,8 +3338,17 @@
     gap: 2px;
   }
 
+  /*
+   * `flex: 1` aus der Grundregel meint die Zeile. Untereinander meint es die
+   * Spalte: Die Flex-Basis wird 0, der Kasten hat keine freie Höhe zum
+   * Wachsen und fällt auf 0px zusammen. Die Titel darin sind absolut gesetzt,
+   * standen also plötzlich über der Einheit darunter — zwei Texte
+   * übereinander. Deshalb hier feste Höhe statt Flex.
+   */
   .chartTitles {
     width: 100%;
+    flex: none;
+    height: 20px;
   }
 }
 
