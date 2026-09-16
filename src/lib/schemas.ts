@@ -1,4 +1,7 @@
 import type { City } from './cities'
+import type { CityAcquisition } from './city-acquisition'
+import { homeFaqs, homeProcessSteps } from './home-content'
+import { services } from './leistungen-content'
 
 /*
  * Kein Bewertungs-Markup.
@@ -13,31 +16,57 @@ import type { City } from './cities'
  */
 
 // Generate city-specific FAQs - optimiert für "Vertrieb [Stadt]" Keywords
+/**
+ * Die häufigen Fragen der Seitenfamilie `/leistungen/[stadt]`.
+ *
+ * Wortgleich mit dem sichtbaren Abschnitt „Häufige Fragen“ dort — beide lesen
+ * diese Funktion. Zwei Textstände zwischen Markup und Seite sind ein Verstoß,
+ * den man der Seite nicht ansieht.
+ *
+ * Die Fragen zielen bewusst auf eine **andere Absicht** als die unter
+ * `/kaltakquise/[stadt]`: Dort geht es um die Zulässigkeit des Anrufs und den
+ * Markt vor Ort, hier um die Entscheidung, den Vertrieb überhaupt abzugeben —
+ * was übergeben wird, was es kostet, was am Ende bleibt.
+ *
+ * Neu geschrieben am 15.09.2026. Die frühere Fassung stand im Widerspruch zum
+ * Rest der Website und zu den eigenen Textregeln:
+ *
+ * - „oft schon in der ersten Woche“ gegen „innerhalb von 10–14 Tagen … oft in
+ *   der zweiten Woche“ in `home-content.ts`. Dieselbe Zusage in zwei Fassungen,
+ *   die aggressivere auf fünfzehn Seiten.
+ * - „maßgeschneiderte Vertriebsstrategien“ und „liefern schnelle Ergebnisse“ —
+ *   beides führt `docs/seitentexte.md` § 9.1 und § 1 ausdrücklich als das auf,
+ *   was nicht geschrieben wird.
+ * - „Pay-per-Lead bis zu monatlichen Vertriebspaketen“ gegen die drei Modelle
+ *   in `src/lib/pricing.ts`, die anders heißen.
+ * - „über 3 Jahre Vertriebserfahrung“ — eine Zahl ohne zweite Quelle im
+ *   Projekt.
+ */
 function getCityFAQs(city: City) {
   return [
     {
-      question: `Kann ich meinen Vertrieb in ${city.name} an Sie auslagern?`,
-      answer: `Ja, als Vertriebsagentur übernehmen wir Ihren kompletten B2B-Vertrieb in ${city.name}. Wir sind spezialisiert auf Vertriebsoutsourcing und Leadgenerierung ${city.businessContext}. ${city.regionalText} Von unserem Standort aus betreuen wir Unternehmen in ${city.name} und Umgebung mit professioneller Vertriebsunterstützung.`,
+      question: `Kann ich meinen Vertrieb in ${city.name} komplett auslagern?`,
+      answer: `Die Neukundengewinnung ja, den Abschluss nicht. Wir übernehmen Zielgruppe, Telefonakquise, Qualifizierung und Bericht; das Verkaufsgespräch führen Sie selbst, weil Preis und Zusage bei Ihnen liegen. ${city.regionalText}`,
     },
     {
-      question: `Wie funktioniert Vertrieb auslagern mit Carpantier in ${city.name}?`,
-      answer: `Als Ihre Vertriebsagentur für ${city.name} starten wir mit einem kostenlosen Strategiegespräch. Wir analysieren Ihre Zielgruppe in ${city.name} und ${city.region}, entwickeln maßgeschneiderte Vertriebsstrategien und übernehmen die aktive Kundenakquise. Alle qualifizierten Termine werden digital in Ihren Kalender übergeben.`,
+      question: `Wie läuft die Zusammenarbeit in ${city.name} an?`,
+      answer: `Zwei Gespräche mit Ihnen, dann übernehmen wir. Nach Kick-off und Setup starten wir in der Regel innerhalb von 10–14 Tagen mit den ersten Anrufen; die ersten qualifizierten Termine stehen oft in der zweiten Woche in Ihrem Kalender. Über den gesamten Prozess kostet Sie das weniger als 90 Minuten Ihrer Zeit.`,
     },
     {
       question: `Was kostet eine Vertriebsagentur in ${city.name}?`,
-      answer: `Die Kosten für Vertriebsoutsourcing in ${city.name} hängen von Ihrem Bedarf ab. Wir bieten verschiedene Modelle an - von Pay-per-Lead bis zu monatlichen Vertriebspaketen. In einem kostenlosen Strategiegespräch erstellen wir ein individuelles Angebot für Ihr Vertriebsprojekt ${city.businessContext}.`,
+      answer: `Wir verkaufen keine Standardpakete, deshalb variiert der Preis. Im Erstgespräch nennen wir Ihnen nach kurzer Analyse eine transparente Hausnummer. Zur Wahl stehen drei Modelle: ein Pilotprojekt, laufende Akquise oder die Abrechnung je qualifiziertem Termin – welches passt, hängt an der Größe Ihrer Zielgruppe und daran, wie viele Termine Sie pro Woche wahrnehmen können.`,
     },
     {
-      question: `Welche Branchen betreut Ihre Vertriebsagentur in ${city.name}?`,
-      answer: `Wir sind auf den Vertrieb für B2B-Dienstleister und inhabergeführte Unternehmen spezialisiert: Personalvermittler, IT-Systemhäuser, Unternehmensberater, SaaS-Anbieter und Web- oder Software-Agenturen ${city.businessContext}. Unsere Vertriebsexpertise liegt in der Ansprache von Entscheidern in Unternehmen mit 5 bis 50 Mitarbeitern in ${city.name}.`,
+      question: `Für welche Unternehmen in ${city.name} arbeiten Sie?`,
+      answer: `Für B2B-Dienstleister mit etwa fünf bis fünfzig Mitarbeitern ${city.businessContext} – Personalvermittler, IT-Systemhäuser, Beratungen, SaaS-Anbieter und Agenturen. Damit sich laufende Akquise rechnet, sollte ein gewonnener Kunde über die Zusammenarbeit hinweg mindestens rund 10.000 € wert sein. Liegt er deutlich darunter, sagen wir das im Erstgespräch.`,
     },
     {
-      question: `Wie schnell generiert Ihr Vertriebsteam erste Leads in ${city.name}?`,
-      answer: `Nach dem Onboarding können Sie oft schon in der ersten Woche mit den ersten qualifizierten Terminen aus ${city.name} rechnen. Als erfahrene Vertriebsagentur verstehen wir den Markt ${city.businessContext} und liefern schnelle Ergebnisse.`,
+      question: `Was bleibt bei uns, wenn die Zusammenarbeit endet?`,
+      answer: `Die Anrufliste mit ihren Auswahlkriterien, die Gesprächsnotizen und das erarbeitete Gesprächsgerüst. Alles läuft von Anfang an in Ihr CRM und nicht in eine Tabelle bei uns; Absagegründe stehen im Wortlaut im Bericht. Wer die Akquise danach selbst weiterführen will, kann das mit dem, was vorliegt.`,
     },
     {
-      question: `Was unterscheidet Carpantier von anderen Vertriebsagenturen in ${city.region}?`,
-      answer: `Als spezialisierte Vertriebsagentur für ${city.name} liefern wir ausschließlich qualifizierte Termine mit echten Entscheidern. Keine Masse, sondern Klasse. Wir haben über 3 Jahre Vertriebserfahrung speziell im B2B-Dienstleisterumfeld und verstehen die Vertriebsherausforderungen ${city.businessContext}.`,
+      question: `Arbeiten Sie vor Ort in ${city.name}?`,
+      answer: `Wir telefonieren aus Köln, mit korrekt übermittelter Rufnummer und ohne vorgetäuschte Ortsvorwahl. Für den Vertrieb am Telefon zählt nicht die Anfahrt, sondern ob der Anlass des Anrufs zum angerufenen Unternehmen passt und ob wir den Markt ${city.businessContext} kennen.`,
     },
   ]
 }
@@ -141,94 +170,53 @@ export function generateBreadcrumbSchema(
 }
 
 // HowTo Schema for Method/Process Section
+/**
+ * HowTo zum Abschnitt „Der Prozess“ auf der Startseite.
+ *
+ * Die Schritte kommen aus `src/lib/home-content.ts` und sind damit
+ * zwangsläufig dieselben, die der Abschnitt anzeigt. Strukturierte Daten
+ * müssen den sichtbaren Inhalt wiedergeben — vorher standen hier drei
+ * Schritte mit eigenen Texten, während die Seite vier andere zeigte.
+ */
 export function generateHowToSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'B2B Vertrieb auslagern - Das 3-Schritte-System',
+    name: 'B2B-Vertrieb auslagern — in vier Schritten zu wöchentlichen Entscheider-Terminen',
     description:
-      'In drei Schritten von der kalten Liste zum zahlenden Kunden. Professionelle B2B Telefonakquise und Leadgenerierung durch Carpantier Consulting.',
-    totalTime: 'P30D',
+      'Vom Erstgespräch bis zu wöchentlich 3–8 qualifizierten Terminen im eigenen Kalender. Der Ablauf einer Zusammenarbeit mit Carpantier Consulting.',
+    totalTime: 'P14D',
     estimatedCost: {
       '@type': 'MonetaryAmount',
       currency: 'EUR',
       value: 'Individuell nach Anforderung',
     },
-    step: [
-      {
-        '@type': 'HowToStep',
-        position: 1,
-        name: 'Strategie-Blueprint',
-        text: 'Messerscharfe Analyse von Angebot und Zielgruppe. Wir definieren genau, wen wir anrufen und was wir sagen. Entwicklung einer maßgeschneiderten Akquise-Strategie mit Zielgruppenanalyse, Skript-Entwicklung und Einwandbehandlung.',
-        url: 'https://carpantier-consulting.de/#methode',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 2,
-        name: 'Akquise-Übernahme',
-        text: 'Wir führen die Gespräche, als wären wir Teil Ihres Teams. Professionell, hartnäckig und sympathisch. Aktive B2B Telefonakquise mit qualifizierten Vertriebsmitarbeitern.',
-        url: 'https://carpantier-consulting.de/#methode',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 3,
-        name: 'Verkaufsgespräche führen',
-        text: 'Sie erhalten qualifizierte Termine direkt in Ihren Kalender. Sie schließen ab - wir halten Ihnen den Rücken frei. Qualifizierte Leads mit echten Entscheidern.',
-        url: 'https://carpantier-consulting.de/#methode',
-      },
-    ],
+    step: homeProcessSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: `${step.phase} · Ihr Aufwand: ${step.effort}. ${step.description}`,
+      url: 'https://carpantier-consulting.de/#process-title',
+    })),
     tool: [
-      {
-        '@type': 'HowToTool',
-        name: 'Professionelles CRM-System',
-      },
-      {
-        '@type': 'HowToTool',
-        name: 'Kalender-Integration (Calendly)',
-      },
+      { '@type': 'HowToTool', name: 'Professionelles CRM-System' },
+      { '@type': 'HowToTool', name: 'Kalender-Integration (Calendly)' },
     ],
   }
 }
 
-// Homepage FAQ Schema
+/**
+ * FAQPage der Startseite.
+ *
+ * Quelle ist `homeFaqs` — dieselbe Liste, die der FAQ-Abschnitt rendert. Der
+ * erläuternde Hinweis (`note`) bleibt bewusst draußen: Er steht auf der Seite
+ * unter der Antwort, gehört aber nicht zur Antwort selbst.
+ */
 export function generateHomepageFAQSchema() {
-  const faqs = [
-    {
-      question: 'Was passiert im Erstgespräch?',
-      answer:
-        'Im Erstgespräch analysieren wir Ihre aktuelle Situation und prüfen, ob unser System für Ihre Agentur geeignet ist. Wir geben Ihnen bereits erste strategische Impulse mit, völlig unverbindlich.',
-    },
-    {
-      question: 'Warum ist das Gespräch kostenlos?',
-      answer:
-        'Wir investieren in Vorleistung, weil wir wissen, dass unser System überzeugt. Wenn wir sehen, dass wir Ihnen helfen können, machen wir Ihnen ein Angebot. Wenn nicht, haben Sie trotzdem wertvolle Klarheit gewonnen.',
-    },
-    {
-      question: 'Was kostet die Dienstleistung?',
-      answer:
-        'Da wir keine Standard-Pakete verkaufen, sondern maßgeschneiderte Lösungen, variiert der Preis je nach Umfang und Zielsetzung. Im Erstgespräch können wir Ihnen nach der Analyse eine genaue Hausnummer nennen.',
-    },
-    {
-      question: 'Für wen ist Carpantier Consulting geeignet?',
-      answer:
-        'Wir arbeiten exklusiv mit Dienstleistern und Agenturinhabern (B2B), die ein funktionierendes Angebot haben und bereit sind, zu skalieren. Wir arbeiten nicht mit Network Marketern oder Dropshippern.',
-    },
-    {
-      question: 'Sind die Termine qualifiziert?',
-      answer:
-        'Ja. Wir vereinbaren keine "Kaffeetrinken"-Termine. Wir stellen sicher, dass wir mit dem Entscheider sprechen und ein grundsätzliches Interesse am Angebot besteht - erst dann wird der Termin in Ihren Kalender eingetragen.',
-    },
-    {
-      question: 'Wie schnell kann ich mit Ergebnissen rechnen?',
-      answer:
-        'Nach dem Onboarding starten wir in der Regel innerhalb weniger Tage mit den ersten Gesprächen. Die ersten qualifizierten Termine können Sie oft schon in der ersten Woche erwarten.',
-    },
-  ]
-
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: homeFaqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -378,5 +366,95 @@ export function generateHomepageVideoSchema() {
       name: 'Carpantier Consulting',
       url: 'https://carpantier-consulting.de',
     },
+  }
+}
+
+/**
+ * FAQ der Seiten unter `/kaltakquise/[stadt]`.
+ *
+ * Bewusst nicht `getCityFAQs` wiederverwendet: Jene Fragen drehen sich um
+ * Vertriebsoutsourcing als Ganzes und gehören zu `/leistungen/[stadt]`. Zwei
+ * Seitenfamilien mit identischem FAQ-Block wären derselbe Text unter zwei
+ * Adressen -- genau die Dopplung, die den Blog in die Nichtindexierung geführt
+ * hat. Diese Fragen behandeln ausschließlich die Telefonakquise: Zulässigkeit,
+ * Ablauf, Erreichbarkeit vor Ort.
+ */
+export function getKaltakquiseFAQs(city: City, acquisition: CityAcquisition) {
+  return [
+    {
+      question: `Ist Kaltakquise per Telefon in ${city.name} erlaubt?`,
+      answer: `Gegenüber Unternehmen ja. § 7 Abs. 2 Nr. 1 UWG verlangt beim Anruf gegenüber einem sonstigen Marktteilnehmer nur eine zumindest mutmaßliche Einwilligung – diese liegt vor, wenn das Angebot einen konkreten sachlichen Bezug zur Geschäftstätigkeit des angerufenen Unternehmens in ${city.name} hat. Gegenüber Verbrauchern ist eine vorherige ausdrückliche Einwilligung nötig, und für Werbe-E-Mails gilt die Erleichterung ebenfalls nicht. Wir dokumentieren zu jedem Kontakt das Auswahlkriterium, weil die Beweislast beim werbenden Unternehmen liegt.`,
+    },
+    {
+      question: `Welche Unternehmen rufen Sie in ${city.name} an?`,
+      answer: `${acquisition.zielgruppenText} Die Zielgruppe wird vor Projektbeginn gemeinsam festgelegt und nicht aus einem gekauften Adressbestand gezogen.`,
+    },
+    {
+      question: `Wie sieht der Markt in ${city.name} aus?`,
+      answer: `${acquisition.marktText} Die Leitbranchen vor Ort sind ${acquisition.leitbranchen.join(', ')}.`,
+    },
+    {
+      question: `Wann sind Entscheider in ${city.name} am besten erreichbar?`,
+      answer: `${acquisition.erreichbarkeit} Diese Zeitfenster sind ein Startpunkt: Wir protokollieren Uhrzeit und Ergebnis jedes Wählversuchs und richten die Anrufblöcke nach den tatsächlichen Verbindungsquoten Ihrer Zielgruppe aus.`,
+    },
+    {
+      question: `Rufen Sie in ${city.name} vor Ort an oder aus der Ferne?`,
+      answer: `Wir telefonieren aus Köln, mit korrekt übermittelter Rufnummer und ohne vorgetäuschte Ortsvorwahl. Eine manipulierte Rufnummer ist ein eigenständiger Verstoß, den die Bundesnetzagentur verfolgt. Für ${city.name} zählt nicht die Vorwahl des Anrufers, sondern ob der Anlass des Anrufs zum angerufenen Unternehmen passt.`,
+    },
+    {
+      question: `Wie viele Termine sind in ${city.name} realistisch?`,
+      answer: `Das hängt an der Größe der Zielgruppe und am Angebot, nicht an der Stadt. Im Pilotprojekt vereinbaren wir ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat. Eine belastbare laufende Quote entsteht erst nach etwa acht Wochen, weil die ersten Wochen jeder Kampagne der Kalibrierung von Liste, Einstieg und Einwandbehandlung dienen.`,
+    },
+  ]
+}
+
+/** FAQPage-Schema für die Seiten unter `/kaltakquise/[stadt]`. */
+export function generateKaltakquiseFAQSchema(city: City, acquisition: CityAcquisition) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: getKaltakquiseFAQs(city, acquisition).map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+}
+
+/**
+ * Die vier Leistungen als `ItemList` von `Service`-Einträgen.
+ *
+ * Wortgleich mit dem sichtbaren Abschnitt „Was wir übernehmen“ auf
+ * `/leistungen` — beide lesen `services` aus `src/lib/leistungen-content.ts`.
+ * Strukturierte Daten müssen den sichtbaren Inhalt wiedergeben; zwei
+ * Textstände wären ein Verstoß, den man der Seite nicht ansieht.
+ *
+ * Bewusst ohne `offers`: Beträge sind nicht freigegeben, und ein `Offer` ohne
+ * `price` ist gegenüber Google wertlos. Die Preismodelle liefert
+ * `generateOfferSchema` in `src/lib/pricing.ts`, sobald es Zahlen gibt.
+ */
+export function generateServicesSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Leistungen der B2B-Akquise',
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        serviceType: 'B2B-Telefonakquise und Terminvereinbarung',
+        provider: {
+          '@type': 'LocalBusiness',
+          name: 'Carpantier Consulting',
+          url: 'https://carpantier-consulting.de',
+        },
+      },
+    })),
   }
 }

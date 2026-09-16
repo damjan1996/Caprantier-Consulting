@@ -1,44 +1,88 @@
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
-import { PageWrapper } from '@/components/ui'
+import {
+  AufwandSection,
+  FragenSection,
+  RegionSection,
+  StadtIntro,
+  TerminScene,
+  UebergabeScene,
+} from './components'
+import { STADT_SECTIONS } from './components/sections'
+import { SectionRail } from '@/app/components/seite'
 import { getCityBySlug, getAllCitySlugs, type City } from '@/lib/cities'
-import { generateCityFAQSchema } from '@/lib/schemas'
-import StadtHero from './components/StadtHero'
-import StadtServices from './components/StadtServices'
-import StadtFAQ from './components/StadtFAQ'
-import RelatedCities from './components/RelatedCities'
-import { Process, WhyUs } from '../components'
+import { generateCityFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
+import { businessInfo } from '@/lib/local-seo'
+import styles from './components/stadt.module.css'
 
-const CTA = dynamic(() => import('@/components/sections/CTA'), {
-  loading: () => <div className="section-padding" />,
-})
+/**
+ * Vertrieb nach Stadt — eine Vorlage, fünfzehn Adressen.
+ *
+ * Aufgebaut wie die Startseite: sechs Abschnitte, zwei davon als Klebe-Bühne,
+ * rund dreizehn Bildschirmhöhen.
+ *
+ * **Abgrenzung zur Schwesterfamilie.** `/kaltakquise/[stadt]` beantwortet
+ * „darf man das, und wen ruft ihr an“. Diese Seite beantwortet „soll ich den
+ * Vertrieb überhaupt abgeben — und was bleibt dann bei mir“. Deshalb trägt die
+ * Bühne hier die Übergabe statt des Marktes, und die dunkle Karte den Aufwand
+ * statt des Rechtsrahmens. Zwei Seitenfamilien mit denselben Abschnitten wären
+ * dieselbe Seite unter zwei Adressen.
+ *
+ * Die Reihenfolge folgt der Frage, mit der jemand hier ankommt: Was bekomme
+ * ich (Einstieg) — wie ist die Arbeit geteilt (Übergabe) — kennt ihr meinen
+ * Markt (Region) — was kostet es mich (Aufwand) — was ist noch offen (Fragen)
+ * — und dann der Abschluss.
+ *
+ * Kein `'use client'`: Die Abschnitte bringen es selbst mit, wo sie Zustand
+ * oder Scroll brauchen.
+ */
 
-// Generate JSON-LD for city-specific page
+interface Props {
+  params: Promise<{ stadt: string }>
+}
+
+export async function generateStaticParams() {
+  return getAllCitySlugs().map((stadt) => ({ stadt }))
+}
+
+/**
+ * JSON-LD der Vertriebs-Stadtseiten.
+ *
+ * Die Adressdaten stammen ausnahmslos aus `businessInfo`. Bis zum 10.09.2026
+ * standen sie hier direkt im JSX — mit einer abweichenden Postleitzahl.
+ * Widersprüchliche NAP-Angaben schwächen jedes lokale Signal, und der Fehler
+ * fällt in strukturierten Daten niemandem auf.
+ *
+ * `LocalBusiness` trägt bewusst die Kölner Anschrift und nicht die der Stadt:
+ * Es gibt kein Büro vor Ort, und ein vorgetäuschter Standort wäre eine
+ * irreführende Angabe. `areaServed` sagt, wofür gearbeitet wird.
+ */
 function generateCityJsonLd(city: City) {
+  const url = `${businessInfo.website}/leistungen/${city.slug}`
+  const { address } = businessInfo
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'LocalBusiness',
-        '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#organization`,
-        name: 'Carpantier Consulting',
-        alternateName: `Vertriebsagentur ${city.name} - Carpantier Consulting`,
-        description: `Vertrieb ${city.name}: Ihre Vertriebsagentur für B2B Leadgenerierung & Telefonakquise. Wir liefern qualifizierte Termine mit Entscheidern für Agenturen, IT-Dienstleister und Beratungsunternehmen ${city.businessContext}.`,
-        url: `https://carpantier-consulting.de/leistungen/${city.slug}`,
-        logo: 'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
+        '@id': `${url}#organization`,
+        name: businessInfo.name,
+        alternateName: `Vertriebsagentur ${city.name} – ${businessInfo.name}`,
+        description: `Vertrieb ${city.name}: Vertriebsagentur für B2B-Leadgenerierung und Telefonakquise. Wir liefern qualifizierte Termine mit Entscheidern für Dienstleister ${city.businessContext}.`,
+        url,
+        logo: `${businessInfo.website}/logo/Logo%20-%20Schwarz.png`,
         // Siehe layout.tsx: kein unbeschriftetes KI-Porträt in strukturierten
         // Daten.
-        image: 'https://carpantier-consulting.de/images/og-image.jpg',
-        telephone: '+4915738186221',
-        email: 'nico@carpantier-consulting.de',
+        image: `${businessInfo.website}/images/og-image.jpg`,
+        telephone: businessInfo.phoneInternational,
+        email: businessInfo.emailGeneral,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Stammheimer Straße 123',
-          addressLocality: 'Köln',
-          postalCode: '50935',
-          addressRegion: 'Nordrhein-Westfalen',
-          addressCountry: 'DE',
+          streetAddress: address.street,
+          addressLocality: address.city,
+          postalCode: address.postalCode,
+          addressRegion: address.region,
+          addressCountry: address.countryCode,
         },
         geo: {
           '@type': 'GeoCoordinates',
@@ -63,27 +107,25 @@ function generateCityJsonLd(city: City) {
       },
       {
         '@type': 'Service',
-        '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#service`,
+        '@id': `${url}#service`,
         serviceType: 'Vertriebsagentur',
-        name: `Vertrieb ${city.name} - B2B Leadgenerierung & Terminvereinbarung`,
-        description: `Vertrieb auslagern in ${city.name}: Professionelle Vertriebsunterstützung, Kaltakquise und Leadgenerierung für B2B-Unternehmen. Wir vereinbaren qualifizierte Termine mit Entscheidern ${city.businessContext}.`,
-        provider: {
-          '@id': `https://carpantier-consulting.de/leistungen/${city.slug}#organization`,
-        },
+        name: `Vertrieb auslagern in ${city.name}`,
+        description: `Vertriebsoutsourcing in ${city.name}: Zielgruppe, Telefonakquise und Qualifizierung übernehmen wir, das Verkaufsgespräch führt der Auftraggeber selbst.`,
+        provider: { '@id': `${url}#organization` },
         areaServed: {
           '@type': 'City',
           name: city.name,
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: `Vertrieb & B2B Akquise Dienstleistungen ${city.name}`,
+          name: `Vertriebsunterstützung ${city.name}`,
           itemListElement: [
             {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
                 name: `Vertrieb ${city.name}`,
-                description: `Professionelle Vertriebsagentur und Vertriebsunterstützung für B2B-Unternehmen in ${city.name}`,
+                description: `Laufende Vertriebsunterstützung für B2B-Dienstleister in ${city.name}.`,
               },
             },
             {
@@ -91,7 +133,7 @@ function generateCityJsonLd(city: City) {
               itemOffered: {
                 '@type': 'Service',
                 name: `Vertrieb auslagern ${city.name}`,
-                description: `Vertriebsoutsourcing und B2B Telefonakquise zur Terminvereinbarung mit Entscheidern in ${city.name}`,
+                description: `Übernahme von Zielgruppenauswahl, Telefonakquise und Terminqualifizierung für Unternehmen in ${city.name}.`,
               },
             },
             {
@@ -99,45 +141,14 @@ function generateCityJsonLd(city: City) {
               itemOffered: {
                 '@type': 'Service',
                 name: `Leadgenerierung ${city.name}`,
-                description: `Qualifizierte B2B Leads und Vertriebsunterstützung für Ihr Team in ${city.name}`,
+                description: `Qualifizierte Entscheidertermine mit geklärtem Bedarf, geklärter Zuständigkeit und geklärtem Zeitpunkt.`,
               },
             },
           ],
         },
       },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://carpantier-consulting.de',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Leistungen',
-            item: 'https://carpantier-consulting.de/leistungen',
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: city.name,
-            item: `https://carpantier-consulting.de/leistungen/${city.slug}`,
-          },
-        ],
-      },
     ],
   }
-}
-
-interface Props {
-  params: Promise<{ stadt: string }>
-}
-
-export async function generateStaticParams() {
-  return getAllCitySlugs().map((stadt) => ({ stadt }))
 }
 
 export default async function StadtPage({ params }: Props) {
@@ -149,40 +160,38 @@ export default async function StadtPage({ params }: Props) {
   }
 
   const jsonLd = generateCityJsonLd(city)
+  /* Wortgleich mit dem Abschnitt „Häufige Fragen“ — beide lesen
+     `getCityFAQs`. Die Antworten stehen eingeklappt, aber vollständig im
+     ausgelieferten HTML; Markup und sichtbarer Text decken sich damit. */
   const faqSchema = generateCityFAQSchema(city)
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Startseite', url: businessInfo.website },
+    { name: 'Leistungen', url: `${businessInfo.website}/leistungen` },
+    { name: city.name, url: `${businessInfo.website}/leistungen/${city.slug}` },
+  ])
 
   return (
-    <PageWrapper>
-      {/* City-specific JSON-LD */}
+    <div className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* FAQPage Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
-      <StadtHero city={city} />
-      <Suspense fallback={<div className="section-padding" />}>
-        <StadtServices city={city} />
-      </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <Process />
-      </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <WhyUs />
-      </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <StadtFAQ city={city} />
-      </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <RelatedCities city={city} />
-      </Suspense>
-      <Suspense fallback={<div className="section-padding" />}>
-        <CTA />
-      </Suspense>
-    </PageWrapper>
+      <StadtIntro city={city} />
+      <UebergabeScene />
+      <RegionSection city={city} />
+      <AufwandSection />
+      <FragenSection city={city} />
+      <TerminScene city={city} />
+      <SectionRail sections={STADT_SECTIONS} />
+    </div>
   )
 }

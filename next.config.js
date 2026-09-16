@@ -1,3 +1,5 @@
+const { blogRedirects } = require('./config/blog-redirects')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -37,6 +39,36 @@ const nextConfig = {
   },
 
   /**
+   * Dauerhafte Umleitungen der zusammengeführten Blogbeiträge.
+   *
+   * Am 10.09.2026 wurden 52 dünne Fachbeiträge auf 13 belastbare
+   * zusammengeführt. Die 43 entfallenen Adressen dürfen nicht mit 404
+   * antworten: Jede von ihnen kann verlinkt, gebookmarkt oder in einem Index
+   * gespeichert sein. Sie zeigen deshalb per 301 auf den Beitrag, der ihr
+   * Thema aufgenommen hat -- gezielt und nicht pauschal auf `/blog`, weil
+   * Google eine Sammelumleitung auf eine Übersichtsseite wie einen Soft-404
+   * behandelt und den Wert der alten Adresse dann gerade nicht überträgt.
+   *
+   * Die Zuordnung steht in `config/blog-redirects.js`,
+   * `scripts/check-blog-redirects.mjs` prüft sie bei jedem `pnpm verify`.
+   *
+   * `statusCode: 301` statt `permanent: true`: Next.js setzt bei `permanent`
+   * eine **308**. Die ist semantisch ebenfalls dauerhaft und wird von Google
+   * wie eine 301 behandelt -- der Unterschied liegt darin, dass 308 die
+   * HTTP-Methode erhält, was bei reinen GET-Adressen ohne Belang ist. Der
+   * Auftrag verlangt aber ausdrücklich 301, und einige ältere Crawler und
+   * Prüfwerkzeuge kennen 308 bis heute nicht. Für eine Domain, deren Problem
+   * fehlende Indexierung ist, ist die konservative Wahl die richtige.
+   */
+  async redirects() {
+    return blogRedirects.map(({ from, to }) => ({
+      source: `/blog/${from}`,
+      destination: `/blog/${to}`,
+      statusCode: 301,
+    }))
+  },
+
+  /**
    * Sicherheits- und Cache-Header.
    *
    * Bewusst die einzige Stelle im Projekt, an der Sicherheits-Header gesetzt
@@ -58,7 +90,7 @@ const nextConfig = {
     // Nicht gelistet und auch nicht nötig:
     // - fonts.googleapis.com / fonts.gstatic.com: next/font liefert Inter beim
     //   Build lokal aus, zur Laufzeit geht kein Request an Google (§ 25 TDDDG).
-    // - api.anthropic.com: der Chat läuft serverseitig über /api/chat.
+    // - api.anthropic.com: der KI-Chat ist am 16.09.2026 entfallen.
     // - t.contentsquare.net: Hotjar wurde ersatzlos entfernt.
 
     // 'unsafe-eval' braucht ausschließlich der Entwicklungsserver (React

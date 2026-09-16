@@ -8,9 +8,9 @@ const SENDER = {
 /**
  * Entschärft Besuchereingaben für die HTML-Benachrichtigung.
  *
- * Chatnachrichten und Formularfelder landen unverändert in einer E-Mail. Ohne
- * Maskierung könnte darin enthaltenes Markup das Postfach-Rendering übernehmen
- * oder Links unterschieben.
+ * Formularfelder landen unverändert in einer E-Mail. Ohne Maskierung könnte
+ * darin enthaltenes Markup das Postfach-Rendering übernehmen oder Links
+ * unterschieben.
  */
 function escapeHtml(value: string): string {
   return value
@@ -52,32 +52,6 @@ async function sendMail(subject: string, htmlContent: string): Promise<boolean> 
     console.error('Failed to send notification:', error)
     return false
   }
-}
-
-interface LeadNotification {
-  email: string
-  pageUrl: string | null
-  chatHistory: string
-}
-
-export async function notifyNewLead(lead: LeadNotification): Promise<boolean> {
-  const email = escapeHtml(lead.email)
-
-  return sendMail(
-    `Neuer Lead: ${lead.email}`,
-    `
-      <h2>Neuer Lead aus dem Chatbot</h2>
-      <p><strong>E-Mail:</strong> ${email}</p>
-      <p><strong>Seite:</strong> ${escapeHtml(lead.pageUrl || 'Unbekannt')}</p>
-      <h3>Chatverlauf:</h3>
-      <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap;">${escapeHtml(lead.chatHistory)}</pre>
-      <p style="margin-top: 20px;">
-        <a href="mailto:${email}" style="background: #3b82f6; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
-          Kontakt aufnehmen
-        </a>
-      </p>
-    `
-  )
 }
 
 interface ContactRequest {

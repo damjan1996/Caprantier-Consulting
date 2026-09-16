@@ -2,22 +2,43 @@ import { test, expect } from '@playwright/test'
 
 // Alle Seiten die getestet werden sollen
 const pages = [
+  // Einstiege
   { path: '/', name: 'Homepage' },
   { path: '/leistungen', name: 'Leistungen' },
+  { path: '/kaltakquise', name: 'Kaltakquise' },
+  { path: '/branchen', name: 'Branchen' },
+  // Stadtfamilie 1 -- /leistungen/[stadt]
   { path: '/leistungen/koeln', name: 'Leistungen Köln' },
   { path: '/leistungen/duesseldorf', name: 'Leistungen Düsseldorf' },
   { path: '/leistungen/berlin', name: 'Leistungen Berlin' },
   { path: '/leistungen/muenchen', name: 'Leistungen München' },
   { path: '/leistungen/hamburg', name: 'Leistungen Hamburg' },
   { path: '/leistungen/frankfurt', name: 'Leistungen Frankfurt' },
+  // Stadtfamilie 2 -- /kaltakquise/[stadt], seit 12.09.2026
+  { path: '/kaltakquise/koeln', name: 'Kaltakquise Köln' },
+  { path: '/kaltakquise/muenchen', name: 'Kaltakquise München' },
+  { path: '/kaltakquise/hamburg', name: 'Kaltakquise Hamburg' },
+  // Branchenseiten -- Tabellen und Aufzaehlungen, der haeufigste Overflow-Ort
+  { path: '/branchen/personaldienstleister', name: 'Branche Personaldienstleister' },
+  { path: '/branchen/it-systemhaeuser', name: 'Branche IT-Systemhäuser' },
+  // Inhalte
+  { path: '/blog', name: 'Blog' },
+  { path: '/blog/b2b-kaltakquise-leitfaden', name: 'Blogbeitrag' },
+  { path: '/wissen', name: 'Wissen' },
+  { path: '/wissen/videos', name: 'Wissen Videos' },
+  { path: '/glossar', name: 'Glossar' },
+  { path: '/referenzen', name: 'Referenzen' },
+  // Uebrige
   { path: '/kontakt', name: 'Kontakt' },
   { path: '/ueber-uns', name: 'Über uns' },
   { path: '/impressum', name: 'Impressum' },
   { path: '/datenschutz', name: 'Datenschutz' },
+  { path: '/ki-transparenz', name: 'KI-Transparenz' },
 ]
 
 // Viewport-Konfigurationen
 const viewports = [
+  { name: 'Mobile-Small', width: 320, height: 568 },
   { name: 'Mobile', width: 375, height: 667 },
   { name: 'Mobile-Large', width: 414, height: 896 },
   { name: 'Tablet', width: 768, height: 1024 },
@@ -26,7 +47,8 @@ const viewports = [
   { name: 'Desktop-Large', width: 1920, height: 1080 },
 ]
 
-const BASE_URL = 'http://localhost:3000'
+// Gegen die Produktion pruefbar: BASE_URL=http://localhost:3100 pnpm exec playwright test
+const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000'
 
 // Test für horizontales Overflow-Problem
 test.describe('Horizontal Overflow Tests', () => {

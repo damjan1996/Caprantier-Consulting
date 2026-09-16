@@ -1,96 +1,79 @@
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
-import { PageWrapper } from '@/components/ui'
-import { Hero, ClientLogos, Problem, Method, Benefits, FAQ } from './components'
+import {
+  CallScene,
+  ClosingCta,
+  FaqSection,
+  FitSection,
+  FounderSection,
+  HeroScene,
+  HowSection,
+  MobileCtaBar,
+  ProblemScene,
+  ProcessSection,
+  ReferencesSection,
+  TrustedLogos,
+} from './components/home'
+import { HOME_SECTIONS } from './components/home/sections'
+import { SectionRail } from './components/seite'
 import {
   generateHowToSchema,
   generateHomepageFAQSchema,
   generateServiceAreaSchema,
   generateHomepageVideoSchema,
 } from '@/lib/schemas'
+import styles from './components/home/home.module.css'
 
-// Dynamic imports for below the fold components
-const AboutTeaser = dynamic(() => import('@/components/sections/Testimonials'), {
-  loading: () => <div className="section-padding" />,
-})
-
-const ServiceAreas = dynamic(() => import('./components/ServiceAreas'), {
-  loading: () => <div className="section-padding" />,
-})
-
-const VideoHighlight = dynamic(() => import('@/components/sections/VideoHighlight'), {
-  loading: () => <div className="section-padding" />,
-})
-
-const CTA = dynamic(() => import('@/components/sections/CTA'), {
-  loading: () => <div className="section-padding" />,
-})
-
+/**
+ * Startseite.
+ *
+ * Der Aufbau folgt einer einzigen Frage in der Reihenfolge, in der ein
+ * Entscheider sie stellt: Was bekomme ich (Einstieg) — warum brauche ich das
+ * (Problem) — wie läuft das ab (Termin, Anruf, Prozess) — bin ich der Richtige
+ * dafür (Fit) — hat das schon funktioniert (Referenzen) — mit wem rede ich
+ * (Nico) — was ist noch offen (FAQ) — und dann der Abschluss.
+ *
+ * Kein `dynamic()` für die einzelnen Abschnitte: Sie stehen alle im
+ * ausgelieferten HTML und werden für die Hydration ohnehin sofort gebraucht.
+ * Nachgeladene Teilstücke würden hier nur eine zusätzliche Wartekette erzeugen.
+ * Schwer wiegen auf dieser Seite nur Bild, Video und Buchungsfenster — und die
+ * laden bereits verzögert beziehungsweise erst nach Einwilligung.
+ */
 export default function Home() {
-  const howToSchema = generateHowToSchema()
-  const faqSchema = generateHomepageFAQSchema()
-  const serviceAreaSchema = generateServiceAreaSchema()
-  const videoSchema = generateHomepageVideoSchema()
-
   return (
-    <PageWrapper>
-      {/* HowTo Schema for Method Section */}
+    <div className={styles.page}>
+      {/* HowTo — die vier Schritte aus dem Abschnitt „Der Prozess“ */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateHowToSchema()) }}
       />
-      {/* FAQ Schema for Homepage */}
+      {/* FAQPage — wortgleich mit dem sichtbaren FAQ-Abschnitt */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateHomepageFAQSchema()) }}
       />
-      {/* Service Area Schema for Local SEO */}
+      {/* Einzugsgebiet für die lokale Suche */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreaSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceAreaSchema()) }}
       />
-      {/* VideoObject Schema für das Video im Abschnitt "Aus der Praxis" */}
+      {/* VideoObject für das Video im Problem-Abschnitt */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateHomepageVideoSchema()) }}
       />
 
-      {/* 1. Hero */}
-      <Hero />
-      {/* 1b. Trusted-by Logo Marquee */}
-      <ClientLogos />
-      {/* 1c. Aus der Praxis — Nico erklärt das Problem im Video */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <VideoHighlight />
-      </Suspense>
-      {/* 2. Warum unsere Akquise-Strategie so gut funktioniert */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <Problem />
-      </Suspense>
-      {/* 3. Das erreichen unsere Kunden */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <Benefits />
-      </Suspense>
-      {/* 4. So können Sie mit uns zusammenarbeiten */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <Method />
-      </Suspense>
-      {/* 5. FAQ */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <FAQ />
-      </Suspense>
-      {/* 6. Über uns */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <AboutTeaser />
-      </Suspense>
-      {/* 7. Regionen */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <ServiceAreas />
-      </Suspense>
-      {/* 8. Abschließender CTA */}
-      <Suspense fallback={<div className="section-padding" />}>
-        <CTA />
-      </Suspense>
-    </PageWrapper>
+      <HeroScene />
+      <TrustedLogos />
+      <ProblemScene />
+      <HowSection />
+      <CallScene />
+      <ProcessSection />
+      <FitSection />
+      <ReferencesSection />
+      <FounderSection />
+      <FaqSection />
+      <ClosingCta />
+      <MobileCtaBar />
+      <SectionRail sections={HOME_SECTIONS} />
+    </div>
   )
 }

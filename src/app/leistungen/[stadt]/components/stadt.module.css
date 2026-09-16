@@ -1,0 +1,765 @@
+/*
+ * Vertrieb nach Stadt — Seitenstylesheet.
+ *
+ * Eine Vorlage, fünfzehn Adressen. Enthält nur, was diese Seitenfamilie eigen
+ * hat; Token, Textgerüst, Klebe-Bühne, Schaltflächen, Einblendungen,
+ * Aufklappbereich und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (sechs Abschnitte, zwei davon als Bühne):
+ *   Einstieg    Fluss, gut zwei Drittel Bildschirmhöhe, rechts das Porträt
+ *   Übergabe    Bühne, drei Einträge — die Entscheidung dieser Seite
+ *   Region      Fluss, Ortstext und Verweise
+ *   Aufwand     Fluss, dunkle Karte
+ *   Fragen      Fluss, sechs Fragen zum Aufklappen
+ *   Termin      Bühne, dunkle Abschlusskarte
+ *
+ * **Abgrenzung zur Schwesterfamilie.** `/kaltakquise/[stadt]` beantwortet die
+ * Frage „darf man das, und wen ruft ihr an“. Diese Seite beantwortet eine
+ * andere: „soll ich den Vertrieb überhaupt abgeben — und was bleibt dann bei
+ * mir“. Deshalb trägt die Bühne hier die Übergabe und nicht den Markt, und
+ * deshalb ist die dunkle Karte der Aufwand und nicht der Rechtsrahmen. Zwei
+ * Seitenfamilien mit denselben Abschnitten wären dieselbe Seite mit zwei
+ * Adressen — genau das, was `scripts/check-content-duplication.mjs` für die
+ * Texte verhindert und was für den Aufbau ebenso gilt.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../../components/seite/basis.module.css';
+}
+
+.faqAnswer {
+  composes: faqAnswer from '../../../components/seite/basis.module.css';
+}
+
+.faqIcon {
+  composes: faqIcon from '../../../components/seite/basis.module.css';
+}
+
+.faqItem {
+  composes: faqItem from '../../../components/seite/basis.module.css';
+}
+
+.faqItemOpen {
+  composes: faqItemOpen from '../../../components/seite/basis.module.css';
+}
+
+.faqList {
+  composes: faqList from '../../../components/seite/basis.module.css';
+}
+
+.faqPanel {
+  composes: faqPanel from '../../../components/seite/basis.module.css';
+}
+
+.faqPanelInner {
+  composes: faqPanelInner from '../../../components/seite/basis.module.css';
+}
+
+.faqPanelOpen {
+  composes: faqPanelOpen from '../../../components/seite/basis.module.css';
+}
+
+.faqQ {
+  composes: faqQ from '../../../components/seite/basis.module.css';
+}
+
+.faqToggle {
+  composes: faqToggle from '../../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Mit Porträt, anders als auf der Schwesterseite.
+ *
+ * Wer „Vertrieb auslagern“ erwägt, gibt einen Teil seines Geschäfts aus der
+ * Hand — da will man sehen, an wen. Auf `/kaltakquise/[stadt]` steht an dieser
+ * Stelle eine Dokumentationskarte; die beiden Familien sollen sich auch im
+ * ersten Bild unterscheiden.
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(56px, 9vh, 112px);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  min-width: 0;
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introText {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 34em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.introVisual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.introVisual img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ------------------------------------------------------------------ Übergabe */
+
+/*
+ * Die Entscheidung dieser Seite: Was geht an uns, was bleibt bei Ihnen, was
+ * kostet es Sie an Zeit. Drei Einträge in dieser Reihenfolge — die zweite
+ * Karte ist die, wegen der jemand bleibt.
+ */
+.sceneUebergabe {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrössen: höchste Karte 452px (1920×1080 — „An
+     uns“ mit vier Punkten, die alle umbrechen), 372px auf flachen Fenstern.
+     Der geschätzte erste Wert war bei sieben von acht Grössen zu klein. */
+  --scene-slot: clamp(380px, 50vh, 460px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.uebCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+/* Die mittlere Karte ist die Zusage, die den Unterschied macht — sie bekommt
+   einen Rahmen statt einer zweiten Fläche. Eine zweite Farbe gibt es nicht. */
+.uebCardHalten {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.uebTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.uebMark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.uebMark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.uebKind {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.uebText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.uebList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.uebList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.uebBullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  margin-top: 7px;
+}
+
+/* -------------------------------------------------------------------- Region */
+
+.regionHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.regionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(22px, 2.4vw, 40px);
+  border-radius: 24px;
+  background: var(--surface);
+  max-width: 46em;
+}
+
+.regionCardLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.regionText {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.regionCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  margin-top: clamp(32px, 5vh, 56px);
+}
+
+.regionCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.regionColTitle {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.regionLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.regionLink {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.regionLink:hover {
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------------- Aufwand */
+
+/*
+ * Die Abgrenzung der Seite, auf dunklem Grund. Auf der Schwesterseite steht
+ * hier der Rechtsrahmen; für die Frage „Vertrieb auslagern“ ist die ehrliche
+ * Gegenrede eine andere: Was es an Zeit, Geduld und Mindestgrösse kostet.
+ */
+.aufwandCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.aufwandHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aufwandEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.aufwandTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.aufwandText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.aufwandGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.aufwandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aufwandZahl {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.aufwandBlockLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.aufwandBlockText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+.aufwandNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.64);
+  max-width: 44em;
+}
+
+/* ------------------------------------------------------------ Häufige Fragen */
+
+.fragenHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(102px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .introGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(28px, 5vw, 48px);
+  }
+
+  /* Bild hinter den Text: Auf dem Telefon soll zuerst die Aussage stehen. */
+  .introVisual {
+    order: 1;
+    max-width: 420px;
+    aspect-ratio: 5 / 4;
+  }
+
+  .aufwandGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .regionCols {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(28px, 5vw, 44px);
+  }
+
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .uebCard {
+    gap: 14px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .uebList li {
+    padding: 9px 0;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .uebList li {
+    padding: 7px 0;
+  }
+}

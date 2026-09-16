@@ -123,8 +123,8 @@ export default function CookieBanner() {
                           Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
                         </p>
                         <p className="text-xs text-muted-foreground/70">
-                          Dienste: Speicherung Ihrer Cookie-Einstellungen. Der KI-Chatbot und das
-                          Calendly-Buchungsfenster laden erst, wenn Sie sie selbst öffnen.
+                          Dienst: Speicherung Ihrer Cookie-Einstellungen. Das
+                          Calendly-Buchungsfenster lädt erst, wenn Sie es selbst öffnen.
                         </p>
                       </div>
                       <div className="shrink-0 ml-4">

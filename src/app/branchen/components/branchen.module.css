@@ -1,0 +1,657 @@
+/*
+ * Branchen — Einstieg in die Seitenfamilie `/branchen/[branche]`.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (fünf Abschnitte, zwei davon als Bühne):
+ *   Einstieg     Fluss, knapp eine Bildschirmhöhe, ohne Schaubild
+ *   Branchen     Fluss, zwei Karten — der Wegweiser
+ *   Unterschied  Bühne, drei Einträge: woran sich die Branchen unterscheiden
+ *   Zuschnitt    Fluss, dunkle Karte
+ *   Termin       Bühne, dunkle Abschlusskarte
+ *
+ * Derselbe Zuschnitt wie `/kaltakquise` und `/wissen` (Designleitfaden § 9.1,
+ * Familien-Einstieg) — mit einem Unterschied: Diese Familie hat nur zwei
+ * Kinder. Der Wegweiser ist deshalb kurz, und das Gewicht der Seite liegt auf
+ * der Bühne, die erklärt, warum es überhaupt zwei getrennte Seiten gibt.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.sectionHead {
+  composes: sectionHead from '../../components/seite/basis.module.css';
+}
+
+.sectionHeadCopy {
+  composes: sectionHeadCopy from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Kein Schaubild — wie auf den anderen beiden Familien-Einstiegen. Es gibt
+ * hier nichts vorzuführen, was die Seite selbst behauptet; die Belege stehen
+ * eine Ebene tiefer. Statt eines Bildes trägt der Einstieg das
+ * Abschnittsgerüst der Grundlage (Designleitfaden § 9.1).
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(48px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vh, 40px);
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------------ Branchen */
+
+/*
+ * Zwei Karten, nicht fünfzehn. Der Wegweiser dieser Familie ist kurz — dafür
+ * dürfen die beiden Karten Platz haben und mehr sagen als einen Namen.
+ */
+.wegHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.wegGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.wegCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 2.6vw, 40px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.wegCard:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.wegKicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.wegTitel {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+  text-wrap: balance;
+}
+
+.wegCard:hover .wegTitel {
+  color: var(--accent);
+}
+
+.wegText {
+  margin: 0;
+  font-size: clamp(14.5px, 1.1vw, 16px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  flex-grow: 1;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.wegMehr {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+.wegCard:hover .wegMehr {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------- Unterschied */
+
+/*
+ * Der einzige Abschnitt, den nur diese Seite haben kann: Er stellt die beiden
+ * Branchen nebeneinander. Eine einzelne Branchenseite kann das nicht, sie
+ * kennt nur ihren eigenen Markt.
+ */
+.sceneUnterschied {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrössen: höchste Karte 311px (1920×1080),
+     256px auf flachen Fenstern. */
+  --scene-slot: clamp(264px, 35vh, 318px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.untCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vh, 22px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.untTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.untTitel {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+}
+
+.untKind {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.untText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Die Gegenüberstellung: links die Branche, rechts was dort gilt. */
+.untBeleg {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.untBeleg li {
+  display: grid;
+  /* 12,5em statt 9: „Personaldienstleistung“ ist ein einzelnes Wort von rund
+     175px und lässt sich nicht umbrechen — in einer schmaleren Spalte lief es
+     in den Text daneben. `hyphens` fängt den Rest ab, falls je ein längerer
+     Branchenname dazukommt. */
+  grid-template-columns: minmax(0, 12.5em) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.untBelegKey {
+  font-weight: 600;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* ----------------------------------------------------------------- Zuschnitt */
+
+.zuschnittCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.zuschnittHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.zuschnittEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.zuschnittTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.zuschnittText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zuschnittGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.zuschnittBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.zuschnittBlockLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.zuschnittBlockText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+.zuschnittFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.zuschnittLink {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.zuschnittLink:hover {
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(102px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .wegGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .zuschnittGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .untCard {
+    gap: 12px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .untBeleg li {
+    padding: 8px 0;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .untBeleg li {
+    padding: 6px 0;
+  }
+}
+
+/* Auf schmalen Fenstern steht die Branche über der Aussage statt daneben. */
+@media (max-width: 640px) {
+  .untBeleg li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

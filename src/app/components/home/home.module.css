@@ -1,0 +1,3407 @@
+/*
+ * Startseite — Redesign.
+ *
+ * Bewusst eine CSS-Datei statt Inline-Styles an jedem Element: Die Vorlage aus
+ * dem Entwurf trägt jeden Wert am Knoten, das bläht das ausgelieferte HTML auf
+ * (jede Wiederholung landet erneut im Dokument) und macht Medienabfragen nur
+ * über `!important`-Überschreibungen möglich. Als Modul ist das Ergebnis
+ * zwischenspeicherbar, die Umbrüche stehen an einer Stelle und die Klassennamen
+ * sind lokal — es gibt keine Kollision mit Tailwind.
+ *
+ * Umbruchpunkte, absteigend geprüft:
+ *   1100px  zweispaltige Abschnitte stapeln
+ *    860px  Beweisleiste und Logos werden schmaler
+ *    640px  Karten einspaltig, Diagramm flacher
+ *    520px  Porträt quer, Überschrift kleiner
+ */
+
+.page {
+  composes: page from '../seite/basis.module.css';
+
+  /* Nur noch die Masse, die es ausserhalb der Startseite nicht gibt. */
+  /* Abstand zwischen zwei Punkten einer Schrittliste. Bewusst an die
+     Fensterhöhe gekoppelt: Jeder Schritt soll beim Scrollen seinen eigenen
+     Moment bekommen, sonst springt die mitlaufende Grafik in einem Rutsch
+     durch alle Zustände. */
+  --step-gap: clamp(88px, 34vh, 340px);
+
+  /* Höhe des Stundenrasters im Wochenkalender. Die Termine liegen in Prozent
+     darin, die Höhe darf sich also frei ändern. */
+  --cal-h: 340px;
+}
+
+/*
+ * Umbrüche des Stundenrasters.
+ *
+ * Diese vier Überschreibungen gehören zum Grundwert darüber und müssen
+ * deshalb in **dieser** Datei stehen. Lägen sie in der Grundlage, wären sie
+ * gleich spezifisch wie der Grundwert hier — und da die Grundlage über
+ * `composes` zuerst eingebunden wird, würde der Grundwert sie schlagen.
+ * Genau so war der Einstieg auf dem Telefon einmal 80px zu hoch.
+ */
+@media (max-width: 767px) {
+  .page {
+    --cal-h: 300px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    --cal-h: 260px;
+  }
+}
+
+/*
+ * Flache Fenster am Schreibtisch: 1440 × 720 ist ein verbreitetes Notebook,
+ * und der Einstieg muss dort in eine Bildschirmhöhe passen — er hat
+ * `overflow: hidden`, sonst verschwindet die Beweisleiste unter der Kante.
+ */
+@media (min-width: 1101px) and (max-height: 860px) {
+  .page {
+    --cal-h: 250px;
+  }
+}
+
+@media (min-width: 1101px) and (max-height: 720px) {
+  .page {
+    --cal-h: 180px;
+  }
+}
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+/*
+ * Jede Grundlagen-Klasse, die diese Seite benutzt, wird hier einmal
+ * durchgereicht. Das Element trägt damit beide Klassennamen — den der
+ * Grundlage (dort stehen die Regeln) und den dieser Datei. Nur deshalb
+ * greifen die abschnittseigenen Regeln weiter unten, die eine
+ * Grundlagen-Klasse im Nachfahren-Selektor ansprechen, etwa
+ * `.sceneClose .sceneStage`.
+ *
+ * Wer hier einen Eintrag vergisst, bemerkt es sofort: Die Klasse ist dann in
+ * `styles` schlicht nicht vorhanden.
+ */
+
+.actionRow {
+  composes: actionRow from '../seite/basis.module.css';
+}
+
+.body {
+  composes: body from '../seite/basis.module.css';
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.btnDark {
+  composes: btnDark from '../seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../seite/basis.module.css';
+}
+
+.introIn {
+  composes: introIn from '../seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../seite/basis.module.css';
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.metaNote {
+  composes: metaNote from '../seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../seite/basis.module.css';
+}
+
+.rail {
+  composes: rail from '../seite/basis.module.css';
+}
+
+.railFill {
+  composes: railFill from '../seite/basis.module.css';
+}
+
+.railItem {
+  composes: railItem from '../seite/basis.module.css';
+}
+
+.railItemOn {
+  composes: railItemOn from '../seite/basis.module.css';
+}
+
+.railLabel {
+  composes: railLabel from '../seite/basis.module.css';
+}
+
+.railList {
+  composes: railList from '../seite/basis.module.css';
+}
+
+.railOn {
+  composes: railOn from '../seite/basis.module.css';
+}
+
+.railTrack {
+  composes: railTrack from '../seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../seite/basis.module.css';
+}
+
+.sceneAfter {
+  composes: sceneAfter from '../seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../seite/basis.module.css';
+}
+
+.textLinkMuted {
+  composes: textLinkMuted from '../seite/basis.module.css';
+}
+
+
+/*
+ * Der Problem-Abschnitt bekommt einen eigenen, weiteren Takt.
+ *
+ * Rechts laeuft das Diagramm durch drei Zustaende — Anfragen kommen auf, die
+ * Pipeline bricht weg, es bleibt der Rest. Jeder Zustand haengt an genau einem
+ * der drei Punkte links. Beim gemeinsamen Takt (34vh) liefen zwei Zustaende
+ * innerhalb einer Bildschirmhoehe durch; man sah den Wechsel, konnte ihn aber
+ * nicht lesen. Hier bekommt jeder Punkt eine knappe Bildschirmhoehe fuer sich.
+ */
+/* ------------------------------------------------------- Klebe-Bühnen */
+
+/*
+ * Der Problem-Abschnitt läuft wie der Einstieg: Die ganze Szene bleibt stehen,
+ * und die drei Punkte wechseln an Ort und Stelle — statt von unten herein und
+ * oben hinaus zu wandern.
+ *
+ * Der Weg dahin war ein Umweg. Zuerst wurde der Abstand zwischen den Punkten
+ * vergrössert, um mehr Verweildauer zu bekommen. Das Ergebnis war kein
+ * längerer Abschnitt, sondern ein löchriger: Zwischen zwei Punkten stand die
+ * linke Spalte auf etwa 600px leer, weil der eine oben hinaus und der nächste
+ * noch nicht herein war. Eine scrollende Spalte kann Verweildauer nur über
+ * Leerraum kaufen — eine klebende bekommt sie geschenkt.
+ */
+.sceneProblem,
+.sceneHow,
+.sceneCall,
+.sceneProcess,
+.sceneFit,
+.sceneRefs,
+.sceneFounder,
+.sceneFaq,
+.sceneClose {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+/*
+ * Ablauf: Kopf links schmal, die Karten rechts breit.
+ *
+ * Der Slot ist höher als beim Problem, weil eine Karte aus Text **und** einer
+ * kleinen Vorführung besteht — beim Problem steht dort nur ein Absatz.
+ */
+.sceneHow {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  --scene-slot: clamp(300px, 46vh, 420px);
+}
+
+/*
+ * Am Telefon: die Gesprächsanzeige links, der Ablauf rechts.
+ *
+ * Sechs Schritte statt drei — die Bühne ist deshalb länger (siehe
+ * `.sceneCall .sceneWrap`), der einzelne Slot aber flacher: Dort steht ein
+ * Zeitstempel über Überschrift und Absatz, keine Karte.
+ */
+.sceneCall {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: Der höchste Schritt ist 153px hoch (bei 1600px Fenster),
+     der niedrigste Wert der Klammer liegt bewusst darüber. */
+  --scene-slot: clamp(170px, 21vh, 210px);
+}
+
+/*
+ * Der Prozess: Kopf und Aufruf links, die vier Schritte rechts.
+ *
+ * Der Slot ist höher als beim Telefon — eine Prozesskarte trägt Phase,
+ * Aufwandskennzeichnung, Titel, Absatz und den Aufwandsbalken.
+ */
+.sceneProcess {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: höchste Karte 224px (bei 1120px Fenster, dort bricht der
+     Text am meisten um). Die Untergrenze liegt bewusst darüber. */
+  --scene-slot: clamp(235px, 28vh, 275px);
+}
+
+/* Vier Schritte — zwischen den drei- und den sechsteiligen Bühnen. */
+.sceneProcess .sceneWrap {
+  --scene-height: 450vh;
+}
+
+/*
+ * Die linke Spalte der Telefon-Bühne trägt Karte und Aufruf untereinander.
+ * Der Aufruf gehört zur Karte: Man hat gerade ein Gespräch mitgehört, der
+ * nächste Schritt ist das eigene.
+ */
+.sceneCall .sceneAside {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+}
+
+.callAction {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Sechs Schritte brauchen mehr Strecke als drei, sonst huscht jeder vorbei. */
+.sceneCall .sceneWrap {
+  --scene-height: 500vh;
+}
+
+/* Ziffer links, Text rechts — wie beim Problem. */
+.sceneCall .sceneItem {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+}
+
+/* Ziffer links, Text rechts. */
+.sceneProblem .sceneItem {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+}
+
+@media (max-width: 1100px) {
+  /* Untereinander trennen die Linien die Zusagen wieder. */
+  .nicoList {
+    gap: 0;
+  }
+
+  .nicoList li {
+    padding: clamp(18px, 3vw, 28px) 0;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Gestapelt stehen alle drei Punkte gleichzeitig da. Die Dimmung auf 40 %
+     stammt aus der stehenden Fassung, wo immer nur einer sichtbar ist — hier
+     liesse sie zwei Drittel des Textes unlesbar aussehen. */
+  .sceneItem .stepBody {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.segBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------- Einstieg */
+
+/*
+ * Scrollstrecke des Einstiegs.
+ *
+ * Die Klebe-Bühne ist 100vh hoch, gescrollt wird also über `height - 100vh`.
+ * Bei 340vh waren das 2,4 Bildschirmhöhen für acht Termine, die Beweisleiste
+ * und das Ausblenden des Hinweises — die Woche füllte sich schneller, als man
+ * sie lesen konnte.
+ *
+ * 480vh ergibt 3,8 Bildschirmhöhen Strecke. Pro Termin bleibt damit rund eine
+ * halbe Bildschirmhöhe, statt einer knappen Drittel.
+ */
+.heroWrap {
+  position: relative;
+  height: 480vh;
+}
+
+.heroSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--header-h) var(--edge) 0;
+}
+
+.heroGrid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 10fr) minmax(0, 11fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroTitle {
+  margin: 0;
+  /*
+   * Obergrenze 64px, nicht 72px.
+   *
+   * Die Schrift wächst mit `5vw`, also mit dem Fenster — die Spalte tut das
+   * seit der Begrenzung auf `--page-max` nicht mehr. Ab 1280px lief beides
+   * auseinander und die Überschrift brach auf fünf Zeilen um, die letzten
+   * beiden nur noch zwei Wörter lang. 64px ist der Wert, bei dem die Zeile
+   * auch in der schmalsten Fassung der Spalte (~550px) bei vier bleibt.
+   */
+  font-size: clamp(34px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+
+.heroTitle .nowrap {
+  white-space: nowrap;
+}
+
+.heroText {
+  margin: 0;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/*
+ * Der Kalender füllt den Bildbereich, das Porträt liegt als Einblendung darauf.
+ *
+ * Bis zum 16.09.2026 standen beide nebeneinander (Porträt 2fr links, Kalender
+ * 3fr rechts). Der Kalender ist aber der Beleg für die Überschrift — er zeigt
+ * die 3–8 Termine, die daneben behauptet werden — und bekommt deshalb die
+ * ganze Fläche. Das Porträt beantwortet die zweite Frage („mit wem rede ich“)
+ * und sitzt wie die Webcam-Einblendung einer Bildschirmaufnahme in der unteren
+ * rechten Ecke.
+ *
+ * Im Markup steht der Kalender zuerst, nicht über `order` umsortiert: Sonst
+ * liefe die Vorlesereihenfolge gegen die Sehreihenfolge. Unter 640px liegt
+ * nichts mehr übereinander, dort stehen beide untereinander — Kalender zuerst,
+ * dieselbe Regel wie beim Einstieg der Leistungsseite.
+ */
+.heroVisual {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+
+/* Porträt */
+
+/*
+ * Die Einblendung.
+ *
+ * Breite so bemessen, dass die KI-Kennzeichnung in Standardgrösse
+ * hineinpasst: Das Badge misst rund 110px, darunter wird die Angabe nach
+ * Art. 50 Abs. 4 KI-VO unleserlich. Die kleinere Badge-Variante liegt bei
+ * 10px und scheidet deshalb aus — nicht die Kennzeichnung schrumpft, sondern
+ * die Einblendung hört bei dieser Breite auf.
+ *
+ * Der weisse Ring und der weiche Schatten sind der Griff, der eine
+ * Einblendung von einer zweiten Karte unterscheidet: Sie liegt sichtbar
+ * **über** der Aufnahme, statt neben ihr zu stehen.
+ */
+.portrait {
+  position: absolute;
+  right: clamp(10px, 2.4%, 18px);
+  bottom: clamp(10px, 2.4%, 18px);
+  z-index: 2;
+  width: clamp(124px, 27%, 164px);
+  aspect-ratio: 3 / 4;
+  border: 3px solid #fff;
+  box-shadow: 0 18px 44px -14px rgba(0, 0, 0, 0.45);
+  min-width: 0;
+  min-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ededed;
+}
+
+.portrait img {
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+/* Auf der Einblendung ist nur noch für den Namen Platz — die Rolle steht im
+   Abschnitt „Über Nico“ und in der Fusszeile der Aufnahme. */
+.portraitCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 8px 7px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.portraitName {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.portraitRole {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Wochenkalender */
+
+.calendar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.calHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 18px 10px;
+}
+
+.calTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.calTitle strong {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.calWeek,
+.calUnit {
+  font-size: 12px;
+  color: var(--ink-4);
+}
+
+.calCount {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex: none;
+}
+
+.calCountValue {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  min-width: 1.1ch;
+  text-align: right;
+}
+
+.calRow {
+  display: flex;
+  padding: 0 12px 0 6px;
+}
+
+.calGutter {
+  width: 34px;
+  flex: none;
+}
+
+.calDays {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  font-size: 12px;
+  color: var(--ink-4);
+  padding-bottom: 6px;
+}
+
+.calDays > span {
+  padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calDays b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.calHours {
+  width: 34px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  color: var(--ink-5);
+  font-variant-numeric: tabular-nums;
+  height: var(--cal-h);
+}
+
+.calHours > span {
+  height: 10%;
+  line-height: 1;
+  transform: translateY(-4px);
+}
+
+/*
+ * Raster als Verlauf statt als 50 einzelne Knoten. Die Stunden- und
+ * Tagestrennung ist Dekoration; als Elemente wären es 50 zusätzliche Kästen,
+ * die der Browser bei jedem Frame der Blockanimation mitrechnen müsste.
+ */
+.calGrid {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  height: var(--cal-h);
+  border-top: 1px solid var(--line-soft);
+  border-left: 1px solid var(--line-soft);
+  background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(10% - 1px),
+      var(--line-soft) calc(10% - 1px) 10%
+    ),
+    repeating-linear-gradient(
+      to right,
+      transparent 0 calc(20% - 1px),
+      var(--line-soft) calc(20% - 1px) 20%
+    );
+}
+
+.calBlock {
+  position: absolute;
+  width: calc(20% - 6px);
+  background: var(--accent);
+  border-radius: 7px;
+  padding: 4px 7px;
+  color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: center;
+  opacity: 0;
+}
+
+.calBlockRole {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calBlockIndustry {
+  font-size: 10px;
+  line-height: 1.2;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calNote {
+  padding: 10px 18px 12px;
+  font-size: 12px;
+  color: var(--ink-5);
+}
+
+/* Beweisleiste */
+
+.proof {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  padding: 0 0 24px;
+}
+
+.proofCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 24px 0 28px;
+  border-left: 1px solid var(--line);
+  opacity: 0;
+}
+
+.proofCell:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.proofCell:last-child {
+  padding-right: 0;
+}
+
+.proofNum {
+  font-size: clamp(26px, 2.6vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.proofLabel {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+.cue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-5);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------- Logos */
+
+.logos {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: clamp(56px, 8vw, 120px) var(--edge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.logosLabel {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: center;
+}
+
+.logoGrid {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 20px 32px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 12px;
+  max-width: 100%;
+}
+
+/*
+ * Alle Logos als schwarze Silhouette.
+ *
+ * Nicht `grayscale(1)`, obwohl das der übliche Griff ist: Die SMYCO-Datei ist
+ * eine weiße Version für dunkle Hintergründe. Entsättigt bleibt sie weiß und
+ * verschwindet auf der weißen Seite vollständig. `brightness(0)` färbt jede
+ * Vorlage schwarz ein, unabhängig von ihren Originalfarben — und hält die
+ * Reihe zugleich ruhig, weil vier verschiedene Markenfarben nebeneinander
+ * mehr Aufmerksamkeit ziehen als der Satz darüber.
+ */
+.logoLink img {
+  height: 28px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  filter: brightness(0);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.logoLink:hover img {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------- Problem */
+
+/* Zwei Spalten: links Kopf und Schrittliste, rechts das mitlaufende Diagramm.
+   Das Diagramm überspannt beide Zeilen, damit `position: sticky` einen
+   Bezugsrahmen bekommt, der über die ganze Liste reicht. */
+.splitGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  row-gap: clamp(40px, 6vw, 72px);
+  align-items: start;
+}
+
+.splitHead {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.splitBody {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 12vh, 140px);
+  min-width: 0;
+}
+
+.splitAside {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: stretch;
+  min-width: 0;
+}
+
+/*
+ * Der Kleber.
+ *
+ * Vorher heftete das Element mit seiner Oberkante knapp unter der Kopfzeile
+ * fest — es klebte sichtbar "ganz oben" statt im Blickfeld zu stehen. Jetzt
+ * spannt der Kleber die nutzbare Fensterhoehe auf und zentriert seinen Inhalt
+ * darin: Die Grafik steht auf halber Hoehe still, waehrend der Text daneben
+ * durchlaeuft.
+ *
+ * `min-height` statt `height`, damit ein Inhalt, der hoeher ist als das
+ * Fenster, den Kasten wachsen laesst statt oben abgeschnitten zu werden.
+ */
+.splitSticky {
+  position: sticky;
+  top: var(--header-h);
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Schrittliste mit mitwachsender Schiene */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.stepsRail {
+  position: absolute;
+  left: 13px;
+  top: 36px;
+  bottom: 36px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.stepsRailFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  padding: 0 0 var(--step-gap);
+}
+
+.step:first-child {
+  padding-top: 36px;
+}
+
+.step:last-child {
+  padding-bottom: 36px;
+}
+
+.stepDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  background: #fff;
+  color: var(--ink-4);
+  box-shadow: 0 0 0 1px #d6d6d6;
+  transition: background 0.5s var(--ease), color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.stepActive .stepDot {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.4;
+  transform: translateX(-2px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.stepActive .stepBody {
+  opacity: 1;
+  transform: none;
+}
+
+.stepTime {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Diagramm */
+
+.chart {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px 22px 16px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.chartHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chartTitles {
+  position: relative;
+  height: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+.chartTitle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.chartTitleOn {
+  opacity: 1;
+  transform: none;
+}
+
+.chartUnit {
+  font-size: 12px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  flex: none;
+}
+
+.chartBars {
+  position: relative;
+  margin-top: 18px;
+  height: 180px;
+}
+
+.barGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+}
+
+.bar {
+  height: 0;
+  background: var(--ink);
+  border-radius: 6px 6px 2px 2px;
+  min-height: 2px;
+  transition: background 0.4s ease;
+}
+
+/* Der Balken, der gerade abfällt, wird hervorgehoben — sonst sieht man beim
+   Scrollen nicht, wo der Einbruch entlangwandert. */
+.barDraining {
+  background: var(--accent);
+}
+
+.marker {
+  position: absolute;
+  top: -6px;
+  bottom: -1px;
+  border-left: 1.5px dashed var(--ink);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.markerA {
+  left: calc(12.5% - 4px);
+}
+
+.markerB {
+  left: calc(50% - 4px);
+  border-left-color: var(--accent);
+}
+
+.markerLabel {
+  position: absolute;
+  left: 8px;
+  top: -4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.markerB .markerLabel {
+  top: 22px;
+  color: var(--accent);
+}
+
+.chips {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px dashed #c8c8c8;
+  font-size: 12px;
+  color: var(--ink-2);
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+  transition:
+    opacity 0.4s var(--ease) calc(var(--rd, 0s) * var(--rd-scale)),
+    transform 0.4s var(--ease) calc(var(--rd, 0s) * var(--rd-scale));
+}
+
+.chipOn {
+  opacity: 1;
+  transform: none;
+}
+
+.chip b {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.chartAxis {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ink-5);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Videozeile */
+
+.videoRow {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.videoCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* -------------------------------------------------- Wie ein Termin entsteht */
+
+/*
+ * Eine Karte je Stufe, in der vorbeiziehenden Spalte untereinander.
+ *
+ * Innen zweispaltig: Text links, die kleine Vorfuehrung rechts. Vorher standen
+ * die drei Karten nebeneinander und die Vorfuehrung unter dem Text — bei drei
+ * schmalen Spalten blieb fuer beides zu wenig Platz, und die Reihe war in einer
+ * halben Wischbewegung durch.
+ */
+.howCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 36px);
+  padding: clamp(22px, 2vw, 32px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.howCardHead {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badgeNum {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex: none;
+}
+
+.badgeLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.howCardTitle {
+  margin: 0;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.howCardText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.howArt {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(14px, 1.4vw, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: clamp(184px, 26vh, 260px);
+  justify-content: center;
+}
+
+.leadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+}
+
+.leadRowOut {
+  opacity: 0.45;
+}
+
+.leadName {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.leadName b {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leadName span {
+  color: var(--ink-4);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tagYes,
+.tagNo {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex: none;
+}
+
+.tagYes {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.tagNo {
+  color: var(--ink-4);
+  background: var(--surface-2);
+}
+
+.bubbleIn,
+.bubbleOut {
+  padding: 10px 13px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  max-width: 90%;
+}
+
+.bubbleIn {
+  align-self: flex-start;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.bubbleOut {
+  align-self: flex-end;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.callMeta {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-4);
+  padding-left: 4px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meterScale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-4);
+  font-weight: 500;
+}
+
+.meterScale .warm {
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.5s ease 1.6s;
+}
+
+.meterTrack {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  width: 6%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.8s var(--ease) 0.25s;
+}
+
+.handoverCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.25);
+}
+
+.handoverBar {
+  width: 4px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--accent);
+  flex: none;
+}
+
+.handoverText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.handoverText b {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.handoverText span {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.handoverFlag {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  flex: none;
+}
+
+/* Einblendungen innerhalb der Karten; Verzögerung über --rd */
+.artIn {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.45s var(--ease) calc(var(--rd, 0s) * var(--rd-scale)),
+    transform 0.45s var(--ease) calc(var(--rd, 0s) * var(--rd-scale));
+}
+
+.artInOn {
+  opacity: 1;
+  transform: none;
+}
+
+.artInOn.leadRowOut {
+  opacity: 0.45;
+}
+
+/* ------------------------------------------------- Was am Telefon passiert */
+
+.callSplit {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.callSplit .splitHead {
+  grid-column: 1 / 3;
+}
+
+.callSplit .splitAside {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.callSplit .splitBody {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.callCard {
+  background: var(--dark);
+  color: #fff;
+  border-radius: 24px;
+  padding: clamp(20px, 1.8vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 30px 70px -30px rgba(43, 47, 56, 0.55);
+}
+
+.callTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.callFrom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.callFrom b {
+  color: #fff;
+  font-weight: 600;
+}
+
+.callLive {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3ddc84;
+  box-shadow: 0 0 0 3px rgba(61, 220, 132, 0.2);
+  flex: none;
+}
+
+.callClock {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+.callWho {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.callWho b {
+  font-size: clamp(20px, 1.9vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.callWho span {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.callTimerRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.callTimer {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.callTimerLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.callProgressTrack {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.callProgressFill {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.callNow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 62px;
+}
+
+.callNowLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+  white-space: nowrap;
+  flex: none;
+}
+
+.callNowValue {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  min-width: 0;
+}
+
+.callQuals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.qual {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.6s ease, border-color 0.6s ease;
+}
+
+.qualOn {
+  background: var(--accent-ring);
+  border-color: rgba(26, 86, 219, 0.6);
+}
+
+.qualTick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  transition: background 0.6s ease;
+}
+
+.qualOn .qualTick {
+  background: var(--accent);
+}
+
+.qual span:last-child {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.66);
+  transition: color 0.6s ease;
+}
+
+.qualOn span:last-child {
+  color: #fff;
+}
+
+.callDone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--accent);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.callDoneOn {
+  opacity: 1;
+  transform: none;
+}
+
+.callDoneText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.callDoneText b {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.callDoneText span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.callDoneFlag {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  flex: none;
+}
+
+/* ------------------------------------------------------------------ Prozess */
+
+/*
+ * Die vier Schritte untereinander.
+ *
+ * Vorher eine Reihe aus vier schmalen Karten mit einer waagerechten Zeitleiste
+ * darueber. Die Reihe war in einem Wisch durch, und die Zeitleiste trug nichts
+ * bei, was die Karten nicht selbst sagen ("TAG 0", "WOCHE 1"). Untereinander
+ * bekommt jeder Schritt seinen eigenen Moment, und der Kopf daneben bleibt
+ * dabei stehen.
+ */
+.procList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 5vh, 56px);
+}
+
+/* Steht in der stehenden Spalte unter der Einordnung — bewusst kleiner und
+   stiller als diese, es ist eine Fußnote, keine zweite Aussage. */
+.procNote {
+  margin: 0;
+  font-size: clamp(13.5px, 1vw, 15px);
+  line-height: 1.5;
+  color: var(--ink-3);
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+/*
+ * In der Einzelspalte ist die Karte breit statt hoch: Phase und Aufwand oben,
+ * Text und Aufwandsbalken darunter nebeneinander. `min-height` entfaellt — die
+ * Karten mussten nur gleich hoch sein, solange sie in einer Reihe standen.
+ */
+.procCard {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  column-gap: clamp(20px, 2.4vw, 40px);
+  row-gap: 16px;
+  align-items: center;
+  padding: clamp(26px, 3vh, 44px) clamp(22px, 2vw, 36px);
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.procCardAccent {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 30px 70px -30px rgba(26, 86, 219, 0.7);
+}
+
+.procCardTop {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.procPhase {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.procCardAccent .procPhase {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.procEffort {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface-2);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.procEffortFree {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.procCardAccent .procEffort {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.procCardTitle {
+  margin: 0;
+  font-size: clamp(18px, 1.45vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.procCardText {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.procCardAccent .procCardText {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.procEffortMeter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.procEffortMeter > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-4);
+}
+
+.procEffortMeter b {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.procEffortTrack {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.procEffortFill {
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+  border-radius: 999px;
+  transition: width 0.7s var(--ease) calc(var(--rd, 0s) * var(--rd-scale));
+}
+
+.procCount {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.procCountValue {
+  font-size: clamp(26px, 2.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.procCountLabel {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* -------------------------------------------------------- Für wen wir arbeiten */
+
+.fitCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.fitCardDark {
+  background: var(--dark);
+  border-color: transparent;
+  color: #fff;
+}
+
+.fitCardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fitMark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex: none;
+}
+
+.fitCardDark .fitMark {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.fitCardTitle {
+  margin: 0;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.fitList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fitList li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.fitCardDark .fitList li {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.fitList li:last-child {
+  padding-bottom: 0;
+}
+
+.fitBullet {
+  margin-top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  justify-self: center;
+}
+
+.fitBulletDark {
+  margin-top: 10px;
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.45);
+  justify-self: center;
+}
+
+.fitItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fitItemText b {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.fitItemText span {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.fitCardDark .fitItemText span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fitTags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+.fitTag {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.fitNote {
+  margin: auto 0 0;
+  padding-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  text-wrap: pretty;
+}
+
+/* Selbsttest */
+
+.fitCheck {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.fitCheckCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fitCheckTitle {
+  margin: 0;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.fitVerdict {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  min-height: 96px;
+  justify-content: center;
+}
+
+.fitVerdict b {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.fitVerdict span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.fitQuestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.fitQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.fitQuestion > span {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.segmented {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  flex: none;
+}
+
+.segBtn {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink-2);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.segBtnYes[aria-pressed='true'] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.segBtnNo[aria-pressed='true'] {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------- Referenzen */
+
+/* Zweite Reihe mit nur zwei Karten: mittig und auf Kartenbreite begrenzt,
+   sonst stehen zwei überbreite Kacheln unter drei normalen. */
+
+.refIconGlyph {
+  width: 20px;
+  height: 20px;
+}
+
+.refCard {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: clamp(22px, 2.2vw, 32px);
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.refCard:hover {
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.refCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+}
+
+.refIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.refBadge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.refWho {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.refWho b {
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.refWho span {
+  font-size: 13px;
+  color: var(--ink-4);
+}
+
+.refResult {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 16px;
+  border-radius: 14px;
+  background: var(--surface);
+  flex: 1;
+  justify-content: center;
+}
+
+.refResultLabel {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.refResultValue {
+  font-size: clamp(20px, 1.9vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.refText {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* ---------------------------------------------------------------- Über Nico */
+
+.nicoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  row-gap: clamp(40px, 6vw, 72px);
+  /* `start` statt `center`: Nur so ist der Rasterbereich so hoch wie die
+     Zeile und der Kleber hat eine Strecke. */
+  align-items: start;
+}
+
+.nicoVisual {
+  position: relative;
+  min-width: 0;
+}
+
+.nicoFrame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #ededed;
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.35);
+}
+
+.nicoFrame img {
+  object-fit: cover;
+  object-position: center 12%;
+  transform: scale(1.06);
+  transition: transform 1s var(--ease);
+}
+
+.nicoFrameIn img {
+  transform: none;
+}
+
+.nicoBadge {
+  position: absolute;
+  left: clamp(-12px, -1vw, -20px);
+  right: clamp(16px, 3vw, 48px);
+  bottom: clamp(-18px, -1.5vw, -28px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.25);
+}
+
+.nicoBadgeName {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nicoBadgeName b {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nicoBadgeName span {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.nicoBadgePlace {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  flex: none;
+}
+
+.nicoCopy {
+  display: flex;
+  flex-direction: column;
+  /* An die Fensterhoehe gekoppelt: Die Spalte muss hoeher sein als das Fenster,
+     sonst hat das klebende Portraet daneben keine Strecke. */
+  gap: clamp(28px, 6vh, 72px);
+  min-width: 0;
+}
+
+.nicoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Die Zusagen liegen in der Bühne übereinander, sichtbar ist immer eine.
+ * Trennlinien und Innenabstand stammen aus der früheren Liste, in der alle
+ * drei untereinander standen — übereinander ergäben sie eine Linie im Nichts.
+ */
+.nicoList li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+}
+
+.nicoList li:last-child {
+  padding-bottom: 0;
+}
+
+.nicoNum {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------------------------- FAQ */
+
+.faqTag {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+/* -------------------------------------------------------------- Abschluss-CTA */
+
+/*
+ * Der Abschluss trägt das meiste Gewicht der Seite — und läuft deshalb wie die
+ * neun Abschnitte davor auf einer Klebe-Bühne.
+ *
+ * Der Weg dahin ging über zwei Zwischenstände. Zuerst war die Karte so hoch
+ * wie ihr Inhalt und stand zwischen zwei Abschnitten wie ein weiterer Absatz.
+ * Dann bekam sie eine Mindesthöhe — das vergrösserte die Fläche, aber nicht
+ * die Zeit: Der Aufruf, auf den die ganze Seite zuläuft, war mit anderthalb
+ * Bildschirmhöhen immer noch der kürzeste Abschnitt von allen. Jetzt bleibt er
+ * stehen. Die Woche rechts füllt sich Termin für Termin, während drei
+ * Zeitpunkte durchlaufen, und die Schaltfläche steht die ganze Zeit im Bild.
+ */
+.sceneClose {
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Zeitpunkt 100px (bei 1920px Fenster, dort steht die
+     grösste Schrift), 99px auf flachen Fenstern. Die Untergrenze liegt
+     bewusst darüber. */
+  --scene-slot: clamp(108px, 13vh, 122px);
+}
+
+/* Drei Zeitpunkte, dazu die Woche, die sich dabei füllt. */
+.sceneClose .sceneWrap {
+  --scene-height: 400vh;
+}
+
+/*
+ * Die dunkle Karte braucht Abstand nach unten. Eine Fläche, die die
+ * Fensterkante berührt, sieht nach Fehler aus, nicht nach Karte — und die
+ * Bühne schneidet ab, was über sie hinausragt.
+ */
+.sceneClose .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+/* Die Textspalte rückt zusammen: Sie steht hier in einer Karte mit eigenem
+   Innenrand, nicht auf der ganzen Bühnenhöhe. */
+.sceneClose .sceneCopy {
+  gap: clamp(20px, 3.4vh, 38px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur der Fortschrittslinie schon gefüllt. */
+.sceneClose .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Die Karte ist das Gitter der Bühne — Spalten und Ausrichtung kommen von
+   `.sceneGrid`, hier stehen nur Fläche, Innenraum und Mindesthöhe. */
+.ctaCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  /* Senkrecht an der Fensterhöhe, waagerecht an der Breite: Ein Innenrand
+     von 64px oben und unten kostete auf 900px hohen Fenstern mehr Platz, als
+     die Bühne hergab. */
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(76vh, 780px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.ctaEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ctaTitle {
+  margin: 0;
+  /* Groesser als jede andere Ueberschrift der Seite — inklusive der im
+     Einstieg. Der letzte Satz soll der lauteste sein.
+     Die Fensterhöhe begrenzt mit: Auf einem breiten, flachen Fenster ergaben
+     72px vier Zeilen, mit denen die Karte nicht mehr in die Bühne passte. */
+  font-size: clamp(34px, min(5vw, 7.4vh), 72px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+
+.ctaText {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+}
+
+.ctaBtn {
+  min-height: 56px;
+  padding: 0 26px;
+  font-size: 17px;
+  box-shadow: 0 20px 50px -20px rgba(26, 86, 219, 0.8);
+}
+
+.ctaMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.ctaMailLink:hover {
+  color: #fff;
+}
+
+.ctaMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ctaMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.ctaVisual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.ctaWeekBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ctaVisualHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ctaVisualHead > b {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ctaCount {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex: none;
+}
+
+.ctaCountValue {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ctaCountLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ctaWeek {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ctaDay {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ctaDayLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.66);
+  text-align: center;
+}
+
+.ctaDaySlots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 132px;
+}
+
+/*
+ * Ein Platz im Kalender — leer, bis der Termin steht.
+ *
+ * Vorher lag er auf `opacity: 0` und erschien aus dem Nichts. Das ging, solange
+ * die ganze Woche auf einen Schlag einblendete; am Scrollstand stand der
+ * Kalender damit zwei Drittel der Bühne lang leer. Als blasser Platzhalter ist
+ * er von Anfang an ein Raster, das sich füllt.
+ */
+.ctaBlock {
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  transform: scale(0.94);
+  transition:
+    background 0.45s var(--ease) calc(var(--rd, 0s) * var(--rd-scale)),
+    transform 0.45s var(--ease) calc(var(--rd, 0s) * var(--rd-scale));
+}
+
+.ctaBlockOn {
+  background: var(--accent);
+  transform: none;
+}
+
+.closeTimeline {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+
+.sceneClose .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeText {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.ctaVisualNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------ Mobile Handlungsleiste */
+
+.mobileBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  transform: translateY(110%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.mobileBarOn {
+  transform: none;
+}
+
+.mobileBarText {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.3;
+}
+
+.mobileBarBtn {
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+/* ================================================================ Umbrüche */
+
+/*
+ * Flache Fenster am Schreibtisch: 1440 × 720 ist ein verbreitetes Notebook,
+ * und der Einstieg muss dort in eine Bildschirmhöhe passen — er hat
+ * `overflow: hidden`, sonst verschwindet die Beweisleiste unter der Kante.
+ */
+@media (min-width: 1101px) and (max-height: 860px) {
+  .heroTitle {
+    font-size: clamp(32px, 3.5vw, 50px);
+  }
+
+  .heroCopy {
+    gap: 14px;
+  }
+
+  .heroGrid {
+    gap: clamp(20px, 3vw, 44px);
+  }
+
+  .proofCell {
+    padding-top: 16px;
+  }
+
+  .proof {
+    padding-bottom: 14px;
+  }
+}
+
+@media (min-width: 1101px) and (max-height: 720px) {
+  .heroTitle {
+    font-size: clamp(30px, 3vw, 42px);
+  }
+
+  .heroText {
+    font-size: 16px;
+  }
+
+  .calNote,
+  .cue {
+    display: none;
+  }
+}
+
+/*
+ * Für wen wir arbeiten: Kopf links, die beiden Vergleichskarten rechts.
+ *
+ * Zwei Einträge statt drei bis sechs — dafür grössere. Nacheinander an
+ * derselben Stelle ist der Gegensatz schärfer als nebeneinander: Der Kasten
+ * kippt vom blauen Haken zum dunklen Strich, man sieht den Wechsel statt ihn
+ * zu vergleichen.
+ *
+ * Der Selbsttest steht bewusst **nach** der Bühne. Er ist zum Anklicken da;
+ * ein Element, das beim Weiterscrollen wegwechselt, während man darin
+ * antwortet, wäre eine Falle.
+ */
+.sceneFit {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: höchste Karte 593px (1600px Fenster). Die Untergrenze liegt
+     darüber, die Karte selbst rückt auf flachen Fenstern zusammen. */
+  --scene-slot: clamp(600px, 70vh, 640px);
+}
+
+/* Zwei Einträge, also kürzer als die vier- und sechsteiligen Bühnen. */
+.sceneFit .sceneWrap {
+  --scene-height: 360vh;
+}
+
+/* Der Selbsttest schliesst direkt an die Bühne an, statt frei zu stehen. */
+.sceneFit .sceneAfter {
+  padding-top: clamp(32px, 5vh, 64px);
+}
+
+/*
+ * Ergebnisse: Kopf links, die fünf Fälle rechts.
+ *
+ * Nacheinander statt als Raster. Fünf Karten nebeneinander liest niemand
+ * einzeln — man überfliegt sie und merkt sich keine. Einzeln bekommt jeder
+ * Fall seine Branche, seine Zahl und seinen Satz für sich.
+ *
+ * Der Slot ist flacher als beim Fit-Abschnitt: Eine Referenzkarte trägt vier
+ * kurze Blöcke, keine Liste mit vier Punkten.
+ */
+.sceneRefs {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: höchste Karte 394px (1600px Fenster, dort läuft die
+     Ergebniszeile am breitesten). */
+  --scene-slot: clamp(365px, 46vh, 420px);
+}
+
+/* Fünf Einträge — zwischen der vierteiligen Prozess- und der sechsteiligen
+   Telefon-Bühne. */
+.sceneRefs .sceneWrap {
+  --scene-height: 480vh;
+}
+
+/* Wie `procNote`: eine Fußnote unter der Einordnung, bewusst stiller. */
+.refNote {
+  margin: 0;
+  font-size: clamp(13.5px, 1vw, 15px);
+  line-height: 1.5;
+  color: var(--ink-3);
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+/*
+ * Über Nico: das Porträt links, die drei Zusagen rechts.
+ *
+ * Das Porträt ist hier das, was steht — es ist der ganze Punkt des Abschnitts.
+ * „Kein anonymes Call-Center“ behauptet sich schlecht und zeigt sich gut:
+ * ein Gesicht, das bleibt, während die Zusagen daran vorbeilaufen.
+ *
+ * Der Slot ist flach: Eine Zusage ist eine Ziffer, eine Zeile Überschrift und
+ * zwei Zeilen Text.
+ */
+.sceneFounder {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: höchste Zusage 73px, über alle Breiten gleich. */
+  --scene-slot: clamp(88px, 12vh, 115px);
+}
+
+/* Drei Zusagen. */
+.sceneFounder .sceneWrap {
+  --scene-height: 400vh;
+}
+
+/*
+ * Das Porträt darf nicht höher werden als die Bühne. Ohne Deckel wächst es
+ * über `aspect-ratio` mit der Spaltenbreite — auf einem breiten, flachen
+ * Fenster liefe es unten heraus.
+ */
+.sceneFounder .nicoFrame {
+  max-height: min(56vh, 620px);
+}
+
+.sceneFounder .nicoVisual {
+  max-width: 460px;
+}
+
+/*
+ * Die Textspalte hat hier sieben Kinder statt vier — Etikett, Überschrift,
+ * zwei Absätze, Balken, Slot, Aufrufzeile. Beim gemeinsamen Abstand summierte
+ * sich das auf gut 270px allein an Luft und die Spalte lief aus der Bühne.
+ */
+.sceneFounder .sceneCopy {
+  gap: clamp(18px, 2.8vh, 34px);
+}
+
+/*
+ * Häufige Fragen: Kopf links, eine Frage nach der anderen rechts.
+ *
+ * Das Akkordeon ist dabei entfallen. Neun zugeklappte Zeilen ergeben einen
+ * Abschnitt von anderthalb Bildschirmhöhen, an dem man vorbeiscrollt — und
+ * wer klickt, liest ohnehin nur eine. Aufgeschlagen bekommt jede Frage ihren
+ * eigenen Moment.
+ *
+ * Alle neun Antworten stehen weiterhin vollständig im HTML: Die nicht
+ * sichtbaren liegen auf `opacity: 0`, nicht auf `display: none`. Das
+ * FAQPage-Markup und die Seitensuche des Browsers finden sie unverändert.
+ */
+.sceneFaq {
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen: höchster Eintrag 408px — die Rechtsfrage mit ihrer langen
+     Antwort und dem Hinweis darunter. */
+  --scene-slot: clamp(345px, 48vh, 440px);
+}
+
+/* Neun Fragen — rund eine halbe Bildschirmhöhe je Frage. */
+.sceneFaq .sceneWrap {
+  --scene-height: 460vh;
+}
+
+/* Ein Eintrag ist Etikett, Frage, Antwort, ggf. Hinweis — untereinander. */
+.sceneFaq .sceneItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.faqQ {
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.faqA {
+  margin: 14px 0 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 44em;
+  text-wrap: pretty;
+}
+
+.faqNote {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-4);
+  max-width: 44em;
+}
+
+/*
+ * Flache Fenster.
+ *
+ * Die Bühne ist 100vh hoch und lässt oben die Kopfzeile frei. Auf einem
+ * 650px hohen Fenster bleiben davon 570px — bei der Telefon-Szene (Karte plus
+ * Aufruf) blieben darin zuletzt nur 8px Rand. `overflow: hidden` an der Bühne
+ * würde den Rest abschneiden, statt ihn zu zeigen.
+ *
+ * Deshalb wird hier der obere Freiraum gekürzt und die Szene enger gesetzt.
+ * Die Kopfzeile verdeckt dann im ungünstigsten Fall ein paar Pixel Rand,
+ * nicht Inhalt.
+ */
+@media (max-height: 760px) {
+  /* Die Abschlusskarte ist der höchste Einzelteil der Seite: Überschrift,
+     Absatz, Schaltfläche, Kalender und drei Zeitpunkte in einem Kasten. Sie
+     gibt in zwei Stufen nach, statt unten aus der Bühne zu laufen. */
+  .ctaCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .ctaTitle {
+    font-size: clamp(28px, 3.6vw, 52px);
+  }
+
+  .sceneClose .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .ctaVisual {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .ctaDaySlots {
+    min-height: 108px;
+  }
+
+  .ctaBlock {
+    height: 32px;
+  }
+
+  .sceneCall .sceneAside {
+    gap: 14px;
+  }
+
+  /* Die Gesprächskarte ist der höchste Einzelteil der Seite. Sie rückt
+     zusammen, statt unten aus der Bühne zu laufen. */
+  .callCard {
+    gap: 14px;
+    padding: clamp(16px, 1.6vw, 22px);
+  }
+
+  .callTimer {
+    font-size: clamp(30px, 3.2vw, 40px);
+  }
+
+  /* Die Vergleichskarten sind nach der Gesprächskarte die höchsten Einzelteile
+     der Seite. Vier Listenpunkte plus Marken brauchen auf flachen Fenstern
+     weniger Luft, sonst passt die Karte nicht in die Bühne. */
+  .sceneFit {
+    --scene-slot: clamp(470px, 82vh, 600px);
+  }
+
+  .fitCard {
+    gap: 16px;
+    padding: clamp(20px, 1.8vw, 28px);
+  }
+
+  .fitList li {
+    padding: 11px 0;
+  }
+}
+
+@media (max-height: 620px) {
+  .ctaCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .ctaTitle {
+    font-size: clamp(24px, 3vw, 40px);
+  }
+
+  .ctaText {
+    font-size: 15px;
+  }
+
+  .sceneClose .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .ctaDaySlots {
+    min-height: 84px;
+  }
+
+  .ctaBlock {
+    height: 24px;
+  }
+
+  .closeTimeline {
+    padding-top: 12px;
+  }
+
+  .callCard {
+    gap: 10px;
+    border-radius: 18px;
+  }
+
+  .callTimer {
+    font-size: 26px;
+  }
+
+  .callDone {
+    padding: 9px 12px;
+  }
+
+  .sceneFit {
+    --scene-slot: clamp(400px, 84vh, 500px);
+  }
+
+  .fitCard {
+    gap: 12px;
+  }
+
+  .fitList li {
+    padding: 8px 0;
+  }
+
+  .fitTags {
+    display: none;
+  }
+
+  .sceneFounder .sceneCopy {
+    gap: 12px;
+  }
+
+  .sceneFounder .heroText {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .heroWrap {
+    height: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-bottom: 8px;
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    align-content: start;
+    padding: 24px 0 32px;
+    flex: none;
+  }
+
+  .heroVisual {
+    max-width: 640px;
+  }
+
+  .cue {
+    display: none;
+  }
+
+  /* Gestapelt: Das Diagramm bleibt als schmale Leiste oben kleben, während
+     die Schritte darunter durchlaufen. Deshalb Flex statt Grid — sonst hätte
+     `sticky` keinen Bezugsrahmen über Kopf und Liste hinweg. */
+  .splitGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .splitHead {
+    order: 0;
+  }
+
+  .splitAside {
+    order: 1;
+    position: sticky;
+    top: var(--header-h);
+    z-index: 2;
+    background: #fff;
+    padding: 10px 0 14px;
+    align-self: stretch;
+  }
+
+  .splitSticky {
+    position: static;
+  }
+
+  .splitBody {
+    order: 2;
+  }
+
+  .procCard {
+    min-height: 0;
+  }
+
+  .fitCheck {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .nicoGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  .nicoVisual {
+    max-width: 440px;
+    margin-bottom: 24px;
+  }
+
+  .sceneClose .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+
+  .ctaVisual {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 860px) {
+  .proof {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 0 16px;
+  }
+
+  .proofCell {
+    border-left: 0;
+    border-top: 1px solid var(--line-soft);
+    padding: 16px 0 0;
+  }
+
+  .proofCell:first-child {
+    border-top: 0;
+  }
+
+  .proofNum {
+    font-size: 26px;
+  }
+
+  .logoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mobileBar {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .callQuals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .chartBars {
+    height: 130px;
+  }
+
+  .chips {
+    top: 12px;
+    gap: 6px;
+  }
+
+  .chip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .howCard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .videoRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fitQuestion {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .fitList li,
+  .nicoList li {
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .nicoList li {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .step {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .stepsRail {
+    left: 13px;
+  }
+
+  .chartAxis,
+  .barGrid {
+    gap: 5px;
+  }
+}
+
+/*
+ * Unter 640px keine Einblendung mehr.
+ *
+ * Auf einem Telefon wäre eine Webcam-Einblendung über einem ohnehin schmalen
+ * Kalender ein Briefmarkenbild — und sie läge über den Terminblöcken, die der
+ * eigentliche Beleg sind. Beide stehen deshalb untereinander, Kalender zuerst.
+ */
+@media (max-width: 640px) {
+  .heroVisual {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .portrait {
+    position: static;
+    width: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 180px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .portrait img {
+    object-position: center 18%;
+  }
+
+  .portraitCaption {
+    padding: 14px 12px 12px;
+  }
+
+  .portraitName {
+    font-size: 13px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .calGutter,
+  .calHours {
+    width: 28px;
+  }
+
+  .calHead,
+  .calNote {
+    padding-inline: 14px;
+  }
+
+  .nicoBadge {
+    left: 0;
+    right: 0;
+    bottom: -16px;
+    padding: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ctaCard {
+    border-radius: 24px;
+  }
+
+  .ctaDaySlots {
+    min-height: 96px;
+  }
+
+  .ctaBlock {
+    height: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Ab hier passen Hinweis und Schaltfläche nicht mehr nebeneinander, beide
+     brechen um und die Leiste wird doppelt so hoch. Dann zählt die
+     Schaltfläche. */
+  .mobileBarText {
+    display: none;
+  }
+
+  .mobileBarBtn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .calDays {
+    font-size: 11px;
+  }
+
+  .calBlock {
+    padding-inline: 5px;
+  }
+
+  .calBlockIndustry {
+    display: none;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .segBtn {
+    flex: 1;
+  }
+}
+
+/* ------------------------------------------------------- Reduzierte Bewegung */
+
+@media (prefers-reduced-motion: reduce) {
+  .artIn,
+  .chip,
+  .callDone {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sceneItem .stepBody {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Die abschnittseigene Regel ist zweistellig und bliebe sonst stehen. */
+  .sceneClose .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+
+  .heroWrap {
+    height: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .heroGrid {
+    padding-bottom: 32px;
+  }
+
+  .cue {
+    display: none;
+  }
+
+  .nicoFrame img {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------ Klebe-Spalte + Fluss-Spalte */
+
+/*
+ * Das Grundmuster fuer die Abschnitte ohne eigene Grafik.
+ *
+ * Links steht der Kopf still — Etikett, Ueberschrift, Einordnung, und wo es
+ * passt ein Aufruf. Rechts zieht der Inhalt daran vorbei. Damit bekommt jeder
+ * Abschnitt eine Strecke statt eines Augenblicks: Man liest die Ueberschrift
+ * einmal und behaelt sie, waehrend die Belege durchlaufen.
+ *
+ * Vorher standen die Karten dieser Abschnitte nebeneinander. Drei Karten in
+ * einer Reihe sind in einer halben Wischbewegung durch — genau das Gefuehl,
+ * an der Seite vorbeizuscrollen statt sie zu lesen.
+ */
+.pinGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+
+.pinCol {
+  align-self: stretch;
+  min-width: 0;
+}
+
+.pinner {
+  position: sticky;
+  top: var(--header-h);
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+
+/*
+ * Die vorbeiziehende Spalte.
+ *
+ * Der Abstand ist bewusst an die Fensterhoehe gekoppelt und nicht an die
+ * Schriftgroesse: Jede Karte soll ihren eigenen Moment bekommen, in dem sie
+ * allein im Blickfeld steht. Bei festen Pixeln waere das auf einem grossen
+ * Bildschirm wieder eine Liste, durch die man in einem Rutsch faellt.
+ */
+.flowCol {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 12vh, 160px);
+}
+
+@media (max-width: 1100px) {
+  .pinGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(32px, 5vw, 56px);
+  }
+
+  /* Gestapelt gibt es nichts zum Kleben — der Kopf steht dann einfach oben. */
+  .pinner {
+    position: static;
+    min-height: 0;
+    gap: 18px;
+  }
+
+  .flowCol {
+    gap: clamp(32px, 5vw, 56px);
+  }
+}

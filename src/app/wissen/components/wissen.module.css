@@ -1,0 +1,663 @@
+/*
+ * Wissen — Einstieg in Beiträge, Videos und Begriffe.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (sechs Abschnitte, zwei davon als Bühne):
+ *   Einstieg   Fluss, knapp eine Bildschirmhöhe, ohne Schaubild
+ *   Beiträge   Fluss, Liste der neuesten Texte
+ *   Videos     Fluss, drei Karten mit Vorschaubild
+ *   Begriffe   Fluss, dichtes Kartenfeld
+ *   Haltung    Bühne, drei Einträge: wie diese Texte entstehen
+ *   Termin     Bühne, dunkle Abschlusskarte
+ *
+ * Drei Listenabschnitte hintereinander wären sonst dreimal dieselbe Kachel.
+ * Deshalb bekommt jeder eine eigene Textur: die Beiträge eine Zeilenliste, die
+ * Videos Karten mit Bild, die Begriffe ein dichtes Feld. Gleiche Familie,
+ * unterschiedlicher Griff.
+ *
+ * Der Designleitfaden § 9.1 sagt für Wissensseiten „keine Bühne“ — das gilt
+ * für den **Beitrag**, wo Lesbarkeit trägt. Diese Seite ist kein Beitrag,
+ * sondern ein Familien-Einstieg; sie folgt dem Zuschnitt daneben.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.sectionHead {
+  composes: sectionHead from '../../components/seite/basis.module.css';
+}
+
+.sectionHeadCopy {
+  composes: sectionHeadCopy from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+.textLinkMuted {
+  composes: textLinkMuted from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Wie auf `/kaltakquise`: kein Schaubild. Es gibt hier nichts vorzuführen —
+ * die Belege stehen eine Ebene tiefer, in den Texten selbst. Statt eines
+ * Bildes, das nichts zeigt, trägt der Einstieg das Abschnittsgerüst der
+ * Grundlage (Designleitfaden § 9.1).
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(48px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vh, 40px);
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------------ Beiträge */
+
+/*
+ * Eine Zeilenliste, kein Kachelfeld: Man überfliegt hier Titel, nicht Bilder.
+ * Die Zeile trägt links den Titel mit einem Satz darunter und rechts die
+ * Einordnung — Kategorie und Lesezeit.
+ */
+.listHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.postRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding: clamp(18px, 2vh, 26px) 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s var(--ease);
+}
+
+.postRow:hover {
+  background: var(--surface);
+}
+
+.postTitle {
+  margin: 0;
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.postRow:hover .postTitle {
+  color: var(--accent);
+}
+
+.postMeta {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.postText {
+  grid-column: 1;
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 52em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.listFoot {
+  margin-top: clamp(24px, 3.4vh, 36px);
+}
+
+/* -------------------------------------------------------------------- Videos */
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.videoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.videoBild {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.videoBild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s var(--ease);
+}
+
+.videoCard:hover .videoBild img {
+  transform: scale(1.03);
+}
+
+.videoTitel {
+  margin: 0;
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.videoCard:hover .videoTitel {
+  color: var(--accent);
+}
+
+.videoDatum {
+  font-size: 12.5px;
+  color: var(--ink-4);
+}
+
+/* Wenn der Kanal-Feed nicht antwortet, bleibt der Abschnitt stehen — mit dem
+   Verweis statt mit einer leeren Fläche. */
+.videoLeer {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 42em;
+}
+
+/* ------------------------------------------------------------------ Begriffe */
+
+.begriffGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.begriffCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--surface);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s var(--ease);
+}
+
+.begriffCard:hover {
+  background: var(--surface-2);
+}
+
+.begriffTop {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.begriffName {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.begriffCard:hover .begriffName {
+  color: var(--accent);
+}
+
+.begriffFach {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.begriffText {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------- Haltung */
+
+.sceneHaltung {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrössen: höchste Karte 325px (1920×1080, dort
+     steht die grösste Schrift), 267px auf flachen Fenstern. Der erste Wert
+     war geschätzt und bei vier Grössen zu klein. */
+  --scene-slot: clamp(275px, 36vh, 332px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.haltCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vh, 20px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.haltZahl {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.haltTitel {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+  text-wrap: balance;
+}
+
+.haltText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Was die Regel im Alltag bedeutet — ein Satz, ruhiger gesetzt. */
+.haltFolge {
+  margin: 0;
+  padding-top: clamp(12px, 1.6vh, 18px);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-4);
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(102px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .haltCard {
+    gap: 12px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .haltCard {
+    gap: 10px;
+  }
+}
+
+/*
+ * Auf schmalen Fenstern rutscht die Einordnung unter den Titel: Kategorie und
+ * Lesezeit neben einem dreizeiligen Titel lassen für den Titel 40 % der
+ * Breite übrig.
+ */
+@media (max-width: 640px) {
+  .postRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .postMeta {
+    grid-column: 1;
+    grid-row: auto;
+    order: 3;
+  }
+
+  .begriffGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,749 @@
+/*
+ * Leistungen — Seitenstylesheet.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau der Seite (fünf Abschnitte, drei davon als Bühne):
+ *   Einstieg         Fluss, gut zwei Drittel Bildschirmhöhe
+ *   Leistungen       Bühne, vier Einträge
+ *   Zusammenarbeit   Bühne, drei Einträge
+ *   Regionen         Fluss, fünfzehn Verweise
+ *   Termin           Bühne, dunkle Karte
+ *
+ * Bewusst weniger Bühnen als die Startseite: Dort entscheidet jemand zum
+ * ersten Mal und jede Frage kommt einmal dran. Hier weiss der Leser meist
+ * schon, worum es geht — er will wissen, was genau geliefert wird.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+/*
+ * Jede Grundlagen-Klasse, die diese Seite benutzt, wird hier einmal
+ * durchgereicht. Das Element trägt damit beide Klassennamen — den der
+ * Grundlage (dort stehen die Regeln) und den dieser Datei. Nur so greifen
+ * eigene Regeln, die eine Grundlagen-Klasse im Nachfahren-Selektor
+ * ansprechen, etwa `.sceneClose .sceneStage`.
+ */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.body {
+  composes: body from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Kein bildschirmfüllender Klebe-Einstieg wie auf der Startseite.
+ *
+ * Wer hier ankommt, kommt meist aus der Navigation oder aus der Suche und
+ * will wissen, was geliefert wird — nicht erst überzeugt werden. Der
+ * Einstieg nennt die Sache und gibt den Weg frei nach unten.
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(56px, 9vh, 112px);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  min-width: 0;
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introText {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 34em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.introVisual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.introVisual img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ----------------------------------------------------------- Die Leistungen */
+
+/*
+ * Vier Leistungen, eine nach der anderen. Nebeneinander als Kachelfeld
+ * überfliegt man sie — die vierte liest niemand mehr.
+ */
+.sceneServices {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrößen: höchste Karte 432px (1920×1080, dort
+     steht die größte Schrift), 326px auf flachen Fenstern. Untergrenze und
+     Deckel liegen knapp darüber. */
+  --scene-slot: clamp(340px, 50vh, 460px);
+  /* Vier Einträge — wie beim Prozess der Startseite. */
+  --scene-height: 450vh;
+}
+
+.svcCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vh, 26px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.svcTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.svcMark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.svcMark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.svcStep {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.svcText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.svcList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.svcList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.svcBullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  margin-top: 7px;
+}
+
+/* -------------------------------------------------------- Zusammenarbeit */
+
+/*
+ * Drei Modelle, jedes mit seiner Grenze. Die Grenze steht nicht im Kleingedruckten,
+ * sondern als eigener Block unten in der Karte — sie ist der Teil, der die
+ * Entscheidung trägt.
+ */
+.sceneEngagement {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Neu gemessen am 16.09.2026, nachdem die Modelle von Akquisestunden auf
+     Terminkontingente umgestellt wurden: Die längere „Eignung“-Zeile der
+     laufenden Akquise macht die höchste Karte 550px hoch (1920×1080), 499px
+     auf flachen Fenstern. Die vorherigen Werte waren danach an drei von acht
+     Grössen zu klein. */
+  --scene-slot: clamp(512px, 61vh, 560px);
+  --scene-height: 420vh;
+}
+
+.modCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.modTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modName {
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.modBadge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.modUnit {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--ink-4);
+}
+
+.modFit {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.modList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.modList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.modTick {
+  color: var(--accent);
+  flex: none;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Die Grenze des Modells — der ehrlichste Teil der Karte. */
+.modLimit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.modLimitLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.modLimitText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* Hinweis in der Textspalte: Warum hier keine Beträge stehen. */
+.priceNote {
+  margin: 0;
+  font-size: clamp(13.5px, 1vw, 15px);
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 34em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ------------------------------------------------------------------ Regionen */
+
+.regionHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.regionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.regionCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.regionCard:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.regionMark {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.regionMark svg {
+  width: 16px;
+  height: 16px;
+}
+
+.regionName {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.regionName b {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.regionName span {
+  font-size: 12.5px;
+  color: var(--ink-4);
+}
+
+.regionNote {
+  margin: clamp(28px, 4vh, 44px) 0 0;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneClose {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(108px, 13vh, 118px);
+  /* Drei Punkte — knapp über der Untergrenze von vier Bildschirmhöhen, die
+     der Designleitfaden § 5.3 für eine Bühne setzt. */
+  --scene-height: 400vh;
+}
+
+.sceneClose .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneClose .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneClose .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 60px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closeAgenda {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closeAgendaHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneClose .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closeAgendaNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .introGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(28px, 5vw, 48px);
+  }
+
+  /* Bild über den Text: Auf dem Telefon soll zuerst die Aussage stehen,
+     nicht das Porträt — deshalb rückt es hinter die Schaltfläche. */
+  .introVisual {
+    order: 1;
+    max-width: 420px;
+    aspect-ratio: 5 / 4;
+  }
+
+  .sceneClose .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneClose .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closeAgenda {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .svcCard,
+  .modCard {
+    gap: 14px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .svcList li {
+    padding: 9px 0;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneClose .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .svcList li {
+    padding: 7px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .regionGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

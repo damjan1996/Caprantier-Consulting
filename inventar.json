@@ -1,0 +1,3205 @@
+{
+  "basis": [
+    {
+      "kopf": ".page",
+      "inMedia": null,
+      "klassen": [
+        "page"
+      ]
+    },
+    {
+      "kopf": ".page",
+      "inMedia": "@media (min-width: 1024px)",
+      "klassen": [
+        "page"
+      ]
+    },
+    {
+      "kopf": ".page",
+      "inMedia": "@media (max-width: 767px)",
+      "klassen": [
+        "page"
+      ]
+    },
+    {
+      "kopf": ".page",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "page"
+      ]
+    },
+    {
+      "kopf": ".section",
+      "inMedia": null,
+      "klassen": [
+        "section"
+      ]
+    },
+    {
+      "kopf": ".sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneStage",
+      "inMedia": null,
+      "klassen": [
+        "sceneStage"
+      ]
+    },
+    {
+      "kopf": ".sceneGrid",
+      "inMedia": null,
+      "klassen": [
+        "sceneGrid"
+      ]
+    },
+    {
+      "kopf": ".sceneCopy",
+      "inMedia": null,
+      "klassen": [
+        "sceneCopy"
+      ]
+    },
+    {
+      "kopf": ".sceneSlot",
+      "inMedia": null,
+      "klassen": [
+        "sceneSlot"
+      ]
+    },
+    {
+      "kopf": ".sceneItem",
+      "inMedia": null,
+      "klassen": [
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneItemDone",
+      "inMedia": null,
+      "klassen": [
+        "sceneItemDone"
+      ]
+    },
+    {
+      "kopf": ".sceneItemOn",
+      "inMedia": null,
+      "klassen": [
+        "sceneItemOn"
+      ]
+    },
+    {
+      "kopf": ".sceneRail",
+      "inMedia": null,
+      "klassen": [
+        "sceneRail"
+      ]
+    },
+    {
+      "kopf": ".sceneRailFill",
+      "inMedia": null,
+      "klassen": [
+        "sceneRailFill"
+      ]
+    },
+    {
+      "kopf": ".sceneAside",
+      "inMedia": null,
+      "klassen": [
+        "sceneAside"
+      ]
+    },
+    {
+      "kopf": ".sceneAfter",
+      "inMedia": null,
+      "klassen": [
+        "sceneAfter"
+      ]
+    },
+    {
+      "kopf": ".sceneWrap",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneStage",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneStage"
+      ]
+    },
+    {
+      "kopf": ".sceneGrid",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneGrid"
+      ]
+    },
+    {
+      "kopf": ".sceneAside",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneAside"
+      ]
+    },
+    {
+      "kopf": ".sceneSlot",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneSlot"
+      ]
+    },
+    {
+      "kopf": ".sceneItem",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneSlot",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneSlot"
+      ]
+    },
+    {
+      "kopf": ".sceneAfter",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneAfter"
+      ]
+    },
+    {
+      "kopf": ".sceneItem",
+      "inMedia": "@media (prefers-reduced-motion: reduce)",
+      "klassen": [
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".stack",
+      "inMedia": null,
+      "klassen": [
+        "stack"
+      ]
+    },
+    {
+      "kopf": ".eyebrow",
+      "inMedia": null,
+      "klassen": [
+        "eyebrow"
+      ]
+    },
+    {
+      "kopf": ".h2",
+      "inMedia": null,
+      "klassen": [
+        "h2"
+      ]
+    },
+    {
+      "kopf": ".h3",
+      "inMedia": null,
+      "klassen": [
+        "h3"
+      ]
+    },
+    {
+      "kopf": ".lead",
+      "inMedia": null,
+      "klassen": [
+        "lead"
+      ]
+    },
+    {
+      "kopf": ".body",
+      "inMedia": null,
+      "klassen": [
+        "body"
+      ]
+    },
+    {
+      "kopf": ".sectionHead",
+      "inMedia": null,
+      "klassen": [
+        "sectionHead"
+      ]
+    },
+    {
+      "kopf": ".sectionHeadCopy",
+      "inMedia": null,
+      "klassen": [
+        "sectionHeadCopy"
+      ]
+    },
+    {
+      "kopf": ".btnPrimary,\n.btnDark",
+      "inMedia": null,
+      "klassen": [
+        "btnPrimary",
+        "btnDark"
+      ]
+    },
+    {
+      "kopf": ".btnPrimary",
+      "inMedia": null,
+      "klassen": [
+        "btnPrimary"
+      ]
+    },
+    {
+      "kopf": ".btnPrimary:hover",
+      "inMedia": null,
+      "klassen": [
+        "btnPrimary"
+      ]
+    },
+    {
+      "kopf": ".btnDark",
+      "inMedia": null,
+      "klassen": [
+        "btnDark"
+      ]
+    },
+    {
+      "kopf": ".btnDark:hover",
+      "inMedia": null,
+      "klassen": [
+        "btnDark"
+      ]
+    },
+    {
+      "kopf": ".btnSmall",
+      "inMedia": null,
+      "klassen": [
+        "btnSmall"
+      ]
+    },
+    {
+      "kopf": ".btnHint",
+      "inMedia": null,
+      "klassen": [
+        "btnHint"
+      ]
+    },
+    {
+      "kopf": ".textLink",
+      "inMedia": null,
+      "klassen": [
+        "textLink"
+      ]
+    },
+    {
+      "kopf": ".textLink:hover",
+      "inMedia": null,
+      "klassen": [
+        "textLink"
+      ]
+    },
+    {
+      "kopf": ".textLinkMuted",
+      "inMedia": null,
+      "klassen": [
+        "textLinkMuted"
+      ]
+    },
+    {
+      "kopf": ".textLinkMuted:hover",
+      "inMedia": null,
+      "klassen": [
+        "textLinkMuted"
+      ]
+    },
+    {
+      "kopf": ".metaNote",
+      "inMedia": null,
+      "klassen": [
+        "metaNote"
+      ]
+    },
+    {
+      "kopf": ".actionRow",
+      "inMedia": null,
+      "klassen": [
+        "actionRow"
+      ]
+    },
+    {
+      "kopf": ".reveal",
+      "inMedia": null,
+      "klassen": [
+        "reveal"
+      ]
+    },
+    {
+      "kopf": ".revealIn",
+      "inMedia": null,
+      "klassen": [
+        "revealIn"
+      ]
+    },
+    {
+      "kopf": ".dot",
+      "inMedia": null,
+      "klassen": [
+        "dot"
+      ]
+    },
+    {
+      "kopf": ".introIn",
+      "inMedia": null,
+      "klassen": [
+        "introIn"
+      ]
+    },
+    {
+      "kopf": ".page",
+      "inMedia": "@media (min-width: 1101px) and (max-height: 720px)",
+      "klassen": [
+        "page"
+      ]
+    },
+    {
+      "kopf": ".sceneStage",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneStage"
+      ]
+    },
+    {
+      "kopf": ".sceneCopy .h2",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneCopy",
+        "h2"
+      ]
+    },
+    {
+      "kopf": ".sectionHead",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sectionHead"
+      ]
+    },
+    {
+      "kopf": ".pinAction",
+      "inMedia": null,
+      "klassen": [
+        "pinAction"
+      ]
+    },
+    {
+      "kopf": ".rail",
+      "inMedia": null,
+      "klassen": [
+        "rail"
+      ]
+    },
+    {
+      "kopf": ".rail",
+      "inMedia": "@media (min-width: 1280px)",
+      "klassen": [
+        "rail"
+      ]
+    },
+    {
+      "kopf": ".railOn",
+      "inMedia": "@media (min-width: 1280px)",
+      "klassen": [
+        "railOn"
+      ]
+    },
+    {
+      "kopf": ".railList",
+      "inMedia": null,
+      "klassen": [
+        "railList"
+      ]
+    },
+    {
+      "kopf": ".railItem",
+      "inMedia": null,
+      "klassen": [
+        "railItem"
+      ]
+    },
+    {
+      "kopf": ".railLabel",
+      "inMedia": null,
+      "klassen": [
+        "railLabel"
+      ]
+    },
+    {
+      "kopf": ".railItem:hover .railLabel,\n.railItem:focus-visible .railLabel,\n.railItemOn .railLabel",
+      "inMedia": null,
+      "klassen": [
+        "railItem",
+        "railLabel",
+        "railItemOn"
+      ]
+    },
+    {
+      "kopf": ".railTrack",
+      "inMedia": null,
+      "klassen": [
+        "railTrack"
+      ]
+    },
+    {
+      "kopf": ".railItemOn .railTrack,\n.railItem:hover .railTrack",
+      "inMedia": null,
+      "klassen": [
+        "railItemOn",
+        "railTrack",
+        "railItem"
+      ]
+    },
+    {
+      "kopf": ".railFill",
+      "inMedia": null,
+      "klassen": [
+        "railFill"
+      ]
+    },
+    {
+      "kopf": ".railItem:focus-visible",
+      "inMedia": null,
+      "klassen": [
+        "railItem"
+      ]
+    },
+    {
+      "kopf": ".rail,\n  .railLabel,\n  .railTrack",
+      "inMedia": "@media (prefers-reduced-motion: reduce)",
+      "klassen": [
+        "rail",
+        "railLabel",
+        "railTrack"
+      ]
+    }
+  ],
+  "home": [
+    {
+      "kopf": ".sceneProblem,\n.sceneHow,\n.sceneCall,\n.sceneProcess,\n.sceneFit,\n.sceneRefs,\n.sceneFounder,\n.sceneFaq,\n.sceneClose",
+      "inMedia": null,
+      "klassen": [
+        "sceneProblem",
+        "sceneHow",
+        "sceneCall",
+        "sceneProcess",
+        "sceneFit",
+        "sceneRefs",
+        "sceneFounder",
+        "sceneFaq",
+        "sceneClose"
+      ]
+    },
+    {
+      "kopf": ".sceneHow",
+      "inMedia": null,
+      "klassen": [
+        "sceneHow"
+      ]
+    },
+    {
+      "kopf": ".sceneCall",
+      "inMedia": null,
+      "klassen": [
+        "sceneCall"
+      ]
+    },
+    {
+      "kopf": ".sceneProcess",
+      "inMedia": null,
+      "klassen": [
+        "sceneProcess"
+      ]
+    },
+    {
+      "kopf": ".callAction",
+      "inMedia": null,
+      "klassen": [
+        "callAction"
+      ]
+    },
+    {
+      "kopf": ".nicoList",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".nicoList li",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".heroWrap",
+      "inMedia": null,
+      "klassen": [
+        "heroWrap"
+      ]
+    },
+    {
+      "kopf": ".heroSticky",
+      "inMedia": null,
+      "klassen": [
+        "heroSticky"
+      ]
+    },
+    {
+      "kopf": ".heroGrid",
+      "inMedia": null,
+      "klassen": [
+        "heroGrid"
+      ]
+    },
+    {
+      "kopf": ".heroCopy",
+      "inMedia": null,
+      "klassen": [
+        "heroCopy"
+      ]
+    },
+    {
+      "kopf": ".heroTitle",
+      "inMedia": null,
+      "klassen": [
+        "heroTitle"
+      ]
+    },
+    {
+      "kopf": ".heroText",
+      "inMedia": null,
+      "klassen": [
+        "heroText"
+      ]
+    },
+    {
+      "kopf": ".heroMeta",
+      "inMedia": null,
+      "klassen": [
+        "heroMeta"
+      ]
+    },
+    {
+      "kopf": ".heroVisual",
+      "inMedia": null,
+      "klassen": [
+        "heroVisual"
+      ]
+    },
+    {
+      "kopf": ".portrait",
+      "inMedia": null,
+      "klassen": [
+        "portrait"
+      ]
+    },
+    {
+      "kopf": ".portrait img",
+      "inMedia": null,
+      "klassen": [
+        "portrait"
+      ]
+    },
+    {
+      "kopf": ".portraitCaption",
+      "inMedia": null,
+      "klassen": [
+        "portraitCaption"
+      ]
+    },
+    {
+      "kopf": ".portraitName",
+      "inMedia": null,
+      "klassen": [
+        "portraitName"
+      ]
+    },
+    {
+      "kopf": ".portraitRole",
+      "inMedia": null,
+      "klassen": [
+        "portraitRole"
+      ]
+    },
+    {
+      "kopf": ".calendar",
+      "inMedia": null,
+      "klassen": [
+        "calendar"
+      ]
+    },
+    {
+      "kopf": ".calHead",
+      "inMedia": null,
+      "klassen": [
+        "calHead"
+      ]
+    },
+    {
+      "kopf": ".calTitle",
+      "inMedia": null,
+      "klassen": [
+        "calTitle"
+      ]
+    },
+    {
+      "kopf": ".calTitle strong",
+      "inMedia": null,
+      "klassen": [
+        "calTitle"
+      ]
+    },
+    {
+      "kopf": ".calWeek,\n.calUnit",
+      "inMedia": null,
+      "klassen": [
+        "calWeek",
+        "calUnit"
+      ]
+    },
+    {
+      "kopf": ".calCount",
+      "inMedia": null,
+      "klassen": [
+        "calCount"
+      ]
+    },
+    {
+      "kopf": ".calCountValue",
+      "inMedia": null,
+      "klassen": [
+        "calCountValue"
+      ]
+    },
+    {
+      "kopf": ".calRow",
+      "inMedia": null,
+      "klassen": [
+        "calRow"
+      ]
+    },
+    {
+      "kopf": ".calGutter",
+      "inMedia": null,
+      "klassen": [
+        "calGutter"
+      ]
+    },
+    {
+      "kopf": ".calDays",
+      "inMedia": null,
+      "klassen": [
+        "calDays"
+      ]
+    },
+    {
+      "kopf": ".calDays > span",
+      "inMedia": null,
+      "klassen": [
+        "calDays"
+      ]
+    },
+    {
+      "kopf": ".calDays b",
+      "inMedia": null,
+      "klassen": [
+        "calDays"
+      ]
+    },
+    {
+      "kopf": ".calHours",
+      "inMedia": null,
+      "klassen": [
+        "calHours"
+      ]
+    },
+    {
+      "kopf": ".calHours > span",
+      "inMedia": null,
+      "klassen": [
+        "calHours"
+      ]
+    },
+    {
+      "kopf": ".calGrid",
+      "inMedia": null,
+      "klassen": [
+        "calGrid"
+      ]
+    },
+    {
+      "kopf": ".calBlock",
+      "inMedia": null,
+      "klassen": [
+        "calBlock"
+      ]
+    },
+    {
+      "kopf": ".calBlockRole",
+      "inMedia": null,
+      "klassen": [
+        "calBlockRole"
+      ]
+    },
+    {
+      "kopf": ".calBlockIndustry",
+      "inMedia": null,
+      "klassen": [
+        "calBlockIndustry"
+      ]
+    },
+    {
+      "kopf": ".calNote",
+      "inMedia": null,
+      "klassen": [
+        "calNote"
+      ]
+    },
+    {
+      "kopf": ".proof",
+      "inMedia": null,
+      "klassen": [
+        "proof"
+      ]
+    },
+    {
+      "kopf": ".proofCell",
+      "inMedia": null,
+      "klassen": [
+        "proofCell"
+      ]
+    },
+    {
+      "kopf": ".proofCell:first-child",
+      "inMedia": null,
+      "klassen": [
+        "proofCell"
+      ]
+    },
+    {
+      "kopf": ".proofCell:last-child",
+      "inMedia": null,
+      "klassen": [
+        "proofCell"
+      ]
+    },
+    {
+      "kopf": ".proofNum",
+      "inMedia": null,
+      "klassen": [
+        "proofNum"
+      ]
+    },
+    {
+      "kopf": ".proofLabel",
+      "inMedia": null,
+      "klassen": [
+        "proofLabel"
+      ]
+    },
+    {
+      "kopf": ".cue",
+      "inMedia": null,
+      "klassen": [
+        "cue"
+      ]
+    },
+    {
+      "kopf": ".logos",
+      "inMedia": null,
+      "klassen": [
+        "logos"
+      ]
+    },
+    {
+      "kopf": ".logosLabel",
+      "inMedia": null,
+      "klassen": [
+        "logosLabel"
+      ]
+    },
+    {
+      "kopf": ".logoGrid",
+      "inMedia": null,
+      "klassen": [
+        "logoGrid"
+      ]
+    },
+    {
+      "kopf": ".logoLink",
+      "inMedia": null,
+      "klassen": [
+        "logoLink"
+      ]
+    },
+    {
+      "kopf": ".logoLink img",
+      "inMedia": null,
+      "klassen": [
+        "logoLink"
+      ]
+    },
+    {
+      "kopf": ".logoLink:hover img",
+      "inMedia": null,
+      "klassen": [
+        "logoLink"
+      ]
+    },
+    {
+      "kopf": ".splitGrid",
+      "inMedia": null,
+      "klassen": [
+        "splitGrid"
+      ]
+    },
+    {
+      "kopf": ".splitHead",
+      "inMedia": null,
+      "klassen": [
+        "splitHead"
+      ]
+    },
+    {
+      "kopf": ".splitBody",
+      "inMedia": null,
+      "klassen": [
+        "splitBody"
+      ]
+    },
+    {
+      "kopf": ".splitAside",
+      "inMedia": null,
+      "klassen": [
+        "splitAside"
+      ]
+    },
+    {
+      "kopf": ".splitSticky",
+      "inMedia": null,
+      "klassen": [
+        "splitSticky"
+      ]
+    },
+    {
+      "kopf": ".steps",
+      "inMedia": null,
+      "klassen": [
+        "steps"
+      ]
+    },
+    {
+      "kopf": ".stepsRail",
+      "inMedia": null,
+      "klassen": [
+        "stepsRail"
+      ]
+    },
+    {
+      "kopf": ".stepsRailFill",
+      "inMedia": null,
+      "klassen": [
+        "stepsRailFill"
+      ]
+    },
+    {
+      "kopf": ".step",
+      "inMedia": null,
+      "klassen": [
+        "step"
+      ]
+    },
+    {
+      "kopf": ".step:first-child",
+      "inMedia": null,
+      "klassen": [
+        "step"
+      ]
+    },
+    {
+      "kopf": ".step:last-child",
+      "inMedia": null,
+      "klassen": [
+        "step"
+      ]
+    },
+    {
+      "kopf": ".stepDot",
+      "inMedia": null,
+      "klassen": [
+        "stepDot"
+      ]
+    },
+    {
+      "kopf": ".stepActive .stepDot",
+      "inMedia": null,
+      "klassen": [
+        "stepActive",
+        "stepDot"
+      ]
+    },
+    {
+      "kopf": ".stepBody",
+      "inMedia": null,
+      "klassen": [
+        "stepBody"
+      ]
+    },
+    {
+      "kopf": ".stepActive .stepBody",
+      "inMedia": null,
+      "klassen": [
+        "stepActive",
+        "stepBody"
+      ]
+    },
+    {
+      "kopf": ".stepTime",
+      "inMedia": null,
+      "klassen": [
+        "stepTime"
+      ]
+    },
+    {
+      "kopf": ".chart",
+      "inMedia": null,
+      "klassen": [
+        "chart"
+      ]
+    },
+    {
+      "kopf": ".chartHead",
+      "inMedia": null,
+      "klassen": [
+        "chartHead"
+      ]
+    },
+    {
+      "kopf": ".chartTitles",
+      "inMedia": null,
+      "klassen": [
+        "chartTitles"
+      ]
+    },
+    {
+      "kopf": ".chartTitle",
+      "inMedia": null,
+      "klassen": [
+        "chartTitle"
+      ]
+    },
+    {
+      "kopf": ".chartTitleOn",
+      "inMedia": null,
+      "klassen": [
+        "chartTitleOn"
+      ]
+    },
+    {
+      "kopf": ".chartUnit",
+      "inMedia": null,
+      "klassen": [
+        "chartUnit"
+      ]
+    },
+    {
+      "kopf": ".chartBars",
+      "inMedia": null,
+      "klassen": [
+        "chartBars"
+      ]
+    },
+    {
+      "kopf": ".barGrid",
+      "inMedia": null,
+      "klassen": [
+        "barGrid"
+      ]
+    },
+    {
+      "kopf": ".bar",
+      "inMedia": null,
+      "klassen": [
+        "bar"
+      ]
+    },
+    {
+      "kopf": ".barDraining",
+      "inMedia": null,
+      "klassen": [
+        "barDraining"
+      ]
+    },
+    {
+      "kopf": ".marker",
+      "inMedia": null,
+      "klassen": [
+        "marker"
+      ]
+    },
+    {
+      "kopf": ".markerA",
+      "inMedia": null,
+      "klassen": [
+        "markerA"
+      ]
+    },
+    {
+      "kopf": ".markerB",
+      "inMedia": null,
+      "klassen": [
+        "markerB"
+      ]
+    },
+    {
+      "kopf": ".markerLabel",
+      "inMedia": null,
+      "klassen": [
+        "markerLabel"
+      ]
+    },
+    {
+      "kopf": ".markerB .markerLabel",
+      "inMedia": null,
+      "klassen": [
+        "markerB",
+        "markerLabel"
+      ]
+    },
+    {
+      "kopf": ".chips",
+      "inMedia": null,
+      "klassen": [
+        "chips"
+      ]
+    },
+    {
+      "kopf": ".chip",
+      "inMedia": null,
+      "klassen": [
+        "chip"
+      ]
+    },
+    {
+      "kopf": ".chipOn",
+      "inMedia": null,
+      "klassen": [
+        "chipOn"
+      ]
+    },
+    {
+      "kopf": ".chip b",
+      "inMedia": null,
+      "klassen": [
+        "chip"
+      ]
+    },
+    {
+      "kopf": ".chartAxis",
+      "inMedia": null,
+      "klassen": [
+        "chartAxis"
+      ]
+    },
+    {
+      "kopf": ".videoRow",
+      "inMedia": null,
+      "klassen": [
+        "videoRow"
+      ]
+    },
+    {
+      "kopf": ".videoCopy",
+      "inMedia": null,
+      "klassen": [
+        "videoCopy"
+      ]
+    },
+    {
+      "kopf": ".howCard",
+      "inMedia": null,
+      "klassen": [
+        "howCard"
+      ]
+    },
+    {
+      "kopf": ".howCardHead",
+      "inMedia": null,
+      "klassen": [
+        "howCardHead"
+      ]
+    },
+    {
+      "kopf": ".badgeRow",
+      "inMedia": null,
+      "klassen": [
+        "badgeRow"
+      ]
+    },
+    {
+      "kopf": ".badgeNum",
+      "inMedia": null,
+      "klassen": [
+        "badgeNum"
+      ]
+    },
+    {
+      "kopf": ".badgeLabel",
+      "inMedia": null,
+      "klassen": [
+        "badgeLabel"
+      ]
+    },
+    {
+      "kopf": ".howCardTitle",
+      "inMedia": null,
+      "klassen": [
+        "howCardTitle"
+      ]
+    },
+    {
+      "kopf": ".howCardText",
+      "inMedia": null,
+      "klassen": [
+        "howCardText"
+      ]
+    },
+    {
+      "kopf": ".howArt",
+      "inMedia": null,
+      "klassen": [
+        "howArt"
+      ]
+    },
+    {
+      "kopf": ".leadRow",
+      "inMedia": null,
+      "klassen": [
+        "leadRow"
+      ]
+    },
+    {
+      "kopf": ".leadRowOut",
+      "inMedia": null,
+      "klassen": [
+        "leadRowOut"
+      ]
+    },
+    {
+      "kopf": ".leadName",
+      "inMedia": null,
+      "klassen": [
+        "leadName"
+      ]
+    },
+    {
+      "kopf": ".leadName b",
+      "inMedia": null,
+      "klassen": [
+        "leadName"
+      ]
+    },
+    {
+      "kopf": ".leadName span",
+      "inMedia": null,
+      "klassen": [
+        "leadName"
+      ]
+    },
+    {
+      "kopf": ".tagYes,\n.tagNo",
+      "inMedia": null,
+      "klassen": [
+        "tagYes",
+        "tagNo"
+      ]
+    },
+    {
+      "kopf": ".tagYes",
+      "inMedia": null,
+      "klassen": [
+        "tagYes"
+      ]
+    },
+    {
+      "kopf": ".tagNo",
+      "inMedia": null,
+      "klassen": [
+        "tagNo"
+      ]
+    },
+    {
+      "kopf": ".bubbleIn,\n.bubbleOut",
+      "inMedia": null,
+      "klassen": [
+        "bubbleIn",
+        "bubbleOut"
+      ]
+    },
+    {
+      "kopf": ".bubbleIn",
+      "inMedia": null,
+      "klassen": [
+        "bubbleIn"
+      ]
+    },
+    {
+      "kopf": ".bubbleOut",
+      "inMedia": null,
+      "klassen": [
+        "bubbleOut"
+      ]
+    },
+    {
+      "kopf": ".callMeta",
+      "inMedia": null,
+      "klassen": [
+        "callMeta"
+      ]
+    },
+    {
+      "kopf": ".liveDot",
+      "inMedia": null,
+      "klassen": [
+        "liveDot"
+      ]
+    },
+    {
+      "kopf": ".meter",
+      "inMedia": null,
+      "klassen": [
+        "meter"
+      ]
+    },
+    {
+      "kopf": ".meterScale",
+      "inMedia": null,
+      "klassen": [
+        "meterScale"
+      ]
+    },
+    {
+      "kopf": ".meterScale .warm",
+      "inMedia": null,
+      "klassen": [
+        "meterScale",
+        "warm"
+      ]
+    },
+    {
+      "kopf": ".meterTrack",
+      "inMedia": null,
+      "klassen": [
+        "meterTrack"
+      ]
+    },
+    {
+      "kopf": ".meterFill",
+      "inMedia": null,
+      "klassen": [
+        "meterFill"
+      ]
+    },
+    {
+      "kopf": ".handoverCard",
+      "inMedia": null,
+      "klassen": [
+        "handoverCard"
+      ]
+    },
+    {
+      "kopf": ".handoverBar",
+      "inMedia": null,
+      "klassen": [
+        "handoverBar"
+      ]
+    },
+    {
+      "kopf": ".handoverText",
+      "inMedia": null,
+      "klassen": [
+        "handoverText"
+      ]
+    },
+    {
+      "kopf": ".handoverText b",
+      "inMedia": null,
+      "klassen": [
+        "handoverText"
+      ]
+    },
+    {
+      "kopf": ".handoverText span",
+      "inMedia": null,
+      "klassen": [
+        "handoverText"
+      ]
+    },
+    {
+      "kopf": ".handoverFlag",
+      "inMedia": null,
+      "klassen": [
+        "handoverFlag"
+      ]
+    },
+    {
+      "kopf": ".artIn",
+      "inMedia": null,
+      "klassen": [
+        "artIn"
+      ]
+    },
+    {
+      "kopf": ".artInOn",
+      "inMedia": null,
+      "klassen": [
+        "artInOn"
+      ]
+    },
+    {
+      "kopf": ".artInOn.leadRowOut",
+      "inMedia": null,
+      "klassen": [
+        "artInOn",
+        "leadRowOut"
+      ]
+    },
+    {
+      "kopf": ".callSplit",
+      "inMedia": null,
+      "klassen": [
+        "callSplit"
+      ]
+    },
+    {
+      "kopf": ".callSplit .splitHead",
+      "inMedia": null,
+      "klassen": [
+        "callSplit",
+        "splitHead"
+      ]
+    },
+    {
+      "kopf": ".callSplit .splitAside",
+      "inMedia": null,
+      "klassen": [
+        "callSplit",
+        "splitAside"
+      ]
+    },
+    {
+      "kopf": ".callSplit .splitBody",
+      "inMedia": null,
+      "klassen": [
+        "callSplit",
+        "splitBody"
+      ]
+    },
+    {
+      "kopf": ".callCard",
+      "inMedia": null,
+      "klassen": [
+        "callCard"
+      ]
+    },
+    {
+      "kopf": ".callTop",
+      "inMedia": null,
+      "klassen": [
+        "callTop"
+      ]
+    },
+    {
+      "kopf": ".callFrom",
+      "inMedia": null,
+      "klassen": [
+        "callFrom"
+      ]
+    },
+    {
+      "kopf": ".callFrom b",
+      "inMedia": null,
+      "klassen": [
+        "callFrom"
+      ]
+    },
+    {
+      "kopf": ".callLive",
+      "inMedia": null,
+      "klassen": [
+        "callLive"
+      ]
+    },
+    {
+      "kopf": ".callClock",
+      "inMedia": null,
+      "klassen": [
+        "callClock"
+      ]
+    },
+    {
+      "kopf": ".callWho",
+      "inMedia": null,
+      "klassen": [
+        "callWho"
+      ]
+    },
+    {
+      "kopf": ".callWho b",
+      "inMedia": null,
+      "klassen": [
+        "callWho"
+      ]
+    },
+    {
+      "kopf": ".callWho span",
+      "inMedia": null,
+      "klassen": [
+        "callWho"
+      ]
+    },
+    {
+      "kopf": ".callTimerRow",
+      "inMedia": null,
+      "klassen": [
+        "callTimerRow"
+      ]
+    },
+    {
+      "kopf": ".callTimer",
+      "inMedia": null,
+      "klassen": [
+        "callTimer"
+      ]
+    },
+    {
+      "kopf": ".callTimerLabel",
+      "inMedia": null,
+      "klassen": [
+        "callTimerLabel"
+      ]
+    },
+    {
+      "kopf": ".callProgressTrack",
+      "inMedia": null,
+      "klassen": [
+        "callProgressTrack"
+      ]
+    },
+    {
+      "kopf": ".callProgressFill",
+      "inMedia": null,
+      "klassen": [
+        "callProgressFill"
+      ]
+    },
+    {
+      "kopf": ".callNow",
+      "inMedia": null,
+      "klassen": [
+        "callNow"
+      ]
+    },
+    {
+      "kopf": ".callNowLabel",
+      "inMedia": null,
+      "klassen": [
+        "callNowLabel"
+      ]
+    },
+    {
+      "kopf": ".callNowValue",
+      "inMedia": null,
+      "klassen": [
+        "callNowValue"
+      ]
+    },
+    {
+      "kopf": ".callQuals",
+      "inMedia": null,
+      "klassen": [
+        "callQuals"
+      ]
+    },
+    {
+      "kopf": ".qual",
+      "inMedia": null,
+      "klassen": [
+        "qual"
+      ]
+    },
+    {
+      "kopf": ".qualOn",
+      "inMedia": null,
+      "klassen": [
+        "qualOn"
+      ]
+    },
+    {
+      "kopf": ".qualTick",
+      "inMedia": null,
+      "klassen": [
+        "qualTick"
+      ]
+    },
+    {
+      "kopf": ".qualOn .qualTick",
+      "inMedia": null,
+      "klassen": [
+        "qualOn",
+        "qualTick"
+      ]
+    },
+    {
+      "kopf": ".qual span:last-child",
+      "inMedia": null,
+      "klassen": [
+        "qual"
+      ]
+    },
+    {
+      "kopf": ".qualOn span:last-child",
+      "inMedia": null,
+      "klassen": [
+        "qualOn"
+      ]
+    },
+    {
+      "kopf": ".callDone",
+      "inMedia": null,
+      "klassen": [
+        "callDone"
+      ]
+    },
+    {
+      "kopf": ".callDoneOn",
+      "inMedia": null,
+      "klassen": [
+        "callDoneOn"
+      ]
+    },
+    {
+      "kopf": ".callDoneText",
+      "inMedia": null,
+      "klassen": [
+        "callDoneText"
+      ]
+    },
+    {
+      "kopf": ".callDoneText b",
+      "inMedia": null,
+      "klassen": [
+        "callDoneText"
+      ]
+    },
+    {
+      "kopf": ".callDoneText span",
+      "inMedia": null,
+      "klassen": [
+        "callDoneText"
+      ]
+    },
+    {
+      "kopf": ".callDoneFlag",
+      "inMedia": null,
+      "klassen": [
+        "callDoneFlag"
+      ]
+    },
+    {
+      "kopf": ".procList",
+      "inMedia": null,
+      "klassen": [
+        "procList"
+      ]
+    },
+    {
+      "kopf": ".procNote",
+      "inMedia": null,
+      "klassen": [
+        "procNote"
+      ]
+    },
+    {
+      "kopf": ".procCard",
+      "inMedia": null,
+      "klassen": [
+        "procCard"
+      ]
+    },
+    {
+      "kopf": ".procCardAccent",
+      "inMedia": null,
+      "klassen": [
+        "procCardAccent"
+      ]
+    },
+    {
+      "kopf": ".procCardTop",
+      "inMedia": null,
+      "klassen": [
+        "procCardTop"
+      ]
+    },
+    {
+      "kopf": ".procPhase",
+      "inMedia": null,
+      "klassen": [
+        "procPhase"
+      ]
+    },
+    {
+      "kopf": ".procCardAccent .procPhase",
+      "inMedia": null,
+      "klassen": [
+        "procCardAccent",
+        "procPhase"
+      ]
+    },
+    {
+      "kopf": ".procEffort",
+      "inMedia": null,
+      "klassen": [
+        "procEffort"
+      ]
+    },
+    {
+      "kopf": ".procEffortFree",
+      "inMedia": null,
+      "klassen": [
+        "procEffortFree"
+      ]
+    },
+    {
+      "kopf": ".procCardAccent .procEffort",
+      "inMedia": null,
+      "klassen": [
+        "procCardAccent",
+        "procEffort"
+      ]
+    },
+    {
+      "kopf": ".procCardTitle",
+      "inMedia": null,
+      "klassen": [
+        "procCardTitle"
+      ]
+    },
+    {
+      "kopf": ".procCardText",
+      "inMedia": null,
+      "klassen": [
+        "procCardText"
+      ]
+    },
+    {
+      "kopf": ".procCardAccent .procCardText",
+      "inMedia": null,
+      "klassen": [
+        "procCardAccent",
+        "procCardText"
+      ]
+    },
+    {
+      "kopf": ".procEffortMeter",
+      "inMedia": null,
+      "klassen": [
+        "procEffortMeter"
+      ]
+    },
+    {
+      "kopf": ".procEffortMeter > div:first-child",
+      "inMedia": null,
+      "klassen": [
+        "procEffortMeter"
+      ]
+    },
+    {
+      "kopf": ".procEffortMeter b",
+      "inMedia": null,
+      "klassen": [
+        "procEffortMeter"
+      ]
+    },
+    {
+      "kopf": ".procEffortTrack",
+      "inMedia": null,
+      "klassen": [
+        "procEffortTrack"
+      ]
+    },
+    {
+      "kopf": ".procEffortFill",
+      "inMedia": null,
+      "klassen": [
+        "procEffortFill"
+      ]
+    },
+    {
+      "kopf": ".procCount",
+      "inMedia": null,
+      "klassen": [
+        "procCount"
+      ]
+    },
+    {
+      "kopf": ".procCountValue",
+      "inMedia": null,
+      "klassen": [
+        "procCountValue"
+      ]
+    },
+    {
+      "kopf": ".procCountLabel",
+      "inMedia": null,
+      "klassen": [
+        "procCountLabel"
+      ]
+    },
+    {
+      "kopf": ".fitCard",
+      "inMedia": null,
+      "klassen": [
+        "fitCard"
+      ]
+    },
+    {
+      "kopf": ".fitCardDark",
+      "inMedia": null,
+      "klassen": [
+        "fitCardDark"
+      ]
+    },
+    {
+      "kopf": ".fitCardHead",
+      "inMedia": null,
+      "klassen": [
+        "fitCardHead"
+      ]
+    },
+    {
+      "kopf": ".fitMark",
+      "inMedia": null,
+      "klassen": [
+        "fitMark"
+      ]
+    },
+    {
+      "kopf": ".fitCardDark .fitMark",
+      "inMedia": null,
+      "klassen": [
+        "fitCardDark",
+        "fitMark"
+      ]
+    },
+    {
+      "kopf": ".fitCardTitle",
+      "inMedia": null,
+      "klassen": [
+        "fitCardTitle"
+      ]
+    },
+    {
+      "kopf": ".fitList",
+      "inMedia": null,
+      "klassen": [
+        "fitList"
+      ]
+    },
+    {
+      "kopf": ".fitList li",
+      "inMedia": null,
+      "klassen": [
+        "fitList"
+      ]
+    },
+    {
+      "kopf": ".fitCardDark .fitList li",
+      "inMedia": null,
+      "klassen": [
+        "fitCardDark",
+        "fitList"
+      ]
+    },
+    {
+      "kopf": ".fitList li:last-child",
+      "inMedia": null,
+      "klassen": [
+        "fitList"
+      ]
+    },
+    {
+      "kopf": ".fitBullet",
+      "inMedia": null,
+      "klassen": [
+        "fitBullet"
+      ]
+    },
+    {
+      "kopf": ".fitBulletDark",
+      "inMedia": null,
+      "klassen": [
+        "fitBulletDark"
+      ]
+    },
+    {
+      "kopf": ".fitItemText",
+      "inMedia": null,
+      "klassen": [
+        "fitItemText"
+      ]
+    },
+    {
+      "kopf": ".fitItemText b",
+      "inMedia": null,
+      "klassen": [
+        "fitItemText"
+      ]
+    },
+    {
+      "kopf": ".fitItemText span",
+      "inMedia": null,
+      "klassen": [
+        "fitItemText"
+      ]
+    },
+    {
+      "kopf": ".fitCardDark .fitItemText span",
+      "inMedia": null,
+      "klassen": [
+        "fitCardDark",
+        "fitItemText"
+      ]
+    },
+    {
+      "kopf": ".fitTags",
+      "inMedia": null,
+      "klassen": [
+        "fitTags"
+      ]
+    },
+    {
+      "kopf": ".fitTag",
+      "inMedia": null,
+      "klassen": [
+        "fitTag"
+      ]
+    },
+    {
+      "kopf": ".fitNote",
+      "inMedia": null,
+      "klassen": [
+        "fitNote"
+      ]
+    },
+    {
+      "kopf": ".fitCheck",
+      "inMedia": null,
+      "klassen": [
+        "fitCheck"
+      ]
+    },
+    {
+      "kopf": ".fitCheckCopy",
+      "inMedia": null,
+      "klassen": [
+        "fitCheckCopy"
+      ]
+    },
+    {
+      "kopf": ".fitCheckTitle",
+      "inMedia": null,
+      "klassen": [
+        "fitCheckTitle"
+      ]
+    },
+    {
+      "kopf": ".fitVerdict",
+      "inMedia": null,
+      "klassen": [
+        "fitVerdict"
+      ]
+    },
+    {
+      "kopf": ".fitVerdict b",
+      "inMedia": null,
+      "klassen": [
+        "fitVerdict"
+      ]
+    },
+    {
+      "kopf": ".fitVerdict span",
+      "inMedia": null,
+      "klassen": [
+        "fitVerdict"
+      ]
+    },
+    {
+      "kopf": ".fitQuestions",
+      "inMedia": null,
+      "klassen": [
+        "fitQuestions"
+      ]
+    },
+    {
+      "kopf": ".fitQuestion",
+      "inMedia": null,
+      "klassen": [
+        "fitQuestion"
+      ]
+    },
+    {
+      "kopf": ".fitQuestion > span",
+      "inMedia": null,
+      "klassen": [
+        "fitQuestion"
+      ]
+    },
+    {
+      "kopf": ".segmented",
+      "inMedia": null,
+      "klassen": [
+        "segmented"
+      ]
+    },
+    {
+      "kopf": ".segBtn",
+      "inMedia": null,
+      "klassen": [
+        "segBtn"
+      ]
+    },
+    {
+      "kopf": ".segBtnYes[aria-pressed='true']",
+      "inMedia": null,
+      "klassen": [
+        "segBtnYes"
+      ]
+    },
+    {
+      "kopf": ".segBtnNo[aria-pressed='true']",
+      "inMedia": null,
+      "klassen": [
+        "segBtnNo"
+      ]
+    },
+    {
+      "kopf": ".refIconGlyph",
+      "inMedia": null,
+      "klassen": [
+        "refIconGlyph"
+      ]
+    },
+    {
+      "kopf": ".refCard",
+      "inMedia": null,
+      "klassen": [
+        "refCard"
+      ]
+    },
+    {
+      "kopf": ".refCard:hover",
+      "inMedia": null,
+      "klassen": [
+        "refCard"
+      ]
+    },
+    {
+      "kopf": ".refCardTop",
+      "inMedia": null,
+      "klassen": [
+        "refCardTop"
+      ]
+    },
+    {
+      "kopf": ".refIcon",
+      "inMedia": null,
+      "klassen": [
+        "refIcon"
+      ]
+    },
+    {
+      "kopf": ".refBadge",
+      "inMedia": null,
+      "klassen": [
+        "refBadge"
+      ]
+    },
+    {
+      "kopf": ".refWho",
+      "inMedia": null,
+      "klassen": [
+        "refWho"
+      ]
+    },
+    {
+      "kopf": ".refWho b",
+      "inMedia": null,
+      "klassen": [
+        "refWho"
+      ]
+    },
+    {
+      "kopf": ".refWho span",
+      "inMedia": null,
+      "klassen": [
+        "refWho"
+      ]
+    },
+    {
+      "kopf": ".refResult",
+      "inMedia": null,
+      "klassen": [
+        "refResult"
+      ]
+    },
+    {
+      "kopf": ".refResultLabel",
+      "inMedia": null,
+      "klassen": [
+        "refResultLabel"
+      ]
+    },
+    {
+      "kopf": ".refResultValue",
+      "inMedia": null,
+      "klassen": [
+        "refResultValue"
+      ]
+    },
+    {
+      "kopf": ".refText",
+      "inMedia": null,
+      "klassen": [
+        "refText"
+      ]
+    },
+    {
+      "kopf": ".nicoGrid",
+      "inMedia": null,
+      "klassen": [
+        "nicoGrid"
+      ]
+    },
+    {
+      "kopf": ".nicoVisual",
+      "inMedia": null,
+      "klassen": [
+        "nicoVisual"
+      ]
+    },
+    {
+      "kopf": ".nicoFrame",
+      "inMedia": null,
+      "klassen": [
+        "nicoFrame"
+      ]
+    },
+    {
+      "kopf": ".nicoFrame img",
+      "inMedia": null,
+      "klassen": [
+        "nicoFrame"
+      ]
+    },
+    {
+      "kopf": ".nicoFrameIn img",
+      "inMedia": null,
+      "klassen": [
+        "nicoFrameIn"
+      ]
+    },
+    {
+      "kopf": ".nicoBadge",
+      "inMedia": null,
+      "klassen": [
+        "nicoBadge"
+      ]
+    },
+    {
+      "kopf": ".nicoBadgeName",
+      "inMedia": null,
+      "klassen": [
+        "nicoBadgeName"
+      ]
+    },
+    {
+      "kopf": ".nicoBadgeName b",
+      "inMedia": null,
+      "klassen": [
+        "nicoBadgeName"
+      ]
+    },
+    {
+      "kopf": ".nicoBadgeName span",
+      "inMedia": null,
+      "klassen": [
+        "nicoBadgeName"
+      ]
+    },
+    {
+      "kopf": ".nicoBadgePlace",
+      "inMedia": null,
+      "klassen": [
+        "nicoBadgePlace"
+      ]
+    },
+    {
+      "kopf": ".nicoCopy",
+      "inMedia": null,
+      "klassen": [
+        "nicoCopy"
+      ]
+    },
+    {
+      "kopf": ".nicoList",
+      "inMedia": null,
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".nicoList li",
+      "inMedia": null,
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".nicoList li:last-child",
+      "inMedia": null,
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".nicoNum",
+      "inMedia": null,
+      "klassen": [
+        "nicoNum"
+      ]
+    },
+    {
+      "kopf": ".faqTag",
+      "inMedia": null,
+      "klassen": [
+        "faqTag"
+      ]
+    },
+    {
+      "kopf": ".sceneClose",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose"
+      ]
+    },
+    {
+      "kopf": ".ctaCard",
+      "inMedia": null,
+      "klassen": [
+        "ctaCard"
+      ]
+    },
+    {
+      "kopf": ".ctaEyebrow",
+      "inMedia": null,
+      "klassen": [
+        "ctaEyebrow"
+      ]
+    },
+    {
+      "kopf": ".ctaTitle",
+      "inMedia": null,
+      "klassen": [
+        "ctaTitle"
+      ]
+    },
+    {
+      "kopf": ".ctaText",
+      "inMedia": null,
+      "klassen": [
+        "ctaText"
+      ]
+    },
+    {
+      "kopf": ".ctaBtn",
+      "inMedia": null,
+      "klassen": [
+        "ctaBtn"
+      ]
+    },
+    {
+      "kopf": ".ctaMailLink",
+      "inMedia": null,
+      "klassen": [
+        "ctaMailLink"
+      ]
+    },
+    {
+      "kopf": ".ctaMailLink:hover",
+      "inMedia": null,
+      "klassen": [
+        "ctaMailLink"
+      ]
+    },
+    {
+      "kopf": ".ctaMeta",
+      "inMedia": null,
+      "klassen": [
+        "ctaMeta"
+      ]
+    },
+    {
+      "kopf": ".ctaVisual",
+      "inMedia": null,
+      "klassen": [
+        "ctaVisual"
+      ]
+    },
+    {
+      "kopf": ".ctaWeekBox",
+      "inMedia": null,
+      "klassen": [
+        "ctaWeekBox"
+      ]
+    },
+    {
+      "kopf": ".ctaVisualHead",
+      "inMedia": null,
+      "klassen": [
+        "ctaVisualHead"
+      ]
+    },
+    {
+      "kopf": ".ctaVisualHead > b",
+      "inMedia": null,
+      "klassen": [
+        "ctaVisualHead"
+      ]
+    },
+    {
+      "kopf": ".ctaCount",
+      "inMedia": null,
+      "klassen": [
+        "ctaCount"
+      ]
+    },
+    {
+      "kopf": ".ctaCountValue",
+      "inMedia": null,
+      "klassen": [
+        "ctaCountValue"
+      ]
+    },
+    {
+      "kopf": ".ctaCountLabel",
+      "inMedia": null,
+      "klassen": [
+        "ctaCountLabel"
+      ]
+    },
+    {
+      "kopf": ".ctaWeek",
+      "inMedia": null,
+      "klassen": [
+        "ctaWeek"
+      ]
+    },
+    {
+      "kopf": ".ctaDay",
+      "inMedia": null,
+      "klassen": [
+        "ctaDay"
+      ]
+    },
+    {
+      "kopf": ".ctaDayLabel",
+      "inMedia": null,
+      "klassen": [
+        "ctaDayLabel"
+      ]
+    },
+    {
+      "kopf": ".ctaDaySlots",
+      "inMedia": null,
+      "klassen": [
+        "ctaDaySlots"
+      ]
+    },
+    {
+      "kopf": ".ctaBlock",
+      "inMedia": null,
+      "klassen": [
+        "ctaBlock"
+      ]
+    },
+    {
+      "kopf": ".ctaBlockOn",
+      "inMedia": null,
+      "klassen": [
+        "ctaBlockOn"
+      ]
+    },
+    {
+      "kopf": ".closeTimeline",
+      "inMedia": null,
+      "klassen": [
+        "closeTimeline"
+      ]
+    },
+    {
+      "kopf": ".closeWhen",
+      "inMedia": null,
+      "klassen": [
+        "closeWhen"
+      ]
+    },
+    {
+      "kopf": ".closeWhat",
+      "inMedia": null,
+      "klassen": [
+        "closeWhat"
+      ]
+    },
+    {
+      "kopf": ".closeText",
+      "inMedia": null,
+      "klassen": [
+        "closeText"
+      ]
+    },
+    {
+      "kopf": ".ctaVisualNote",
+      "inMedia": null,
+      "klassen": [
+        "ctaVisualNote"
+      ]
+    },
+    {
+      "kopf": ".mobileBar",
+      "inMedia": null,
+      "klassen": [
+        "mobileBar"
+      ]
+    },
+    {
+      "kopf": ".mobileBarOn",
+      "inMedia": null,
+      "klassen": [
+        "mobileBarOn"
+      ]
+    },
+    {
+      "kopf": ".mobileBarText",
+      "inMedia": null,
+      "klassen": [
+        "mobileBarText"
+      ]
+    },
+    {
+      "kopf": ".mobileBarBtn",
+      "inMedia": null,
+      "klassen": [
+        "mobileBarBtn"
+      ]
+    },
+    {
+      "kopf": ".heroTitle",
+      "inMedia": "@media (min-width: 1101px) and (max-height: 720px)",
+      "klassen": [
+        "heroTitle"
+      ]
+    },
+    {
+      "kopf": ".heroText",
+      "inMedia": "@media (min-width: 1101px) and (max-height: 720px)",
+      "klassen": [
+        "heroText"
+      ]
+    },
+    {
+      "kopf": ".calNote,\n  .cue",
+      "inMedia": "@media (min-width: 1101px) and (max-height: 720px)",
+      "klassen": [
+        "calNote",
+        "cue"
+      ]
+    },
+    {
+      "kopf": ".sceneFit",
+      "inMedia": null,
+      "klassen": [
+        "sceneFit"
+      ]
+    },
+    {
+      "kopf": ".sceneRefs",
+      "inMedia": null,
+      "klassen": [
+        "sceneRefs"
+      ]
+    },
+    {
+      "kopf": ".refNote",
+      "inMedia": null,
+      "klassen": [
+        "refNote"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder",
+      "inMedia": null,
+      "klassen": [
+        "sceneFounder"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .nicoFrame",
+      "inMedia": null,
+      "klassen": [
+        "sceneFounder",
+        "nicoFrame"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .nicoVisual",
+      "inMedia": null,
+      "klassen": [
+        "sceneFounder",
+        "nicoVisual"
+      ]
+    },
+    {
+      "kopf": ".sceneFaq",
+      "inMedia": null,
+      "klassen": [
+        "sceneFaq"
+      ]
+    },
+    {
+      "kopf": ".faqQ",
+      "inMedia": null,
+      "klassen": [
+        "faqQ"
+      ]
+    },
+    {
+      "kopf": ".faqA",
+      "inMedia": null,
+      "klassen": [
+        "faqA"
+      ]
+    },
+    {
+      "kopf": ".faqNote",
+      "inMedia": null,
+      "klassen": [
+        "faqNote"
+      ]
+    },
+    {
+      "kopf": ".ctaCard",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "ctaCard"
+      ]
+    },
+    {
+      "kopf": ".ctaTitle",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "ctaTitle"
+      ]
+    },
+    {
+      "kopf": ".ctaText",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "ctaText"
+      ]
+    },
+    {
+      "kopf": ".ctaDaySlots",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "ctaDaySlots"
+      ]
+    },
+    {
+      "kopf": ".ctaBlock",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "ctaBlock"
+      ]
+    },
+    {
+      "kopf": ".closeTimeline",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "closeTimeline"
+      ]
+    },
+    {
+      "kopf": ".callCard",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "callCard"
+      ]
+    },
+    {
+      "kopf": ".callTimer",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "callTimer"
+      ]
+    },
+    {
+      "kopf": ".callDone",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "callDone"
+      ]
+    },
+    {
+      "kopf": ".sceneFit",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneFit"
+      ]
+    },
+    {
+      "kopf": ".fitCard",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "fitCard"
+      ]
+    },
+    {
+      "kopf": ".fitList li",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "fitList"
+      ]
+    },
+    {
+      "kopf": ".fitTags",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "fitTags"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .heroText",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneFounder",
+        "heroText"
+      ]
+    },
+    {
+      "kopf": ".heroWrap",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "heroWrap"
+      ]
+    },
+    {
+      "kopf": ".heroSticky",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "heroSticky"
+      ]
+    },
+    {
+      "kopf": ".heroGrid",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "heroGrid"
+      ]
+    },
+    {
+      "kopf": ".heroVisual",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "heroVisual"
+      ]
+    },
+    {
+      "kopf": ".cue",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "cue"
+      ]
+    },
+    {
+      "kopf": ".splitGrid",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "splitGrid"
+      ]
+    },
+    {
+      "kopf": ".splitHead",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "splitHead"
+      ]
+    },
+    {
+      "kopf": ".splitAside",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "splitAside"
+      ]
+    },
+    {
+      "kopf": ".splitSticky",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "splitSticky"
+      ]
+    },
+    {
+      "kopf": ".splitBody",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "splitBody"
+      ]
+    },
+    {
+      "kopf": ".procCard",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "procCard"
+      ]
+    },
+    {
+      "kopf": ".fitCheck",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "fitCheck"
+      ]
+    },
+    {
+      "kopf": ".nicoGrid",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "nicoGrid"
+      ]
+    },
+    {
+      "kopf": ".nicoVisual",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "nicoVisual"
+      ]
+    },
+    {
+      "kopf": ".ctaVisual",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "ctaVisual"
+      ]
+    },
+    {
+      "kopf": ".proof",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "proof"
+      ]
+    },
+    {
+      "kopf": ".proofCell",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "proofCell"
+      ]
+    },
+    {
+      "kopf": ".proofCell:first-child",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "proofCell"
+      ]
+    },
+    {
+      "kopf": ".proofNum",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "proofNum"
+      ]
+    },
+    {
+      "kopf": ".logoGrid",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "logoGrid"
+      ]
+    },
+    {
+      "kopf": ".mobileBar",
+      "inMedia": "@media (max-width: 860px)",
+      "klassen": [
+        "mobileBar"
+      ]
+    },
+    {
+      "kopf": ".callQuals",
+      "inMedia": "@media (max-width: 768px)",
+      "klassen": [
+        "callQuals"
+      ]
+    },
+    {
+      "kopf": ".chartBars",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "chartBars"
+      ]
+    },
+    {
+      "kopf": ".chips",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "chips"
+      ]
+    },
+    {
+      "kopf": ".chip",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "chip"
+      ]
+    },
+    {
+      "kopf": ".howCard",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "howCard"
+      ]
+    },
+    {
+      "kopf": ".videoRow",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "videoRow"
+      ]
+    },
+    {
+      "kopf": ".fitQuestion",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "fitQuestion"
+      ]
+    },
+    {
+      "kopf": ".fitList li,\n  .nicoList li",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "fitList",
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".nicoList li",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "nicoList"
+      ]
+    },
+    {
+      "kopf": ".step",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "step"
+      ]
+    },
+    {
+      "kopf": ".stepsRail",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "stepsRail"
+      ]
+    },
+    {
+      "kopf": ".chartAxis,\n  .barGrid",
+      "inMedia": "@media (max-width: 640px)",
+      "klassen": [
+        "chartAxis",
+        "barGrid"
+      ]
+    },
+    {
+      "kopf": ".heroVisual",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "heroVisual"
+      ]
+    },
+    {
+      "kopf": ".portrait",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "portrait"
+      ]
+    },
+    {
+      "kopf": ".portrait img",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "portrait"
+      ]
+    },
+    {
+      "kopf": ".calGutter,\n  .calHours",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "calGutter",
+        "calHours"
+      ]
+    },
+    {
+      "kopf": ".calHead,\n  .calNote",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "calHead",
+        "calNote"
+      ]
+    },
+    {
+      "kopf": ".nicoBadge",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "nicoBadge"
+      ]
+    },
+    {
+      "kopf": ".ctaCard",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "ctaCard"
+      ]
+    },
+    {
+      "kopf": ".ctaDaySlots",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "ctaDaySlots"
+      ]
+    },
+    {
+      "kopf": ".ctaBlock",
+      "inMedia": "@media (max-width: 520px)",
+      "klassen": [
+        "ctaBlock"
+      ]
+    },
+    {
+      "kopf": ".mobileBarText",
+      "inMedia": "@media (max-width: 360px)",
+      "klassen": [
+        "mobileBarText"
+      ]
+    },
+    {
+      "kopf": ".mobileBarBtn",
+      "inMedia": "@media (max-width: 360px)",
+      "klassen": [
+        "mobileBarBtn"
+      ]
+    },
+    {
+      "kopf": ".calDays",
+      "inMedia": "@media (max-width: 380px)",
+      "klassen": [
+        "calDays"
+      ]
+    },
+    {
+      "kopf": ".calBlock",
+      "inMedia": "@media (max-width: 380px)",
+      "klassen": [
+        "calBlock"
+      ]
+    },
+    {
+      "kopf": ".calBlockIndustry",
+      "inMedia": "@media (max-width: 380px)",
+      "klassen": [
+        "calBlockIndustry"
+      ]
+    },
+    {
+      "kopf": ".segmented",
+      "inMedia": "@media (max-width: 380px)",
+      "klassen": [
+        "segmented"
+      ]
+    },
+    {
+      "kopf": ".segBtn",
+      "inMedia": "@media (max-width: 380px)",
+      "klassen": [
+        "segBtn"
+      ]
+    },
+    {
+      "kopf": ".pinGrid",
+      "inMedia": null,
+      "klassen": [
+        "pinGrid"
+      ]
+    },
+    {
+      "kopf": ".pinCol",
+      "inMedia": null,
+      "klassen": [
+        "pinCol"
+      ]
+    },
+    {
+      "kopf": ".pinner",
+      "inMedia": null,
+      "klassen": [
+        "pinner"
+      ]
+    },
+    {
+      "kopf": ".flowCol",
+      "inMedia": null,
+      "klassen": [
+        "flowCol"
+      ]
+    },
+    {
+      "kopf": ".pinGrid",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "pinGrid"
+      ]
+    },
+    {
+      "kopf": ".pinner",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "pinner"
+      ]
+    },
+    {
+      "kopf": ".flowCol",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "flowCol"
+      ]
+    }
+  ],
+  "gemischt": [
+    {
+      "kopf": ".sceneProcess .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneProcess",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneCall .sceneAside",
+      "inMedia": null,
+      "klassen": [
+        "sceneCall",
+        "sceneAside"
+      ]
+    },
+    {
+      "kopf": ".sceneCall .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneCall",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneCall .sceneItem",
+      "inMedia": null,
+      "klassen": [
+        "sceneCall",
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneProblem .sceneItem",
+      "inMedia": null,
+      "klassen": [
+        "sceneProblem",
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneItem .stepBody",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneItem",
+        "stepBody"
+      ]
+    },
+    {
+      "kopf": ".btnPrimary:focus-visible,\n.btnDark:focus-visible,\n.textLink:focus-visible,\n.segBtn:focus-visible",
+      "inMedia": null,
+      "klassen": [
+        "btnPrimary",
+        "btnDark",
+        "textLink",
+        "segBtn"
+      ]
+    },
+    {
+      "kopf": ".heroTitle .nowrap",
+      "inMedia": null,
+      "klassen": [
+        "heroTitle",
+        "nowrap"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneStage",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose",
+        "sceneStage"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneCopy",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose",
+        "sceneCopy"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneRail",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose",
+        "sceneRail"
+      ]
+    },
+    {
+      "kopf": ".ctaMeta .dot",
+      "inMedia": null,
+      "klassen": [
+        "ctaMeta",
+        "dot"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneItem",
+      "inMedia": null,
+      "klassen": [
+        "sceneClose",
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneFit .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneFit",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneFit .sceneAfter",
+      "inMedia": null,
+      "klassen": [
+        "sceneFit",
+        "sceneAfter"
+      ]
+    },
+    {
+      "kopf": ".sceneRefs .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneRefs",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneFounder",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .sceneCopy",
+      "inMedia": null,
+      "klassen": [
+        "sceneFounder",
+        "sceneCopy"
+      ]
+    },
+    {
+      "kopf": ".sceneFaq .sceneWrap",
+      "inMedia": null,
+      "klassen": [
+        "sceneFaq",
+        "sceneWrap"
+      ]
+    },
+    {
+      "kopf": ".sceneFaq .sceneItem",
+      "inMedia": null,
+      "klassen": [
+        "sceneFaq",
+        "sceneItem"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneCopy",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneClose",
+        "sceneCopy"
+      ]
+    },
+    {
+      "kopf": ".sceneFounder .sceneCopy",
+      "inMedia": "@media (max-height: 620px)",
+      "klassen": [
+        "sceneFounder",
+        "sceneCopy"
+      ]
+    },
+    {
+      "kopf": ".sceneClose .sceneStage",
+      "inMedia": "@media (max-width: 1100px)",
+      "klassen": [
+        "sceneClose",
+        "sceneStage"
+      ]
+    }
+  ]
+}

@@ -18,8 +18,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const title = `Vertrieb ${city.name} | Vertriebsagentur & B2B Akquise | Carpantier`
-  const description = `Vertrieb ${city.name}: Ihre Vertriebsagentur für B2B Leadgenerierung & Telefonakquise. ✓ Qualifizierte Termine mit Entscheidern ✓ Vertrieb auslagern ${city.businessContext}. Jetzt Strategiegespräch buchen!`
+  /*
+   * Titel und Beschreibung besetzen bewusst andere Begriffe als
+   * `/kaltakquise/[stadt]`: dort „Kaltakquise“ und „Telefonakquise“, hier
+   * „Vertrieb“, „Vertriebsagentur“ und „Vertrieb auslagern“. Zwei Seiten
+   * derselben Domain, die auf denselben Begriff optimiert sind, konkurrieren
+   * miteinander statt mit dem Wettbewerb.
+   *
+   * Die frühere Beschreibung trug zwei Häkchen-Zeichen und ein Ausrufezeichen
+   * und warb mit „Strategiegespräch“. Auf der ganzen Website steht kein
+   * einziges Ausrufezeichen (Textleitfaden § 1), Häkchen im Snippet sind
+   * Dekoration ohne Aussage, und das Gespräch heißt überall sonst
+   * „Erstgespräch“.
+   */
+  const title = `Vertrieb ${city.name} | Vertriebsagentur & B2B-Akquise | Carpantier`
+  const description = `Vertrieb auslagern in ${city.name}: Wir übernehmen Zielgruppe, Telefonakquise und Qualifizierung, das Verkaufsgespräch führen Sie. Qualifizierte Termine mit Entscheidern ${city.businessContext} – erste Termine in rund 14 Tagen.`
 
   return {
     title,

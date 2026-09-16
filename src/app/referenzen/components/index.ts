@@ -1,0 +1,6 @@
+export { default as ReferenzenIntro } from './ReferenzenIntro'
+export { default as FallstudienSection } from './FallstudienSection'
+export { default as MassstabSection } from './MassstabSection'
+export { default as VorlageSection } from './VorlageSection'
+export { default as PruefenSection } from './PruefenSection'
+export { default as AbschlussSection } from './AbschlussSection'

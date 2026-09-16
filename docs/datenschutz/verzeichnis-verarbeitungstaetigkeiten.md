@@ -45,9 +45,25 @@ fortzuschreiben.
 | Löschfrist | Im Postfach: Löschung nach Abschluss der Anfrage, spätestens nach _(Frist festlegen)_. Führt die Anfrage zu einem Vertrag, greifen handels- und steuerrechtliche Aufbewahrungspflichten |
 | Technische und organisatorische Maßnahmen | Serverseitige Prüfung der Eingaben, Mengenbegrenzung je Absender (5 Anfragen in 10 Minuten), unsichtbares Honeypot-Feld, HTML-Maskierung aller Eingaben in der Benachrichtigung |
 
-## 3. KI-Chatbot
+## 3. KI-Chatbot — **beendet am 16.09.2026**
 
-| Feld | Angabe |
+> **Diese Verarbeitung findet nicht mehr statt.** Der Chat wurde am 16.09.2026
+> von der Website entfernt; `/api/chat`, `/api/admin/leads` und der Löschlauf
+> `/api/cron/cleanup-chats` sind gelöscht, ebenso das Datenmodell.
+>
+> Der Eintrag bleibt trotzdem stehen. Art. 30 DSGVO verlangt ein Verzeichnis
+> der Verarbeitungen — wer nachträglich prüft, muss erkennen können, was
+> zwischen der Inbetriebnahme und dem 16.09.2026 verarbeitet wurde. Ein
+> gelöschter Eintrag sieht aus wie eine Verarbeitung, die es nie gab.
+>
+> **Offen und vor dem Livegang zu erledigen:** Die Tabellen `chat_sessions`
+> und `chat_messages` in der PostgreSQL-Datenbank enthalten weiterhin
+> Gesprächsverläufe samt freiwillig genannter E-Mail-Adressen. Mit dem Wegfall
+> des Chats entfällt ihr Zweck; sie sind nach Art. 5 Abs. 1 lit. e und
+> Art. 17 Abs. 1 lit. a DSGVO zu löschen. Der Löschlauf, der das bisher
+> automatisch erledigt hat, ist mit entfernt worden.
+
+| Feld | Angabe (Stand bei Beendigung) |
 |---|---|
 | Zweck | Automatisierte Beantwortung von Fragen, Aufnahme von Kontaktwünschen |
 | Betroffene | Websitebesucher, die den Chat öffnen |
@@ -104,9 +120,13 @@ fortzuschreiben.
 | Löschfrist | 13 Monate (Laufzeit des Cookies); die serverseitige Frist ist **zu ermitteln** |
 | Hinweis | Wird das Tracking nicht aktiv ausgewertet, ist die Entfernung die einfachere Lösung: sie spart eine Einwilligungskategorie, zwei CSP-Freigaben und einen Abschnitt in der Datenschutzerklärung |
 
-## 7. Verwaltungszugriff auf Chat-Leads
+## 7. Verwaltungszugriff auf Chat-Leads — **beendet am 16.09.2026**
 
-| Feld | Angabe |
+> Entfallen mit der Verarbeitung unter 3. Der Endpunkt ist gelöscht,
+> `ADMIN_API_KEY` wird nicht mehr ausgewertet und gehört aus der
+> Deploy-Umgebung entfernt.
+
+| Feld | Angabe (Stand bei Beendigung) |
 |---|---|
 | Zweck | Nachverfolgung von Kontaktwünschen aus dem Chat |
 | Datenkategorien | Wie unter 3. |
@@ -119,8 +139,12 @@ fortzuschreiben.
 
 ## Offene Punkte
 
-- [ ] Betreiber und Standort der PostgreSQL-Datenbank eintragen
-- [ ] Verschlüsselung im Ruhezustand und Aufbewahrung der Backups dokumentieren
+- [ ] **Vor dem Livegang:** `chat_sessions` und `chat_messages` löschen und die
+      Löschung mit Datum in `loeschkonzept.md` protokollieren. Danach die
+      PostgreSQL-Datenbank stilllegen — sie hatte keine andere Verwendung
+- [ ] `ANTHROPIC_API_KEY` beim Anbieter widerrufen, `DATABASE_URL`,
+      `CHAT_SESSION_SECRET`, `ADMIN_API_KEY` und `CRON_SECRET` aus der
+      Deploy-Umgebung entfernen
 - [ ] Aufbewahrungsdauer der Vercel-Logs ermitteln
 - [ ] Aufbewahrungseinstellungen in GA4 und Calendly prüfen und eintragen
 - [ ] Drittlandbewertung je Anbieter abschließen (siehe `dienstleister-und-rollen.md`)

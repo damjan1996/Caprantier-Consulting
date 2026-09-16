@@ -27,10 +27,16 @@ Zeile.
 | Dienst | Anbieter | Zweck | Erwartete Rolle | Vertrag liegt vor | Ort der Verarbeitung | Transfergrundlage |
 |---|---|---|---|---|---|---|
 | Hosting | Vercel Inc., USA | Betrieb der Website | Auftragsverarbeiter | ☐ | Region `fra1` (Frankfurt), Verwaltung aus den USA | ☐ |
-| Datenbank | _(eintragen)_ | Chat-Sitzungen | Auftragsverarbeiter | ☐ | _(eintragen)_ | ☐ |
+| ~~Datenbank~~ | _(entfiel)_ | ~~Chat-Sitzungen~~ | — | — | — | — |
+
+> **Datenbank und Anthropic: beendet am 16.09.2026.** Der KI-Chat wurde
+> entfernt. Damit entfällt der einzige Drittlandtransfer ausserhalb von
+> Vercel, Google und Calendly; AV-Vertrag und Transfer Impact Assessment für
+> Anthropic werden nicht mehr benötigt. Der Datenbestand in `chat_sessions`
+> und `chat_messages` ist noch zu löschen — siehe VVT Nr. 3.
 | E-Mail-Versand | Brevo GmbH, Berlin | Weiterleitung von Anfragen | Auftragsverarbeiter | ☐ | Deutschland/EU | entfällt, sofern keine Unterauftragsverarbeitung außerhalb der EU |
 | Marketing-Tracking | Brevo GmbH, Berlin | Wiedererkennung | Auftragsverarbeiter | ☐ | Deutschland/EU | entfällt, sofern keine Unterauftragsverarbeitung außerhalb der EU |
-| KI-Antworten | Anthropic PBC, USA | Chatbot | Auftragsverarbeiter | ☐ | USA | ☐ |
+| ~~KI-Antworten~~ | ~~Anthropic PBC, USA~~ | ~~Chatbot~~ | — | — | — | — |
 | Terminbuchung | Calendly LLC, USA | Buchungsfenster | **Zu prüfen:** eher eigener Verantwortlicher für die eigenen Cookies | ☐ | USA | ☐ |
 | Reichweitenmessung | Google Ireland Ltd. | Google Analytics 4 | Auftragsverarbeiter nach den Google-Bedingungen | ☐ | EU mit Übermittlung in die USA | ☐ |
 

@@ -10,6 +10,8 @@ Allow: /
 # Wichtige Seiten explizit erlauben
 Allow: /leistungen
 Allow: /leistungen/
+Allow: /kaltakquise/
+Allow: /branchen/
 Allow: /blog
 Allow: /blog/
 Allow: /glossar
@@ -28,16 +30,26 @@ Allow: /*.gif$
 
 # Interne und technische Pfade blockieren
 Disallow: /api/
-Disallow: /_next/static/chunks/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
 
-# Query-Parameter blockieren (Duplicate Content vermeiden)
-Disallow: /*?*
-Allow: /*?utm_source=
-Allow: /*?utm_medium=
-Allow: /*?utm_campaign=
+# Hier stand `Disallow: /_next/static/chunks/`.
+#
+# Die Sperre nahm dem Renderer von Google genau die JavaScript-Bundles weg, die
+# er braucht, um die Seite so zu sehen wie ein Besucher. Google meldet das als
+# blockierte Ressource und rendert im Zweifel eine unvollständige Seite. Für
+# eine Domain, deren Hauptproblem fehlende Indexierung ist, ist das die
+# teuerste Zeile im ganzen File. Die Chunks enthalten nichts Vertrauliches --
+# jeder Besucher lädt sie ohnehin.
+
+# Hier stand `Disallow: /*?*` mit drei `Allow: /*?utm_...`-Ausnahmen darunter.
+#
+# Die Regel kappte sämtliche URLs mit Query-Parameter. Die Ausnahmen darunter
+# greifen bei Google nicht zuverlässig, weil `Disallow` und `Allow` gleicher
+# Spezifität miteinander konkurrieren -- eine Kampagnen-URL konnte dadurch
+# ungewollt aus dem Index fallen. Duplikate löst stattdessen das
+# `canonical`-Tag, das jede Seitenvorlage dieses Projekts setzt.
 
 # ===========================================
 # Google-spezifische Regeln
@@ -45,7 +57,6 @@ Allow: /*?utm_campaign=
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
-Disallow: /_next/static/chunks/
 
 User-agent: Googlebot-Image
 Allow: /images/
@@ -57,7 +68,6 @@ Allow: /logo/
 User-agent: Bingbot
 Allow: /
 Disallow: /api/
-Disallow: /_next/static/chunks/
 
 # ===========================================
 # Social Media Crawler erlauben
@@ -72,19 +82,26 @@ User-agent: LinkedInBot
 Allow: /
 
 # ===========================================
-# Bad Bots blockieren
+# SEO-Crawler: bewusst erlaubt
 # ===========================================
-User-agent: AhrefsBot
-Disallow: /
+# Hier standen `Disallow: /`-Blöcke für AhrefsBot, SemrushBot, DotBot und
+# MJ12bot.
+#
+# Sie haben keinen Wettbewerber daran gehindert, das Backlinkprofil dieser
+# Domain anzusehen -- die Daten entstehen ohnehin aus dem Crawl der jeweils
+# verlinkenden Fremdseiten. Was die Sperren tatsächlich bewirkt haben: Die
+# Domain fehlte in genau den Datensätzen, aus denen Vergleichs- und
+# Empfehlungslisten gespeist werden, und das eigene Monitoring war blind.
+# Zwei der drei stärksten Kölner Wettbewerber sperren nichts.
 
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
+# ===========================================
+# KI-Crawler: bewusst erlaubt
+# ===========================================
+# GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, anthropic-ai, PerplexityBot,
+# Google-Extended und CCBot sind absichtlich nicht gesperrt. Keiner der 18
+# geprüften Wettbewerber sperrt sie, und die Sichtbarkeit in KI-Antworten
+# entsteht ausschließlich über diese Zugriffe. Eine Sperre hier kostet
+# Reichweite, ohne etwas zu schützen.
 
 # ===========================================
 # Sitemaps

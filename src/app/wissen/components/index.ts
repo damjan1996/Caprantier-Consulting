@@ -1,0 +1,6 @@
+export { default as WissenIntro } from './WissenIntro'
+export { default as BeitraegeSection } from './BeitraegeSection'
+export { default as VideosSection } from './VideosSection'
+export { default as BegriffeSection } from './BegriffeSection'
+export { default as HaltungScene } from './HaltungScene'
+export { default as AbschlussScene } from './AbschlussScene'

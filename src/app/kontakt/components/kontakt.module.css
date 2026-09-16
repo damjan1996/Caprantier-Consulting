@@ -1,0 +1,933 @@
+/*
+ * Kontakt — die drei Wege und was danach passiert.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (sechs Abschnitte, zwei davon als Bühne):
+ *   Einstieg   Fluss, ohne Schaubild
+ *   Wege       Fluss, drei Karten nebeneinander
+ *   Abgrenzung Fluss, dunkle Karte
+ *   Formular   Fluss, das Kontaktformular
+ *   Danach     Bühne, drei Einträge: der Weg der Nachricht
+ *   Termin     Bühne, dunkle Abschlusskarte
+ *
+ * ## Warum die drei Wege keine Bühne sind
+ *
+ * Drei gleichrangige Einträge mit einer Ordnung wären der Anlass für eine
+ * Bühne — aber § 5.2 nennt den Gegenfall ausdrücklich: „die Einträge gehören
+ * zum Vergleich nebeneinander". Genau das sind drei Kontaktwege. Man liest
+ * sie nicht nacheinander, man wählt einen aus, und dafür müssen alle drei
+ * gleichzeitig im Bild stehen.
+ *
+ * ## Das Formular
+ *
+ * Neu eingekleidet, nicht neu erfunden: Feldnamen, Schema
+ * (`contactRequestSchema`), Einwilligungstext (`CONTACT_CONSENT_TEXT`),
+ * Honigtopf und der Endpunkt `/api/contact` sind unverändert. Getauscht ist
+ * nur die Darstellung — vorher Tailwind-Klassen mitten in einer Seite, die
+ * sonst auf Modulen läuft.
+ *
+ * Dunkle Flächen: die Abgrenzung und der Abschluss. Dazwischen liegen
+ * Formular und Bühne als helle Flächen — zwei dunkle Flächen dürfen nicht
+ * aneinandergrenzen (Designleitfaden § 2.2).
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.body {
+  composes: body from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.sectionHead {
+  composes: sectionHead from '../../components/seite/basis.module.css';
+}
+
+.sectionHeadCopy {
+  composes: sectionHeadCopy from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+.textLinkMuted {
+  composes: textLinkMuted from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(48px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vh, 40px);
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------------------- Wege */
+
+.wegeHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.wegeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.wegCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(22px, 2.2vw, 32px);
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+/*
+ * Die Antwortzeit steht als Auszeichnung oben in der Karte — sie ist die
+ * Angabe, nach der man den Weg auswählt, und damit die einzige Stelle der
+ * Seite, an der eine Zusage ausgezeichnet wird (§ 2.1, dritter Fall).
+ */
+.wegZeit {
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.wegTitel {
+  margin: 0;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.wegText {
+  margin: 0;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.wegAktion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.wegDaten {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.5;
+}
+
+.wegDaten a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  /* Fingerkuppen-Zielgröße, ohne die Zeile optisch aufzublähen. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.wegDaten a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.wegDatenNote {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------------- Abgrenzung */
+
+.abgrenzungCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.abgrenzungHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.abgrenzungEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.abgrenzungTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.abgrenzungText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.abgrenzungGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.abgrenzungBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.abgrenzungBlockLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.abgrenzungBlockText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+.abgrenzungNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 44em;
+}
+
+/* ----------------------------------------------------------------- Formular */
+
+/*
+ * Ein Zustandsrot.
+ *
+ * Die Palette kennt genau ein Blau und ein Dunkelgrau (§ 2). Rot ist hier
+ * kein zweiter Akzent, sondern ein Zustandszeichen: Ohne eine eigene Farbe
+ * für Fehler bleibt nur die Textmeldung, und die übersieht man. Es kommt
+ * ausschliesslich an Formularfehlern vor, nirgends als Fläche und nie als
+ * Schmuck. Gemessen 6,6:1 auf Weiß.
+ */
+.formularHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.formCard {
+  --fehler: #b42318;
+  position: relative;
+  padding: clamp(24px, 3vw, 44px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  max-width: 58em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vw, 28px);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.feld {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.feldLabel {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.feldOptional {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.eingabe {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  letter-spacing: -0.011em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.eingabe::placeholder {
+  color: var(--ink-3);
+}
+
+.eingabe:hover {
+  border-color: #d5d5d5;
+}
+
+.eingabe:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.eingabeMehrzeilig {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.eingabeFehler {
+  border-color: var(--fehler);
+}
+
+.eingabeFehler:focus {
+  border-color: var(--fehler);
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.18);
+}
+
+.feldFehler {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--fehler);
+}
+
+/*
+ * Der Honigtopf: für Menschen und Vorlesehilfen nicht vorhanden, für Bots
+ * ein ausfüllbares Feld. `display: none` scheidet aus — viele Bots füllen
+ * genau das nicht aus.
+ */
+.honigtopf {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.einwilligung {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.einwilligungZeile {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.kasten {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.kasten:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.einwilligungText {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.einwilligungText a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.einwilligungText a:hover {
+  color: var(--accent);
+}
+
+/*
+ * Transparenzhinweis nach Art. 13 DSGVO — unmittelbar an der Erhebung, nicht
+ * nur als Verweis auf die Datenschutzerklärung. Der Wortlaut ist aus der
+ * Vorgängerfassung übernommen und inhaltlich unverändert.
+ */
+.hinweis {
+  margin: 0;
+  padding: clamp(16px, 1.8vw, 20px);
+  border-radius: 16px;
+  background: var(--surface);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.hinweis a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hinweis a:hover {
+  color: var(--accent);
+}
+
+.sendeFehler {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(180, 35, 24, 0.3);
+  background: rgba(180, 35, 24, 0.06);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fehler);
+}
+
+.sendeFehler a {
+  color: inherit;
+}
+
+.formFoot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pflicht {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* Erfolg trägt den Akzent, kein zweites Grün: Er ist eine Zusage, die
+   eingelöst wurde (§ 2.1, dritter Fall). */
+.erfolg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.erfolgMarke {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erfolgTitel {
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.erfolgText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------- Danach */
+
+/*
+ * Was mit der Nachricht passiert — drei Einträge auf einer Bühne.
+ *
+ * Eine echte Reihenfolge in der Zeit: Absenden, Antwort, Löschung. Damit ist
+ * die Bedingung aus § 5.2 erfüllt, und der Abschnitt sagt zugleich das, was
+ * auf Kontaktseiten sonst nirgends steht.
+ */
+.sceneDanach {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /*
+   * Gemessen über acht Fenstergrössen, nicht geschätzt. Höchster Eintrag je
+   * Fensterhöhe: 329px (1080), 320px (900), 288px (800), 268px (650),
+   * 281px (560). Die erste Schätzung (280/36vh/330) liess den höchsten
+   * Eintrag bei 1440×560 um 1px herausragen und stand bei 1280×800 exakt
+   * auf Kante — beides ist genau der Fall, vor dem Baukasten § 4.4, Regel 2
+   * warnt.
+   */
+  --scene-slot: clamp(292px, 37vh, 338px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.danachCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vh, 22px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.danachTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.danachTitel {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.danachWann {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.danachText {
+  margin: 0;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.danachGrund {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.danachGrundLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.danachGrundText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px (1080 und 900), 92px auf flachen Fenstern. */
+  --scene-slot: clamp(106px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .wegeGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .abgrenzungGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-width: 640px) {
+  .formGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .danachCard {
+    gap: 12px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .danachGrund {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .danachGrund {
+    padding: 10px 12px;
+  }
+}

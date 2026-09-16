@@ -263,14 +263,26 @@ export function DataAnalyticsIllustration({ className = '' }: { className?: stri
       <circle cx="280" cy="100" r="5" fill="#22c55e" />
       <circle cx="320" cy="90" r="7" fill="#22c55e" className="animate-pulse" />
 
-      {/* KPI boxes */}
+      {/*
+        KPI-Kacheln ohne Zahlen.
+
+        Hier standen "+47%" bei "Leads" und "12" bei "Termine". Beides waren
+        Beispielwerte ohne Projektbezug -- und diese Illustration wird auf
+        /leistungen ausgeliefert, also auf der Seite, die verkauft. Eine
+        erfundene Erfolgszahl auf einer Verkaufsseite ist irrefuehrend im Sinne
+        des § 5 UWG, unabhaengig davon, wie dekorativ sie gemeint war.
+
+        Die Kacheln bleiben, weil sie das Dashboard als Dashboard lesbar
+        machen. Sobald echte, freigegebene Projektzahlen vorliegen, koennen sie
+        hier stehen -- bis dahin steht nichts.
+      */}
       <rect x="70" y="95" width="70" height="45" rx="6" fill="#0f172a" stroke="#22c55e" strokeWidth="1" opacity="0.8" />
-      <text x="105" y="115" textAnchor="middle" fill="#22c55e" fontSize="14" fontWeight="bold">+47%</text>
-      <text x="105" y="130" textAnchor="middle" fill="#64748b" fontSize="8">Leads</text>
+      <rect x="86" y="112" width="38" height="4" rx="2" fill="#22c55e" opacity="0.5" />
+      <text x="105" y="132" textAnchor="middle" fill="#64748b" fontSize="8">Leads</text>
 
       <rect x="260" y="120" width="70" height="45" rx="6" fill="#0f172a" stroke="#3b82f6" strokeWidth="1" opacity="0.8" />
-      <text x="295" y="140" textAnchor="middle" fill="#3b82f6" fontSize="14" fontWeight="bold">12</text>
-      <text x="295" y="155" textAnchor="middle" fill="#64748b" fontSize="8">Termine</text>
+      <rect x="281" y="137" width="28" height="4" rx="2" fill="#3b82f6" opacity="0.5" />
+      <text x="295" y="157" textAnchor="middle" fill="#64748b" fontSize="8">Termine</text>
 
       {/* Grid lines */}
       <g opacity="0.2">

@@ -1,0 +1,904 @@
+/*
+ * Gemeinsame Grundlage aller Seiten im Stil der Startseite.
+ *
+ * Hier steht, was jede Seite gleich braucht. Eine Seite bringt nur noch ihre
+ * eigenen Abschnitte mit.
+ *
+ * **Warum eine eigene Datei.** Die Token lagen bis zum 14.09.2026 auf `.page`
+ * in `home.module.css`. Ausserhalb der Startseite waren sie damit nicht
+ * vorhanden: `--ink` und `--page-max` undefiniert, und `--accent` löste auf
+ * den `:root`-Wert aus `globals.css` auf — `#e8edf5`, ein blasses Grau statt
+ * des Markenblaus. Eine neue Seite bekam lautlos die falschen Farben.
+ *
+ * **Verwendung.** Die Seite legt ihre eigene `*.module.css` an und holt sich
+ * die Grundlage über `composes`:
+ *
+ *     .page { composes: page from '../seite/basis.module.css'; }
+ *
+ * Das Element trägt dann beide Klassennamen. Nur so greifen auch eigene
+ * Regeln, die eine Grundlagen-Klasse im Nachfahren-Selektor ansprechen
+ * (`.meinAbschnitt .sceneStage`).
+ */
+
+.page {
+  --ink: #0a0a0a;
+  --ink-2: #4b4b4b;
+  --ink-3: #6b6b6b;
+  --ink-4: #8a8a8a;
+  --ink-5: #a0a0a0;
+  --line: #e6e6e6;
+  --line-soft: #ececec;
+  --surface: #f5f5f5;
+  --surface-2: #f0f0f0;
+
+  /* Markenblau der Website. Der Entwurf schlug #2a4fd6 vor und hat das selbst
+     als Annahme gekennzeichnet — gesetzt ist der Wert aus dem Designsystem,
+     sonst hätte die Startseite ein anderes Blau als Kopfzeile und alle
+     übrigen Seiten. */
+  --accent: #1a56db;
+  --accent-dark: #1648b8;
+  --accent-soft: rgba(26, 86, 219, 0.08);
+  --accent-ring: rgba(26, 86, 219, 0.22);
+  --dark: #2b2f38;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /*
+   * Tempo der Einblendungen.
+   *
+   * Der Entwurf blendet mit 1,1 bis 2,2 Sekunden ein und staffelt die
+   * Kindelemente mit bis zu 1,7 Sekunden Vorlauf. In der Vorschau des
+   * Entwurfswerkzeugs sieht das ruhig aus — beim echten Scrollen ist man am
+   * Abschnitt vorbei, bevor er steht.
+   *
+   * `--rd-scale` staucht sämtliche gestaffelten Verzögerungen an einer
+   * Stelle: Die Reihenfolge der Staffelung bleibt erhalten, die Wartezeit
+   * halbiert sich. Zum Nachjustieren reichen diese beiden Werte.
+   */
+  --reveal-dur: 0.5s;
+  --rd-scale: 0.45;
+
+  /*
+   * Satzbreite — dieselbe Box wie die Kopfzeile.
+   *
+   * Die Kopfzeile läuft über `.container-custom` (globals.css): höchstens
+   * 1280px breit, zentriert, mit 1/1,5/2rem Innenabstand je nach Fenster. Der
+   * Entwurf war randlos gesetzt; über 1280px hinaus rissen Überschrift und
+   * Grafik dann weiter auseinander als Logo und Menü darüber — die Seite
+   * verlor ihre Kante.
+   *
+   * Deshalb tragen die Abschnitte hier dieselben zwei Werte. `--edge` ist
+   * bewusst gestuft und nicht fließend: `.container-custom` ist es auch, und
+   * nur so stehen Logo und Überschrift bei jeder Fensterbreite auf derselben
+   * senkrechten Linie.
+   */
+  --page-max: 1280px;
+  --edge: 1rem;
+  /*
+   * Höhe eines Abschnitts.
+   *
+   * Vorher clamp(72px, 11vw, 180px). Damit war die Seite zwar vollständig,
+   * aber jeder Abschnitt war in anderthalb Wischbewegungen durch — man kam an,
+   * las die Überschrift und war schon im nächsten. Der Inhalt braucht Raum um
+   * sich herum, damit er als eigener Halt gelesen wird und nicht als nächste
+   * Zeile derselben Liste.
+   */
+  --section-y: clamp(104px, 15vw, 260px);
+  --header-h: 80px;
+
+  background: #fff;
+  color: var(--ink);
+  letter-spacing: -0.011em;
+}
+
+/* Die beiden Stufen von `.container-custom`, damit der Rand der Abschnitte
+   dem der Kopfzeile folgt. */
+@media (min-width: 640px) {
+  .page {
+    --edge: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    --edge: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    --header-h: 72px;
+  }
+}
+
+/* ---------------------------------------------------------------- Bausteine */
+
+.section {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--edge);
+  border-top: 1px solid var(--line-soft);
+}
+
+/*
+ * Die einzige Stelle, an der die Bühnenlänge gesetzt wird. Abschnitte mit mehr
+ * Einträgen geben ihren Wert über `--scene-height` mit (siehe `.sceneCall`).
+ *
+ * Das ist nicht nur Ordnung: Vorher stand die Länge je Abschnitt als eigene,
+ * zweistellige Regel (`.sceneCall .sceneWrap`) und schlug damit das
+ * einstellige `height: auto` der gestapelten Fassung. Sieben Abschnitte
+ * behielten auf dem Telefon ihre Scrollhöhe und hängten 1.100 bis 2.000px
+ * Leerraum unter ihren Inhalt.
+ */
+.sceneWrap {
+  position: relative;
+  /* Klebt 100vh, gescrollt wird über die Differenz: 320vh für drei Punkte,
+     also gut eine Bildschirmhöhe je Punkt. */
+  height: var(--scene-height, 420vh);
+}
+
+.sceneStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--header-h) var(--edge) 0;
+  box-sizing: border-box;
+}
+
+.sceneGrid {
+  width: 100%;
+  display: grid;
+  /* Je Szene setzbar: Beim Problem steht der Text links breit und das Diagramm
+     rechts schmal, beim Ablauf umgekehrt. */
+  grid-template-columns: var(--scene-cols, minmax(0, 7fr) minmax(0, 5fr));
+  column-gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.sceneCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 5vh, 56px);
+  min-width: 0;
+}
+
+/*
+ * Die drei Punkte liegen übereinander; sichtbar ist immer genau einer.
+ * `min-height` ist die Höhe des längsten — ohne sie würde der Kasten bei
+ * jedem Wechsel springen, weil absolut gesetzte Kinder keine Höhe beitragen.
+ */
+.sceneSlot {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: var(--scene-slot, clamp(150px, 22vh, 210px));
+}
+
+/*
+ * Ein Eintrag der Bühne. Bringt nur Lage und Ein-/Ausblenden mit — wie der
+ * Inhalt darin aussieht, entscheidet die jeweilige Szene. Beim Problem ist das
+ * eine Ziffer neben einem Absatz, beim Ablauf eine ganze Karte.
+ */
+.sceneItem {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
+}
+
+/* Der bereits gelesene Punkt geht nach oben weg, der kommende wartet unten —
+   die Richtung entspricht der Leserichtung. */
+.sceneItemDone {
+  transform: translateY(-24px);
+}
+
+.sceneItemOn {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.sceneRail {
+  position: relative;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.sceneRailFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: var(--accent);
+  will-change: transform;
+}
+
+.sceneAside {
+  min-width: 0;
+}
+
+/* Aufruf und Video stehen nach der Bühne im normalen Fluss. */
+.sceneAfter {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: clamp(56px, 9vh, 120px) var(--edge) var(--section-y);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vh, 56px);
+}
+
+@media (max-width: 1100px) {
+  /* Gestapelt gibt es nichts zu kleben: Die Punkte stehen untereinander,
+     das Diagramm darüber. */
+  .sceneWrap {
+    height: auto;
+  }
+
+  .sceneStage {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: var(--section-y) var(--edge) 0;
+  }
+
+  .sceneGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(32px, 5vw, 56px);
+  }
+
+  .sceneAside {
+    order: -1;
+  }
+
+  .sceneSlot {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 5vw, 44px);
+  }
+
+  .sceneItem {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* Gestapelt braucht die Bühne keine feste Slot-Höhe mehr. */
+  .sceneSlot {
+    min-height: 0;
+  }
+
+  .sceneAfter {
+    padding-top: clamp(40px, 6vw, 64px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sceneItem {
+    transition: none;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 96px);
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.h3 {
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.lead {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.body {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 36em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Kopfzeile eines Abschnitts: Auszeichnung + Überschrift links, Fließtext
+   rechts. Unter 1100px untereinander. */
+.sectionHead {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+}
+
+.sectionHeadCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* -------------------------------------------------------------- Schaltflächen */
+
+.btnPrimary,
+.btnDark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.btnPrimary:hover {
+  background: var(--accent-dark);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btnDark {
+  background: var(--ink);
+}
+
+.btnDark:hover {
+  background: #2a2a2a;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btnSmall {
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+.btnHint {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.btnPrimary:focus-visible,
+.btnDark:focus-visible,
+.textLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  /* Fingerkuppen-Zielgröße, ohne die Zeile optisch aufzublähen. */
+  min-height: 44px;
+}
+
+.textLink:hover {
+  color: var(--accent);
+}
+
+.textLinkMuted {
+  color: var(--ink-3);
+}
+
+.textLinkMuted:hover {
+  color: var(--ink);
+}
+
+.metaNote {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------- Einblendungen */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--ry, 20px));
+  transition:
+    opacity var(--reveal-dur) var(--ease) calc(var(--rd, 0s) * var(--rd-scale)),
+    transform var(--reveal-dur) var(--ease) calc(var(--rd, 0s) * var(--rd-scale));
+}
+
+.revealIn {
+  opacity: 1;
+  transform: none;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c8c8c8;
+  flex: none;
+}
+
+/*
+ * Einblenden beim Laden — nicht beim Scrollen, der Einstieg steht sofort im
+ * Bild. Ohne JavaScript greift die noscript-Regel aus dem Layout.
+ *
+ * Die Bildfolge steht hier und nicht in der Seitendatei: CSS-Module vergeben
+ * auch für `@keyframes` lokale Namen. Lag die Folge dort und die Klasse hier,
+ * zeigte `animation: heroIn` auf einen Namen, den es in dieser Datei nicht
+ * gibt — die Einblendung lief dann stillschweigend gar nicht mehr, und man
+ * sah es nur daran, dass der Einstieg ohne Staffelung dastand.
+ */
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.introIn {
+  animation: heroIn 0.9s var(--ease) both;
+  animation-delay: var(--rd, 0s);
+}
+
+/* ================================================================ Umbrüche */
+
+/*
+ * Flache Fenster.
+ *
+ * Die Bühne ist 100vh hoch und lässt oben die Kopfzeile frei. Auf einem
+ * 650px hohen Fenster bleiben davon 570px — bei der Telefon-Szene (Karte plus
+ * Aufruf) blieben darin zuletzt nur 8px Rand. `overflow: hidden` an der Bühne
+ * würde den Rest abschneiden, statt ihn zu zeigen.
+ *
+ * Deshalb wird hier der obere Freiraum gekürzt und die Szene enger gesetzt.
+ * Die Kopfzeile verdeckt dann im ungünstigsten Fall ein paar Pixel Rand,
+ * nicht Inhalt.
+ */
+@media (max-height: 760px) {
+  .sceneStage {
+    padding-top: calc(var(--header-h) * 0.5);
+  }
+
+  .sceneCopy {
+    gap: clamp(16px, 2.6vh, 28px);
+  }
+
+  /* Auf flachen Fenstern ist die Überschrift der grösste Einzelposten der
+     Textspalte. Sie gibt zuerst nach, nicht der Inhalt darunter. */
+  .sceneCopy .h2 {
+    font-size: clamp(26px, 3vw, 42px);
+  }
+}
+
+@media (max-height: 620px) {
+  .sceneStage {
+    padding-top: calc(var(--header-h) * 0.25);
+  }
+
+  .sceneCopy .h2 {
+    font-size: clamp(24px, 2.6vw, 34px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .sectionHead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ------------------------------------------------------- Reduzierte Bewegung */
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  /*
+   * Die Klebe-Bühnen lösen sich auf.
+   *
+   * Ohne Scroll-Animation steht der Fortschritt sofort am Ende, und sichtbar
+   * wäre nur der letzte Eintrag jeder Bühne — bei den häufigen Fragen eine von
+   * neun Antworten. Die Einträge stehen deshalb untereinander im Fluss, so wie
+   * auf schmalen Bildschirmen. Die Spaltenaufteilung bleibt: Auf einem breiten
+   * Fenster gehören Bild und Text weiterhin nebeneinander.
+   */
+  .sceneWrap {
+    height: auto;
+  }
+
+  .sceneStage {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: var(--section-y) var(--edge);
+  }
+
+  .sceneSlot {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 44px);
+  }
+
+  .sceneItem {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+/* Der Aufruf unter dem stehenden Kopf, ruhiger gesetzt als im Fliesstext. */
+.pinAction {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------- Fortschrittsleiste rechts */
+
+/*
+ * Ein Strich je Abschnitt, senkrecht gestapelt am rechten Rand.
+ *
+ * Sichtbar erst ab 1280px. Darunter reicht der Platz neben dem Inhalt nicht —
+ * die Seite ist auf `--page-max` begrenzt, und schmaler als das läge die
+ * Leiste auf den Karten statt daneben. Auf dem Telefon übernimmt ohnehin die
+ * Buchungsleiste am unteren Rand.
+ */
+.rail {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .rail {
+    position: fixed;
+    right: clamp(14px, 1.4vw, 26px);
+    top: 50%;
+    z-index: 40;
+    display: block;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s var(--ease);
+  }
+
+  .railOn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.railList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.railItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 3px 0;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+/*
+ * Die Beschriftung steht auf einer weissen Kachel.
+ *
+ * Zwischen 1280 und etwa 1500px ragt sie über den Seiteninhalt — dieselbe
+ * Lage wie bei den Markierungen im Pipeline-Diagramm, die den Kniff schon
+ * verwenden: heller Grund, damit die Schrift auf jedem Untergrund lesbar
+ * bleibt, statt sich mit ihm zu beissen.
+ */
+.railLabel {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.railItem:hover .railLabel,
+.railItem:focus-visible .railLabel,
+.railItemOn .railLabel {
+  opacity: 1;
+  transform: none;
+}
+
+.railTrack {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: #d6d6d6;
+  overflow: hidden;
+  transition: width 0.4s var(--ease);
+}
+
+/* Der Strich des aktiven Abschnitts ist laenger — das Auge findet ihn, ohne
+   die Farbe vergleichen zu muessen. */
+.railItemOn .railTrack,
+.railItem:hover .railTrack {
+  width: 40px;
+}
+
+/*
+ * Fuellung von links nach rechts. `scaleX` statt `width`, damit der Wert pro
+ * Frame gesetzt werden kann, ohne ein Layout auszuloesen.
+ */
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.railItem:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail,
+  .railLabel,
+  .railTrack {
+    transition: none;
+  }
+}
+
+/* ================================================================ Aufklappen */
+
+/*
+ * Aufklappbereich — fuer Eintraege, die man nachschlaegt statt durchliest.
+ *
+ * Steht seit dem 15.09.2026 hier und nicht mehr je Seite. Der Baukasten § 4.5
+ * nennt die Schwelle: Bei der dritten Umsetzung gehoert das Muster in die
+ * Grundlage. Gebaut wurde es fuer die Fragen auf `/kaltakquise/[stadt]`,
+ * uebernommen von `/leistungen/[stadt]`; die Fusszeile hat ihre eigene
+ * Fassung, weil sie auf dunklem Grund mit eigenen Token arbeitet.
+ *
+ * Drei Punkte, die daran haengen:
+ *
+ * 1. `0fr -> 1fr` statt `display: none` oder `height`. Der Inhalt faehrt auf
+ *    seine tatsaechliche Hoehe, ohne dass sie gemessen werden muss — und er
+ *    steht durchgehend im ausgelieferten HTML. Bei einem FAQ ist das die
+ *    Bedingung dafuer, dass das `FAQPage`-Markup den sichtbaren Text
+ *    wiedergibt.
+ * 2. `inert` im zugeklappten Zustand setzt die Komponente. Ohne das tabbt man
+ *    sich durch unsichtbare Schaltflaechen und Verweise.
+ * 3. Die Frage ist eine Ueberschrift: `<h3><button …>`. Die Schaltflaeche
+ *    steht *in* der Ueberschrift, nicht statt ihrer, sonst fehlt der
+ *    Abschnitt in der Gliederung.
+ */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 62em;
+}
+
+.faqItem {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.faqItemOpen {
+  border-color: var(--ink-4);
+}
+
+/*
+ * Die Frage ist eine Überschrift — für die Gliederung, nicht für die Optik.
+ * Ohne diese Rücksetzung erbt die Schaltfläche darin über `font: inherit` die
+ * Überschriftengröße aus `globals.css`.
+ */
+.faqItem h3 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+}
+
+.faqToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px clamp(18px, 2vw, 26px);
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.faqToggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.faqQ {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+/* Ein Plus, das beim Öffnen zum Minus wird — ohne Symbolbibliothek, damit die
+   Drehung an derselben Kurve hängt wie alles andere. */
+.faqIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--ink-4);
+}
+
+.faqIcon::before,
+.faqIcon::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.35s var(--ease);
+}
+
+.faqIcon::after {
+  transform: rotate(90deg);
+}
+
+.faqItemOpen .faqIcon {
+  color: var(--ink);
+}
+
+.faqItemOpen .faqIcon::after {
+  transform: rotate(0deg);
+}
+
+/*
+ * Aufklappen über `grid-template-rows: 0fr → 1fr` — dieselbe Technik wie in
+ * der Fußzeile. Die Antworten stehen durchgehend im ausgelieferten HTML; sie
+ * sind verborgen, nicht abwesend. Daran hängt, dass das FAQPage-Markup den
+ * sichtbaren Text wiedergibt und nicht etwas anderes behauptet.
+ */
+.faqPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+
+.faqPanelOpen {
+  grid-template-rows: 1fr;
+}
+
+.faqPanelInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.faqAnswer {
+  margin: 0;
+  padding: 0 clamp(18px, 2vw, 26px) 22px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 44em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+@media (max-width: 640px) {
+  .faqToggle {
+    min-height: 56px;
+  }
+}

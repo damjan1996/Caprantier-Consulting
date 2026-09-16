@@ -1,0 +1,740 @@
+/*
+ * Referenzen — Seitenstylesheet.
+ *
+ * Token, Textgerüst, Schaltflächen und Einblendungen kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * ## Warum diese Seite bewusst anders gebaut ist
+ *
+ * Alle bisher umgestellten Seiten folgen demselben Takt: Einstieg, eine oder
+ * zwei Klebe-Bühnen, eine dunkle Abgrenzungskarte, ein Abschluss auf einer
+ * Bühne. Diese Seite nicht — und zwar aus ihrem Inhalt heraus, nicht zur
+ * Abwechslung:
+ *
+ * **Keine einzige Bühne.** Der Designleitfaden § 5.2 nennt die Bedingung:
+ * drei bis neun gleichrangige Einträge, die eine Reihenfolge haben, und ein
+ * Abschnitt, der inhaltlich trägt. Hier gibt es null freigegebene Fallstudien
+ * und ein Blindmuster. Eine Bühne wäre hier Mechanik ohne Anlass — genau das
+ * Anti-Muster, das § 5.2 mit „kopiert die Form ohne den Anlass“ beschreibt.
+ *
+ * **Keine Fortschrittsleiste.** Fünf Abschnitte, knapp sieben
+ * Bildschirmhöhen — beide Schwellen aus Baukasten § 7 sind unterschritten.
+ * Darunter ist die Leiste Dekoration.
+ *
+ * **Zwei Bauteile, die es sonst nirgends gibt:** das Register (zwei Spalten,
+ * getrennt durch eine senkrechte Linie — was veröffentlicht wird und was
+ * nicht) und die gestrichelte Vorlage, die zeigt, wie ein Eintrag aussehen
+ * wird, sobald es einen gibt. Gestrichelte Linien kommen auf dieser Website
+ * ausschließlich hier vor und bedeuten genau eines: **noch nicht echt.**
+ *
+ * **Scroll-gebunden ist trotzdem zweierlei** — nur eben nicht als Bühne. Das
+ * Register schreibt sich Zeile für Zeile, während der Abschnitt vorbeiläuft,
+ * und die Trennlinie zieht sich dabei nach unten. Die vier Handgriffe tragen
+ * eine Spur am linken Rand, die mitläuft. Beides hängt am Scrollstand und hat
+ * keine eigene Laufzeit (Designleitfaden § 8); die Glättung macht
+ * `useScrollScene`, dieselbe Feder wie auf den Bühnen. Nichts klebt, nichts
+ * wird an Ort und Stelle ausgetauscht — der Abschnitt scrollt normal vorbei.
+ *
+ * Gemeinsam mit den anderen Seiten bleiben Box, Schrift, Farbe, Kurve,
+ * Einblendungen, Schaltflächen und der dunkle Abschluss.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Ein Aussage-Einstieg: Überschrift, Vorspann, und darunter der Zählerstreifen
+ * — die Seite berichtet über sich selbst. Kein Aufruf zum Buchen hier oben;
+ * wer Belege sucht, will erst wissen, woran er ist. Der eine Aufruf der Seite
+ * steht im Abschluss.
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(40px, 6vh, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.introText {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 34em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/*
+ * Der Zählerstreifen.
+ *
+ * Drei Angaben, alle aus `src/lib/case-studies.ts` abgeleitet — keine
+ * abgetippte Zahl. Er ersetzt die Merkmalszeile der anderen Seiten: Dort steht
+ * eine Zusage, hier ein Kontostand. Senkrechte Linien statt Trennpunkten,
+ * damit man den Unterschied sieht.
+ */
+.zaehler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  /* Nur so breit wie die drei Posten: Über die volle Satzbreite gezogen
+     endeten die beiden Linien weit rechts im Leeren und sahen aus, als fehle
+     dort etwas. */
+  align-self: flex-start;
+  max-width: 100%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: clamp(8px, 1.6vh, 16px);
+}
+
+.zaehlerPosten {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: clamp(16px, 2vh, 22px) clamp(20px, 3vw, 44px) clamp(16px, 2vh, 22px) 0;
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+
+.zaehlerPosten:last-child {
+  border-right: 0;
+}
+
+.zaehlerPosten:not(:first-child) {
+  padding-left: clamp(20px, 3vw, 44px);
+}
+
+.zaehlerWert {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.zaehlerLabel {
+  font-size: 12.5px;
+  color: var(--ink-4);
+}
+
+/* ------------------------------------------------------------------ Register */
+
+/*
+ * Die dunkle Karte dieser Seite. Sie steht weit vorn und nicht unmittelbar vor
+ * dem Abschluss — zwei dunkle Flächen dürfen nicht aneinandergrenzen
+ * (Designleitfaden § 2.2).
+ */
+.registerCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.registerHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.registerEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.registerTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.registerText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/*
+ * Zwei Spalten, getrennt durch eine senkrechte Linie — kein Kartenfeld.
+ *
+ * Ohne Listenzeichen: Ein Haken links und ein Kreuz rechts wären ein
+ * Symbolpaar, das die Aussage doppelt. Die Spaltenüberschriften sagen sie
+ * bereits, und der Designleitfaden § 7 lässt Symbole nur als Marke einer
+ * Karte zu.
+ */
+.registerGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(28px, 4vw, 64px);
+}
+
+/*
+ * Die Trennlinie ist ein eigenes Element und kein Rahmen, weil sie sich mit
+ * dem Scrollstand nach unten zieht. `scaleY` statt `height`: Der Wert wird je
+ * Frame gesetzt und darf kein Layout auslösen — dieselbe Überlegung wie bei
+ * der Fortschrittslinie der Bühnen.
+ */
+.registerTrenner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.registerSpalte {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+
+
+.registerSpaltenTitel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+  padding-bottom: 14px;
+}
+
+.registerListe {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.registerListe li {
+  padding: 13px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+  text-wrap: pretty;
+  /* Ausgangszustand. Ab hier schreibt `MassstabSection` je Frame direkt ins
+     DOM — deshalb steht hier **kein** `transition`: Die Glättung macht die
+     Feder in `useScrollScene`, zwei Tempi übereinander würden nachziehen. */
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* Die rechte Spalte ist die wichtigere — sie darf trotzdem nicht lauter sein. */
+.registerSpalteNein li {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.registerNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.64);
+  max-width: 48em;
+}
+
+/* ------------------------------------------------------------------ Vorlage */
+
+.vorlageHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+/*
+ * Die gestrichelte Vorlage.
+ *
+ * Gestrichelte Linien gibt es auf dieser Website nur hier, und sie bedeuten
+ * genau eines: noch nicht echt. Der Designleitfaden § 7.5 nennt den Grund für
+ * diese Darstellung — „ein leerer Zustand ist auch ein Zustand“. Ein
+ * Blindmuster, das aussieht wie ein fertiger Eintrag, ist eine Falle; eines,
+ * das wie ein Formular aussieht, erklärt sich selbst.
+ */
+.vorlage {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vh, 28px);
+  padding: clamp(24px, 2.8vw, 44px);
+  border-radius: 24px;
+  border: 1px dashed var(--ink-4);
+  background: var(--surface);
+  max-width: 54em;
+}
+
+.vorlageMarke {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #fff;
+  border: 1px dashed var(--ink-4);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.vorlageFeld {
+  display: grid;
+  grid-template-columns: minmax(0, 11em) minmax(0, 1fr);
+  gap: 6px 24px;
+  padding-top: clamp(14px, 2vh, 20px);
+  border-top: 1px solid var(--line);
+}
+
+.vorlageLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.vorlageWert {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.vorlageListe {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.vorlageListe li {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+.vorlageZahlen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.vorlageZahl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px dashed var(--line);
+  background: #fff;
+}
+
+.vorlageZahlWert {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink-3);
+}
+
+.vorlageZahlLabel {
+  font-size: 12px;
+  color: var(--ink-4);
+}
+
+/* Die Freigabezeile steht als offener Platz da — sie ist der Grund, warum es
+   den Eintrag noch nicht gibt. */
+.vorlageFreigabe {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-top: clamp(14px, 2vh, 20px);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.vorlagePlatz {
+  flex: 1 1 140px;
+  height: 1px;
+  border-bottom: 1px dashed var(--ink-4);
+  min-width: 100px;
+}
+
+.vorlageNote {
+  margin: clamp(24px, 3.4vh, 36px) 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 44em;
+}
+
+/* -------------------------------------------------------------- Fallstudien */
+
+/*
+ * Der Platz für echte, freigegebene Fälle.
+ *
+ * Steht heute leer, weil `getEchteFallstudien()` nichts liefert — der
+ * Abschnitt erscheint erst, wenn ein Fall real **und** schriftlich freigegeben
+ * ist. Er benutzt dieselben Feldklassen wie die Vorlage, aber durchgezogene
+ * Linien statt gestrichelter und volle Tinte statt halber. Der Unterschied
+ * zwischen „echt“ und „noch nicht echt“ ist damit an einem Merkmal ablesbar,
+ * nicht an einem Warnkasten.
+ */
+.fallCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vh, 28px);
+  padding: clamp(24px, 2.8vw, 44px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  max-width: 54em;
+}
+
+.fallCard + .fallCard {
+  margin-top: clamp(20px, 3vh, 32px);
+}
+
+.fallKopf {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fallName {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+}
+
+.fallZeitraum {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--ink-4);
+}
+
+.fallCard .vorlageWert,
+.fallCard .vorlageListe li {
+  color: var(--ink-2);
+}
+
+.fallCard .vorlageZahl {
+  border-style: solid;
+  background: var(--surface);
+}
+
+.fallCard .vorlageZahlWert {
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.fallFreigabe {
+  padding-top: clamp(14px, 2vh, 20px);
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink-4);
+}
+
+/* ------------------------------------------------------------------- Prüfen */
+
+.pruefenHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+/*
+ * Eine nummerierte Liste, kein Kartenfeld: Das sind vier Handgriffe in einer
+ * sinnvollen Reihenfolge, keine gleichrangigen Kacheln. Die Ziffer trägt die
+ * Reihenfolge, nicht ein Symbol.
+ */
+.pruefenListe {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 clamp(20px, 2.6vw, 36px);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+  max-width: 58em;
+}
+
+/*
+ * Die Spur am linken Rand läuft mit dem Scrollstand mit — der zweite
+ * scroll-gebundene Griff dieser Seite. Zwei Pixel breit wie die
+ * Fortschrittslinie der Bühnen, aber senkrecht und ohne klebenden Abschnitt
+ * darüber: Sie zeigt, wie weit man in der Liste ist, nicht wie weit eine
+ * Szene gelaufen ist.
+ */
+.pruefenSpur {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.pruefenSpurFuellung {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.pruefenListe li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px clamp(18px, 2.4vw, 32px);
+  padding: clamp(20px, 2.6vh, 30px) 0;
+  border-bottom: 1px solid var(--line);
+  /* Ausgangszustand, den `PruefenSection` je Frame überschreibt. Kein
+     `transition` — siehe Anmerkung bei `.registerListe li`. */
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.pruefenZiffer {
+  grid-row: span 2;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.pruefenTitel {
+  margin: 0;
+  font-size: clamp(17px, 1.4vw, 21px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.pruefenText {
+  margin: 0;
+  font-size: clamp(14.5px, 1.1vw, 16px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.pruefenFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: clamp(24px, 3.4vh, 36px);
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+/*
+ * Der Abschluss steht im Fluss, nicht auf einer Bühne — als einzige der
+ * umgestellten Seiten. Eine Bühne über vier Bildschirmhöhen für eine Seite von
+ * knapp sieben wäre mehr als die Hälfte der Strecke, und es gibt hier nichts
+ * zu zeigen, was sich beim Scrollen entwickelt.
+ */
+.abschlussCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.abschlussEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.abschlussTitle {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.abschlussText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.abschlussMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.abschlussMailLink:hover {
+  color: #fff;
+}
+
+.abschlussMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.abschlussMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 860px) {
+  .registerGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Gestapelt trennt eine waagerechte Linie, keine senkrechte. */
+  .registerSpalte + .registerSpalte {
+    border-left: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: clamp(28px, 5vw, 40px);
+  }
+
+  .vorlageFeld {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .zaehlerPosten {
+    padding-right: clamp(14px, 4vw, 24px);
+  }
+
+  .zaehlerPosten:not(:first-child) {
+    padding-left: clamp(14px, 4vw, 24px);
+  }
+
+  .pruefenListe li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pruefenZiffer {
+    grid-row: auto;
+  }
+}

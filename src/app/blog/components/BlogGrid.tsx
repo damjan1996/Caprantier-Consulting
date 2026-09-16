@@ -3,44 +3,46 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Clock, ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { BlogPostPreview } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
 import { AiGeneratedBadge, AI_GENERATED_MEDIA_ATTRS } from '@/components/ui'
-
-const POSTS_PER_PAGE = 12
 
 interface BlogGridProps {
   posts: BlogPostPreview[]
   categories: string[]
 }
 
+/**
+ * Übersicht der Fachbeiträge mit Filter nach Kategorie.
+ *
+ * Hier stand bis zum 10.09.2026 eine Paginierung mit zwölf Beiträgen pro
+ * Seite, deren Seitenzahl ausschließlich in React-State lebte. Es gab keine
+ * URL für Seite 2 und keinen Verweis, dem ein Crawler hätte folgen können --
+ * im ausgelieferten HTML standen damit 12 von 52 Artikel-Links, und die
+ * übrigen 40 waren nur über die Sitemap erreichbar. Keiner dieser 40 Beiträge
+ * war indexiert; alle vier indexierten standen auf Seite 1. Der Befund steht
+ * in `docs/ap1-indexierung-befund.md`.
+ *
+ * Deshalb rendert die Übersicht jetzt alle Beiträge. Der Kategoriefilter
+ * blendet nur aus, was bereits im HTML steht -- Googlebot sieht die
+ * vollständige Liste, unabhängig davon, welcher Filter aktiv ist.
+ *
+ * Sollte der Bestand einmal so wachsen, dass eine Seite unzumutbar wird, darf
+ * die Paginierung nur mit echten Adressen zurückkommen (`/blog/seite/2`), die
+ * serverseitig gerendert und untereinander verlinkt sind. Ein reiner
+ * State-Wechsel nimmt den Beiträgen wieder ihre einzige Verlinkung.
+ */
 export default function BlogGrid({ posts, categories }: BlogGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
 
   const filteredPosts = selectedCategory
     ? posts.filter((post) => post.category === selectedCategory)
     : posts
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
-  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
-  const paginatedPosts = filteredPosts.slice(startIndex, startIndex + POSTS_PER_PAGE)
-
-  // Beim Wechsel der Kategorie beginnt die Liste wieder auf Seite 1. Das
-  // passiert im Klickhandler und nicht in einem Effekt: sonst rendert die
-  // Seite einmal mit der alten Seitenzahl, bevor der Effekt sie korrigiert.
   const selectCategory = (category: string | null) => {
     setSelectedCategory(category)
-    setCurrentPage(1)
-  }
-
-  // Scroll to top when page changes
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -87,7 +89,7 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedPosts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <FadeIn
                   key={post.slug}
                   delay={index < 6 ? Math.min(index * 0.03, 0.15) : 0}
@@ -168,74 +170,10 @@ export default function BlogGrid({ posts, categories }: BlogGridProps) {
             </div>
           )}
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-              {/* Previous Button */}
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-muted text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-muted disabled:hover:text-muted-foreground"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Zurück
-              </button>
-
-              {/* Page Numbers */}
-              <div className="flex items-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                  // Show first, last, current, and adjacent pages
-                  const showPage =
-                    page === 1 ||
-                    page === totalPages ||
-                    Math.abs(page - currentPage) <= 1
-
-                  // Show ellipsis
-                  const showEllipsisBefore = page === currentPage - 2 && currentPage > 3
-                  const showEllipsisAfter = page === currentPage + 2 && currentPage < totalPages - 2
-
-                  if (showEllipsisBefore || showEllipsisAfter) {
-                    return (
-                      <span key={page} className="px-2 text-muted-foreground">
-                        ...
-                      </span>
-                    )
-                  }
-
-                  if (!showPage) return null
-
-                  return (
-                    <button
-                      key={page}
-                      onClick={() => handlePageChange(page)}
-                      className={`w-10 h-10 rounded-lg font-medium transition-colors duration-150 ${
-                        currentPage === page
-                          ? 'bg-primary/20 text-primary border border-primary/30'
-                          : 'border border-border bg-muted text-muted-foreground hover:bg-muted hover:text-foreground'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  )
-                })}
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-muted text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-muted disabled:hover:text-muted-foreground"
-              >
-                Weiter
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
-
           {/* Results Info */}
           {filteredPosts.length > 0 && (
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              {startIndex + 1}–{Math.min(startIndex + POSTS_PER_PAGE, filteredPosts.length)} von {filteredPosts.length} Artikeln
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'Artikel' : 'Artikel'}
             </p>
           )}
         </div>

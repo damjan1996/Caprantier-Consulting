@@ -33,7 +33,20 @@ type NavItem = {
  */
 const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'Leistungen', href: '/leistungen' },
+  {
+    // Kaltakquise und Branchen sind eigene Seitenfamilien und brauchen einen
+    // Einstieg aus der Hauptnavigation. Ohne den wären sie nur über die
+    // Sitemap und Querverweise erreichbar — genau der Zustand, in dem 40 von
+    // 52 Blogbeiträgen nie indexiert wurden.
+    name: 'Leistungen',
+    href: '/leistungen',
+    children: [
+      { name: 'Alle Leistungen', href: '/leistungen' },
+      { name: 'Kaltakquise nach Stadt', href: '/kaltakquise' },
+      { name: 'Branchenlösungen', href: '/branchen' },
+      { name: 'Referenzen', href: '/referenzen' },
+    ],
+  },
   {
     name: 'Wissen',
     href: '/wissen',
@@ -47,6 +60,15 @@ const navigation: NavItem[] = [
   { name: 'Kontakt', href: '/kontakt' },
 ]
 
+/*
+ * Die Leiste klappt erst ab 1024px auf.
+ *
+ * Zuvor lag der Umschaltpunkt bei 768px. Dort passen fünf Punkte, das Logo
+ * und die Schaltfläche nicht nebeneinander: „Home" lag auf dem Logo, „Über
+ * uns" brach auf zwei Zeilen um und „Kontakt" verschwand hinter dem Knopf.
+ * Der Prüflauf auf waagerechtes Überlaufen findet das nicht -- die Elemente
+ * überlappen sich, sie ragen nicht über den Rand hinaus.
+ */
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -111,7 +133,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navigation.map((item) =>
               item.children ? (
                 <DesktopSubmenu
@@ -133,7 +155,7 @@ export default function Header() {
             )}
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={() => openCalendly()}
               onMouseEnter={onHover}
@@ -145,7 +167,7 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Menü öffnen"
           >
@@ -154,11 +176,17 @@ export default function Header() {
         </nav>
       </header>
 
+      {/* `inert`, solange das Menü zu ist. Die Schublade steht über
+          `translate-x-full` neben dem Bild, bleibt ohne diese Angabe aber in
+          der Tabreihenfolge: Auf dem Telefon lagen acht unsichtbare Ziele vor
+          dem ersten Element der Seite, und das Anspringen zog die Ansicht
+          seitlich mit. */}
       <div
         className={cn(
-          'fixed inset-0 z-50 md:hidden overflow-hidden',
+          'fixed inset-0 z-50 lg:hidden overflow-hidden',
           isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         )}
+        inert={!isMobileMenuOpen}
       >
         <div
           className={cn(

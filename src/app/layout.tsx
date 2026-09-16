@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
 import { ClientSideComponents } from '@/components/layout/ClientComponents'
+import { businessInfo } from '@/lib/local-seo'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -171,20 +172,23 @@ const jsonLd = {
         'https://carpantier-consulting.de/images/og-image.jpg',
         'https://carpantier-consulting.de/logo/Logo%20-%20Schwarz.png',
       ],
-      telephone: '+4915738186221',
-      email: 'nico@carpantier-consulting.de',
+      // NAP-Daten ausschliesslich aus `businessInfo`. Abweichende Schreibweisen
+      // an mehreren Stellen schwaechen jedes lokale Signal, und im JSON-LD
+      // faellt der Unterschied niemandem auf, der die Seite ansieht.
+      telephone: businessInfo.phoneInternational,
+      email: businessInfo.email,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Stammheimer Straße 123',
-        addressLocality: 'Köln',
-        postalCode: '50935',
-        addressRegion: 'Nordrhein-Westfalen',
-        addressCountry: 'DE',
+        streetAddress: businessInfo.address.street,
+        addressLocality: businessInfo.address.city,
+        postalCode: businessInfo.address.postalCode,
+        addressRegion: businessInfo.address.region,
+        addressCountry: businessInfo.address.countryCode,
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 50.9375,
-        longitude: 6.9603,
+        latitude: businessInfo.geo.latitude,
+        longitude: businessInfo.geo.longitude,
       },
       areaServed: [
         { '@type': 'City', name: 'Köln' },

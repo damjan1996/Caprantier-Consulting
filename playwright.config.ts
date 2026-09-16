@@ -12,11 +12,17 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
-  webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: true,
-    timeout: 120000,
-  },
+  // Ohne BASE_URL wird ein Entwicklungsserver gestartet. Mit BASE_URL wird
+  // gegen einen bereits laufenden Server geprueft -- noetig, um den
+  // Produktionsstand zu messen: Tailwind entfernt dort ungenutzte Klassen,
+  // das Layout ist also nicht zwingend identisch mit dem Entwicklungsstand.
+  webServer: process.env.BASE_URL
+    ? undefined
+    : {
+        command: 'pnpm dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: true,
+        timeout: 120000,
+      },
   outputDir: 'tests/results',
 })

@@ -1,0 +1,687 @@
+/*
+ * Kaltakquise — Einstieg in die Seitenfamilie.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (fünf Abschnitte, zwei davon als Bühne):
+ *   Einstieg      Fluss, knapp eine Bildschirmhöhe
+ *   Märkte        Fluss, fünfzehn Karten — die Hauptsache dieser Seite
+ *   Unterschied   Bühne, drei Einträge: warum es je Markt eine Seite gibt
+ *   Grenzen       Fluss, dunkle Karte
+ *   Termin        Bühne, dunkle Abschlusskarte
+ *
+ * Der Dateiname weicht vom Muster `<route>.module.css` ab: Diese Seite heißt
+ * wie ihre Kinder, und `kaltakquise.module.css` gibt es unter `[stadt]/`
+ * bereits. Zwei gleichnamige Stylesheets in derselben Seitenfamilie sind beim
+ * Springen zwischen den Dateien eine sichere Verwechslung.
+ *
+ * Diese Seite wiederholt bewusst **nicht**, was die Stadtseiten sagen. Sie
+ * ordnet ein: fünfzehn Märkte, woran sie sich unterscheiden, und wo die
+ * Arbeit aufhört. Die Einzelheiten je Ort stehen eine Ebene tiefer.
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.sectionHead {
+  composes: sectionHead from '../../components/seite/basis.module.css';
+}
+
+.sectionHeadCopy {
+  composes: sectionHeadCopy from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+/*
+ * Kurzer Einstieg, kein Schaubild.
+ *
+ * Diese Seite ist ein Wegweiser: Der nächste nützliche Schritt ist die
+ * Marktliste, nicht ein weiteres Argument. Statt eines erfundenen Schaubilds
+ * daneben trägt der Einstieg das Abschnittsgerüst der Grundlage — Etikett und
+ * Überschrift links, Vorspann rechts, unten bündig. Damit füllt Text die
+ * Breite, und es entsteht kein Bild, das nichts zeigt.
+ */
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(48px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vh, 40px);
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* -------------------------------------------------------------------- Märkte */
+
+/*
+ * Die Hauptsache dieser Seite: fünfzehn Verweise, nebeneinander.
+ *
+ * Keine Bühne. Man sucht hier seinen Ort, statt ihn durchzuscrollen — der
+ * Fall, für den der Designleitfaden § 5.2 ausdrücklich „lass es“ sagt.
+ *
+ * Und keine Ortsmarke je Karte: Fünfzehnmal dasselbe Symbol ist ein Teppich
+ * und trägt nichts (Designleitfaden § 7). Die Karte trägt Name, Land und die
+ * führenden Branchen — daran erkennt man seinen Markt, nicht an einer Nadel.
+ */
+.marktHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.marktGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.marktCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(18px, 1.8vw, 24px);
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.marktCard:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.marktTop {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.marktName {
+  margin: 0;
+  font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.marktLand {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-4);
+}
+
+.marktBranchen {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+.marktNote {
+  margin: clamp(28px, 4vh, 44px) 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 42em;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.marktNote a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.marktNote a:hover {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------- Unterschied */
+
+/*
+ * Warum es je Markt eine eigene Seite gibt. Drei Einträge, die nur hier
+ * stehen können: Sie vergleichen die Märkte miteinander, und das kann keine
+ * einzelne Stadtseite.
+ */
+.sceneUnterschied {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrössen: höchste Karte 391px (1920×1080, dort
+     steht die grösste Schrift), 327px auf flachen Fenstern. Der erste Wert
+     war geschätzt und um 90px zu klein — die Karte ragte bei sieben von acht
+     Grössen aus der Bühne. */
+  --scene-slot: clamp(335px, 44vh, 400px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.untCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.untTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.untMark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.untMark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.untKind {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.untText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Belegzeile: drei echte Märkte im Vergleich, aus dem Datenmodul gezogen. */
+.untBeleg {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.untBeleg li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* Die linke Spalte der Belegzeile: ein Ort oder ein Betriebstyp. */
+.untBelegKey {
+  font-weight: 600;
+  color: var(--ink);
+  flex: none;
+  min-width: 8.5em;
+}
+
+/* ------------------------------------------------------------------ Grenzen */
+
+.grenzCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.grenzHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grenzEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.grenzTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.grenzText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.grenzGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grenzBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.grenzBlockLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.grenzBlockText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+.grenzFoot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Pflichthinweis nach dem Textleitfaden § 7.1 — nie ohne, nie kleiner. */
+.grenzNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.64);
+  max-width: 44em;
+}
+
+.grenzLink {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.grenzLink:hover {
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(102px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  /* Blocksatz mit Silbentrennung: ohne `hyphens` reissen deutsche
+     Komposita im Blocksatz Löcher in die Zeile. */
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  .grenzGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .untCard {
+    gap: 14px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .untBeleg li {
+    padding: 7px 0;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .untCard {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .marktGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

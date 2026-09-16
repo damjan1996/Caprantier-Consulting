@@ -219,3 +219,58 @@ export function getSlugFromName(name: string): string | undefined {
   const city = getCityByName(name)
   return city?.slug
 }
+
+/**
+ * Bis zu `anzahl` Nachbarstädte, die eine eigene Seite haben.
+ *
+ * `nearbyAreas` nennt die geografischen Nachbarn, nicht die vorhandenen
+ * Seiten: Frankfurt verweist auf Wiesbaden, Mainz und Darmstadt, Stuttgart auf
+ * Karlsruhe, Mannheim und Heidelberg — und keine dieser sechs Städte steht in
+ * `cities`. Wer nur filtert, was auflösbar ist, bekommt auf genau diesen
+ * beiden Seiten **keinen einzigen** Verweis in die Umgebung, während andere
+ * Seiten zwei bekommen. Die interne Verlinkung der Familie ist dann so
+ * ungleich wie die Datenlage, nicht so wie die Absicht.
+ *
+ * Deshalb wird in drei Stufen aufgefüllt:
+ *   1. die genannten Nachbarn, soweit es sie als Seite gibt,
+ *   2. weitere Städte derselben Region,
+ *   3. die nächstgelegenen nach Luftlinie.
+ *
+ * Stufe 3 ist eine Näherung über ebene Koordinaten. Für den Vergleich von
+ * Entfernungen innerhalb Deutschlands reicht das; der Breitengrad geht mit dem
+ * Kosinus in die Länge ein, damit Ost–West nicht überschätzt wird.
+ */
+export function getNearbyCities(city: City, anzahl = 3): City[] {
+  const gewaehlt: City[] = []
+
+  const aufnehmen = (kandidat: City | undefined) => {
+    if (!kandidat) return
+    if (kandidat.slug === city.slug) return
+    if (gewaehlt.length >= anzahl) return
+    if (gewaehlt.some((vorhanden) => vorhanden.slug === kandidat.slug)) return
+    gewaehlt.push(kandidat)
+  }
+
+  for (const name of city.nearbyAreas) aufnehmen(getCityByName(name))
+
+  if (gewaehlt.length < anzahl) {
+    for (const kandidat of cities) {
+      if (kandidat.region === city.region) aufnehmen(kandidat)
+    }
+  }
+
+  if (gewaehlt.length < anzahl) {
+    const entfernung = (ziel: City) => {
+      const dLat = ziel.coordinates.latitude - city.coordinates.latitude
+      const dLon =
+        (ziel.coordinates.longitude - city.coordinates.longitude) *
+        Math.cos((city.coordinates.latitude * Math.PI) / 180)
+      return Math.hypot(dLat, dLon)
+    }
+    for (const kandidat of [...cities].sort((a, b) => entfernung(a) - entfernung(b))) {
+      aufnehmen(kandidat)
+    }
+  }
+
+  return gewaehlt
+}

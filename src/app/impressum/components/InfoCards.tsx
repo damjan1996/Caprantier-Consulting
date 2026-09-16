@@ -3,6 +3,7 @@
 import { User, Building, Phone } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
+import { businessInfo } from '@/lib/local-seo'
 
 /**
  * Bewusst ohne Angabe zur Umsatzsteuer-Identifikationsnummer.
@@ -19,11 +20,16 @@ import { SectionCard } from '@/components/ui'
  * (Format: DE + 9 Ziffern) — dann ist sie Pflichtangabe.
  */
 
+// Anschrift und Rufnummer kommen aus `businessInfo` und werden nicht
+// abgetippt. Das Impressum ist die rechtlich verbindliche Fassung dieser
+// Angaben -- läuft es gegenüber den strukturierten Daten auseinander, ist
+// entweder das Impressum falsch oder das Markup. Genau das war bis zum
+// 10.09.2026 der Fall (zwei verschiedene Postleitzahlen im Projekt).
 const ADDRESS = (
   <p className="text-muted-foreground">
-    Nico-Luca Carpantier<br />
-    Stammheimer Straße 123<br />
-    50935 Köln
+    {businessInfo.owner.name}<br />
+    {businessInfo.address.street}<br />
+    {businessInfo.address.postalCode} {businessInfo.address.city}
   </p>
 )
 
@@ -42,14 +48,14 @@ const infoCards = [
       <div className="text-muted-foreground space-y-2">
         <p>
           Telefon:{' '}
-          <a href="tel:+4915738186221" className="text-primary hover:underline">
-            +49 (0)1573 8186221
+          <a href={`tel:${businessInfo.phoneInternational}`} className="text-primary hover:underline">
+            {businessInfo.phoneFormatted}
           </a>
         </p>
         <p>
           E-Mail:{' '}
-          <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
-            nico@carpantier-consulting.de
+          <a href={`mailto:${businessInfo.email}`} className="text-primary hover:underline">
+            {businessInfo.email}
           </a>
         </p>
       </div>

@@ -21,7 +21,7 @@ Dieses Dokument ist der interne Nachweis dahinter.
 
 | System | Anbieter | Einsatz | Sichtbare Kennzeichnung |
 |---|---|---|---|
-| Claude (API) | Anthropic PBC | Chat-Assistent auf der Website | Hinweis vor der ersten Nachricht, Kennzeichen „KI" am geschlossenen Widget, Hinweiszeile unter dem Eingabefeld während des gesamten Chats |
+| ~~Claude (API)~~ | ~~Anthropic PBC~~ | ~~Chat-Assistent auf der Website~~ | **Beendet am 16.09.2026** — der Chat wurde entfernt. Damit interagiert kein KI-System mehr mit Besuchern, und Art. 50 Abs. 1 KI-VO greift auf dieser Website nicht mehr |
 | Bildgenerator | _(verwendetes Werkzeug eintragen)_ | Personen- und Situationsbilder | `AiGeneratedBadge` unmittelbar am Bild, Hinweis im Alternativtext, Hinweis im Vorschaubild für soziale Netzwerke |
 | Textwerkzeuge | _(verwendete Werkzeuge eintragen)_ | Entwürfe für Blog- und Glossarbeiträge | `AiContentNotice` am jeweiligen Beitrag mit Datum der redaktionellen Prüfung |
 
@@ -29,7 +29,7 @@ Dieses Dokument ist der interne Nachweis dahinter.
 
 | Pflicht | Umsetzung | Ort im Code |
 |---|---|---|
-| Abs. 1 — Offenlegung der Interaktion mit einem KI-System | Hinweis vor der ersten Nachricht, muss bestätigt werden; Kennzeichen „KI" bereits am geschlossenen Widget; Hinweiszeile bleibt während des gesamten Chats sichtbar | `src/components/chat/ChatWidget.tsx` |
+| Abs. 1 — Offenlegung der Interaktion mit einem KI-System | **Nicht mehr einschlägig.** Seit dem 16.09.2026 gibt es kein KI-System, das mit Besuchern interagiert. Die Seite `/ki-transparenz` sagt das ausdrücklich, statt den Punkt wegzulassen | `src/app/ki-transparenz/page.tsx` |
 | Abs. 4 — Kennzeichnung KI-erzeugter Bilder | Sichtbares Kennzeichen an jedem betroffenen Bild | `src/components/ui/AiGeneratedBadge.tsx` |
 | Abs. 4 — Kennzeichnung KI-gestützter Texte | Hinweis am Beitrag mit Datum der Prüfung und Nennung des Verantwortlichen | `src/components/ui/AiContentNotice.tsx` |
 | Abs. 2 — maschinenlesbare Markierung | **Trifft den Anbieter des erzeugenden Systems, nicht den Betreiber.** Freiwillig ergänzt durch `data-ai-generated` im Markup; das ist kein anerkannter Provenienzstandard | `src/components/ui/ai-media.ts` |

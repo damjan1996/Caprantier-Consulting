@@ -45,6 +45,21 @@ const rules = [
       'entfällt deshalb. Sollte später eine erteilt werden, gehört die echte ' +
       'Nummer ins Impressum — niemals ein Platzhalter.',
   },
+  {
+    name: 'NAP-Angabe ausserhalb von businessInfo',
+    // Strasse, Postleitzahl und Rufnummer der Firma. Wer sie irgendwo sonst
+    // abtippt, erzeugt eine zweite Quelle -- und die laeuft irgendwann
+    // auseinander.
+    pattern: /Stammheimer\s+Stra|50935|50735|\+?49\s*\(?0?\)?\s*15738186221|4915738186221/,
+    allow: ['src/lib/local-seo.ts'],
+    reason:
+      'Name, Anschrift und Rufnummer stehen ausschliesslich in ' +
+      '`businessInfo` (src/lib/local-seo.ts) und werden von dort importiert. ' +
+      'Am 10.09.2026 waren zwei verschiedene Postleitzahlen im Umlauf -- 50935 ' +
+      'in Impressum, Datenschutzerklaerung und JSON-LD, 50735 in businessInfo ' +
+      'und in den strukturierten Daten. Abweichende NAP-Angaben schwaechen jedes lokale Signal, ' +
+      'und im Impressum sind sie zusaetzlich abmahnfaehig.',
+  },
 ]
 
 function* sourceFiles(dir) {
@@ -93,6 +108,67 @@ if (fs.existsSync(caseStudies)) {
     line: 0,
     text: 'Verzeichnis existiert wieder',
   })
+}
+
+// Fallstudien: Blindmuster duerfen niemals indexierbar sein.
+//
+// Die Vorgaengerseite unter /case-studies wurde entfernt, weil erfundene
+// Firmen und Kennzahlen im Index standen. Der Nachfolger unter /referenzen
+// darf ein Blindmuster zur Demonstration enthalten -- aber nur, solange die
+// Route auf `noindex` steht. Diese Kopplung wird hier geprueft, weil sie sonst
+// beim naechsten Umbau der Metadaten still verloren geht.
+const fallstudienDatei = path.join(SOURCE_DIR, 'lib', 'case-studies.ts')
+const referenzenLayout = path.join(SOURCE_DIR, 'app', 'referenzen', 'layout.tsx')
+
+if (fs.existsSync(fallstudienDatei)) {
+  const fallstudien = fs.readFileSync(fallstudienDatei, 'utf8')
+  const hatBeispiel = /istBeispiel:\s*true/.test(fallstudien)
+
+  if (hatBeispiel) {
+    const layout = fs.existsSync(referenzenLayout)
+      ? fs.readFileSync(referenzenLayout, 'utf8')
+      : ''
+    const koppeltNoindex = /enthaeltBeispiele\(\)/.test(layout) && /index:\s*false/.test(layout)
+
+    if (!koppeltNoindex) {
+      findings.push({
+        rule: {
+          name: 'Beispiel-Fallstudie ohne noindex',
+          reason:
+            'In src/lib/case-studies.ts steht mindestens ein Eintrag mit ' +
+            '`istBeispiel: true`. Solange das so ist, muss ' +
+            'src/app/referenzen/layout.tsx die robots-Angabe an ' +
+            '`enthaeltBeispiele()` koppeln und `index: false` setzen. Eine ' +
+            'Seite mit Blindmuster-Kennzahlen im Suchindex ist irrefuehrend ' +
+            '(§ 5 UWG) -- genau daran ist die Vorgaengerseite gescheitert.',
+        },
+        file: 'src/app/referenzen/layout.tsx',
+        line: 0,
+        text: 'robots-Angabe nicht an enthaeltBeispiele() gekoppelt',
+      })
+    }
+  }
+
+  // Eine echte Fallstudie ohne schriftliche Freigabe darf nicht ausgeliefert
+  // werden. Geprueft wird der einfache Fall: `kundeNennbar: true` ohne
+  // `freigegebenAm` im selben Eintrag.
+  const eintraege = fallstudien.split(/^\s{2}\{$/m).slice(1)
+  for (const eintrag of eintraege) {
+    if (/kundeNennbar:\s*true/.test(eintrag) && !/freigegebenAm:/.test(eintrag)) {
+      findings.push({
+        rule: {
+          name: 'Kundenname ohne dokumentierte Freigabe',
+          reason:
+            'Ein Kundenname darf nur genannt werden, wenn `freigegebenAm` das ' +
+            'Datum der schriftlichen Freigabe traegt (§ 5 UWG, Persoenlichkeits- ' +
+            'und Unternehmenspersoenlichkeitsrecht).',
+        },
+        file: 'src/lib/case-studies.ts',
+        line: 0,
+        text: 'kundeNennbar: true ohne freigegebenAm',
+      })
+    }
+  }
 }
 
 if (findings.length === 0) {

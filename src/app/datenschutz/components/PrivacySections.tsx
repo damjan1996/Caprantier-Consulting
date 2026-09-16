@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Shield, Eye, Server, Cookie, UserCheck, Lock, Ban, Globe, BarChart3, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
+import { businessInfo } from '@/lib/local-seo'
 
 const STORAGE_TABLE_HEADERS = [
   'Name',
@@ -22,8 +23,10 @@ const STORAGE_TABLE_HEADERS = [
  * deshalb in dieselbe Übersicht — und mit ihrer tatsächlichen Lebensdauer:
  * anders als ein Cookie laufen sie nicht von selbst ab.
  *
- * Die Einträge müssen zu dem passen, was der Code wirklich schreibt:
- * `useCookieConsent` (cookie-consent) und `ChatWidget` (chat-ai-notice).
+ * Die Einträge müssen zu dem passen, was der Code wirklich schreibt. Seit dem
+ * Wegfall des KI-Chats (16.09.2026) schreibt die Website selbst nur noch einen
+ * einzigen Eintrag: `cookie-consent` aus `useCookieConsent`. Alles Weitere in
+ * dieser Tabelle stammt von Diensten, die erst nach einer Einwilligung laden.
  */
 const STORAGE_ENTRIES = [
   {
@@ -31,14 +34,6 @@ const STORAGE_ENTRIES = [
     provider: 'Eigene',
     storage: 'Local Storage',
     purpose: 'Speichert Ihre Cookie-Einstellungen und den Zeitpunkt der Entscheidung',
-    duration: 'Bis Sie die Websitedaten löschen',
-    category: 'Notwendig',
-  },
-  {
-    name: 'chat-ai-notice',
-    provider: 'Eigene',
-    storage: 'Local Storage',
-    purpose: 'Merkt, dass Sie den KI-Hinweis im Chatfenster gelesen haben',
     duration: 'Bis Sie die Websitedaten löschen',
     category: 'Notwendig',
   },
@@ -135,20 +130,22 @@ const sections = [
         <div>
           <h3 className="text-lg font-medium text-foreground mb-3">Hinweis zur verantwortlichen Stelle</h3>
           <div className="p-4 rounded-xl bg-white border border-border">
+            {/* Anschrift aus `businessInfo`: eine Quelle für Impressum,
+                Datenschutzerklärung und strukturierte Daten. */}
             <p className="text-muted-foreground">
-              Nico-Luca Carpantier<br />
-              Stammheimer Straße 123<br />
-              50935 Köln
+              {businessInfo.owner.name}<br />
+              {businessInfo.address.street}<br />
+              {businessInfo.address.postalCode} {businessInfo.address.city}
             </p>
             <p className="text-muted-foreground mt-3">
               Telefon:{' '}
-              <a href="tel:+4915738186221" className="text-primary hover:underline">
-                +49 (0) 15738186221
+              <a href={`tel:${businessInfo.phoneInternational}`} className="text-primary hover:underline">
+                {businessInfo.phoneFormatted}
               </a>
               <br />
               E-Mail:{' '}
-              <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
-                nico@carpantier-consulting.de
+              <a href={`mailto:${businessInfo.email}`} className="text-primary hover:underline">
+                {businessInfo.email}
               </a>
             </p>
           </div>
@@ -554,51 +551,6 @@ const sections = [
           </p>
         </div>
 
-        <div>
-          <h3 className="text-lg font-medium text-foreground mb-3">KI-Chatbot (Claude)</h3>
-          <p className="text-muted-foreground mb-4">
-            Auf unserer Website setzen wir einen KI-gestützten Chatbot ein, um Ihnen schnell und unkompliziert Informationen zu unseren Dienstleistungen bereitzustellen. Der Chatbot basiert auf Claude, einem KI-Modell von Anthropic, PBC, 548 Market St, PMB 90375, San Francisco, CA 94104, USA.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Bei der Nutzung des Chatbots werden folgende Daten verarbeitet:
-          </p>
-          <ul className="space-y-2 mb-4">
-            {[
-              'Ihre Chatnachrichten und -verläufe',
-              'E-Mail-Adresse (nur wenn Sie diese freiwillig im Chat angeben)',
-              'Die Seite, von der aus Sie den Chat gestartet haben',
-              'Session-ID zur Zuordnung der Konversation',
-              'Zeitpunkt der Nachrichten',
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="text-muted-foreground mb-4">
-            Die Chatnachrichten werden zur Verarbeitung an die Server von Anthropic in den USA übermittelt. Die Datenübertragung erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission; Anthropic verarbeitet die Daten als Auftragsverarbeiter und nutzt sie nicht zum Training seiner Modelle. Die Chatverläufe werden in unserer Datenbank gespeichert, um den Gesprächsverlauf innerhalb einer Sitzung aufrechtzuerhalten und Ihre Anfrage bearbeiten zu können.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Die Nutzung des Chatbots erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen und Kundenservice) sowie Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer effizienten Kundenkommunikation und der schnellen Beantwortung von Anfragen.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Sofern Sie Ihre E-Mail-Adresse im Chat angeben, wird diese zur Kontaktaufnahme und ggf. zur Zusendung weiterer Informationen genutzt. In diesem Fall erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Angabe).
-          </p>
-          <p className="text-muted-foreground mb-4">
-            Chatverläufe ohne von Ihnen hinterlassene Kontaktdaten löschen wir automatisiert nach <strong className="text-foreground">90 Tagen</strong>. Haben Sie im Chat eine E-Mail-Adresse angegeben, löschen wir den Verlauf nach <strong className="text-foreground">12 Monaten</strong>, sofern daraus kein Vertragsverhältnis entstanden ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen. Unabhängig davon können Sie jederzeit die sofortige Löschung Ihrer Chatdaten verlangen, indem Sie uns unter{' '}
-            <a href="mailto:nico@carpantier-consulting.de" className="text-primary hover:underline">
-              nico@carpantier-consulting.de
-            </a>
-            {' '}kontaktieren.
-          </p>
-          <p className="text-muted-foreground">
-            Weitere Informationen finden Sie in der Datenschutzerklärung von Anthropic:{' '}
-            <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://www.anthropic.com/privacy
-            </a>
-          </p>
-        </div>
       </div>
     ),
   },
@@ -620,12 +572,12 @@ const sections = [
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-foreground mb-3">Automatisierte Kommunikation</h3>
+          <h3 className="text-lg font-medium text-foreground mb-3">Keine automatisierte Kommunikation</h3>
           <p className="text-muted-foreground mb-4">
-            Der Chat auf dieser Website wird von einem KI-System beantwortet, nicht von einem Menschen. Darauf weisen wir Sie vor der ersten Nachricht hin (Art. 50 Abs. 1 KI-VO). Eine automatisierte Entscheidung im Einzelfall mit rechtlicher Wirkung oder ähnlich erheblicher Beeinträchtigung im Sinne des Art. 22 DSGVO findet nicht statt.
+            Bis zum 16.09.2026 stand auf dieser Website ein KI-gestützter Chatbot. Er ist entfallen. Sie kommunizieren mit uns ausschließlich über das Kontaktformular, per E-Mail, per Telefon oder im vereinbarten Gespräch &ndash; in allen Fällen mit einem Menschen. Es findet keine automatisierte Entscheidung im Einzelfall im Sinne des Art. 22 DSGVO statt.
           </p>
           <p className="text-muted-foreground">
-            Welche Daten dabei verarbeitet werden, steht im Abschnitt &bdquo;KI-Chatbot (Claude)&ldquo;. Eine Gesamtübersicht über unseren KI-Einsatz finden Sie unter{' '}
+            Eine Gesamtübersicht über unseren KI-Einsatz finden Sie unter{' '}
             <Link href="/ki-transparenz" className="text-primary hover:underline">
               KI-Transparenz
             </Link>

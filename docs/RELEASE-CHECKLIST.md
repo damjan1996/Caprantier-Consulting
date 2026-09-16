@@ -52,12 +52,7 @@ Wert schaltet die jeweilige Funktion stillschweigend ab.
 
 | Variable | Pflicht | Folge, wenn nicht gesetzt |
 |---|---|---|
-| `DATABASE_URL` | ja | Chat speichert nichts, Löschjob findet nichts |
-| `ANTHROPIC_API_KEY` | ja | Chatbot antwortet nicht |
-| `CHAT_SESSION_SECRET` | ja | Je Serverprozess ein Zufallsschlüssel, laufende Chats brechen ab |
 | `BREVO_API_KEY` | ja | Kontaktformular kann nicht zustellen |
-| `ADMIN_API_KEY` | ja | `/api/admin/leads` antwortet mit 404 |
-| `CRON_SECRET` | ja | **Der Löschjob läuft nicht.** Dann darf die Datenschutzerklärung die Fristen nicht zusagen |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | optional | Keine Reichweitenmessung — zulässig |
 | `NEXT_PUBLIC_BREVO_CLIENT_KEY` | optional | Kein Marketing-Tracking — zulässig |
 
@@ -98,32 +93,62 @@ Danach „Alle akzeptieren" klicken:
 - [ ] Bei einem Zustellfehler zeigt das Formular einen Fehler an und behauptet
       nicht, die Nachricht sei verschickt
 
-### 3.3 Chatbot
+### 3.3 Kein Chatbot mehr
 
-- [ ] Vor der ersten Nachricht erscheint der KI- und Datenschutzhinweis
-- [ ] Der Hinweis nennt Anthropic (USA) und die Speicherung
-- [ ] Nach dem Start bleibt der Hinweis „KI-generierte Antworten" sichtbar
-- [ ] Das Kennzeichen „KI" ist schon am geschlossenen Widget zu sehen
-- [ ] Der Chatverlauf lässt sich über das Papierkorb-Symbol löschen
+Der KI-Chat ist am 16.09.2026 entfallen. Statt der früheren Kennzeichnungs-
+prüfungen ist jetzt zu bestätigen, dass nichts davon übrig geblieben ist:
 
-### 3.4 Geschützte Endpunkte
+- [ ] Auf keiner Seite erscheint unten rechts eine Chat-Blase
+- [ ] `/api/chat`, `/api/admin/leads` und `/api/cron/cleanup-chats` antworten
+      mit 404
+- [ ] `/ki-transparenz` nennt ausdrücklich, dass kein KI-Chatbot im Einsatz ist
+- [ ] Die Datenschutzerklärung enthält keinen Abschnitt zu Anthropic mehr
+- [ ] **Datenbank:** `chat_sessions` und `chat_messages` sind gelöscht und die
+      Löschung ist in `loeschkonzept.md` mit Datum protokolliert
+- [ ] `ANTHROPIC_API_KEY` ist beim Anbieter widerrufen; `DATABASE_URL`,
+      `CHAT_SESSION_SECRET`, `ADMIN_API_KEY` und `CRON_SECRET` sind aus der
+      Deploy-Umgebung entfernt
+
+### 3.4 Entfernte Endpunkte
+
+Mit dem KI-Chat sind alle geschützten Endpunkte entfallen. Übrig bleibt
+`/api/contact` (nur POST) und `/api/youtube/thumbnail/[id]`.
 
 ```bash
 curl -i https://carpantier-consulting.de/api/admin/leads
-# erwartet: 401 oder 404, niemals Daten
-
 curl -i https://carpantier-consulting.de/api/cron/cleanup-chats
-# erwartet: 401 (Secret gesetzt) — 404 bedeutet, der Loeschjob laeuft nicht
+curl -i https://carpantier-consulting.de/api/chat
+# erwartet jeweils: 404
+
+curl -i https://carpantier-consulting.de/api/contact
+# erwartet: 405 (nur POST)
 ```
 
-- [ ] `/api/admin/leads` gibt ohne Schlüssel keine Daten heraus
-- [ ] `/api/cron/cleanup-chats` gibt ohne Schlüssel keine Daten heraus
+- [ ] Alle drei entfernten Endpunkte antworten mit 404
+- [ ] `/api/contact` nimmt weiterhin Anfragen an und stellt zu
 
-### 3.5 Löschjob
+### 3.5 Einmalige Löschung des Chatbestands
 
-- [ ] Ein Lauf wurde nachweislich ausgeführt (siehe `datenschutz/loeschkonzept.md`)
-- [ ] Datum, Anzahl und Prüfer sind dort eingetragen
-- [ ] Die SQL-Gegenprüfung liefert `0`
+Der automatische Löschlauf ist mit dem Chat entfallen. Die noch vorhandenen
+Gesprächsverläufe müssen deshalb **einmal von Hand** gelöscht werden — ihr
+Zweck ist weggefallen (Art. 5 Abs. 1 lit. e, Art. 17 Abs. 1 lit. a DSGVO).
+
+```sql
+-- Bestand vorher zählen:
+SELECT count(*) FROM chat_messages;
+SELECT count(*) FROM chat_sessions;
+
+-- Löschen (chat_messages hängt per ON DELETE CASCADE an chat_sessions):
+DELETE FROM chat_sessions;
+
+-- Danach die Tabellen entfernen:
+DROP TABLE IF EXISTS chat_messages;
+DROP TABLE IF EXISTS chat_sessions;
+```
+
+- [ ] Löschung ausgeführt, Anzahl vorher notiert
+- [ ] Datum, Anzahl und Prüfer in `datenschutz/loeschkonzept.md` eingetragen
+- [ ] Anschließend: Datenbank stilllegen — sie hatte keine andere Verwendung
 
 ### 3.6 Seiten und Kennzeichnungen
 

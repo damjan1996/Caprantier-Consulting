@@ -2,6 +2,9 @@
 
 | Datei | Inhalt |
 |---|---|
+| [seitendesign.md](seitendesign.md) | **Wie soll es aussehen?** Farbe, Schrift, Raum, Klebe-Bühne, was auf einer Unterseite variieren darf |
+| [seitentexte.md](seitentexte.md) | **Was soll dastehen?** Haltung, Satzbau, Zahlen, Recht im Text, Schreibweisen |
+| [seitenbaukasten.md](seitenbaukasten.md) | **Wie wird es gebaut?** Dateien, Token, Bausteine, Bewegung, Abnahme |
 | [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md) | Was vor und nach jedem Deployment zu prüfen ist |
 | [datenschutz/verzeichnis-verarbeitungstaetigkeiten.md](datenschutz/verzeichnis-verarbeitungstaetigkeiten.md) | Verzeichnis nach Art. 30 DSGVO |
 | [datenschutz/dienstleister-und-rollen.md](datenschutz/dienstleister-und-rollen.md) | Rollen der Dienstleister, AV-Verträge, Drittlandtransfers |

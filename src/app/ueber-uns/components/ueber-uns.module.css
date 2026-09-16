@@ -1,0 +1,899 @@
+/*
+ * Über uns — wer in Ihrem Namen telefoniert.
+ *
+ * Enthält nur, was diese Seite eigen hat. Token, Textgerüst, Klebe-Bühne,
+ * Schaltflächen, Einblendungen und Fortschrittsleiste kommen aus
+ * `src/app/components/seite/basis.module.css`.
+ *
+ * Aufbau (sechs Abschnitte, zwei davon als Bühne):
+ *   Einstieg   Fluss, mit Porträt — das einzige Bild-Schaubild der Familie
+ *   Herkunft   Bühne, drei Einträge: woher die Arbeitsweise stammt
+ *   Zusagen    Fluss, vier Karten mit Gegenprobe
+ *   Grenze     Fluss, dunkle Karte
+ *   Haus       Fluss, nachprüfbare Angaben
+ *   Termin     Bühne, dunkle Abschlusskarte
+ *
+ * ## Zwei Abweichungen, beide aus dem Inhalt
+ *
+ * **Der Einstieg trägt ein Bild.** Auf den Stadtseiten wurde das Porträt
+ * ausdrücklich verworfen: fünfzehn Seiten mit demselben Gesicht sind
+ * fünfzehnmal dasselbe LCP-Bild und nullmal ein Argument (Designleitfaden
+ * § 9.1). Hier ist es umgekehrt — auf dieser einen Seite **ist** das Gesicht
+ * das Argument. Deshalb steht es oben und nicht in einer Bühne.
+ *
+ * **Die Zusagen haben eine Gegenprobe.** Das Bauteil gibt es sonst nirgends:
+ * Zu jeder Zusage steht, woran man merkt, dass sie gebrochen wurde. Eine
+ * Zusage, die sich nicht widerlegen lässt, ist eine Floskel — und eine
+ * Werteliste aus vier Symbolkarten wäre genau das gewesen (§ 9.2).
+ *
+ * Dunkle Flächen: die Grenze und der Abschluss. Dazwischen liegt „Das
+ * Unternehmen" als helle Fläche — zwei dunkle Flächen dürfen nicht
+ * aneinandergrenzen (§ 2.2).
+ */
+
+/* ------------------------------------------------- Grundlage einbinden */
+
+.page {
+  composes: page from '../../components/seite/basis.module.css';
+}
+
+.actionRow {
+  composes: actionRow from '../../components/seite/basis.module.css';
+}
+
+.body {
+  composes: body from '../../components/seite/basis.module.css';
+}
+
+.btnDark {
+  composes: btnDark from '../../components/seite/basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from '../../components/seite/basis.module.css';
+}
+
+.btnPrimary {
+  composes: btnPrimary from '../../components/seite/basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from '../../components/seite/basis.module.css';
+}
+
+.dot {
+  composes: dot from '../../components/seite/basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/seite/basis.module.css';
+}
+
+.h2 {
+  composes: h2 from '../../components/seite/basis.module.css';
+}
+
+.h3 {
+  composes: h3 from '../../components/seite/basis.module.css';
+}
+
+.lead {
+  composes: lead from '../../components/seite/basis.module.css';
+}
+
+.metaNote {
+  composes: metaNote from '../../components/seite/basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from '../../components/seite/basis.module.css';
+}
+
+.reveal {
+  composes: reveal from '../../components/seite/basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from '../../components/seite/basis.module.css';
+}
+
+.sceneAside {
+  composes: sceneAside from '../../components/seite/basis.module.css';
+}
+
+.sceneCopy {
+  composes: sceneCopy from '../../components/seite/basis.module.css';
+}
+
+.sceneGrid {
+  composes: sceneGrid from '../../components/seite/basis.module.css';
+}
+
+.sceneItem {
+  composes: sceneItem from '../../components/seite/basis.module.css';
+}
+
+.sceneItemDone {
+  composes: sceneItemDone from '../../components/seite/basis.module.css';
+}
+
+.sceneItemOn {
+  composes: sceneItemOn from '../../components/seite/basis.module.css';
+}
+
+.sceneRail {
+  composes: sceneRail from '../../components/seite/basis.module.css';
+}
+
+.sceneRailFill {
+  composes: sceneRailFill from '../../components/seite/basis.module.css';
+}
+
+.sceneSlot {
+  composes: sceneSlot from '../../components/seite/basis.module.css';
+}
+
+.sceneStage {
+  composes: sceneStage from '../../components/seite/basis.module.css';
+}
+
+.sceneWrap {
+  composes: sceneWrap from '../../components/seite/basis.module.css';
+}
+
+.section {
+  composes: section from '../../components/seite/basis.module.css';
+}
+
+.sectionHead {
+  composes: sectionHead from '../../components/seite/basis.module.css';
+}
+
+.sectionHeadCopy {
+  composes: sectionHeadCopy from '../../components/seite/basis.module.css';
+}
+
+.textLink {
+  composes: textLink from '../../components/seite/basis.module.css';
+}
+
+.textLinkMuted {
+  composes: textLinkMuted from '../../components/seite/basis.module.css';
+}
+
+/* ------------------------------------------------------------------ Einstieg */
+
+.intro {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(28px, 6vh, 72px)) var(--edge)
+    clamp(48px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vh, 40px);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  min-width: 0;
+}
+
+.introTitle {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.introMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/*
+ * Das Porträt.
+ *
+ * Bewusst nicht die überlappende weisse Plakette der Startseite: Dort klebt
+ * das Bild in einer Bühne und braucht einen Anker, hier steht es im Fluss.
+ * Die Beschriftung sitzt deshalb unter dem Rahmen — ruhiger, und sie
+ * überdeckt nichts.
+ */
+.portrait {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.portraitFrame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  max-height: min(58vh, 520px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 40px 90px -44px rgba(0, 0, 0, 0.34);
+}
+
+.portraitFrame img {
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+.portraitPlate {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.portraitName {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.portraitName b {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.portraitName span {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.portraitPlace {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  flex: none;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+/* ------------------------------------------------------------------ Herkunft */
+
+/*
+ * Woher die Arbeitsweise stammt — drei Einträge auf einer Bühne.
+ *
+ * Eine Reihenfolge gibt es hier nicht als Ablauf, aber als Herleitung: erst
+ * das Gespräch, dann der Anlass davor, dann das, was danach ausgewertet wird.
+ * Damit erfüllt der Abschnitt die Bedingung aus Designleitfaden § 5.2 —
+ * gleichrangige Einträge mit einer Ordnung.
+ */
+.sceneHerkunft {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
+  /* Gemessen über acht Fenstergrössen: höchster Eintrag 334px (1920×1080),
+     257px auf schmalen und flachen Fenstern. Die Untergrenze liegt knapp
+     darüber — geschätzt war sie auf jeder bisher umgebauten Seite falsch
+     (Baukasten § 4.4, Regel 2). */
+  --scene-slot: clamp(298px, 37vh, 344px);
+  /* Drei Einträge. */
+  --scene-height: 420vh;
+}
+
+.herkCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vh, 22px);
+  padding: clamp(22px, 2.2vw, 36px);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.herkTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.herkTitel {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.herkKind {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.herkText {
+  margin: 0;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/*
+ * Die Belegzeile zitiert eine Leistungszusage aus `leistungen-content.ts` —
+ * nicht abgetippt, sondern gelesen. Zwei Textstände liefen beim ersten
+ * Umformulieren auseinander (Baukasten § 8.3).
+ */
+.herkBeleg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.herkBelegLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.herkBelegText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------- Zusagen */
+
+/*
+ * Vier Zusagen, jede mit ihrer Gegenprobe.
+ *
+ * Das Bauteil dieser Seite. Die Vorgängerfassung hatte an dieser Stelle vier
+ * Wertekarten mit Symbolen — „Ergebnisorientiert", „Partnerschaftlich",
+ * „Kontinuierlich", „Professionell". Jeden dieser Sätze könnte ein
+ * Wettbewerber unverändert übernehmen; das ist die Prüffrage aus
+ * Textleitfaden § 1, und sie ist dort viermal durchgefallen.
+ *
+ * Die Gegenprobe macht den Unterschied: Sie steht in einem eigenen Fuss auf
+ * grauer Fläche und nennt den beobachtbaren Fall, in dem die Zusage gebrochen
+ * ist. Was sich nicht widerlegen lässt, ist keine Zusage.
+ */
+.zusagenHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.zusagenGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.zusageCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+}
+
+.zusageBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 2.2vw, 32px);
+  flex: 1;
+}
+
+.zusageNr {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.zusageTitel {
+  margin: 0;
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.zusageText {
+  margin: 0;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zusageProbe {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px clamp(22px, 2.2vw, 32px);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.zusageProbeLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.zusageProbeText {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.zusagenFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: clamp(24px, 3.4vh, 40px);
+}
+
+/* -------------------------------------------------------------------- Grenze */
+
+.grenzeCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(28px, 4vw, 64px);
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.grenzeHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grenzeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.grenzeTitle {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.grenzeText {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36em;
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.grenzeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grenzeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.grenzeBlockLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.grenzeBlockText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+.grenzeFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.grenzeLink {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.grenzeLink:hover {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------- Unternehmen */
+
+/*
+ * Die nachprüfbaren Angaben.
+ *
+ * Anschrift, Rufnummer und Inhaber kommen ausschliesslich aus `businessInfo`
+ * (`src/lib/local-seo.ts`). Abgetippt wären sie die zweite Quelle — es waren
+ * an dieser Stelle schon zwei verschiedene Postleitzahlen im Umlauf.
+ */
+.hausHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.hausGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(32px, 5vw, 72px);
+}
+
+.hausZeile {
+  display: grid;
+  grid-template-columns: 9.5em minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.55;
+}
+
+.hausLabel {
+  color: var(--ink-3);
+  hyphens: auto;
+}
+
+.hausWert {
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.hausWert a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+}
+
+.hausWert a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.hausNotes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: clamp(32px, 4.4vh, 52px);
+}
+
+.hausNote {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2.2vw, 28px);
+  border-radius: 22px;
+  background: var(--surface);
+}
+
+.hausNoteTitel {
+  margin: 0;
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.hausNoteText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.hausFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: clamp(20px, 2.6vh, 32px);
+}
+
+/* -------------------------------------------------------------------- Termin */
+
+.sceneTermin {
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  --scene-cols: minmax(0, 7fr) minmax(0, 5fr);
+  /* Gemessen: höchster Punkt 100px. */
+  --scene-slot: clamp(106px, 12vh, 110px);
+  --scene-height: 400vh;
+}
+
+.sceneTermin .sceneStage {
+  padding-bottom: clamp(16px, 3vh, 40px);
+}
+
+.sceneTermin .sceneCopy {
+  gap: clamp(20px, 3.4vh, 36px);
+}
+
+/* Auf dunklem Grund wäre die helle Spur schon gefüllt. */
+.sceneTermin .sceneRail {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.closeCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(24px, 3.8vh, 64px) clamp(24px, 4vw, 72px);
+  min-height: min(72vh, 720px);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.closeEyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.closeTitle {
+  margin: 0;
+  font-size: clamp(30px, min(4.4vw, 6.8vh), 58px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+  max-width: 17ch;
+}
+
+.closeText {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 32em;
+  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.closeMailLink {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.closeMailLink:hover {
+  color: #fff;
+}
+
+.closeMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.closeMeta .dot {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.closePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+
+.closePlanHead {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sceneTermin .sceneItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.closeWhen {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.closeWhat {
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.closeDetail {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+
+.closePlanNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+@media (max-width: 1100px) {
+  /* Das Porträt steht über dem Text, nicht daneben — dieselbe Stufe, auf der
+     auch die Bühnen stapeln. */
+  .introGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(28px, 5vw, 44px);
+  }
+
+  .portrait {
+    order: -1;
+  }
+
+  .portraitFrame {
+    max-height: min(52vh, 460px);
+  }
+
+  .zusagenGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grenzeGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hausGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hausNotes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sceneTermin .sceneStage {
+    padding-bottom: var(--section-y);
+  }
+}
+
+@media (max-height: 760px) {
+  .closeCard {
+    padding: clamp(18px, 3.4vh, 40px) clamp(20px, 3.4vw, 56px);
+  }
+
+  .closeTitle {
+    font-size: clamp(26px, 3.4vw, 46px);
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(14px, 2.4vh, 24px);
+  }
+
+  .closePlan {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .herkCard {
+    gap: 12px;
+    padding: clamp(18px, 1.8vw, 26px);
+  }
+
+  .herkBeleg {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-height: 620px) {
+  .closeCard {
+    padding: clamp(14px, 3vh, 28px) clamp(18px, 3vw, 44px);
+    border-radius: 24px;
+  }
+
+  .closeTitle {
+    font-size: clamp(24px, 3vw, 38px);
+  }
+
+  .closeText {
+    font-size: 15px;
+  }
+
+  .sceneTermin .sceneCopy {
+    gap: clamp(10px, 1.8vh, 18px);
+  }
+
+  .herkBeleg {
+    padding: 10px 12px;
+  }
+}
+
+/* Auf schmalen Fenstern steht die Beschriftung über dem Wert statt daneben. */
+@media (max-width: 640px) {
+  .hausZeile {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}

@@ -1,0 +1,391 @@
+/*
+ * Fußzeile — Redesign.
+ *
+ * Eigene Datei statt Tailwind-Klassen: Die Fußzeile trägt dieselbe flache
+ * Typografie wie die neue Startseite (ruhige Graustufen, feine Trennlinien,
+ * keine Symbole vor jedem Eintrag). Als Modul stehen die Umbrüche an einer
+ * Stelle und die Klassennamen sind lokal.
+ *
+ * Umbruchpunkte, absteigend geprüft:
+ *   1100px  Markenspalte über die volle Breite, Rest zweispaltig
+ *    640px  alles einspaltig, Städtelisten einspaltig
+ */
+
+.footer {
+  --f-ink: #0a0a0a;
+  --f-ink-2: #4b4b4b;
+  --f-ink-3: #6b6b6b;
+  --f-ink-4: #8a8a8a;
+  --f-line: #e6e6e6;
+  --f-accent: #1a56db;
+  --f-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Dieselbe Box wie Kopfzeile und Seiteninhalt (`.container-custom` in
+     globals.css): höchstens 1280px, zentriert, Rand in drei Stufen. Die
+     Fußzeile läuft auf jeder Seite — sie muss dieselbe Kante haben wie das,
+     was über ihr steht. */
+  --f-max: 1280px;
+  --f-edge: 1rem;
+
+  position: relative;
+  z-index: 10;
+  max-width: var(--f-max);
+  margin-inline: auto;
+  border-top: 1px solid var(--f-line);
+  /* Der Platz für die Buchungsleiste am unteren Rand kommt aus
+     `body.has-mobile-cta` in globals.css — hier nicht noch einmal. */
+  padding: clamp(64px, 8vw, 112px) var(--f-edge) 48px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 80px);
+  background: #fff;
+  color: var(--f-ink);
+  letter-spacing: -0.011em;
+}
+
+/* ------------------------------------------------------------------ Kopfteil */
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) repeat(3, minmax(0, 2fr));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 34em;
+}
+
+.brandMark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--f-ink);
+}
+
+.brandMark img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.brandDot {
+  color: var(--f-accent);
+}
+
+.brandText {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--f-ink-2);
+  text-wrap: pretty;
+}
+
+.brandLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.brandLinks a:first-child {
+  color: var(--f-ink);
+}
+
+.brandLinks a:first-child:hover {
+  color: var(--f-accent);
+}
+
+.brandPlace {
+  color: var(--f-ink-3);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.columnTitle {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--f-ink-4);
+}
+
+.link {
+  font-size: 14px;
+  color: var(--f-ink-2);
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--f-ink);
+}
+
+.linkMuted {
+  color: var(--f-ink-3);
+}
+
+.linkMuted:hover {
+  color: var(--f-ink);
+}
+
+.linkAccent {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--f-accent);
+  transition: color 0.2s ease;
+}
+
+.linkAccent:hover {
+  color: #1648b8;
+}
+
+/* Die Schaltfläche für die Cookie-Einstellungen muss aussehen wie die Links
+   daneben — sie steht in derselben Liste. */
+.linkButton {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: var(--f-ink-2);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.linkButton:hover {
+  color: var(--f-ink);
+}
+
+/* ------------------------------------------------- Standorte, aufklappbar */
+
+.regions {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--f-line);
+}
+
+.regionsToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  color: var(--f-ink);
+  text-align: left;
+}
+
+.regionsLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.regionsLabel b {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.regionsLabel span {
+  font-size: 13px;
+  color: var(--f-ink-4);
+}
+
+.regionsIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #d6d6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: transform 0.5s var(--f-ease);
+}
+
+.regionsToggle[aria-expanded='true'] .regionsIcon {
+  transform: rotate(45deg);
+}
+
+/* Plus, das sich beim Aufklappen zum Kreuz dreht. */
+.regionsGlyph {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+
+.regionsGlyph::before,
+.regionsGlyph::after {
+  content: '';
+  position: absolute;
+  border-radius: 1px;
+  background: var(--f-ink);
+}
+
+.regionsGlyph::before {
+  left: 0;
+  top: 4px;
+  width: 10px;
+  height: 2px;
+}
+
+.regionsGlyph::after {
+  left: 4px;
+  top: 0;
+  width: 2px;
+  height: 10px;
+}
+
+/*
+ * Aufklappen über `grid-template-rows: 0fr → 1fr`: Die Liste fährt auf ihre
+ * tatsächliche Höhe, ohne dass die vorher gemessen werden muss. Die Links
+ * stehen dabei durchgehend im HTML — sie sind nur nicht sichtbar, nicht
+ * abwesend. Das ist für die interne Verlinkung entscheidend.
+ */
+.regionsPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--f-ease);
+}
+
+.regionsPanelOpen {
+  grid-template-rows: 1fr;
+}
+
+.regionsPanelInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.regionsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 4px 0 28px;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.1s;
+}
+
+.regionsPanelOpen .regionsColumn {
+  opacity: 1;
+}
+
+/*
+ * Spaltenzahl nach Platz, nicht nach fester Zahl.
+ *
+ * Feste Spalten haben die laengsten Eintraege („Vertrieb Düsseldorf“) in
+ * schmalen Fenstern zerbrochen. `auto-fill` mit Mindestbreite legt so viele
+ * Spalten an, wie ohne Umbruch hineinpassen — von sieben nebeneinander bis
+ * untereinander auf dem Telefon, ohne eigene Medienabfrage.
+ *
+ * Die 180px sind gemessen, nicht geschätzt: „Vertrieb Düsseldorf“ ist mit
+ * 170px der breiteste Eintrag. Läge das Minimum darunter, liefe er bei genau
+ * dieser Spaltenbreite über — die Einträge stehen auf `nowrap`.
+ */
+.cityList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px 20px;
+}
+
+.cityLink {
+  font-size: 13.5px;
+  color: var(--f-ink-2);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.cityLink:hover {
+  color: var(--f-ink);
+}
+
+.regionsNote {
+  margin: 0;
+  padding: 0 0 28px;
+  font-size: 13px;
+  color: var(--f-ink-4);
+}
+
+.regionsNote a {
+  color: var(--f-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.regionsNote a:hover {
+  color: var(--f-accent);
+}
+
+/* --------------------------------------------------------------- Fußleiste */
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--f-line);
+  padding-top: 24px;
+  font-size: 12.5px;
+  color: var(--f-ink-4);
+}
+
+/* ------------------------------------------------------------------ Umbrüche */
+
+/* Die Randstufen von `.container-custom`. */
+@media (min-width: 640px) {
+  .footer {
+    --f-edge: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    --f-edge: 2rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regionsPanel,
+  .regionsColumn,
+  .regionsIcon {
+    transition: none;
+  }
+}

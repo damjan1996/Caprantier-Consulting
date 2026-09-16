@@ -84,6 +84,11 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Die Kopfzeile steht fest ueber dem Inhalt. Ohne diesen Abstand landet
+       das Ziel jeder Sprungmarke darunter und der Anfang des Abschnitts ist
+       verdeckt -- betrifft die Fortschrittsleiste der Startseite ebenso wie
+       jeden Anker in Glossar und Blog. */
+    scroll-padding-top: 96px;
   }
 
   body {
@@ -93,7 +98,19 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /*
+     * `clip` statt `hidden` — und das ist kein Geschmacksunterschied.
+     *
+     * `overflow-x: hidden` setzt den berechneten Wert von `overflow-y` auf
+     * `auto`. Damit wird der Seitenkörper selbst zum Scrollbehälter, und jedes
+     * `position: sticky` darin bezieht sich auf diesen Behälter statt auf das
+     * Fenster. Da der Körper nie selbst scrollt, klebt dann nichts mehr: Der
+     * Einstieg der Startseite scrollte einfach weg und hinterließ zwei
+     * Bildschirmhöhen Leere.
+     *
+     * `clip` schneidet genauso ab, erzeugt aber keinen Scrollbehälter.
+     */
+    overflow-x: clip;
     position: relative;
   }
 }
@@ -199,6 +216,26 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none !important;
+  }
+
+  /* Weiches Scrollen ist genau die Bewegung, die hier abbestellt wurde:
+     Sprungmarken springen dann wieder. */
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+ * Platz für die feste Buchungsleiste am unteren Rand.
+ *
+ * Die Klasse setzt die Startseite, solange ihre Leiste eingehängt ist. Ohne
+ * den Abstand läge die Leiste über den letzten Zeilen der Fußzeile — und dort
+ * stehen Impressum und Datenschutzerklärung, die nach § 5 DDG und Art. 12
+ * DSGVO erreichbar bleiben müssen.
+ */
+@media (max-width: 860px) {
+  body.has-mobile-cta {
+    padding-bottom: 72px;
   }
 }
 

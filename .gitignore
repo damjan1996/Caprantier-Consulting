@@ -87,6 +87,7 @@ logs/security/
 
 # Playwright
 /tests/results/
+/tests/screenshots/
 /playwright-report/
 /.playwright-mcp/
 

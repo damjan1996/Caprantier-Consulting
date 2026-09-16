@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, ArrowLeft, Tag, User } from 'lucide-react'
 import { PageWrapper } from '@/components/ui'
 import FadeIn from '@/components/ui/FadeIn'
-import { getBlogPostBySlug, getAllBlogSlugs, blogPosts, BlogPost } from '@/lib/blog'
+import { getBlogPostBySlug, getAllBlogSlugs, getRelatedPosts, getReadingTime } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
 import { generateBlogPostSchema, generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
 import Markdown from '@/components/ui/Markdown'
@@ -58,14 +58,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 }
 
-// Related posts (excluding current)
-function getRelatedPosts(currentSlug: string, category: string): BlogPost[] {
-  return blogPosts
-    .filter((p) => p.slug !== currentSlug)
-    .filter((p) => p.category === category || p.featured)
-    .slice(0, 2)
-}
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = getBlogPostBySlug(slug)
@@ -74,7 +66,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
-  const relatedPosts = getRelatedPosts(slug, post.category)
+  const relatedPosts = getRelatedPosts(slug)
 
   // Schema.org structured data
   const articleSchema = generateBlogPostSchema(post)
@@ -143,7 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </span>
               <span className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                {post.readingTime} Lesezeit
+                {getReadingTime(post)} Lesezeit
               </span>
             </div>
           </FadeIn>
@@ -227,7 +219,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="container-custom">
             <FadeIn className="max-w-3xl mx-auto">
               <h2 className="text-xl font-bold text-foreground mb-6">Weitere Artikel</h2>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 {relatedPosts.map((relatedPost) => (
                   <Link
                     key={relatedPost.slug}

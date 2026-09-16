@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Scale, FileText, Link as LinkIcon, Shield, Globe, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { SectionCard } from '@/components/ui'
+import { businessInfo } from '@/lib/local-seo'
 
 const CONTACT_EMAIL = 'nico@carpantier-consulting.de'
 
@@ -74,8 +75,8 @@ const additionalSections = [
           </a>
           <br />
           Telefon:{' '}
-          <a href="tel:+4915738186221" className="text-primary hover:underline">
-            +49 1573 8186221
+          <a href={`tel:${businessInfo.phoneInternational}`} className="text-primary hover:underline">
+            {businessInfo.phoneFormatted}
           </a>
         </p>
         <p>
