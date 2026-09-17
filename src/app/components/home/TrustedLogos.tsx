@@ -14,17 +14,31 @@ import styles from './home.module.css'
 
 /*
  * Breite und Höhe geben das tatsächliche Seitenverhältnis der Datei wieder
- * (Lixt 794×305, Jungwild 500×125, Syntriq 836×246, SMYCO 1000×240). Ohne sie
- * rechnet der Browser bis zum Laden mit einem falschen Verhältnis und die
- * Zeile springt.
+ * (Lixt 794×305, Jungwild 500×125, Syntriq 836×246, SMYCO 1000×240,
+ * Roth & Gutenkunst 311×88). Ohne sie rechnet der Browser bis zum Laden mit
+ * einem falschen Verhältnis und die Zeile springt.
  */
 const LOGO_HEIGHT = 28
 
-const LOGOS = [
+/*
+ * `height` nur dort setzen, wo die Einheitshöhe nicht trägt: Vier der Logos
+ * sind einzeilige Wortmarken, Roth & Gutenkunst ist ein gestapelter Block aus
+ * Signet, zwei Textzeilen und Zusatz. Auf 28px gebracht wäre der Zusatz keine
+ * drei Pixel hoch und damit Matsch. Etwas mehr Höhe gleicht das aus, ohne die
+ * Reihe optisch zu sprengen.
+ */
+const LOGOS: { name: string; src: string; href: string; ratio: number; height?: number }[] = [
   { name: 'Lixt AG', src: '/logo/lixt.svg', href: 'https://www.lixt.ch', ratio: 794 / 305 },
   { name: 'Jungwild', src: '/logo/jungwild.svg', href: 'https://jungwild.io', ratio: 500 / 125 },
   { name: 'Syntriq', src: '/logo/syntriq.png', href: 'https://syntriq.de', ratio: 836 / 246 },
   { name: 'SMYCO', src: '/logo/smyco.svg', href: 'https://www.smyco.de', ratio: 1000 / 240 },
+  {
+    name: 'Roth & Gutenkunst',
+    src: '/logo/roth-gutenkunst.png',
+    href: 'https://roth-gutenkunst.de',
+    ratio: 311 / 88,
+    height: 40,
+  },
 ]
 
 export default function TrustedLogos() {
@@ -58,8 +72,9 @@ export default function TrustedLogos() {
             <img
               src={logo.src}
               alt={`Logo ${logo.name}`}
-              width={Math.round(LOGO_HEIGHT * logo.ratio)}
-              height={LOGO_HEIGHT}
+              width={Math.round((logo.height ?? LOGO_HEIGHT) * logo.ratio)}
+              height={logo.height ?? LOGO_HEIGHT}
+              style={logo.height ? { height: `${logo.height}px` } : undefined}
               loading="lazy"
               decoding="async"
             />

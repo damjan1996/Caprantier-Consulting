@@ -815,13 +815,19 @@
   text-align: center;
 }
 
+/*
+ * Flex statt Raster mit fester Spaltenzahl: Bei fünf Logos liesse ein
+ * vierspaltiges Raster das letzte als linksbündigen Nachzügler stehen. Mit
+ * `wrap` und zentrierter Ausrichtung bleibt jede angebrochene Zeile mittig,
+ * unabhängig davon, wie viele Logos die Liste gerade hat.
+ */
 .logoGrid {
   width: 100%;
   max-width: 960px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   gap: 20px 32px;
 }
 
@@ -829,9 +835,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Gleiche Grundbreite hält den Spaltentakt des früheren Rasters. */
+  flex: 1 1 130px;
+  max-width: 200px;
   height: 56px;
   padding: 0 12px;
-  max-width: 100%;
 }
 
 /*
@@ -3130,8 +3138,9 @@
     font-size: 26px;
   }
 
-  .logoGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Schmaler Schirm: zwei Logos je Zeile, der Umbruch bleibt zentriert. */
+  .logoLink {
+    flex: 0 0 calc(50% - 16px);
   }
 
   .mobileBar {
