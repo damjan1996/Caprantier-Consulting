@@ -318,25 +318,29 @@ Bühnenlänge. Sechs Regeln dazu:
    alle Einträge gleichzeitig da; jede Logik der Art `i === active` muss dann
    `stacked || i === active` lauten, sonst bleiben alle bis auf einen leer
    oder gedimmt.
-5. **Gestapelt blendet jeder Eintrag einzeln ein.** Unter 1100 px übernimmt
-   `useScrollScene` eine zweite Aufgabe: Es setzt `data-stapel="an"` am
-   Abschnitt und `data-sichtbar` an jedem Eintrag, sobald dieser die
-   Auslöselinie bei 88 % der Fensterhöhe erreicht; das Stylesheet hält ihn
-   davor auf `opacity: 0.25`. Beide Attribute setzt das Skript, nicht der
-   Server — ohne JavaScript wird nichts versteckt.
+5. **Unter 1100 px klebt der Abschnitt, wenn er hineinpasst.**
+   `useScrollScene` schaltet dafür zwei Zustände nacheinander:
+   `data-buehne="messen"` stellt die gestauchte Fassung her und lässt die
+   Einträge im Fluss, damit die Kartenhöhe gemessen werden kann;
+   `data-buehne="mobil"` legt sie übereinander und lässt den Abschnitt kleben.
+   Passt das fertige Gitter nicht in die freie Höhe, wird wieder abgeräumt und
+   Regel 6 greift.
 
-   **Keine Klebe-Bühne auf dem Telefon.** Zwei Bauarten wurden am 17.09.2026
-   gebaut, gemessen und verworfen; die Zahlen stehen im
-   [Designleitfaden § 8.2](seitendesign.md). Kurz: Die ganze Bühne passt auf
-   einem 390 × 844-Fenster in 9 von 22 Szenen, auf einem iPhone SE in einer.
-   Und nur den Kasten kleben zu lassen, während die Textspalte vorbeiscrollt,
-   lässt einen 128 px hohen Streifen in einem leeren Bildschirm stehen. Wer es
-   erneut versuchen will, misst bitte zuerst nach — das Werkzeug dafür ist ein
-   Leerraum-Zähler, der Bänder ohne Text oder Bild meldet.
+   Drei Dinge, die daran hängen:
 
-   Wer eine neue Bühne baut, bekommt Regel 5 geschenkt, solange die Einträge
-   `<li>` mit der Klasse `sceneItem` in einem `sceneSlot` sind. Wer eine eigene
-   Stapel-Mechanik erfindet, muss den Fall selbst bedenken.
+   - **Die Reihenfolge ist nicht beliebig.** Wird die Kartenhöhe vor der
+     Stauchung genommen, steht die ungestauchte Höhe als `min-height` im
+     Kasten: Die Karten werden schmaler, der Kasten bleibt hoch, die Stauchung
+     bringt nichts. Gemessen — die Werte änderten sich um keinen Pixel.
+   - **`var(--buehne-unten)` braucht einen Rückfallwert.** Ohne ihn ist auf
+     Seiten ohne diese Eigenschaft nicht nur der eine Wert ungültig, sondern
+     die ganze `padding`-Kurzschreibweise; das Polster fiel auf 0 und der Text
+     stand bis an die Fensterkante.
+   - **Keine pauschale Stauchung über `.sceneItem > *`.** `gap` und `padding`
+     dort setzen *fügt* Abstand hinzu, wo eine Karte keinen hatte — gemessen
+     wurden mehrere Szenen dadurch höher statt niedriger.
+
+   Abschalten je Szene: `--buehne-mobil: aus` im Stylesheet der Seite.
 
 6. **Der Abstandstakt hat unter 768 px eine eigene Stufe.** `--section-y` fällt
    dort von `clamp(104px, 15vw, 260px)` auf `clamp(48px, 10vw, 80px)`, dazu
@@ -697,7 +701,9 @@ Dazu von Hand oder per Skript:
 | Kantenausrichtung | Logo, Eyebrow, H1, H2, Fußzeile bei 390–1920 px: **0 px Abweichung** |
 | Einblendungen | jede Überschrift bei Sichtkontakt ≥ 60 % Deckkraft |
 | Waagerechter Überlauf | `scrollWidth === innerWidth` bei allen sieben Breiten |
-| Bühne gestapelt | unter 1100 px: Abschnittshöhe = Inhaltshöhe, kein Leerraum darunter |
+| Bühne gestapelt | fällt eine Szene zurück: Abschnittshöhe = Inhaltshöhe, kein Leerraum darunter |
+| Bühne auf dem Telefon | jede Szene trägt `data-buehne="mobil"` **oder** `data-stapel="an"`, keine ohne; die klebende Bühne bleibt zwischen Kopfzeile und belegtem unteren Rand |
+| Text über Text | an keiner Textstelle liegt fremder, sichtbarer Text darüber — geprüft über `elementsFromPoint`, nicht über Rechteckvergleiche |
 | Leerraum auf dem Telefon | bei 390 px keine Bänder über 180 px ohne Text oder Bild; in Summe unter 6 % der Seitenhöhe |
 | Bühne ohne Bewegung | bei `prefers-reduced-motion`: **jeder** Eintrag sichtbar, nicht nur der letzte |
 | Restzeile der Überschriften | letzte Zeile ≥ 25 % der breitesten — messbar über die Zeilenkästen (`Range.getClientRects()`), nicht nach Gefühl |

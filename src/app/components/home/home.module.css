@@ -3146,6 +3146,15 @@
   .mobileBar {
     display: flex;
   }
+
+  /*
+   * Ab hier steht die Buchungsleiste im Bild — 65px, gemessen bei 390px
+   * Fensterbreite. Die Telefon-Bühne hält den Platz frei, sonst liegt der
+   * untere Rand der Karte dahinter.
+   */
+  .page {
+    --buehne-unten: 65px;
+  }
 }
 
 @media (max-width: 768px) {

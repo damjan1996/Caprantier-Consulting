@@ -86,6 +86,15 @@
   --section-y: clamp(104px, 15vw, 260px);
   --header-h: 80px;
 
+  /*
+   * Was am unteren Fensterrand dauerhaft belegt ist.
+   *
+   * Die Telefon-Bühne hält den Platz frei. Eine Leiste, die erst beim Scrollen
+   * einfährt, lässt sich beim Laden nicht messen — die Seite meldet ihre Höhe
+   * deshalb hier an (siehe `.mobileBar` in `home.module.css`).
+   */
+  --buehne-unten: 0px;
+
   background: #fff;
   color: var(--ink);
   letter-spacing: -0.011em;
@@ -349,6 +358,125 @@
   [data-stapel='an'] .sceneItem[data-sichtbar] {
     opacity: 1;
     transform: none;
+  }
+
+  /* --------------------------------------------- Klebe-Bühne auf dem Telefon */
+
+  /*
+   * Derselbe Abschnitt wie über 1100px, nur einspaltig und enger gesetzt:
+   * Überschrift oben, Karte darunter, beides steht still, während die Karte
+   * ihre Einträge wechselt.
+   *
+   * **Gestaucht, nicht gekürzt.** Auf ein Telefon passt die Desktop-Fassung
+   * nicht — die Textspalte allein braucht dort 300 bis 620px. Enger gesetzte
+   * Abstände, eine kleinere Überschrift und der Aufruf ausserhalb der Bühne
+   * bringen sie auf ein Mass, mit dem die meisten Szenen hineinpassen. Der
+   * Fliesstext bleibt: Er ist der Grund, warum es den Abschnitt gibt.
+   *
+   * **Ob es passt, misst `useScrollScene`** nach dem Einrichten am fertigen
+   * Gitter und räumt wieder ab, wenn es zu hoch ist. Dann greifen die
+   * `[data-stapel]`-Regeln darüber. Ohne JavaScript wird `data-buehne` nie
+   * gesetzt, und alles steht untereinander da.
+   *
+   * `100svh` statt `100vh`: Die kleine Fensterhöhe ändert sich nicht, wenn die
+   * Browserleiste ein- und ausfährt. Mit `vh` würde die Bühne bei jedem Wisch
+   * die Höhe wechseln.
+   */
+  /*
+   * Zwei Zustände, ein Attribut.
+   *
+   * `data-buehne="messen"` schaltet die Stauchung ein, lässt die Einträge aber
+   * im Fluss — nur so lässt sich messen, wie hoch die *gestauchte* Karte
+   * wirklich ist. Erst `data-buehne="mobil"` legt die Einträge übereinander
+   * und lässt den Abschnitt kleben.
+   *
+   * Ohne diese Trennung wurde die Kastenhöhe an der **ungestauchten** Karte
+   * genommen und als `min-height` festgeschrieben: Die Karten wurden schmaler,
+   * der Kasten blieb hoch, und die Bühne passte trotz Stauchung nicht.
+   */
+  [data-buehne='mobil'] .sceneWrap {
+    height: calc(100svh + var(--buehne-reise));
+  }
+
+  [data-buehne='mobil'] .sceneStage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    /*
+     * Rückfallwert zwingend: Ist `--buehne-unten` auf einer Seite nicht
+     * gesetzt, ist `var(--buehne-unten)` ohne Ersatz ungültig — und zwar
+     * nicht nur dieser eine Wert, sondern die **ganze** Kurzschreibweise.
+     * Das Polster fiel damit auf 0, und der Text stand auf allen Unterseiten
+     * bis an die Fensterkante.
+     */
+    padding: var(--header-h) var(--edge) var(--buehne-unten, 0px);
+  }
+
+  [data-buehne] .sceneGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(14px, 2.4vh, 24px);
+    align-items: center;
+  }
+
+  /* Die Karte gehört unter die Überschrift, nicht wie gestapelt darüber. */
+  [data-buehne] .sceneAside {
+    order: 0;
+  }
+
+  [data-buehne] .sceneCopy {
+    gap: clamp(8px, 1.6vh, 16px);
+  }
+
+  [data-buehne] .sceneCopy .h2 {
+    font-size: clamp(22px, 5.8vw, 30px);
+    line-height: 1.14;
+  }
+
+  [data-buehne] .sceneCopy .lead {
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+
+  /*
+   * Der Aufruf steht auf der Bühne nicht mit im Bild.
+   *
+   * Er kostet rund 60px — genug, um mehrere Szenen aus dem Fenster zu
+   * drängen. Verloren geht er nicht: Nach der Bühne steht er im Fluss
+   * (`.sceneAfter`), auf der Startseite zusätzlich in der Buchungsleiste am
+   * unteren Rand, und die Kopfzeile trägt ihn ohnehin.
+   */
+  [data-buehne] .pinAction {
+    display: none;
+  }
+
+  [data-buehne='mobil'] .sceneSlot {
+    display: block;
+    min-height: var(--buehne-slot);
+  }
+
+  [data-buehne='mobil'] .sceneItem {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition:
+      opacity var(--reveal-dur) var(--ease),
+      transform var(--reveal-dur) var(--ease);
+  }
+
+  /* Wie auf dem Desktop: Gelesenes geht nach oben weg, Kommendes wartet unten. */
+  [data-buehne='mobil'] .sceneItemDone {
+    transform: translateY(-16px);
+  }
+
+  [data-buehne='mobil'] .sceneItemOn {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
   .sceneAfter {
