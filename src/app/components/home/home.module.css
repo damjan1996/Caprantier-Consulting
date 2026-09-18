@@ -47,7 +47,9 @@
 
 @media (max-width: 520px) {
   .page {
-    --cal-h: 260px;
+    /* Ohne Beschriftung in den Blöcken trägt das Muster allein — dafür
+       braucht es keine volle Rasterhöhe. */
+    --cal-h: 200px;
   }
 }
 
@@ -3045,9 +3047,9 @@
 
   .heroGrid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
+    gap: 24px;
     align-content: start;
-    padding: 24px 0 32px;
+    padding: 12px 0 24px;
     flex: none;
   }
 
@@ -3121,13 +3123,31 @@
 @media (max-width: 860px) {
   .proof {
     grid-template-columns: minmax(0, 1fr);
-    padding: 0 0 16px;
+    padding: 0 0 12px;
   }
 
+  /*
+   * Zahl und Beschriftung nebeneinander statt untereinander.
+   *
+   * Gestapelt brauchte jede der drei Kennzahlen 66px, zusammen 218px — ein
+   * Viertel Bildschirm für drei Zeilen Inhalt. Nebeneinander steht die Zahl
+   * links und die Beschriftung umbricht rechts daneben; die Zeile ist so hoch
+   * wie ihr höherer Teil statt so hoch wie beide zusammen.
+   */
   .proofCell {
     border-left: 0;
     border-top: 1px solid var(--line-soft);
-    padding: 16px 0 0;
+    padding: 11px 0 0;
+    display: flex;
+    /* Die Richtung muss mit: Eine Regel weiter oben stellt die Zelle auf
+       `column`, und `display: flex` allein kippt sie nicht zurück. */
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .proofNum {
+    flex: none;
   }
 
   .proofCell:first-child {
@@ -3224,7 +3244,29 @@
  * Kalender ein Briefmarkenbild — und sie läge über den Terminblöcken, die der
  * eigentliche Beleg sind. Beide stehen deshalb untereinander, Kalender zuerst.
  */
+/*
+ * Der Einstieg auf dem Telefon.
+ *
+ * Gemessen waren es 1.481px — 1,75 Bildschirme, bevor „Das Problem" überhaupt
+ * anfängt. Gekürzt wird ausschliesslich an Abständen und Grössen; Überschrift,
+ * Fliesstext, Kalender, Porträt und die drei Kennzahlen bleiben alle stehen.
+ * Der Einstieg ist die Seite im Kleinen, ihm etwas wegzunehmen hiesse, das
+ * Versprechen zu kürzen.
+ */
 @media (max-width: 640px) {
+  .heroCopy {
+    gap: 14px;
+  }
+
+  .heroText {
+    font-size: 15px;
+    line-height: 1.42;
+  }
+
+  .heroMeta {
+    line-height: 1.35;
+  }
+
   .heroVisual {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -3234,8 +3276,10 @@
   .portrait {
     position: static;
     width: auto;
-    aspect-ratio: 16 / 9;
-    min-height: 180px;
+    /* Flacher als 16:9, aber nicht beliebig flach: Bei 21:9 schnitt der
+       Ausschnitt den Kopf oben an. 2:1 nimmt den Raum weg, nicht die Person. */
+    aspect-ratio: 2 / 1;
+    min-height: 150px;
     border: 0;
     box-shadow: none;
   }
