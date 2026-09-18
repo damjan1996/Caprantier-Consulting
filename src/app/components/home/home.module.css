@@ -825,12 +825,12 @@
  */
 .logoGrid {
   width: 100%;
-  max-width: 960px;
+  max-width: 1040px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px 32px;
+  gap: 20px 28px;
 }
 
 .logoLink {
@@ -841,7 +841,7 @@
   flex: 1 1 130px;
   max-width: 200px;
   height: 56px;
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
 /*
@@ -854,11 +854,19 @@
  * Reihe zugleich ruhig, weil vier verschiedene Markenfarben nebeneinander
  * mehr Aufmerksamkeit ziehen als der Satz darüber.
  */
+/*
+ * `object-fit: contain` ist hier kein Schmuck, sondern die Notbremse gegen
+ * verzerrte Logos: `width: auto` zusammen mit `max-width: 100%` staucht ein
+ * zu breites Bild in der Breite, während die feste Höhe stehen bleibt — das
+ * Logo wird schmalgedrückt. Wird die Reihe eng (mehr Logos, schmaler Schirm),
+ * schrumpft das Bild damit stattdessen gleichmäßig.
+ */
 .logoLink img {
   height: 28px;
   width: auto;
   max-width: 100%;
   display: block;
+  object-fit: contain;
   filter: brightness(0);
   opacity: 0.55;
   transition: opacity 0.3s ease;
@@ -3033,6 +3041,20 @@
 }
 
 @media (max-width: 1100px) {
+  /*
+   * Ab hier passen sechs Logos nicht mehr nebeneinander. Statt sie frei
+   * umbrechen zu lassen — fünf oben, eines allein darunter, als wäre es
+   * nachgereicht — feste drei je Zeile: zwei gleich volle Zeilen.
+   *
+   * `max-width` muss dabei weichen: Die Deckelung auf 200px stammt aus der
+   * einreihigen Anordnung und würde die Drittel wieder einschnüren, sodass
+   * vier statt drei in eine Zeile passen.
+   */
+  .logoLink {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: none;
+  }
+
   .heroWrap {
     height: auto;
   }
@@ -3158,10 +3180,6 @@
     font-size: 26px;
   }
 
-  /* Schmaler Schirm: zwei Logos je Zeile, der Umbruch bleibt zentriert. */
-  .logoLink {
-    flex: 0 0 calc(50% - 16px);
-  }
 
   .mobileBar {
     display: flex;
@@ -3184,6 +3202,11 @@
 }
 
 @media (max-width: 640px) {
+  /* Telefon: zwei je Zeile — drei nebeneinander wären je knapp 100px breit. */
+  .logoLink {
+    flex: 0 0 calc(50% - 14px);
+  }
+
   .chartBars {
     height: 130px;
   }
