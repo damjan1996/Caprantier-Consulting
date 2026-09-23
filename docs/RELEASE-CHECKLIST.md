@@ -184,7 +184,8 @@ DROP TABLE IF EXISTS chat_sessions;
 - [ ] `datenschutz/dienstleister-und-rollen.md`: alle AV-Verträge abgeschlossen
       und abgelegt
 - [ ] Drittlandtransfers je Anbieter belegt
-- [ ] `datenschutz/loeschkonzept.md`: erster Löschlauf protokolliert
+- [ ] `datenschutz/loeschkonzept.md`: einmalige Löschung des Chatbestands
+      protokolliert (Abschnitt 3.5 dieser Liste)
 - [ ] `datenschutz/dsfa-bewertung.md`: Ergebnis eingetragen
 - [ ] `ki/ki-einsatz-und-kompetenz.md`: Unterweisung durchgeführt und datiert
 - [ ] Datenschutzerklärung stimmt mit den tatsächlichen Datenflüssen überein
@@ -200,7 +201,7 @@ sind aus dem Code heraus:
 
 - ob die eingetragene USt-IdNr. korrekt ist,
 - ob die AV-Verträge tatsächlich abgeschlossen wurden,
-- ob der Löschlauf in der Produktionsumgebung wirklich Daten löscht,
+- ob der Chatbestand in der Produktionsdatenbank tatsächlich gelöscht ist,
 - ob die Angaben im Impressum der tatsächlichen Rechtsform entsprechen.
 
 Diese Punkte sind ausschließlich durch Nachweise außerhalb des Repositorys

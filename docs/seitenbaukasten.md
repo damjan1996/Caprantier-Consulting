@@ -444,7 +444,7 @@ innerhalb des Abschnitts macht `--rd` in CSS. Bei sechzig Elementen wären
 sechzig Beobachter der Unterschied zwischen flüssig und ruckelig.
 
 `useReveal` nimmt **kein Argument**. Der Auslöser hängt an
-`rootMargin: '0px 0px 40% 0px'` — der Beobachtungsbereich reicht 40 % einer
+`rootMargin: '0px 0px 60% 0px'` (`REVEAL_MARGIN` in `useReveal.ts`) — der Beobachtungsbereich reicht 60 % einer
 Bildschirmhöhe unter die Bildkante, die Einblendung läuft also ab, während der
 Abschnitt noch heranscrollt. Ein Sichtbarkeitsanteil (`threshold`) funktioniert
 hier nicht: Bei Abschnitten von anderthalb Bildschirmhöhen sind 15 % mehrere
