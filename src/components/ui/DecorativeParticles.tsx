@@ -36,6 +36,14 @@ const sizeClasses = {
   lg: 'w-2 h-2',
 }
 
+// Ausgeschrieben, nicht als `animate-${…}` zusammengesetzt: Tailwind erzeugt
+// nur Klassen, die wörtlich im Quelltext stehen. `animate-ping` gab es bis zum
+// 23.09.2026 nur, weil eine andere, ungenutzte Datei die Klasse zufällig enthielt.
+const animationClasses = {
+  ping: 'animate-ping',
+  pulse: 'animate-pulse',
+}
+
 export default function DecorativeParticles({
   particles,
   preset = 'section'
@@ -47,7 +55,7 @@ export default function DecorativeParticles({
       {particlesToRender.map((particle, index) => (
         <div
           key={index}
-          className={`absolute ${particle.position} ${sizeClasses[particle.size]} ${particle.color} rounded-full animate-${particle.animation}`}
+          className={`absolute ${particle.position} ${sizeClasses[particle.size]} ${particle.color} rounded-full ${animationClasses[particle.animation]}`}
           style={{ animationDuration: particle.duration }}
         />
       ))}
