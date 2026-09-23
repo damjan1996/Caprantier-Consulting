@@ -33,5 +33,3 @@ export const contactRequestSchema = z.object({
   // generischen Meldung, sodass ein Bot den Treffer nicht zuordnen kann.
   website: z.string().max(0, 'Ungültige Eingabe').optional(),
 })
-
-export type ContactRequestInput = z.infer<typeof contactRequestSchema>

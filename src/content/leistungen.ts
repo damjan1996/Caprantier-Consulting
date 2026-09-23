@@ -12,7 +12,7 @@
  * `scripts/check-pricing.mjs` daran.
  */
 
-export interface ServiceEntry {
+interface ServiceEntry {
   /** Kurzform für die Reihenfolge-Marke in der Karte, etwa „Schritt 1". */
   step: string
   title: string
@@ -79,7 +79,7 @@ export const services: ServiceEntry[] = [
 ]
 
 /** Was im Erstgespräch geklärt wird — die drei Punkte des Abschlusses. */
-export interface AgendaEntry {
+interface AgendaEntry {
   when: string
   what: string
   detail: string

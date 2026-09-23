@@ -60,7 +60,7 @@
  */
 export const PREISE_FREIGEGEBEN = false
 
-export interface PriceModel {
+interface PriceModel {
   key: string
   name: string
   /** Ein Satz: Für wen ist dieses Modell gedacht. */

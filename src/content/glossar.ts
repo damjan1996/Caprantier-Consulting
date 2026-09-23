@@ -12,7 +12,7 @@
  * beibehalten; gruppiert wird dort nach `category`.
  */
 
-export interface GlossarBegriff {
+interface GlossarBegriff {
   /** Sprungmarke auf der Glossarseite, z. B. `/glossar#bant`. */
   id: string
   term: string

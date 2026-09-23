@@ -141,9 +141,9 @@ export const businessInfo = {
  */
 
 /** pending = nicht begonnen | submitted = angelegt, Prüfung läuft | verified = bestaetigt. */
-export type DirectoryStatus = 'pending' | 'submitted' | 'verified'
+type DirectoryStatus = 'pending' | 'submitted' | 'verified'
 
-export interface LocalDirectory {
+interface LocalDirectory {
   name: string
   /** Adresse für die Anmeldung. */
   url: string

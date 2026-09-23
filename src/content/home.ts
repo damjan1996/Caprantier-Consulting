@@ -9,7 +9,7 @@
  * der die Seite ansieht.
  */
 
-export interface HomeFaq {
+interface HomeFaq {
   question: string
   answer: string
   /** Kleine Auszeichnung über der Frage, etwa für einen neuen Abschnitt. */
@@ -74,7 +74,7 @@ export const homeFaqs: HomeFaq[] = [
   },
 ]
 
-export interface HomeProcessStep {
+interface HomeProcessStep {
   /** „TAG 0“, „WOCHE 1“ — der Zeitpunkt, nicht die Nummer. */
   phase: string
   /** Aufwand auf Kundenseite, als Kennzeichnung neben der Phase. */
