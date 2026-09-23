@@ -2,7 +2,7 @@
 
 **Erstellt:** 11.09.2026, 23:58 CEST
 **Grundlage:** Recherche zu GEO/AEO-Evidenzlage 2026 (vier parallele Rechercheläufe, ~90 Quellen) + Code-Analyse des Repos
-**Vorgänger:** `AUFTRAG-SICHTBARKEIT-2026-09.md` — **weitgehend abgearbeitet**, siehe Abschnitt 1
+**Vorgänger:** `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md` — **weitgehend abgearbeitet**, siehe Abschnitt 1
 **Repo:** `C:\Users\damja\WebstormProjects\Nico Luca Carpantier` · Branch `main`
 
 ---
@@ -12,7 +12,7 @@
 1. **Lies Abschnitt 1 und 2 zuerst.** Abschnitt 1 sagt dir, was schon erledigt ist — der alte Auftrag ist nicht mehr der Arbeitsstand. Abschnitt 2 korrigiert drei Annahmen, die im alten Auftrag noch drinstehen und durch Messdaten widerlegt sind.
 2. **Die Phasen sind eine Abhängigkeitskette, keine Prioritätenliste.** Phase 1 ist ein Tor: Inhaltsarbeit vor Phase 1 ist Arbeit hinter einer verschlossenen Tür.
 3. **Jedes Paket hat Ziel, Vorgehen, Akzeptanz, Prüfbefehl und Evidenzgrad.** Fertig ist ein Paket, wenn der Prüfbefehl grün ist.
-4. **Abschnitt 3 von `AUFTRAG-SICHTBARKEIT-2026-09.md` gilt unverändert weiter.** Die acht Guardrails dort sind nicht verhandelbar und werden hier nicht wiederholt.
+4. **Abschnitt 3 von `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md` gilt unverändert weiter.** Die acht Guardrails dort sind nicht verhandelbar und werden hier nicht wiederholt.
 5. **Was du nicht entscheiden kannst, entscheidest du nicht.** Abschnitt 6 trennt Code-Arbeit von Nicos Input.
 6. **Nicht committen, nicht deployen ohne Freigabe.** Arbeiten, `pnpm verify` grün melden, berichten.
 

@@ -3,7 +3,7 @@
  *
  * Der Auftrag "Sichtbarkeit" verlangt für die zweite Stadt-Seitenfamilie
  * (`/kaltakquise/[stadt]`) und für die Branchenseiten ausdrücklich: **keine
- * Kopie der Texte.** Der Grund steht in `docs/ap1-indexierung-befund.md` --
+ * Kopie der Texte.** Der Grund steht in `docs/archiv/2026-09/ap1-indexierung-befund.md` --
  * 52 thematisch überlappende Kurztexte haben den Blog aus dem Index
  * gehalten. Zwei Seitenfamilien mit identischen Absätzen würden denselben
  * Fehler eine Ebene höher wiederholen, nur mit 30 statt 52 Seiten.

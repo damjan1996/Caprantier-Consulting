@@ -45,7 +45,7 @@ export const metadata: Metadata = {
  * die beiden Branchenseiten kaum eingehende interne Verweise. Genau dieser
  * Zustand – Seiten, zu denen kaum ein Link führt – ist im Blog die belegte
  * Ursache dafür gewesen, dass 40 von 52 Beiträgen nie indexiert wurden (siehe
- * `docs/ap1-indexierung-befund.md`).
+ * `docs/archiv/2026-09/ap1-indexierung-befund.md`).
  *
  * Aufgebaut als Familien-Einstieg (Designleitfaden § 9.1): fünf Abschnitte,
  * zwei davon als Klebe-Bühne, rund zwölf Bildschirmhöhen. Ein Unterschied zu

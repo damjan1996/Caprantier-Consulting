@@ -3,8 +3,8 @@
 **Erstellt:** 12.09.2026
 **Repo:** `C:\Users\damja\WebstormProjects\Nico Luca Carpantier` · Branch `main` · Remote `github.com/damjan1996/Caprantier-Consulting`
 **Führt zusammen:**
-- `ROADMAP-KI-SICHTBARKEIT-2026-09.md` (11.09., GEO/AEO-Evidenz + Code-Analyse) — **Struktur, Evidenzdisziplin und Paket-IDs dieses Dokuments stammen von dort**
-- `AUFTRAG-SICHTBARKEIT-2026-09.md` (10.09.) — Abschnitt 3 („Unantastbar") gilt unverändert
+- `docs/sichtbarkeit/ROADMAP-KI-SICHTBARKEIT-2026-09.md` (11.09., GEO/AEO-Evidenz + Code-Analyse) — **Struktur, Evidenzdisziplin und Paket-IDs dieses Dokuments stammen von dort**
+- `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md` (10.09.) — Abschnitt 3 („Unantastbar") gilt unverändert
 - **Branchenatlas** https://claude.ai/code/artifact/76049c3f-6bbe-4005-9772-1238581a4620 (12.09., 157 Suchanfragen, 20 Wettbewerber-Domains) — liefert die Inhalte der neuen `AP-B`-Pakete
 - **Wettbewerbsradar** https://claude.ai/code/artifact/3369d312-0c78-4854-924f-c93ecd9e166c (10.09.)
 
@@ -44,7 +44,7 @@
 
 ### Unantastbar
 
-Die acht Punkte aus `AUFTRAG-SICHTBARKEIT-2026-09.md` Abschnitt 3 gelten unverändert und werden hier nicht wiederholt. Kurzform, weil diese fünf in diesem Dokument ständig berührt werden:
+Die acht Punkte aus `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md` Abschnitt 3 gelten unverändert und werden hier nicht wiederholt. Kurzform, weil diese fünf in diesem Dokument ständig berührt werden:
 
 - **Kein `aggregateRating`/`Review`-Markup ohne echte, freigegebene, sichtbare Kundenstimmen** (§ 5 UWG, Build-Gate).
 - **Keine erfundenen Zahlen** — keine Logos ohne Freigabe, keine Terminquoten ohne echtes Projekt.

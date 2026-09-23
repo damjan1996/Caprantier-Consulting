@@ -23,7 +23,7 @@ interface BlogGridProps {
  * im ausgelieferten HTML standen damit 12 von 52 Artikel-Links, und die
  * übrigen 40 waren nur über die Sitemap erreichbar. Keiner dieser 40 Beiträge
  * war indexiert; alle vier indexierten standen auf Seite 1. Der Befund steht
- * in `docs/ap1-indexierung-befund.md`.
+ * in `docs/archiv/2026-09/ap1-indexierung-befund.md`.
  *
  * Deshalb rendert die Übersicht jetzt alle Beiträge. Der Kategoriefilter
  * blendet nur aus, was bereits im HTML steht -- Googlebot sieht die

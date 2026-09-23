@@ -119,6 +119,9 @@ logs/security/
 /BLOG_CONTENT_PLAN.md
 /CLAUDE_CODE_WEBSITE_WORKFLOW_V3_AUTOMATED.md
 /WORKFLOW_FLOWCHART.md
+# Allgemeine Workflow-Vorlagen mit Zugangsdaten -- gehoeren nie ins Repository
+/CLAUDE_CODE_WEBSITE_WORKFLOW_V2.md
+/NANOBANANA_WORKFLOW.md
 
 # Unfertige Hilfsskripte
 /generate-pdf.js

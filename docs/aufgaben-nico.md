@@ -1,6 +1,6 @@
 # Was nur Nico erledigen kann
 
-**Stand:** 10.09.2026 · **Grundlage:** `AUFTRAG-SICHTBARKEIT-2026-09.md`, Abschnitt 4
+**Stand:** 10.09.2026 · **Grundlage:** `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md`, Abschnitt 4
 
 Die Website ist umgebaut. Was jetzt noch fehlt, lässt sich nicht programmieren –
 es braucht Firmendaten, Identitätsnachweise, echte Projektzahlen und
@@ -253,7 +253,7 @@ Ein Fototermin löst das. Wenn die KI-Bilder ersetzt werden, muss
 
 ## 7 · Google-Search-Console-Zugang
 
-Die Diagnose in `docs/ap1-indexierung-befund.md` ist zu großen Teilen im Repo
+Die Diagnose in `docs/archiv/2026-09/ap1-indexierung-befund.md` ist zu großen Teilen im Repo
 belegt: 40 von 52 Beiträgen hatten keinen crawlbaren internen Link, keiner
 davon war indexiert. Was ohne Search-Console-Zugang **Annahme** bleibt, ist die
 Zuordnung zu Googles eigenen Kategorien („Gefunden – zurzeit nicht indexiert"

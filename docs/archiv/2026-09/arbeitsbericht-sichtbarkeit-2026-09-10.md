@@ -2,21 +2,21 @@
 
 **Arbeit ausgeführt:** 10.09.2026, ca. 19:50–21:10 CEST
 **Bericht erstellt:** 12.09.2026
-**Auftrag:** `AUFTRAG-SICHTBARKEIT-2026-09.md`
+**Auftrag:** `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md`
 **Ausgangs-Commit:** `d701236` · **Branch:** `main` · **nicht committet, nicht deployt**
 
 Dieses Dokument ist der vollständige Bericht über alles, was in dieser Session
 geändert wurde. Zwei weitere Dokumente gehen ins Detail:
 
-- `docs/ap1-indexierung-befund.md` — die Diagnose, warum 48 von 52 Beiträgen
+- `docs/archiv/2026-09/ap1-indexierung-befund.md` — die Diagnose, warum 48 von 52 Beiträgen
   nicht im Index waren
 - `docs/aufgaben-nico.md` — was ohne Nicos Zuarbeit nicht weitergeht
-- `docs/revision-2026-09-10.md` — der Revisionslauf nach Abschnitt 7 des Auftrags
+- `docs/archiv/2026-09/revision-2026-09-10.md` — der Revisionslauf nach Abschnitt 7 des Auftrags
 
 > **Nicht Teil dieser Session:** Zwei Dateien im Projektstamm stammen aus
 > parallelen Sessions und bauen auf dem hier beschriebenen Stand auf —
-> `ROADMAP-KI-SICHTBARKEIT-2026-09.md` (12.09., 00:08) und
-> `ROADMAP-GESAMT-2026-09.md` (12.09., 00:26). Sie wurden nicht angefasst.
+> `docs/sichtbarkeit/ROADMAP-KI-SICHTBARKEIT-2026-09.md` (12.09., 00:08) und
+> `docs/sichtbarkeit/ROADMAP-GESAMT-2026-09.md` (12.09., 00:26). Sie wurden nicht angefasst.
 > Wo sie den hier dokumentierten Stand beschreiben, gilt im Zweifel dieser
 > Bericht, weil er aus dem Arbeitsvorgang selbst entstanden ist.
 
@@ -63,7 +63,7 @@ technisch intakt, aber inhaltlich und strukturell nicht wettbewerbsfähig.
 
 ### AP-1 · Diagnose der Nicht-Indexierung
 
-**Ergebnis:** `docs/ap1-indexierung-befund.md`
+**Ergebnis:** `docs/archiv/2026-09/ap1-indexierung-befund.md`
 
 Zuerst wurde ein Messwerkzeug gebaut (`scripts/blog-audit.mjs`), das je Beitrag
 Wortzahl, FAQ-Einträge, externe Quellen und interne Links zählt. Der
@@ -503,9 +503,9 @@ scripts/lib/count-words.mjs
 
 **Dokumentation**
 ```
-docs/ap1-indexierung-befund.md
+docs/archiv/2026-09/ap1-indexierung-befund.md
 docs/aufgaben-nico.md
-docs/revision-2026-09-10.md
+docs/archiv/2026-09/revision-2026-09-10.md
 ```
 
 ### Geändert (24)

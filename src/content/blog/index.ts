@@ -20,7 +20,7 @@ import { vertriebsteamAufbauenRecruiting } from './vertriebsteam-aufbauen-recrui
  * Bis zum 10.09.2026 standen hier 52 Beiträge mit einem Median von 429
  * Wörtern. Vier davon waren im Google-Index; die übrigen 48 hatte Google
  * gecrawlt und nicht aufgenommen. Die Diagnose steht in
- * `docs/ap1-indexierung-befund.md`.
+ * `docs/archiv/2026-09/ap1-indexierung-befund.md`.
  *
  * Die 52 wurden auf diese 13 zusammengeführt. Jeder entfernte Slug wird per
  * 301 auf seinen Zielbeitrag umgeleitet – die Zuordnung steht in

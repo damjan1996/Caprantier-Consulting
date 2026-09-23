@@ -11,7 +11,7 @@ import styles from './branchen.module.css'
  * Ohne diese Übersicht hätten die Branchenseiten kaum eingehende interne
  * Verweise. Genau dieser Zustand ist im Blog die belegte Ursache dafür
  * gewesen, dass 40 von 52 Beiträgen nie indexiert wurden
- * (`docs/ap1-indexierung-befund.md`).
+ * (`docs/archiv/2026-09/ap1-indexierung-befund.md`).
  *
  * Zwei Karten statt fünfzehn wie auf `/kaltakquise`: Der Wegweiser darf hier
  * kurz sein, dafür sagen die Karten mehr als einen Namen. Kein Kachelfeld,

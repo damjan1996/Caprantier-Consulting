@@ -31,7 +31,7 @@ import styles from './components/kaltakquise.module.css'
  * Bewusst **nicht** übernommen: Problem, Abgrenzung, Referenzen und die vier
  * Leistungen. Die stehen auf Startseite und Leistungsseite. Fünfzehn Kopien
  * derselben Argumente wären genau der Dünn-Content-Fehler, den
- * `docs/ap1-indexierung-befund.md` für den Blog beschreibt.
+ * `docs/archiv/2026-09/ap1-indexierung-befund.md` für den Blog beschreibt.
  *
  * Kein `'use client'`: Die Abschnitte bringen es selbst mit, wo sie Zustand
  * oder Scroll brauchen.
