@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import BranchenIntro from './_components/BranchenIntro'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { TERMIN } from './_components/termin'
 import UnterschiedScene from './_components/UnterschiedScene'
 import WegweiserSection from './_components/WegweiserSection'
 import ZuschnittSection from './_components/ZuschnittSection'
@@ -95,7 +96,7 @@ export default function BranchenPage() {
           (Designleitfaden § 2.2). Die helle Bühne dazwischen trennt sie. */}
       <ZuschnittSection />
       <UnterschiedScene />
-      <TerminScene />
+      <TerminScene {...TERMIN} />
       <SectionRail sections={BRANCHEN_SECTIONS} />
     </div>
   )

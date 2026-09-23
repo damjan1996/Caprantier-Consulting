@@ -48,10 +48,37 @@ Alles Weitere lässt sich aus diesen beiden ableiten.
 ```
 src/app/<route>/
   page.tsx                  Server-Komponente: Metadaten, JSON-LD, Komposition
-  components/
+  _components/
     <Abschnitt>.tsx         je Abschnitt eine Datei
     <route>.module.css      ein Stylesheet je Seite
-    index.ts                Sammel-Export
+    sections.ts             Abschnittsliste für die Fortschrittsleiste
+    termin.tsx              Inhalt der Abschluss-Bühne (falls die Seite eine hat)
+    fragen.tsx              Inhalt der häufigen Fragen (falls die Seite welche hat)
+```
+
+**Was nur diese Seite braucht, liegt in ihrem `_components/`.** Der Unterstrich
+ist die Next.js-Konvention für Ordner, die keine Route sind. Was mehrere Seiten
+teilen, liegt unter `src/components/` — die Seitengrundlage in
+`src/components/seite/`, Buchung, Einwilligung und Messung je in einem eigenen
+Ordner. Wandert ein Abschnitt auf eine zweite Seite, zieht er dorthin um.
+
+**Kein Sammel-Export (`index.ts`).** `page.tsx` importiert jeden Abschnitt
+direkt (`import KontaktIntro from './_components/KontaktIntro'`). Dann findet die
+Suche nach einem Dateipfad jede Verwendung — für Menschen wie für Werkzeuge.
+Importe innerhalb des eigenen Ordners bleiben relativ, alles andere geht über
+den Alias `@/`.
+
+**Gemeinsame Szenen, eigener Inhalt.** Abschluss-Bühne und häufige Fragen sind
+fertige Komponenten (`src/components/seite/TerminScene.tsx`,
+`FragenSection.tsx`). Die Seite liefert nur den Inhalt — in `termin.tsx` bzw.
+`fragen.tsx`, zusammen mit der Begründung, warum gerade diese Liste auf dieser
+Seite steht:
+
+```tsx
+import TerminScene from '@/components/seite/TerminScene'
+import { TERMIN } from './_components/termin'
+…
+<TerminScene {...TERMIN} />
 ```
 
 Ein Stylesheet **je Seite**, nicht je Komponente. Die Abschnitte einer Seite
@@ -64,13 +91,15 @@ Fortschrittsleiste — steht in `src/components/seite/basis.module.css` und
 wird eingebunden:
 
 ```css
+/* Pfad relativ zum Stylesheet in src/app/<route>/_components/ —
+   CSS kennt den Alias @/ nicht. Unter [stadt] eine Ebene mehr. */
 .page {
-  composes: page from '../seite/basis.module.css';
+  composes: page from '../../../components/seite/basis.module.css';
 }
 
 /* Und für jede weitere Grundlagen-Klasse, die die Seite benutzt: */
 .sceneStage {
-  composes: sceneStage from '../seite/basis.module.css';
+  composes: sceneStage from '../../../components/seite/basis.module.css';
 }
 ```
 
@@ -92,7 +121,7 @@ für den Zuschnitt: der Stummel-Block oben in `home.module.css`.
 > `var(--accent)` schreibt, bekommt also **grau statt blau**, und `var(--ink)`
 > lässt die Deklaration ersatzlos fallen. Ohne Fehlermeldung.
 >
-> Deshalb steht `composes: page from '../seite/basis.module.css'` ganz oben,
+> Deshalb steht `composes: page from '…/components/seite/basis.module.css'` ganz oben,
 > und das Wurzelelement der Seite trägt diese Klasse.
 
 CSS-Module statt Tailwind für neue Seiten. Der Grund ist nicht Geschmack: Die
@@ -380,7 +409,12 @@ Drei Punkte, die daran hängen:
    der Gliederung. Dabei die Überschriftengröße zurücksetzen, sonst erbt die
    Schaltfläche sie über `font: inherit`.
 
-**Steht in `seite/basis.module.css`**, Abschnitt „Aufklappen“ — eingebunden
+**Als fertiger Abschnitt:** `src/components/seite/FragenSection.tsx` — die
+Seite liefert Überschrift, Einleitung und Fragen aus `_components/fragen.tsx`
+(siehe § 2.1). Die Fragen kommen dort aus derselben Funktion wie das
+`FAQPage`-Markup.
+
+**Die Klassen stehen in `seite/basis.module.css`**, Abschnitt „Aufklappen“ — eingebunden
 über `composes`, wie alles andere aus der Grundlage. Die Klassen heißen dort
 `faqList`, `faqItem`, `faqItemOpen`, `faqToggle`, `faqQ`, `faqIcon`,
 `faqPanel`, `faqPanelOpen`, `faqPanelInner` und `faqAnswer`.
@@ -738,6 +772,8 @@ Damit diese Punkte nicht als Fehler „korrigiert" werden:
 | Einblenden | `src/components/seite/useReveal.ts` |
 | Scrollgebundene Szenen | `src/components/seite/useScrollScene.ts` |
 | Fortschrittsleiste | `src/components/seite/SectionRail.tsx` |
+| Abschluss-Bühne „Termin“ | `src/components/seite/TerminScene.tsx`, Inhalt je Seite in `_components/termin.tsx` |
+| Häufige Fragen zum Aufklappen | `src/components/seite/FragenSection.tsx`, Inhalt je Seite in `_components/fragen.tsx` |
 | Abschnittsliste der Startseite | `src/app/(home)/_components/sections.ts` |
 | Abschnitte der Startseite | `src/app/(home)/_components/` |
 | Buchung | `src/components/calendly/CalendlyProvider.tsx` |

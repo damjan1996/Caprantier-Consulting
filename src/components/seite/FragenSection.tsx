@@ -1,43 +1,38 @@
 'use client'
 
-import { useId, useState } from 'react'
-import type { City } from '@/lib/cities'
-import type { CityAcquisition } from '@/lib/city-acquisition'
-import { getKaltakquiseFAQs } from '@/lib/schemas'
+import { useId, useState, type ReactNode } from 'react'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
-import styles from './kaltakquise.module.css'
+import styles from './FragenSection.module.css'
+
+/** Eine Frage mit Antwort — dieselbe Form wie im FAQPage-Markup. */
+export type Frage = {
+  question: string
+  answer: string
+}
+
+/**
+ * Der Inhalt, den jede Seite selbst mitbringt. Er liegt je Seite in
+ * `_components/fragen.tsx` — dort steht auch, woher die Fragen kommen.
+ */
+export type FragenInhalt = {
+  title: ReactNode
+  lead: ReactNode
+  /** Aus derselben Quelle wie das FAQPage-Markup der Seite (Baukasten § 8.3). */
+  faqs: readonly Frage[]
+}
 
 /**
  * Häufige Fragen — im Fluss, zum Aufklappen.
  *
- * Bewusst **keine** Klebe-Bühne, obwohl die Startseite ihre neun Fragen auf
- * eine stellt. Zwei Gründe, beide inhaltlich:
- *
- * 1. Wer hier ankommt, kommt aus der Suche mit **einer** Frage. Eine Liste zum
- *    Nachschlagen findet man, eine Bühne muss man durchscrollen — der
- *    Designleitfaden § 5.2 nennt genau diesen Fall.
- * 2. Drei der sechs Antworten geben den Ortstext wieder, den der Abschnitt
- *    „Der Markt vor Ort“ oben bereits sichtbar zeigt. Eingeklappt ist diese
- *    Überschneidung harmlos: Wer die Frage öffnet, hat sie gestellt. Offen auf
- *    einer Bühne wäre sie derselbe Absatz ein zweites Mal, nur langsamer.
- *
- * Die Fragen kommen aus `getKaltakquiseFAQs` in `src/lib/schemas.ts` — aus
- * derselben Quelle wie das FAQPage-Markup der Seite. Zwei Textstände zwischen
- * sichtbarem Inhalt und Markup sind ein Verstoß, den man der Seite nicht
- * ansieht (Baukasten § 8.3).
- *
  * Eingeklappt heißt nicht ausgelassen: Die Antworten stehen vollständig im
  * ausgelieferten HTML und sind nur über `grid-template-rows: 0fr` verborgen.
  * `inert` verhindert dabei, dass man sich durch unsichtbare Absätze tabbt.
+ *
+ * Das Aufklapp-Muster selbst steht in der Grundlage
+ * (`seite/basis.module.css`, Abschnitt „Aufklappen“).
  */
-export default function FragenSection({
-  city,
-  acquisition,
-}: {
-  city: City
-  acquisition: CityAcquisition
-}) {
+export default function FragenSection({ title, lead, faqs }: FragenInhalt) {
   const { openCalendly, onHover } = useCalendly()
   const { ref, isIn } = useReveal<HTMLElement>()
   const panelId = useId()
@@ -45,8 +40,6 @@ export default function FragenSection({
   /* Die erste Frage steht offen: Sie ist die, wegen der die Seite gelesen
      wird, und sie zeigt zugleich, dass die anderen sich öffnen lassen. */
   const [offen, setOffen] = useState<number | null>(0)
-
-  const faqs = getKaltakquiseFAQs(city, acquisition)
 
   return (
     <section id="fragen" ref={ref} className={styles.section} aria-labelledby="fragen-title">
@@ -64,7 +57,7 @@ export default function FragenSection({
           data-fade-in=""
           style={{ '--rd': '0.08s' } as React.CSSProperties}
         >
-          Sechs Fragen, die vor dem ersten Anruf geklärt sein sollten.
+          {title}
         </h2>
 
         <p
@@ -72,8 +65,7 @@ export default function FragenSection({
           data-fade-in=""
           style={{ '--rd': '0.16s' } as React.CSSProperties}
         >
-          Die Antworten gelten für {city.name}, nicht allgemein für Deutschland. Was danach offen
-          bleibt, klären wir in 15 Minuten am Telefon.
+          {lead}
         </p>
 
         {/* Der Aufruf steht im Abschnitt, nicht dahinter — und oben, nicht

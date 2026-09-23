@@ -1,44 +1,45 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import type { City } from '@/lib/cities'
+import { useRef, useState, type ReactNode } from 'react'
 import { businessInfo } from '@/lib/local-seo'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
-import styles from './stadt.module.css'
+import styles from './TerminScene.module.css'
+
+/** Ein Eintrag der Liste rechts auf der dunklen Karte. */
+export type TerminPunkt = {
+  when: string
+  what: string
+  detail: string
+}
+
+/**
+ * Der Inhalt, den jede Seite selbst mitbringt. Er liegt je Seite in
+ * `_components/termin.tsx` — dort steht auch, warum gerade diese Liste.
+ */
+export type TerminInhalt = {
+  title: ReactNode
+  text: ReactNode
+  /** Überschrift der Liste rechts. */
+  planHead: string
+  items: readonly TerminPunkt[]
+  /** Kleingedrucktes unter der Liste. */
+  planNote: string
+  /** Für Listen mit längeren Einträgen: etwas mehr Mindesthöhe je Eintrag. */
+  tallItems?: boolean
+}
 
 /**
  * Abschluss — klebende Bühne mit dunkler Karte.
  *
- * Die Überschrift ist die stärkste Zusage dieser Seitenfamilie und zugleich
- * die, die man von einer Agentur am wenigsten erwartet: Was entsteht, gehört
- * dem Kunden — auch danach. Wer überlegt, den Vertrieb abzugeben, fürchtet
- * genau das Gegenteil.
- *
- * Rechts steht deshalb nicht die Tagesordnung des Erstgesprächs
- * (die trägt `/leistungen`) und nicht der Zwei-Wochen-Ablauf (den trägt
- * `/kaltakquise/[stadt]`), sondern was am Ende übrig bleibt.
+ * Dieselbe Mechanik auf sechs Seiten: links Zusage, Buchung und Mail, rechts
+ * eine Liste, die beim Scrollen Punkt für Punkt aufleuchtet. Was die Seiten
+ * unterscheidet, ist allein der Inhalt — und der ist auf jeder Seite ein
+ * anderer, damit dieselbe Karte nicht zweimal dasselbe verspricht
+ * (Designleitfaden, Abschluss).
  */
-const BLEIBT = [
-  {
-    when: 'Die Liste',
-    what: 'Mit ihren Auswahlkriterien',
-    detail: 'Warum ein Unternehmen daraufsteht, ist festgehalten – nicht nur, dass es daraufsteht.',
-  },
-  {
-    when: 'Die Notizen',
-    what: 'In Ihrem CRM',
-    detail: 'Gesprächsnotizen und Absagegründe im Wortlaut, von Anfang an bei Ihnen statt in einer Tabelle bei uns.',
-  },
-  {
-    when: 'Das Gerüst',
-    what: 'An echten Anrufen erarbeitet',
-    detail: 'Wer die Akquise danach selbst weiterführt, fängt nicht bei null an.',
-  },
-]
-
-export default function TerminScene({ city }: { city: City }) {
+export default function TerminScene({ title, text, planHead, items, planNote, tallItems = false }: TerminInhalt) {
   const { openCalendly, onHover } = useCalendly()
   const { ref, isIn } = useReveal<HTMLDivElement>()
 
@@ -68,7 +69,7 @@ export default function TerminScene({ city }: { city: City }) {
     apply: (progress) => {
       if (railRef.current) railRef.current.style.transform = `scaleX(${progress.toFixed(3)})`
 
-      const next = Math.min(BLEIBT.length - 1, Math.floor(progress * BLEIBT.length))
+      const next = Math.min(items.length - 1, Math.floor(progress * items.length))
       if (next !== activeRef.current) {
         activeRef.current = next
         setActive(next)
@@ -80,7 +81,7 @@ export default function TerminScene({ city }: { city: City }) {
     <section
       id="termin"
       ref={sectionRef}
-      className={styles.sceneTermin}
+      className={tallItems ? `${styles.sceneTermin} ${styles.sceneTerminTall}` : styles.sceneTermin}
       aria-labelledby="termin-title"
     >
       <div ref={wrapRef} className={styles.sceneWrap}>
@@ -107,7 +108,7 @@ export default function TerminScene({ city }: { city: City }) {
                 data-fade-in=""
                 style={{ '--rd': '0.22s' } as React.CSSProperties}
               >
-                Am Ende gehört Ihnen die Liste. Auch wenn wir aufhören.
+                {title}
               </h2>
 
               <p
@@ -115,8 +116,7 @@ export default function TerminScene({ city }: { city: City }) {
                 data-fade-in=""
                 style={{ '--rd': '0.3s' } as React.CSSProperties}
               >
-                15 Minuten, in denen Sie schildern, wen Sie in {city.name} erreichen wollen, und
-                wir sagen, ob wir das können. Kein Pitch, keine Präsentation.
+                {text}
               </p>
 
               <div
@@ -163,13 +163,13 @@ export default function TerminScene({ city }: { city: City }) {
               data-fade-in=""
               style={{ '--ry': '28px', '--rd': '0.35s' } as React.CSSProperties}
             >
-              <span className={styles.closePlanHead}>Was am Ende Ihnen gehört</span>
+              <span className={styles.closePlanHead}>{planHead}</span>
 
               {/* Kein `aria-hidden` auf den nicht sichtbaren Punkten: eine
                   zusammenhängende Aufzählung, die eine Vorlesehilfe am Stück
                   durchgehen soll (Baukasten § 4.4, Regel 3). */}
               <ol className={styles.sceneSlot}>
-                {BLEIBT.map((punkt, index) => (
+                {items.map((punkt, index) => (
                   <li
                     key={punkt.when}
                     className={`${styles.sceneItem} ${
@@ -187,9 +187,7 @@ export default function TerminScene({ city }: { city: City }) {
                 ))}
               </ol>
 
-              <span className={styles.closePlanNote}>
-                Nichts davon bleibt bei uns zurück.
-              </span>
+              <span className={styles.closePlanNote}>{planNote}</span>
             </div>
           </div>
         </div>

@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation'
 import AufwandSection from './_components/AufwandSection'
-import FragenSection from './_components/FragenSection'
+import FragenSection from '@/components/seite/FragenSection'
+import { fragen } from './_components/fragen'
 import RegionSection from './_components/RegionSection'
 import StadtIntro from './_components/StadtIntro'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { termin } from './_components/termin'
 import UebergabeScene from './_components/UebergabeScene'
 import { STADT_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
@@ -187,8 +189,8 @@ export default async function StadtPage({ params }: Props) {
       <UebergabeScene />
       <RegionSection city={city} />
       <AufwandSection />
-      <FragenSection city={city} />
-      <TerminScene city={city} />
+      <FragenSection {...fragen(city)} />
+      <TerminScene {...termin(city)} />
       <SectionRail sections={STADT_SECTIONS} />
     </div>
   )

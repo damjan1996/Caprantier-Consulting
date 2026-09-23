@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import GrenzeSection from './_components/GrenzeSection'
 import HausSection from './_components/HausSection'
 import HerkunftScene from './_components/HerkunftScene'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { TERMIN } from './_components/termin'
 import UeberUnsIntro from './_components/UeberUnsIntro'
 import ZusagenSection from './_components/ZusagenSection'
 import { UEBER_UNS_SECTIONS } from './_components/sections'
@@ -117,7 +118,7 @@ export default function UeberUnsPage() {
           Grenzkarte und der Abschluss dürfen nicht aneinandergrenzen
           (Designleitfaden § 2.2). */}
       <HausSection />
-      <TerminScene />
+      <TerminScene {...TERMIN} />
       <SectionRail sections={UEBER_UNS_SECTIONS} />
     </div>
   )

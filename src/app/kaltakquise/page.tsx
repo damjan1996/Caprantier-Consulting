@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import GrenzenSection from './_components/GrenzenSection'
 import MaerkteSection from './_components/MaerkteSection'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { TERMIN } from './_components/termin'
 import UebersichtIntro from './_components/UebersichtIntro'
 import UnterschiedScene from './_components/UnterschiedScene'
 import { KALTAKQUISE_START_SECTIONS } from './_components/sections'
@@ -99,7 +100,7 @@ export default function KaltakquisePage() {
           eine Liste von fünfzehn Städten weckt. */}
       <GrenzenSection />
       <UnterschiedScene />
-      <TerminScene />
+      <TerminScene {...TERMIN} />
       <SectionRail sections={KALTAKQUISE_START_SECTIONS} />
     </div>
   )

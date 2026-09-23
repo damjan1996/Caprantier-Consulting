@@ -1,0 +1,94 @@
+/*
+ * Häufige Fragen zum Aufklappen — gemeinsam für die beiden Stadtseiten.
+ *
+ * Der Aufklappbereich selbst steht in der Grundlage (`basis.module.css`,
+ * Abschnitt „Aufklappen“); hier liegen nur die Durchreichungen und der Kopf.
+ */
+
+.btnDark {
+  composes: btnDark from './basis.module.css';
+}
+
+.btnHint {
+  composes: btnHint from './basis.module.css';
+}
+
+.btnSmall {
+  composes: btnSmall from './basis.module.css';
+}
+
+.eyebrow {
+  composes: eyebrow from './basis.module.css';
+}
+
+.h2 {
+  composes: h2 from './basis.module.css';
+}
+
+.lead {
+  composes: lead from './basis.module.css';
+}
+
+.pinAction {
+  composes: pinAction from './basis.module.css';
+}
+
+.reveal {
+  composes: reveal from './basis.module.css';
+}
+
+.revealIn {
+  composes: revealIn from './basis.module.css';
+}
+
+.section {
+  composes: section from './basis.module.css';
+}
+
+.fragenHead {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.2vh, 24px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.faqList {
+  composes: faqList from './basis.module.css';
+}
+
+.faqItem {
+  composes: faqItem from './basis.module.css';
+}
+
+.faqItemOpen {
+  composes: faqItemOpen from './basis.module.css';
+}
+
+.faqToggle {
+  composes: faqToggle from './basis.module.css';
+}
+
+.faqQ {
+  composes: faqQ from './basis.module.css';
+}
+
+.faqIcon {
+  composes: faqIcon from './basis.module.css';
+}
+
+.faqPanel {
+  composes: faqPanel from './basis.module.css';
+}
+
+.faqPanelOpen {
+  composes: faqPanelOpen from './basis.module.css';
+}
+
+.faqPanelInner {
+  composes: faqPanelInner from './basis.module.css';
+}
+
+.faqAnswer {
+  composes: faqAnswer from './basis.module.css';
+}
+

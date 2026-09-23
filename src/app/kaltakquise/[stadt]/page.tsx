@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation'
-import FragenSection from './_components/FragenSection'
+import FragenSection from '@/components/seite/FragenSection'
+import { fragen } from './_components/fragen'
 import MarktScene from './_components/MarktScene'
 import RechtSection from './_components/RechtSection'
 import StadtIntro from './_components/StadtIntro'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { termin } from './_components/termin'
 import UmgebungSection from './_components/UmgebungSection'
 import { KALTAKQUISE_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
@@ -163,9 +165,9 @@ export default async function KaltakquiseStadtPage({ params }: Props) {
       <StadtIntro city={city} />
       <MarktScene city={city} acquisition={acquisition} />
       <RechtSection city={city} />
-      <FragenSection city={city} acquisition={acquisition} />
+      <FragenSection {...fragen(city, acquisition)} />
       <UmgebungSection city={city} />
-      <TerminScene city={city} />
+      <TerminScene {...termin(city)} />
       <SectionRail sections={KALTAKQUISE_SECTIONS} />
     </div>
   )

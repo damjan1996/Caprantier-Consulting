@@ -61,16 +61,8 @@
   composes: h2 from '../../../components/seite/basis.module.css';
 }
 
-.h3 {
-  composes: h3 from '../../../components/seite/basis.module.css';
-}
-
 .lead {
   composes: lead from '../../../components/seite/basis.module.css';
-}
-
-.metaNote {
-  composes: metaNote from '../../../components/seite/basis.module.css';
 }
 
 .pinAction {

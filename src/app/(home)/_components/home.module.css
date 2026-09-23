@@ -148,38 +148,6 @@
   composes: pinAction from '../../../components/seite/basis.module.css';
 }
 
-.rail {
-  composes: rail from '../../../components/seite/basis.module.css';
-}
-
-.railFill {
-  composes: railFill from '../../../components/seite/basis.module.css';
-}
-
-.railItem {
-  composes: railItem from '../../../components/seite/basis.module.css';
-}
-
-.railItemOn {
-  composes: railItemOn from '../../../components/seite/basis.module.css';
-}
-
-.railLabel {
-  composes: railLabel from '../../../components/seite/basis.module.css';
-}
-
-.railList {
-  composes: railList from '../../../components/seite/basis.module.css';
-}
-
-.railOn {
-  composes: railOn from '../../../components/seite/basis.module.css';
-}
-
-.railTrack {
-  composes: railTrack from '../../../components/seite/basis.module.css';
-}
-
 .reveal {
   composes: reveal from '../../../components/seite/basis.module.css';
 }
@@ -243,7 +211,6 @@
 .textLinkMuted {
   composes: textLinkMuted from '../../../components/seite/basis.module.css';
 }
-
 
 /*
  * Der Problem-Abschnitt bekommt einen eigenen, weiteren Takt.
@@ -560,11 +527,6 @@
   text-align: center;
 }
 
-.portraitRole {
-  font-size: 12px;
-  opacity: 0.85;
-}
-
 /* Wochenkalender */
 
 .calendar {
@@ -877,109 +839,6 @@
 }
 
 /* ------------------------------------------------------------------- Problem */
-
-/* Zwei Spalten: links Kopf und Schrittliste, rechts das mitlaufende Diagramm.
-   Das Diagramm überspannt beide Zeilen, damit `position: sticky` einen
-   Bezugsrahmen bekommt, der über die ganze Liste reicht. */
-.splitGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  column-gap: clamp(40px, 6vw, 96px);
-  row-gap: clamp(40px, 6vw, 72px);
-  align-items: start;
-}
-
-.splitHead {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.splitBody {
-  grid-column: 1;
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(48px, 12vh, 140px);
-  min-width: 0;
-}
-
-.splitAside {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  align-self: stretch;
-  min-width: 0;
-}
-
-/*
- * Der Kleber.
- *
- * Vorher heftete das Element mit seiner Oberkante knapp unter der Kopfzeile
- * fest — es klebte sichtbar "ganz oben" statt im Blickfeld zu stehen. Jetzt
- * spannt der Kleber die nutzbare Fensterhoehe auf und zentriert seinen Inhalt
- * darin: Die Grafik steht auf halber Hoehe still, waehrend der Text daneben
- * durchlaeuft.
- *
- * `min-height` statt `height`, damit ein Inhalt, der hoeher ist als das
- * Fenster, den Kasten wachsen laesst statt oben abgeschnitten zu werden.
- */
-.splitSticky {
-  position: sticky;
-  top: var(--header-h);
-  min-height: calc(100vh - var(--header-h));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Schrittliste mit mitwachsender Schiene */
-
-.steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.stepsRail {
-  position: absolute;
-  left: 13px;
-  top: 36px;
-  bottom: 36px;
-  width: 2px;
-  background: var(--line);
-  border-radius: 2px;
-}
-
-.stepsRailFill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 0;
-  background: var(--accent);
-  border-radius: 2px;
-}
-
-.step {
-  display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
-  gap: 16px;
-  padding: 0 0 var(--step-gap);
-}
-
-.step:first-child {
-  padding-top: 36px;
-}
-
-.step:last-child {
-  padding-bottom: 36px;
-}
 
 .stepDot {
   width: 28px;
@@ -1493,24 +1352,6 @@
 
 /* ------------------------------------------------- Was am Telefon passiert */
 
-.callSplit {
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-}
-
-.callSplit .splitHead {
-  grid-column: 1 / 3;
-}
-
-.callSplit .splitAside {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.callSplit .splitBody {
-  grid-column: 2;
-  grid-row: 2;
-}
-
 .callCard {
   background: var(--dark);
   color: #fff;
@@ -1732,24 +1573,6 @@
 }
 
 /* ------------------------------------------------------------------ Prozess */
-
-/*
- * Die vier Schritte untereinander.
- *
- * Vorher eine Reihe aus vier schmalen Karten mit einer waagerechten Zeitleiste
- * darueber. Die Reihe war in einem Wisch durch, und die Zeitleiste trug nichts
- * bei, was die Karten nicht selbst sagen ("TAG 0", "WOCHE 1"). Untereinander
- * bekommt jeder Schritt seinen eigenen Moment, und der Kopf daneben bleibt
- * dabei stehen.
- */
-.procList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(28px, 5vh, 56px);
-}
 
 /* Steht in der stehenden Spalte unter der Einordnung — bewusst kleiner und
    stiller als diese, es ist eine Fußnote, keine zweite Aussage. */
@@ -2263,16 +2086,6 @@
 
 /* ---------------------------------------------------------------- Über Nico */
 
-.nicoGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  column-gap: clamp(40px, 6vw, 96px);
-  row-gap: clamp(40px, 6vw, 72px);
-  /* `start` statt `center`: Nur so ist der Rasterbereich so hoch wie die
-     Zeile und der Kleber hat eine Strecke. */
-  align-items: start;
-}
-
 .nicoVisual {
   position: relative;
   min-width: 0;
@@ -2340,15 +2153,6 @@
   color: var(--ink-3);
   white-space: nowrap;
   flex: none;
-}
-
-.nicoCopy {
-  display: flex;
-  flex-direction: column;
-  /* An die Fensterhoehe gekoppelt: Die Spalte muss hoeher sein als das Fenster,
-     sonst hat das klebende Portraet daneben keine Strecke. */
-  gap: clamp(28px, 6vh, 72px);
-  min-width: 0;
 }
 
 .nicoList {
@@ -3083,37 +2887,6 @@
     display: none;
   }
 
-  /* Gestapelt: Das Diagramm bleibt als schmale Leiste oben kleben, während
-     die Schritte darunter durchlaufen. Deshalb Flex statt Grid — sonst hätte
-     `sticky` keinen Bezugsrahmen über Kopf und Liste hinweg. */
-  .splitGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .splitHead {
-    order: 0;
-  }
-
-  .splitAside {
-    order: 1;
-    position: sticky;
-    top: var(--header-h);
-    z-index: 2;
-    background: #fff;
-    padding: 10px 0 14px;
-    align-self: stretch;
-  }
-
-  .splitSticky {
-    position: static;
-  }
-
-  .splitBody {
-    order: 2;
-  }
-
   .procCard {
     min-height: 0;
   }
@@ -3121,11 +2894,6 @@
   .fitCheck {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
-  }
-
-  .nicoGrid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
   }
 
   .nicoVisual {
@@ -3243,15 +3011,6 @@
 
   .nicoList li {
     grid-template-columns: 36px minmax(0, 1fr);
-  }
-
-  .step {
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  .stepsRail {
-    left: 13px;
   }
 
   .chartAxis,
@@ -3500,74 +3259,5 @@
 
   .nicoFrame img {
     transform: none;
-  }
-}
-
-/* ------------------------------------------------ Klebe-Spalte + Fluss-Spalte */
-
-/*
- * Das Grundmuster fuer die Abschnitte ohne eigene Grafik.
- *
- * Links steht der Kopf still — Etikett, Ueberschrift, Einordnung, und wo es
- * passt ein Aufruf. Rechts zieht der Inhalt daran vorbei. Damit bekommt jeder
- * Abschnitt eine Strecke statt eines Augenblicks: Man liest die Ueberschrift
- * einmal und behaelt sie, waehrend die Belege durchlaufen.
- *
- * Vorher standen die Karten dieser Abschnitte nebeneinander. Drei Karten in
- * einer Reihe sind in einer halben Wischbewegung durch — genau das Gefuehl,
- * an der Seite vorbeizuscrollen statt sie zu lesen.
- */
-.pinGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  column-gap: clamp(40px, 6vw, 96px);
-  align-items: start;
-}
-
-.pinCol {
-  align-self: stretch;
-  min-width: 0;
-}
-
-.pinner {
-  position: sticky;
-  top: var(--header-h);
-  min-height: calc(100vh - var(--header-h));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 22px;
-}
-
-/*
- * Die vorbeiziehende Spalte.
- *
- * Der Abstand ist bewusst an die Fensterhoehe gekoppelt und nicht an die
- * Schriftgroesse: Jede Karte soll ihren eigenen Moment bekommen, in dem sie
- * allein im Blickfeld steht. Bei festen Pixeln waere das auf einem grossen
- * Bildschirm wieder eine Liste, durch die man in einem Rutsch faellt.
- */
-.flowCol {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(64px, 12vh, 160px);
-}
-
-@media (max-width: 1100px) {
-  .pinGrid {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: clamp(32px, 5vw, 56px);
-  }
-
-  /* Gestapelt gibt es nichts zum Kleben — der Kopf steht dann einfach oben. */
-  .pinner {
-    position: static;
-    min-height: 0;
-    gap: 18px;
-  }
-
-  .flowCol {
-    gap: clamp(32px, 5vw, 56px);
   }
 }

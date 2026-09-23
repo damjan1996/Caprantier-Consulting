@@ -3,7 +3,8 @@ import AbgrenzungSection from './_components/AbgrenzungSection'
 import DanachScene from './_components/DanachScene'
 import FormularSection from './_components/FormularSection'
 import KontaktIntro from './_components/KontaktIntro'
-import TerminScene from './_components/TerminScene'
+import TerminScene from '@/components/seite/TerminScene'
+import { TERMIN } from './_components/termin'
 import WegeSection from './_components/WegeSection'
 import { KONTAKT_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
@@ -111,7 +112,7 @@ export default function KontaktPage() {
       <AbgrenzungSection />
       <FormularSection />
       <DanachScene />
-      <TerminScene />
+      <TerminScene {...TERMIN} />
       <SectionRail sections={KONTAKT_SECTIONS} />
     </div>
   )

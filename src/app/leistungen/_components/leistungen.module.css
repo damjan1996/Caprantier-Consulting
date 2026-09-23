@@ -35,10 +35,6 @@
   composes: actionRow from '../../../components/seite/basis.module.css';
 }
 
-.body {
-  composes: body from '../../../components/seite/basis.module.css';
-}
-
 .btnDark {
   composes: btnDark from '../../../components/seite/basis.module.css';
 }
