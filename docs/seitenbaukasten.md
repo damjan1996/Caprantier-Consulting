@@ -51,7 +51,7 @@ src/app/<route>/
   _components/
     <Abschnitt>.tsx         je Abschnitt eine Datei
     <route>.module.css      ein Stylesheet je Seite
-    sections.ts             Abschnittsliste für die Fortschrittsleiste
+    sections.ts             Abschnittsliste für die Fortschrittsleiste (falls die Seite eine hat)
     termin.tsx              Inhalt der Abschluss-Bühne (falls die Seite eine hat)
     fragen.tsx              Inhalt der häufigen Fragen (falls die Seite welche hat)
 ```
