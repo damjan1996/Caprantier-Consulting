@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
-import { PageWrapper } from '@/components/ui'
+import PageWrapper from '@/components/ui/PageWrapper'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { getBlogPostPreviews, getAllCategories } from '@/lib/blog'
-import BlogGrid from './components/BlogGrid'
+import BlogGrid from './_components/BlogGrid'
 
 export const metadata: Metadata = {
   title: 'Blog | B2B Vertrieb, Kaltakquise & Leadgenerierung',

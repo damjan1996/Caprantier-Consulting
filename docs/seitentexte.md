@@ -1,7 +1,7 @@
 # Textleitfaden — wie die Seiten sprechen
 
 **Stand:** 16.09.2026
-**Referenzumsetzung:** `src/app/page.tsx`, `src/app/components/home/`, `src/lib/home-content.ts`
+**Referenzumsetzung:** `src/app/(home)/page.tsx`, `src/app/(home)/_components/`, `src/lib/home-content.ts`
 **Gilt für:** alle neuen Seiten und jeden Umbau bestehender Seiten
 
 Schwesterdokumente: [seitendesign.md](seitendesign.md) (wie es aussieht),

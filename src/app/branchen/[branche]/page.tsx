@@ -3,7 +3,9 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, CheckCircle, MapPin, Target } from 'lucide-react'
-import { PageWrapper, Breadcrumbs, SectionCard } from '@/components/ui'
+import PageWrapper from '@/components/ui/PageWrapper'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import SectionCard from '@/components/ui/SectionCard'
 import FadeIn from '@/components/ui/FadeIn'
 import DecorativeParticles from '@/components/ui/DecorativeParticles'
 import { getIndustryBySlug, getAllIndustrySlugs, type IndustryPage } from '@/lib/industries'
@@ -12,7 +14,7 @@ import { getBlogPostBySlug } from '@/lib/blog'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
 
-const CTA = dynamic(() => import('@/components/sections/CTA'), {
+const CTA = dynamic(() => import('./_components/CTA'), {
   loading: () => <div className="section-padding" />,
 })
 

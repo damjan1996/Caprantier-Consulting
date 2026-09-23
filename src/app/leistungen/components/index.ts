@@ -1,5 +1,0 @@
-export { default as LeistungenIntro } from './LeistungenIntro'
-export { default as ServicesScene } from './ServicesScene'
-export { default as EngagementScene } from './EngagementScene'
-export { default as RegionsSection } from './RegionsSection'
-export { default as ClosingScene } from './ClosingScene'

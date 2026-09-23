@@ -1,6 +1,0 @@
-export { default as KontaktIntro } from './KontaktIntro'
-export { default as WegeSection } from './WegeSection'
-export { default as AbgrenzungSection } from './AbgrenzungSection'
-export { default as FormularSection } from './FormularSection'
-export { default as DanachScene } from './DanachScene'
-export { default as TerminScene } from './TerminScene'

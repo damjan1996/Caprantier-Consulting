@@ -27,7 +27,7 @@ Die Fristen für den Chat stehen an drei Stellen und müssen zusammen geändert
 werden:
 
 - `src/app/api/cron/cleanup-chats/route.ts` — `RETENTION_DAYS_ANONYMOUS`, `RETENTION_DAYS_WITH_CONTACT`
-- `src/app/datenschutz/components/PrivacySections.tsx` — Angabe gegenüber Besuchern
+- `src/app/datenschutz/_components/PrivacySections.tsx` — Angabe gegenüber Besuchern
 - Dieses Dokument
 
 ## 2. Nachweis der Löschläufe

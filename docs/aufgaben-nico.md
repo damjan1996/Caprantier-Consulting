@@ -26,7 +26,7 @@ uns"** vier Kundenlogos, jeweils als Link auf deren Website:
 Für Fallstudien existiert dafür ein strenges Verfahren — `case-studies.ts`
 verlangt `kundeNennbar` **und** ein Datum in `freigegebenAm`, und
 `check-compliance.mjs` bricht den Build ab, wenn das fehlt. Die Logos auf der
-Startseite stehen in einer eigenen Datei (`src/app/components/ClientLogos.tsx`)
+Startseite stehen in einer eigenen Datei (`src/app/(home)/_components/TrustedLogos.tsx`)
 und laufen an diesem Verfahren vorbei.
 
 **Bitte zurückmelden:**
@@ -137,7 +137,8 @@ Firmennamen — die Zahlen sprechen für sich."* Darunter vier Kennzahlen:
 | 35 %+ | Ø Abschlussquote |
 
 Dazu fünf anonymisierte Erfolgsgeschichten mit Branche, Ort und Ergebnis
-(`src/app/components/Benefits.tsx`).
+(heute: Kennzahlen in `src/app/(home)/_components/HeroScene.tsx`, Erfolgsgeschichten
+in `src/app/(home)/_components/ReferencesSection.tsx`).
 
 **Das wurde bewusst nicht angefasst**, weil der Text behauptet, es seien echte
 Ergebnisse — und wenn das stimmt, wäre es das stärkste Material auf der ganzen

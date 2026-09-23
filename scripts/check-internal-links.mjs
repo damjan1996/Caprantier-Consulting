@@ -96,7 +96,7 @@ for (const datei of [...quelldateien(APP_DIR), ...quelldateien(COMPONENTS_DIR)])
 // Steht dort wieder eine clientseitige Paginierung mit `slice`, sieht ein
 // Crawler nur einen Teil der Liste -- dann darf sie nicht als Verlinkung für
 // alle Beiträge gelten.
-const grid = fs.readFileSync(path.join(APP_DIR, 'blog', 'components', 'BlogGrid.tsx'), 'utf8')
+const grid = fs.readFileSync(path.join(APP_DIR, 'blog', '_components', 'BlogGrid.tsx'), 'utf8')
 const uebersichtVollstaendig = !/\.slice\(\s*startIndex/.test(grid) && /filteredPosts\.map\(/.test(grid)
 
 if (uebersichtVollstaendig) {

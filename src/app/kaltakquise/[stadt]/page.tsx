@@ -1,19 +1,17 @@
 import { notFound } from 'next/navigation'
-import {
-  FragenSection,
-  MarktScene,
-  RechtSection,
-  StadtIntro,
-  TerminScene,
-  UmgebungSection,
-} from './components'
-import { KALTAKQUISE_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import FragenSection from './_components/FragenSection'
+import MarktScene from './_components/MarktScene'
+import RechtSection from './_components/RechtSection'
+import StadtIntro from './_components/StadtIntro'
+import TerminScene from './_components/TerminScene'
+import UmgebungSection from './_components/UmgebungSection'
+import { KALTAKQUISE_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { getCityBySlug, getAllCitySlugs, type City } from '@/lib/cities'
 import { getCityAcquisition, type CityAcquisition } from '@/lib/city-acquisition'
 import { generateKaltakquiseFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
 import { businessInfo } from '@/lib/local-seo'
-import styles from './components/kaltakquise.module.css'
+import styles from './_components/kaltakquise.module.css'
 
 /**
  * Kaltakquise nach Stadt — eine Vorlage, fünfzehn Adressen.

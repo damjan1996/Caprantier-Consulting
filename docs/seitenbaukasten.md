@@ -1,8 +1,8 @@
 # Seitenbaukasten — wie weitere Seiten auf Basis der Startseite gebaut werden
 
 **Stand:** 16.09.2026
-**Referenzumsetzung:** `src/app/page.tsx` + `src/app/components/home/`
-**Gemeinsame Grundlage:** `src/app/components/seite/`
+**Referenzumsetzung:** `src/app/(home)/page.tsx` + `src/app/(home)/_components/`
+**Gemeinsame Grundlage:** `src/components/seite/`
 **Gilt für:** alle neuen Seiten und jeden Umbau bestehender Seiten
 
 Dieses Dokument beantwortet **wie wird es gebaut**. Die zwei Schwesterdokumente
@@ -60,7 +60,7 @@ nicht mehr an einer Stelle nachlesbar.
 
 Die Seite schreibt darin aber nur ihre **eigenen** Abschnitte. Alles Gemeinsame
 — Token, Textgerüst, Klebe-Bühne, Schaltflächen, Einblendungen,
-Fortschrittsleiste — steht in `src/app/components/seite/basis.module.css` und
+Fortschrittsleiste — steht in `src/components/seite/basis.module.css` und
 wird eingebunden:
 
 ```css
@@ -150,7 +150,7 @@ Unterseite mit vier Abschnitten nimmt 1, 3, 5, 8.
 ## 3 · Token
 
 Am Wurzelelement der Seite (`.page`) gesetzt, von allen Abschnitten geerbt.
-Vollständig in `src/app/components/seite/basis.module.css`.
+Vollständig in `src/components/seite/basis.module.css`.
 
 ### 3.1 Farbe
 
@@ -191,7 +191,7 @@ ist. Ein `clamp()` daraus zu machen bricht die Ausrichtung zur Kopfzeile.
 
 ## 4 · Bausteine
 
-Aus `src/app/components/seite/basis.module.css` einbinden, nicht neu erfinden.
+Aus `src/components/seite/basis.module.css` einbinden, nicht neu erfinden.
 
 ### 4.1 Gerüst
 
@@ -498,7 +498,7 @@ Abschnitten **oder** zehn Bildschirmhöhen; darunter ist sie Dekoration.
 
 Für eine neue Seite:
 
-1. Liste anlegen nach dem Muster von `src/app/components/home/sections.ts` —
+1. Liste anlegen nach dem Muster von `src/app/(home)/_components/sections.ts` —
    `id` und **kurze** Beschriftung (max. ~12 Zeichen, sie steht in einer
    schmalen Leiste). Die Liste gehört zur Seite, nicht zur Leiste, und wird
    als Eigenschaft übergeben: `<SectionRail sections={MEINE_ABSCHNITTE} />`.
@@ -734,13 +734,13 @@ Damit diese Punkte nicht als Fehler „korrigiert" werden:
 
 | Was | Wo |
 |---|---|
-| Token und Bausteine | `src/app/components/seite/basis.module.css` |
-| Einblenden | `src/app/components/seite/useReveal.ts` |
-| Scrollgebundene Szenen | `src/app/components/seite/useScrollScene.ts` |
-| Fortschrittsleiste | `src/app/components/seite/SectionRail.tsx` |
-| Abschnittsliste der Startseite | `src/app/components/home/sections.ts` |
-| Abschnitte der Startseite | `src/app/components/home/` |
-| Buchung | `src/hooks/useCalendly.ts` |
+| Token und Bausteine | `src/components/seite/basis.module.css` |
+| Einblenden | `src/components/seite/useReveal.ts` |
+| Scrollgebundene Szenen | `src/components/seite/useScrollScene.ts` |
+| Fortschrittsleiste | `src/components/seite/SectionRail.tsx` |
+| Abschnittsliste der Startseite | `src/app/(home)/_components/sections.ts` |
+| Abschnitte der Startseite | `src/app/(home)/_components/` |
+| Buchung | `src/components/calendly/CalendlyProvider.tsx` |
 | Texte mit Markup-Zweitverwendung | `src/lib/home-content.ts` |
 | Strukturierte Daten | `src/lib/schemas.ts` |
 | Satzbreite der übrigen Seiten | `.container-custom` in `src/app/globals.css` |

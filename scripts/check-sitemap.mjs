@@ -45,11 +45,22 @@ const stadtSlugs = new Set(cities.map((city) => city.slug))
 const brancheSlugs = new Set(industryPages.map((industry) => industry.slug))
 const umgeleitet = new Set(blogRedirects.map((r) => `/blog/${r.from}`))
 
-/** Existiert für einen statischen Pfad eine `page.tsx`? */
-function hatSeitenvorlage(pfad) {
+/**
+ * Existiert für einen statischen Pfad eine `page.tsx`?
+ *
+ * Routengruppen wie `(home)` stehen nicht in der URL: `/` liegt unter
+ * `src/app/(home)/page.tsx`. Sie werden deshalb auf jeder Ebene mit durchsucht.
+ */
+function hatSeitenvorlage(pfad, verzeichnis = APP_DIR) {
   const segmente = pfad.split('/').filter(Boolean)
-  const verzeichnis = path.join(APP_DIR, ...segmente)
-  return fs.existsSync(path.join(verzeichnis, 'page.tsx'))
+  if (segmente.length === 0 && fs.existsSync(path.join(verzeichnis, 'page.tsx'))) return true
+  for (const eintrag of fs.readdirSync(verzeichnis, { withFileTypes: true })) {
+    if (!eintrag.isDirectory()) continue
+    const unterordner = path.join(verzeichnis, eintrag.name)
+    if (/^\(.+\)$/.test(eintrag.name) && hatSeitenvorlage(pfad, unterordner)) return true
+    if (eintrag.name === segmente[0] && hatSeitenvorlage(segmente.slice(1).join('/'), unterordner)) return true
+  }
+  return false
 }
 
 const beanstandungen = []

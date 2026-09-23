@@ -14,7 +14,7 @@ import dynamic from 'next/dynamic'
 
 // Dynamic imports müssen in Client Components sein für ssr: false
 const TrackingScripts = dynamic(
-  () => import('@/components/tracking/TrackingScripts'),
+  () => import('@/components/analytics/TrackingScripts'),
   { ssr: false }
 )
 

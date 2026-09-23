@@ -1,20 +1,18 @@
 import { Metadata } from 'next'
-import {
-  AbschlussScene,
-  BegriffeSection,
-  BeitraegeSection,
-  HaltungScene,
-  VideosSection,
-  WissenIntro,
-} from './components'
-import { WISSEN_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import AbschlussScene from './_components/AbschlussScene'
+import BegriffeSection from './_components/BegriffeSection'
+import BeitraegeSection from './_components/BeitraegeSection'
+import HaltungScene from './_components/HaltungScene'
+import VideosSection from './_components/VideosSection'
+import WissenIntro from './_components/WissenIntro'
+import { WISSEN_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { getBlogPostPreviews } from '@/lib/blog'
 import { glossarBegriffe } from '@/lib/glossar-content'
 import { getVideos } from '@/lib/youtube'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
-import styles from './components/wissen.module.css'
+import styles from './_components/wissen.module.css'
 
 const PAGE_URL = `${businessInfo.website}/wissen`
 

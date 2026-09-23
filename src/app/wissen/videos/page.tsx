@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, Youtube } from 'lucide-react'
-import { PageWrapper } from '@/components/ui'
+import PageWrapper from '@/components/ui/PageWrapper'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import VideoCard from '@/components/ui/VideoCard'
+import VideoCard from './_components/VideoCard'
 import { getVideos, YOUTUBE_CHANNEL_URL, type YouTubeVideo } from '@/lib/youtube'
 
 /**

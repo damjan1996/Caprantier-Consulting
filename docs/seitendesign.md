@@ -1,8 +1,8 @@
 # Designleitfaden — wie die Seiten aussehen
 
 **Stand:** 16.09.2026
-**Referenzumsetzung:** `src/app/page.tsx` + `src/app/components/home/`
-**Gemeinsame Grundlage:** `src/app/components/seite/basis.module.css`
+**Referenzumsetzung:** `src/app/(home)/page.tsx` + `src/app/(home)/_components/`
+**Gemeinsame Grundlage:** `src/components/seite/basis.module.css`
 **Gilt für:** alle neuen Seiten und jeden Umbau bestehender Seiten
 
 Drei Dokumente, drei Fragen:

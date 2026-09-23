@@ -1,16 +1,14 @@
-import {
-  ClosingScene,
-  EngagementScene,
-  LeistungenIntro,
-  RegionsSection,
-  ServicesScene,
-} from './components'
-import { LEISTUNGEN_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import ClosingScene from './_components/ClosingScene'
+import EngagementScene from './_components/EngagementScene'
+import LeistungenIntro from './_components/LeistungenIntro'
+import RegionsSection from './_components/RegionsSection'
+import ServicesScene from './_components/ServicesScene'
+import { LEISTUNGEN_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { generateBreadcrumbSchema, generateServicesSchema } from '@/lib/schemas'
 import { generateOfferSchema } from '@/lib/pricing'
 import { businessInfo } from '@/lib/local-seo'
-import styles from './components/leistungen.module.css'
+import styles from './_components/leistungen.module.css'
 
 /**
  * Leistungen.

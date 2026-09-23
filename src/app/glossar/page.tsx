@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BookOpen, ArrowRight, Scale } from 'lucide-react'
-import { PageWrapper } from '@/components/ui'
+import PageWrapper from '@/components/ui/PageWrapper'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AiContentNotice from '@/components/ui/AiContentNotice'

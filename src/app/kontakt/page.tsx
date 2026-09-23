@@ -1,17 +1,15 @@
 import { Metadata } from 'next'
-import {
-  AbgrenzungSection,
-  DanachScene,
-  FormularSection,
-  KontaktIntro,
-  TerminScene,
-  WegeSection,
-} from './components'
-import { KONTAKT_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import AbgrenzungSection from './_components/AbgrenzungSection'
+import DanachScene from './_components/DanachScene'
+import FormularSection from './_components/FormularSection'
+import KontaktIntro from './_components/KontaktIntro'
+import TerminScene from './_components/TerminScene'
+import WegeSection from './_components/WegeSection'
+import { KONTAKT_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
-import styles from './components/kontakt.module.css'
+import styles from './_components/kontakt.module.css'
 
 const PAGE_URL = `${businessInfo.website}/kontakt`
 
@@ -65,7 +63,7 @@ export const metadata: Metadata = {
  * bleiben unverändert. Die Server-Route, ihre Ratenbegrenzung und die
  * Einwilligungsprotokollierung nach Art. 7 Abs. 1 DSGVO sind nicht angefasst.
  *
- * Entfallen ist `src/components/sections/ContactForm.tsx` — dieser Baustein
+ * Entfallen ist `src/app/branchen/[branche]/_components/ContactForm.tsx` — dieser Baustein
  * hatte nach dem Umbau keinen Verwender mehr und brachte eine zweite,
  * handgeschriebene Prüfung mit, die dieselben Regeln noch einmal nachbildete.
  *

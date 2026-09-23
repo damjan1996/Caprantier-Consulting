@@ -42,7 +42,7 @@ pnpm run test:e2e
 
 - [ ] `pnpm run verify` läuft ohne Fehler durch
 - [ ] `pnpm run test:e2e` läuft ohne Fehler durch
-- [ ] Echte USt-IdNr. ist in `src/app/impressum/components/InfoCards.tsx`
+- [ ] Echte USt-IdNr. ist in `src/app/impressum/_components/InfoCards.tsx`
       eingetragen (sonst bricht `check:compliance` ab)
 
 ## 2. Vor dem Deployment — Vercel

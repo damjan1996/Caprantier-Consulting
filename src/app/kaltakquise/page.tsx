@@ -1,17 +1,15 @@
 import { Metadata } from 'next'
-import {
-  GrenzenSection,
-  MaerkteSection,
-  TerminScene,
-  UebersichtIntro,
-  UnterschiedScene,
-} from './components'
-import { KALTAKQUISE_START_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import GrenzenSection from './_components/GrenzenSection'
+import MaerkteSection from './_components/MaerkteSection'
+import TerminScene from './_components/TerminScene'
+import UebersichtIntro from './_components/UebersichtIntro'
+import UnterschiedScene from './_components/UnterschiedScene'
+import { KALTAKQUISE_START_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { cities } from '@/lib/cities'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
-import styles from './components/uebersicht.module.css'
+import styles from './_components/uebersicht.module.css'
 
 const PAGE_URL = `${businessInfo.website}/kaltakquise`
 

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X, Phone, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useCalendly } from '@/hooks/useCalendly'
+import { useCalendly } from '@/components/calendly/CalendlyProvider'
 
 // Use the dark logo for light backgrounds
 import logoBlack from '@/../public/logo/Logo - Schwarz.png'

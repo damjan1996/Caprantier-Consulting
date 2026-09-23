@@ -1,11 +1,9 @@
-import {
-  AbschlussSection,
-  FallstudienSection,
-  MassstabSection,
-  PruefenSection,
-  ReferenzenIntro,
-  VorlageSection,
-} from './components'
+import AbschlussSection from './_components/AbschlussSection'
+import FallstudienSection from './_components/FallstudienSection'
+import MassstabSection from './_components/MassstabSection'
+import PruefenSection from './_components/PruefenSection'
+import ReferenzenIntro from './_components/ReferenzenIntro'
+import VorlageSection from './_components/VorlageSection'
 import {
   enthaeltBeispiele,
   getBeispielFallstudien,
@@ -13,7 +11,7 @@ import {
 } from '@/lib/case-studies'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
-import styles from './components/referenzen.module.css'
+import styles from './_components/referenzen.module.css'
 
 const PAGE_URL = `${businessInfo.website}/referenzen`
 

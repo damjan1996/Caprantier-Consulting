@@ -1,6 +1,8 @@
 import { Suspense } from 'react'
-import { PageWrapper } from '@/components/ui'
-import { Hero, InfoCards, AdditionalSections } from './components'
+import PageWrapper from '@/components/ui/PageWrapper'
+import Hero from './_components/Hero'
+import InfoCards from './_components/InfoCards'
+import AdditionalSections from './_components/AdditionalSections'
 
 export default function ImpressumPage() {
   return (

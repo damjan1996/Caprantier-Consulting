@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube'
-import CookieSettingsButton from '@/components/ui/CookieSettingsButton'
+import CookieSettingsButton from '@/components/consent/CookieSettingsButton'
 import FooterRegions from './FooterRegions'
 import styles from './footer.module.css'
 

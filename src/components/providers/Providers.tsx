@@ -1,10 +1,10 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { CookieConsentProvider } from './CookieConsentProvider'
+import { CookieConsentProvider } from '@/components/consent/CookieConsentProvider'
 import { ServiceWorkerProvider } from './ServiceWorkerProvider'
-import { AnalyticsProvider } from './AnalyticsProvider'
-import { CalendlyProvider } from './CalendlyProvider'
+import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider'
+import { CalendlyProvider } from '@/components/calendly/CalendlyProvider'
 
 export function Providers({ children }: { children: ReactNode }) {
   return (

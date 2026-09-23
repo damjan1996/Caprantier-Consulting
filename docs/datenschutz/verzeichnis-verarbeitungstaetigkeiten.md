@@ -88,7 +88,7 @@ fortzuschreiben.
 | Betroffene | Interessenten, die einen Termin buchen |
 | Datenkategorien | Name, E-Mail-Adresse, Terminwunsch sowie IP-Adresse und Geräteangaben, die das eingebettete Buchungsfenster selbst erhebt |
 | Rechtsgrundlage | Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG — Einwilligung über die Zwischenkarte vor dem Laden |
-| Verarbeitung | `src/components/providers/CalendlyProvider.tsx`; das Buchungsfenster wird erst nach ausdrücklicher Zustimmung geladen |
+| Verarbeitung | `src/components/calendly/CalendlyProvider.tsx`; das Buchungsfenster wird erst nach ausdrücklicher Zustimmung geladen |
 | Empfänger | Calendly LLC, 271 17th St NW, Atlanta, GA 30363, USA |
 | Drittlandbezug | USA. **Zu prüfen und zu belegen:** DPF-Zertifizierung oder Standardvertragsklauseln plus Transfer Impact Assessment |
 | Löschfrist | Ergibt sich aus den Einstellungen des Calendly-Kontos — **zu ermitteln und einzutragen** |
@@ -102,7 +102,7 @@ fortzuschreiben.
 | Betroffene | Besucher, die in die Kategorie „Analyse" eingewilligt haben |
 | Datenkategorien | Gekürzte IP-Adresse, Seitenaufrufe, Verweildauer, Geräte- und Browserangaben, Ereignisse |
 | Rechtsgrundlage | Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG |
-| Verarbeitung | `src/components/tracking/TrackingScripts.tsx` — `gtag.js` wird erst nach der Einwilligung geladen, bis dahin steht der Google Consent Mode auf `denied` |
+| Verarbeitung | `src/components/analytics/TrackingScripts.tsx` — `gtag.js` wird erst nach der Einwilligung geladen, bis dahin steht der Google Consent Mode auf `denied` |
 | Empfänger | Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland |
 | Drittlandbezug | Übermittlung an Google LLC in den USA. **Vor dem Release:** DPF-Zertifizierung prüfen und Nachweis ablegen |
 | Löschfrist | Ergibt sich aus der GA4-Einstellung „Aufbewahrung von Nutzer- und Ereignisdaten" — **zu prüfen**, empfohlen sind 2 oder 14 Monate |

@@ -1,6 +1,0 @@
-export { default as StadtIntro } from './StadtIntro'
-export { default as UebergabeScene } from './UebergabeScene'
-export { default as RegionSection } from './RegionSection'
-export { default as AufwandSection } from './AufwandSection'
-export { default as FragenSection } from './FragenSection'
-export { default as TerminScene } from './TerminScene'

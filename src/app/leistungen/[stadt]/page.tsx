@@ -1,18 +1,16 @@
 import { notFound } from 'next/navigation'
-import {
-  AufwandSection,
-  FragenSection,
-  RegionSection,
-  StadtIntro,
-  TerminScene,
-  UebergabeScene,
-} from './components'
-import { STADT_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import AufwandSection from './_components/AufwandSection'
+import FragenSection from './_components/FragenSection'
+import RegionSection from './_components/RegionSection'
+import StadtIntro from './_components/StadtIntro'
+import TerminScene from './_components/TerminScene'
+import UebergabeScene from './_components/UebergabeScene'
+import { STADT_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { getCityBySlug, getAllCitySlugs, type City } from '@/lib/cities'
 import { generateCityFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
 import { businessInfo } from '@/lib/local-seo'
-import styles from './components/stadt.module.css'
+import styles from './_components/stadt.module.css'
 
 /**
  * Vertrieb nach Stadt — eine Vorlage, fünfzehn Adressen.

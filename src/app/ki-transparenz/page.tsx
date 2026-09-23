@@ -2,7 +2,10 @@
 
 import Link from 'next/link'
 import { Sparkles, Bot, ImageIcon, Scale, UserCheck } from 'lucide-react'
-import { PageWrapper, PageHero, SectionCard, FadeIn } from '@/components/ui'
+import PageWrapper from '@/components/ui/PageWrapper'
+import PageHero from '@/components/ui/PageHero'
+import SectionCard from '@/components/ui/SectionCard'
+import FadeIn from '@/components/ui/FadeIn'
 
 const AI_IMAGE_LOCATIONS = [
   'Startseite — Hero-Bild und Bild im Abschnitt „Über uns“',

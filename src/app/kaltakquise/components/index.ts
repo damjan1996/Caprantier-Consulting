@@ -1,5 +1,0 @@
-export { default as UebersichtIntro } from './UebersichtIntro'
-export { default as MaerkteSection } from './MaerkteSection'
-export { default as UnterschiedScene } from './UnterschiedScene'
-export { default as GrenzenSection } from './GrenzenSection'
-export { default as TerminScene } from './TerminScene'

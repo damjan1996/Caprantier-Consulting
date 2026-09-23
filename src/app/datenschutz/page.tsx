@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
-import { PageWrapper } from '@/components/ui'
-import { Hero, PrivacySections } from './components'
+import PageWrapper from '@/components/ui/PageWrapper'
+import Hero from './_components/Hero'
+import PrivacySections from './_components/PrivacySections'
 
 export default function DatenschutzPage() {
   return (

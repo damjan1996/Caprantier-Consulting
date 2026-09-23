@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { ExternalLink, Play, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from './Button'
-import { useCookieConsentContext } from '@/components/providers/CookieConsentProvider'
+import { useCookieConsentContext } from '@/components/consent/CookieConsentProvider'
 
 /**
  * YouTube-Video, das erst nach einer Einwilligung geladen wird.

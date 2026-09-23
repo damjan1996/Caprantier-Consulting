@@ -1,0 +1,19 @@
+'use client'
+
+import { Scale } from 'lucide-react'
+import PageHero from '@/components/ui/PageHero'
+
+export default function Hero() {
+  return (
+    <PageHero
+      badge="Rechtliches"
+      badgeIcon={Scale}
+      title={
+        <span className="text-primary">
+          Impressum
+        </span>
+      }
+      description="Angaben gemäß § 5 DDG und weitere rechtliche Informationen."
+    />
+  )
+}

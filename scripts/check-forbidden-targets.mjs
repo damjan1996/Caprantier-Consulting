@@ -199,8 +199,15 @@ function routenSammeln(verzeichnis, praefix = '') {
   const gefunden = []
   for (const eintrag of fs.readdirSync(verzeichnis, { withFileTypes: true })) {
     if (!eintrag.isDirectory()) continue
+    // `_components` und andere private Ordner sind keine Routen.
     if (eintrag.name.startsWith('_') || eintrag.name.startsWith('.')) continue
-    if (eintrag.name === 'components' || eintrag.name === 'api') continue
+    if (eintrag.name === 'api') continue
+
+    // Routengruppen wie `(home)` ordnen nur Dateien, sie erscheinen nicht in der URL.
+    if (/^\(.+\)$/.test(eintrag.name)) {
+      gefunden.push(...routenSammeln(path.join(verzeichnis, eintrag.name), praefix))
+      continue
+    }
 
     const pfad = `${praefix}/${eintrag.name}`
     gefunden.push(pfad)

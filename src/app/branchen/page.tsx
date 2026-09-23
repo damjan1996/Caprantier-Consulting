@@ -1,17 +1,15 @@
 import { Metadata } from 'next'
-import {
-  BranchenIntro,
-  TerminScene,
-  UnterschiedScene,
-  WegweiserSection,
-  ZuschnittSection,
-} from './components'
-import { BRANCHEN_SECTIONS } from './components/sections'
-import { SectionRail } from '@/app/components/seite'
+import BranchenIntro from './_components/BranchenIntro'
+import TerminScene from './_components/TerminScene'
+import UnterschiedScene from './_components/UnterschiedScene'
+import WegweiserSection from './_components/WegweiserSection'
+import ZuschnittSection from './_components/ZuschnittSection'
+import { BRANCHEN_SECTIONS } from './_components/sections'
+import SectionRail from '@/components/seite/SectionRail'
 import { industryPages } from '@/lib/industries'
 import { businessInfo } from '@/lib/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
-import styles from './components/branchen.module.css'
+import styles from './_components/branchen.module.css'
 
 const PAGE_URL = `${businessInfo.website}/branchen`
 
