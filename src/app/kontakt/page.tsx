@@ -64,7 +64,7 @@ export const metadata: Metadata = {
  * bleiben unverändert. Die Server-Route, ihre Ratenbegrenzung und die
  * Einwilligungsprotokollierung nach Art. 7 Abs. 1 DSGVO sind nicht angefasst.
  *
- * Entfallen ist `src/app/branchen/[branche]/_components/ContactForm.tsx` — dieser Baustein
+ * Entfallen ist `src/components/sections/ContactForm.tsx` — dieser Baustein
  * hatte nach dem Umbau keinen Verwender mehr und brachte eine zweite,
  * handgeschriebene Prüfung mit, die dieselben Regeln noch einmal nachbildete.
  *
