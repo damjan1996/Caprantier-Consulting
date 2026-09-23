@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { formatPreis, istPreisSichtbar, priceModels } from '@/lib/pricing'
+import { formatPreis, istPreisSichtbar, priceModels } from '@/content/pricing'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -14,7 +14,7 @@ import styles from './leistungen.module.css'
  * ist der Teil, der die Entscheidung trägt: Ein Modell, von dem man weiß,
  * wann es nicht funktioniert, ist glaubwürdiger als drei, die alles können.
  *
- * Die Modelle stehen in `src/lib/pricing.ts` — dort hängen die Freigabe-Logik
+ * Die Modelle stehen in `src/content/pricing.ts` — dort hängen die Freigabe-Logik
  * (`PREISE_FREIGEGEBEN`), das `Offer`-Markup und die Prüfung in
  * `scripts/check-pricing.mjs` daran. Solange kein Betrag freigegeben ist,
  * nennt die Seite keine Zahl und erklärt stattdessen das Modell.

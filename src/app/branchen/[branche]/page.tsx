@@ -8,10 +8,10 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import SectionCard from '@/components/ui/SectionCard'
 import FadeIn from '@/components/ui/FadeIn'
 import DecorativeParticles from '@/components/ui/DecorativeParticles'
-import { getIndustryBySlug, getAllIndustrySlugs, type IndustryPage } from '@/lib/industries'
-import { getCityBySlug } from '@/lib/cities'
+import { getIndustryBySlug, getAllIndustrySlugs, type IndustryPage } from '@/content/industries'
+import { getCityBySlug } from '@/content/cities'
 import { getBlogPostBySlug } from '@/lib/blog'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
 
 const CTA = dynamic(() => import('./_components/CTA'), {

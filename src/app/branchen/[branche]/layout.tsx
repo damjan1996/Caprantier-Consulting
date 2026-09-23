@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getIndustryBySlug, getAllIndustrySlugs } from '@/lib/industries'
-import { businessInfo } from '@/lib/local-seo'
+import { getIndustryBySlug, getAllIndustrySlugs } from '@/content/industries'
+import { businessInfo } from '@/content/local-seo'
 
 interface Props {
   params: Promise<{ branche: string }>

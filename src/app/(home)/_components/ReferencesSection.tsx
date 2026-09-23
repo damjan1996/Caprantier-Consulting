@@ -14,12 +14,12 @@ import styles from './home.module.css'
  * — die Kennzahlen waren als Platzhalter markiert und die Freigaben stehen aus.
  * Ein Firmenname neben einer erfundenen Zahl ist eine irreführende
  * geschäftliche Handlung (§ 5 UWG); genau daran ist die frühere Fallstudienseite
- * gescheitert (siehe `src/lib/case-studies.ts`). Deshalb stehen hier die
+ * gescheitert (siehe `src/content/case-studies.ts`). Deshalb stehen hier die
  * anonymisierten Ergebnisse, die auf der Website bereits veröffentlicht sind —
  * unverändert im Wortlaut, nur im neuen Kartenlayout.
  *
  * Sobald Nico Zahlen und schriftliche Freigaben für benannte Kunden hat,
- * gehören sie in `src/lib/case-studies.ts` und von dort hierher.
+ * gehören sie in `src/content/case-studies.ts` und von dort hierher.
  */
 
 type Reference = {

@@ -17,7 +17,7 @@
 
 import { loadTsModule } from './lib/load-ts-module.mjs'
 
-const { PREISE_FREIGEGEBEN, priceModels } = await loadTsModule('src/lib/pricing.ts')
+const { PREISE_FREIGEGEBEN, priceModels } = await loadTsModule('src/content/pricing.ts')
 
 const beanstandungen = []
 

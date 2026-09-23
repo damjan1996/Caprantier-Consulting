@@ -21,9 +21,9 @@ import { loadTsModule } from './lib/load-ts-module.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 
-const { cities } = await loadTsModule('src/lib/cities.ts')
-const { cityAcquisition } = await loadTsModule('src/lib/city-acquisition.ts')
-const { industryPages } = await loadTsModule('src/lib/industries.ts')
+const { cities } = await loadTsModule('src/content/cities.ts')
+const { cityAcquisition } = await loadTsModule('src/content/city-acquisition.ts')
+const { industryPages } = await loadTsModule('src/content/industries.ts')
 
 /** Ab dieser Länge gilt ein wiederholter Satz als Dopplung, nicht als Floskel. */
 const MINDESTLAENGE = 60
@@ -79,11 +79,11 @@ for (const industry of industryPages) {
 // Gedankenstrich-Ersatz unbedenklich, weil er nie ausgeliefert wird.
 const TEXTQUELLEN = [
   'src/lib/schemas.ts',
-  'src/lib/industries.ts',
-  'src/lib/city-acquisition.ts',
-  'src/lib/case-studies.ts',
-  'src/lib/pricing.ts',
-  'src/lib/local-seo.ts',
+  'src/content/industries.ts',
+  'src/content/city-acquisition.ts',
+  'src/content/case-studies.ts',
+  'src/content/pricing.ts',
+  'src/content/local-seo.ts',
 ]
 
 function istKommentarzeile(zeile) {

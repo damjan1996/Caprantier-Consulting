@@ -41,12 +41,12 @@ Eine Parallel-Session hat AP-1 bis AP-9 des Vorgängerauftrags weitgehend umgese
 | **Blog** | 13 Beiträge (vorher 52), Median **1.306 Wörter**, Minimum 1.213. FAQ 13/13, externe Quelle 13/13, Stadt-/Leistungslink 13/13. Beiträge liegen einzeln unter `src/content/blog/`. |
 | **Blog-Verlinkung** | Client-Pagination in `BlogGrid.tsx` entfernt. **Der Kernbefund des alten AP-1 ist damit adressiert** — vorher waren 40 von 52 Beiträgen über Links unerreichbar. |
 | **Neue Routen** | `/kaltakquise`, `/kaltakquise/[stadt]`, `/branchen`, `/branchen/[branche]`, `/referenzen`, `/llms.txt` |
-| **Preisgefäß** | `src/lib/pricing.ts` mit `PREISE_FREIGEGEBEN = false`, Beträge bewusst `null`, `scripts/check-pricing.mjs` als Gate |
+| **Preisgefäß** | `src/content/pricing.ts` mit `PREISE_FREIGEGEBEN = false`, Beträge bewusst `null`, `scripts/check-pricing.mjs` als Gate |
 | **Datengefäße** | `case-studies.ts`, `industries.ts`, `city-acquisition.ts`, `blog-types.ts` |
 | **Prüfskripte** | `blog-audit`, `check-blog-redirects`, `check-content-duplication`, `check-directories`, `check-internal-links`, `check-pricing`, `check-sitemap` |
 | **robots.txt** | AI-Crawler bewusst erlaubt, SEO-Crawler entsperrt, `_next/static/chunks` und `/*?*` entfernt |
 
-**Qualitativer Sprung bei den Stadtdaten.** `src/lib/city-acquisition.ts` gibt jeder Stadt vier eigenständige Felder (`marktText`, `zielgruppenText`, `leitbranchen`, `erreichbarkeit`) mit zusammen **~92 eigenen Wörtern** — inhaltlich verschieden, mit echten Ortsbezügen (Erreichbarkeitsfenster, Leitbranchen, Entscheidungswege). Das ist belastbar.
+**Qualitativer Sprung bei den Stadtdaten.** `src/content/city-acquisition.ts` gibt jeder Stadt vier eigenständige Felder (`marktText`, `zielgruppenText`, `leitbranchen`, `erreichbarkeit`) mit zusammen **~92 eigenen Wörtern** — inhaltlich verschieden, mit echten Ortsbezügen (Erreichbarkeitsfenster, Leitbranchen, Entscheidungswege). Das ist belastbar.
 
 **Aber: es gibt jetzt zwei Stadtseiten-Sets mit sehr unterschiedlicher Substanz.**
 
@@ -135,7 +135,7 @@ Begründung `[GEMESSEN]`: Die vielzitierte GEO-Studie (arXiv 2311.09735, +41 % d
 
 **Vor allem anderen. Dieses Paket blockiert den höchstbewerteten Hebel des Projekts.**
 
-- **Befund:** Die Parallel-Session hat die widersprüchliche PLZ am 10.09.2026 auf **50935** vereinheitlicht und in `src/lib/local-seo.ts` selbst vermerkt, dass die Zuordnung ungeprüft ist. **Sie ist falsch.**
+- **Befund:** Die Parallel-Session hat die widersprüchliche PLZ am 10.09.2026 auf **50935** vereinheitlicht und in `src/content/local-seo.ts` selbst vermerkt, dass die Zuordnung ungeprüft ist. **Sie ist falsch.**
 
   Abfrage gegen OpenStreetMap/Nominatim am 12.09.2026:
   ```
@@ -145,11 +145,11 @@ Begründung `[GEMESSEN]`: Die vielzitierte GEO-Studie (arXiv 2311.09735, +41 % d
   ```
   **50735** ist Riehl/Nippes im Norden. **50935** ist Sülz/Klettenberg im Südwesten — ein anderer Stadtteil. Vereinheitlicht wurde auf den falschen der beiden Werte.
 
-- **Zweiter Fehler, bisher unbemerkt:** `geo` in `src/lib/local-seo.ts` steht auf `50.9375 / 6.9603`. Der tatsächliche Gebäudestandort liegt **3,32 km entfernt**. Die Koordinaten gehen in `LocalBusiness`-JSON-LD auf jeder Stadtseite ein.
+- **Zweiter Fehler, bisher unbemerkt:** `geo` in `src/content/local-seo.ts` steht auf `50.9375 / 6.9603`. Der tatsächliche Gebäudestandort liegt **3,32 km entfernt**. Die Koordinaten gehen in `LocalBusiness`-JSON-LD auf jeder Stadtseite ein.
 
 - **Vorgehen:**
   1. **Nico bestätigt die korrekte Anschrift.** Nicht aus OSM ableiten — das ist ein Hinweis, keine Rechtsgrundlage.
-  2. Danach PLZ und Koordinaten an **einer** Stelle korrigieren (`businessInfo` in `src/lib/local-seo.ts`) und alle abweichenden Vorkommen darauf zurückführen — Impressum, Datenschutz, `layout.tsx`, `leistungen/[stadt]/page.tsx`, `chat/tool-executor.ts`.
+  2. Danach PLZ und Koordinaten an **einer** Stelle korrigieren (`businessInfo` in `src/content/local-seo.ts`) und alle abweichenden Vorkommen darauf zurückführen — Impressum, Datenschutz, `layout.tsx`, `leistungen/[stadt]/page.tsx`, `chat/tool-executor.ts`.
   3. `scripts/check-compliance.mjs` um eine NAP-Konsistenzprüfung erweitern: genau eine PLZ und eine Anschrift im gesamten Quelltext.
 
 - **Akzeptanz:** Genau ein PLZ-Wert im Repo, Koordinaten auf die bestätigte Anschrift gesetzt, `pnpm verify` grün.
@@ -200,7 +200,7 @@ Begründung `[GEMESSEN]`: Die vielzitierte GEO-Studie (arXiv 2311.09735, +41 % d
 ### AP-2.1 · Preise veröffentlichen
 
 - **Ziel:** `/leistungen` nennt echte Beträge oder ein nachvollziehbares Preismodell.
-- **Vorgehen:** Das Gefäß steht (`src/lib/pricing.ts`, `Pricing.tsx`, `check-pricing.mjs`). Es fehlen **nur die Zahlen** — Geschäftsentscheidung, siehe Abschnitt 6. Sobald sie da sind: Beträge in `priceModels` eintragen, `PREISE_FREIGEGEBEN = true`, `Offer`-Markup mit echtem `price` und `priceCurrency` ergänzen.
+- **Vorgehen:** Das Gefäß steht (`src/content/pricing.ts`, `Pricing.tsx`, `check-pricing.mjs`). Es fehlen **nur die Zahlen** — Geschäftsentscheidung, siehe Abschnitt 6. Sobald sie da sind: Beträge in `priceModels` eintragen, `PREISE_FREIGEGEBEN = true`, `Offer`-Markup mit echtem `price` und `priceCurrency` ergänzen.
 - **Zusätzlich:** `priceRange: '€€€'` in `src/app/layout.tsx` ist ein bedeutungsloser Platzhalter. Entweder durch eine echte Spanne ersetzen oder entfernen.
 - **Akzeptanz:** `pnpm verify` grün, `check-pricing.mjs` bestätigt, dass kein freigegebenes Modell ohne Betrag ausgeliefert wird.
 - **Evidenz:** `[GEMESSEN]` cloro, 249 Seiten × 27 Merkmale: „Konkrete Preise nennen" war eines von zwei Merkmalen, die abgerufene von ignorierten Seiten trennten. `[ANBIETER]` ezgeo, 304 B2B-Unternehmen, 66 Anbieter ohne öffentliche Preise gegen 40 mit: **93,9 % der KI-Antworten über Anbieter ohne öffentliche Preise nennen trotzdem konkrete Beträge**, nur 3 % erwähnen, dass der Preis nicht öffentlich ist. Fazit der Studie: *„Hiding your price doesn't remove the answer. It removes your voice from it."* **Einschränkung:** nur ein Modell, ein Durchlauf je Anbieter — die Größenordnung ist richtungsweisend, nicht belastbar. Die Kernaussage stützt sich ohnehin auf die unabhängige cloro-Messung darüber.
@@ -267,7 +267,7 @@ Begründung `[GEMESSEN]`: Die vielzitierte GEO-Studie (arXiv 2311.09735, +41 % d
 
 ### AP-4.2 · Portale und Vergleichslisten — fünf gute statt fünfzig
 
-- **Vorgehen:** `localDirectories` in `src/lib/local-seo.ts` auf die Einträge konzentrieren, für die es Evidenz gibt:
+- **Vorgehen:** `localDirectories` in `src/content/local-seo.ts` auf die Einträge konzentrieren, für die es Evidenz gibt:
   - **wlw.de** — das einzige deutsche B2B-Verzeichnis, das GPTBot, OAI-SearchBot, ChatGPT-User und PerplexityBot in der robots.txt **ausdrücklich erlaubt** (von mir am 10.09.2026 direkt geprüft)
   - **OMR Reviews** — erlaubt `/*/reviews/`, taucht in der blinq-DACH-Studie in den Top-Quellen für Google AI Overviews **und** Perplexity auf
   - **Sortlist** (Kategorie Vertrieb Köln, 42 Agenturen), **ProvenExpert**, **Clutch** — offen crawlbar, aber in **keinem** Zitationsdatensatz nachweisbar `[KEINE EVIDENZ]`
@@ -338,7 +338,7 @@ Es gibt **keine Manual Action namens „Scaled content abuse"**. Doorways fallen
 
 - **Ziel:** Kein Stadtseiten-Set mit unter ~90 eigenen Wörtern je Stadt.
 - **Vorgehen, in dieser Reihenfolge:**
-  1. `/leistungen/[stadt]` auf das Niveau von `/kaltakquise/[stadt]` heben — also `src/lib/cities.ts` um Felder ergänzen, die `city-acquisition.ts` bereits vormacht. **Oder:** die 15 Seiten zusammenführen und auf `/kaltakquise/[stadt]` umleiten.
+  1. `/leistungen/[stadt]` auf das Niveau von `/kaltakquise/[stadt]` heben — also `src/content/cities.ts` um Felder ergänzen, die `city-acquisition.ts` bereits vormacht. **Oder:** die 15 Seiten zusammenführen und auf `/kaltakquise/[stadt]` umleiten.
   2. Die Template-FAQ in `getCityFAQs` (`src/lib/schemas.ts`) auflösen — sechs Fragen, die sich ausschließlich durch `${city.name}` unterscheiden, sind wörtlich *„substantially similar pages"*.
   3. Modifier-Delete-Test als Prüfskript: Stadtnamen aus dem gerenderten Text entfernen, verbleibende Texte paarweise vergleichen. Über einem Schwellwert bricht der Build.
 - **Akzeptanz:** `scripts/check-content-duplication.mjs` um den Modifier-Delete-Test erweitert, läuft in `pnpm verify`, meldet null Seitenpaare über Schwellwert.

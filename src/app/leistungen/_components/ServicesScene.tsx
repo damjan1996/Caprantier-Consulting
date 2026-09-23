@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { BarChart3, ClipboardCheck, Phone, Target } from 'lucide-react'
-import { services } from '@/lib/leistungen-content'
+import { services } from '@/content/leistungen'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -16,7 +16,7 @@ import styles from './leistungen.module.css'
  * als Kachelfeld liest man die vierte Karte nicht mehr — nacheinander bekommt
  * jede ihren Moment, und die Reihenfolge wird zur Aussage.
  *
- * Die Texte stehen in `src/lib/leistungen-content.ts`, weil dieselben Angaben
+ * Die Texte stehen in `src/content/leistungen.ts`, weil dieselben Angaben
  * als `Service`-Markup ausgeliefert werden.
  *
  * Ab 1100px abwärts fällt die Klebe-Mechanik weg: Die Karten stehen dann

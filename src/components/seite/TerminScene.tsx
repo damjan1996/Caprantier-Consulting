@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, type ReactNode } from 'react'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'

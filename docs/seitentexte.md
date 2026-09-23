@@ -1,7 +1,7 @@
 # Textleitfaden — wie die Seiten sprechen
 
 **Stand:** 16.09.2026
-**Referenzumsetzung:** `src/app/(home)/page.tsx`, `src/app/(home)/_components/`, `src/lib/home-content.ts`
+**Referenzumsetzung:** `src/app/(home)/page.tsx`, `src/app/(home)/_components/`, `src/content/home.ts`
 **Gilt für:** alle neuen Seiten und jeden Umbau bestehender Seiten
 
 Schwesterdokumente: [seitendesign.md](seitendesign.md) (wie es aussieht),
@@ -158,7 +158,7 @@ führen zum selben Ziel.
 
 ### 6.2 Die Regeln dazu
 
-1. **Eine Zahl, eine Quelle.** Sie steht in `src/lib/home-content.ts` oder als
+1. **Eine Zahl, eine Quelle.** Sie steht in `src/content/home.ts` oder als
    Konstante im Abschnitt und wird von dort verwendet — nicht abgetippt. Zwei
    Textstände laufen beim ersten Umformulieren auseinander, und es fällt
    niemandem auf, der die Seite ansieht.
@@ -177,7 +177,7 @@ führen zum selben Ziel.
    > 14 qualifizierte Entscheider-Termine in 8 Wochen
 
    Sobald Zahl **und** Freigabe vorliegen, gehören sie in
-   `src/lib/case-studies.ts` und von dort in die Seite.
+   `src/content/case-studies.ts` und von dort in die Seite.
 5. **Keine Preise ohne Freigabe.** `scripts/check-pricing.mjs` prüft das bei
    jedem `check:all`. Die Seite sagt stattdessen, wie der Preis zustande kommt:
    „Im Erstgespräch nennen wir Ihnen nach kurzer Analyse eine transparente
@@ -215,7 +215,7 @@ Nie ohne Paragraphen, nie verkürzt auf „Kaltakquise ist im B2B erlaubt".
 | Thema | Regel |
 |---|---|
 | KI-Bilder | sichtbare Kennzeichnung (Art. 50 Abs. 4 KI-VO) — auch im `alt`-Text: „(KI-generiertes Bild)" |
-| Anschrift, Telefon, Name | **nur** aus `src/lib/local-seo.ts` (`businessInfo`). Abgetippte Adressen erzeugen eine zweite Quelle — es waren schon zwei verschiedene Postleitzahlen im Umlauf |
+| Anschrift, Telefon, Name | **nur** aus `src/content/local-seo.ts` (`businessInfo`). Abgetippte Adressen erzeugen eine zweite Quelle — es waren schon zwei verschiedene Postleitzahlen im Umlauf |
 | Impressum | § 5 DDG, nicht § 5 TMG |
 | Streitbeilegung | kein Link auf die EU-OS-Plattform, sie ist seit 20.07.2025 abgeschaltet |
 
@@ -234,7 +234,7 @@ Alternative.
 ## 8 · Texte, die zweimal ausgeliefert werden
 
 Alles, was auch als JSON-LD erscheint — FAQ-Antworten, Prozessschritte — steht
-in `src/lib/home-content.ts` und wird von der Komponente **und** von
+in `src/content/home.ts` und wird von der Komponente **und** von
 `src/lib/schemas.ts` gelesen. Nie zweimal geschrieben.
 
 Für Abschnitte auf einer Klebe-Bühne kommt eines dazu: Die nicht sichtbaren
@@ -328,7 +328,7 @@ wenn nicht, fehlt der Gedanke, nicht das Wort.
 > neuen.** Auf `/leistungen/[stadt]` standen sechs Antworten, die als
 > `FAQPage` ausgeliefert wurden und der übrigen Website widersprachen: „oft
 > schon in der ersten Woche“ gegen „innerhalb von 10–14 Tagen“ in
-> `home-content.ts`, dazu „maßgeschneiderte Vertriebsstrategien“, „liefern
+> `src/content/home.ts`, dazu „maßgeschneiderte Vertriebsstrategien“, „liefern
 > schnelle Ergebnisse“, Preismodelle unter anderen Namen als in `pricing.ts`
 > und eine Jahreszahl ohne zweite Quelle. Fünfzehn Seiten lang, seit Monaten
 > online. Im Quelltext fällt so etwas nicht auf — es steht in einem

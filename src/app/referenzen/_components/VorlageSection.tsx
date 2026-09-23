@@ -1,6 +1,6 @@
 'use client'
 
-import type { CaseStudy } from '@/lib/case-studies'
+import type { CaseStudy } from '@/content/case-studies'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './referenzen.module.css'
 
@@ -18,7 +18,7 @@ import styles from './referenzen.module.css'
  * ist auch ein Zustand.“ Ein sichtbares Formular erklärt sich selbst; ein
  * leerer Abschnitt sieht aus wie ein Fehler.
  *
- * Die Felder kommen aus dem Blindmuster in `src/lib/case-studies.ts`. Solange
+ * Die Felder kommen aus dem Blindmuster in `src/content/case-studies.ts`. Solange
  * dort `istBeispiel: true` steht, ist die ganze Seite `noindex` — die Kopplung
  * erzwingt `scripts/check-compliance.mjs`, sie wird hier nicht nachgebaut.
  */

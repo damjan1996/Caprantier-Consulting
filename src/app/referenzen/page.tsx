@@ -8,8 +8,8 @@ import {
   enthaeltBeispiele,
   getBeispielFallstudien,
   getEchteFallstudien,
-} from '@/lib/case-studies'
-import { businessInfo } from '@/lib/local-seo'
+} from '@/content/case-studies'
+import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/referenzen.module.css'
 

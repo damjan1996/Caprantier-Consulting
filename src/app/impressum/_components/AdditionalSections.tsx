@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Scale, FileText, Link as LinkIcon, Shield, Globe, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionCard from '@/components/ui/SectionCard'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 
 const CONTACT_EMAIL = 'nico@carpantier-consulting.de'
 

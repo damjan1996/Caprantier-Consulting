@@ -24,7 +24,7 @@ import styles from './ueber-uns.module.css'
  * keine Reihenfolge (Designleitfaden § 5.2).
  *
  * Die vier Punkte sind keine neuen Versprechen. Sie fassen zusammen, was auf
- * der Startseite („Über Nico“) und in `leistungen-content.ts` bereits
+ * der Startseite („Über Nico“) und in `src/content/leistungen.ts` bereits
  * zugesagt ist — mit der Gegenprobe als dem, was dort fehlt.
  */
 const ZUSAGEN = [

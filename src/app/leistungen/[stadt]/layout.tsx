@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getCityBySlug, getCityKeywords, getAllCitySlugs } from '@/lib/cities'
+import { getCityBySlug, getCityKeywords, getAllCitySlugs } from '@/content/cities'
 
 interface Props {
   params: Promise<{ stadt: string }>

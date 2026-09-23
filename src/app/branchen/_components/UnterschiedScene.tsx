@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { industryPages } from '@/lib/industries'
+import { industryPages } from '@/content/industries'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'

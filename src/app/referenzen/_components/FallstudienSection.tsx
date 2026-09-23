@@ -1,6 +1,6 @@
 'use client'
 
-import type { CaseStudy } from '@/lib/case-studies'
+import type { CaseStudy } from '@/content/case-studies'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './referenzen.module.css'
 

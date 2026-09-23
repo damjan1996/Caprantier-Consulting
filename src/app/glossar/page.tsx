@@ -5,7 +5,7 @@ import PageWrapper from '@/components/ui/PageWrapper'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AiContentNotice from '@/components/ui/AiContentNotice'
-import { glossarBegriffe, glossarKategorien } from '@/lib/glossar-content'
+import { glossarBegriffe, glossarKategorien } from '@/content/glossar'
 
 /**
  * Datum der letzten redaktionellen Prüfung der Begriffserklärungen.
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 /*
  * Begriffe und Kategorien liegen seit dem 15.09.2026 in
- * `src/lib/glossar-content.ts`: Dieselben Texte erscheinen hier, im
+ * `src/content/glossar.ts`: Dieselben Texte erscheinen hier, im
  * `DefinedTermSet`-Markup und in der Kurzliste auf `/wissen`.
  */
 const glossaryTerms = glossarBegriffe

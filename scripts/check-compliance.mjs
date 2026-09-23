@@ -51,10 +51,10 @@ const rules = [
     // abtippt, erzeugt eine zweite Quelle -- und die laeuft irgendwann
     // auseinander.
     pattern: /Stammheimer\s+Stra|50935|50735|\+?49\s*\(?0?\)?\s*15738186221|4915738186221/,
-    allow: ['src/lib/local-seo.ts'],
+    allow: ['src/content/local-seo.ts'],
     reason:
       'Name, Anschrift und Rufnummer stehen ausschliesslich in ' +
-      '`businessInfo` (src/lib/local-seo.ts) und werden von dort importiert. ' +
+      '`businessInfo` (src/content/local-seo.ts) und werden von dort importiert. ' +
       'Am 10.09.2026 waren zwei verschiedene Postleitzahlen im Umlauf -- 50935 ' +
       'in Impressum, Datenschutzerklaerung und JSON-LD, 50735 in businessInfo ' +
       'und in den strukturierten Daten. Abweichende NAP-Angaben schwaechen jedes lokale Signal, ' +
@@ -117,7 +117,7 @@ if (fs.existsSync(caseStudies)) {
 // darf ein Blindmuster zur Demonstration enthalten -- aber nur, solange die
 // Route auf `noindex` steht. Diese Kopplung wird hier geprueft, weil sie sonst
 // beim naechsten Umbau der Metadaten still verloren geht.
-const fallstudienDatei = path.join(SOURCE_DIR, 'lib', 'case-studies.ts')
+const fallstudienDatei = path.join(SOURCE_DIR, 'content', 'case-studies.ts')
 const referenzenLayout = path.join(SOURCE_DIR, 'app', 'referenzen', 'layout.tsx')
 
 if (fs.existsSync(fallstudienDatei)) {
@@ -135,7 +135,7 @@ if (fs.existsSync(fallstudienDatei)) {
         rule: {
           name: 'Beispiel-Fallstudie ohne noindex',
           reason:
-            'In src/lib/case-studies.ts steht mindestens ein Eintrag mit ' +
+            'In src/content/case-studies.ts steht mindestens ein Eintrag mit ' +
             '`istBeispiel: true`. Solange das so ist, muss ' +
             'src/app/referenzen/layout.tsx die robots-Angabe an ' +
             '`enthaeltBeispiele()` koppeln und `index: false` setzen. Eine ' +
@@ -163,7 +163,7 @@ if (fs.existsSync(fallstudienDatei)) {
             'Datum der schriftlichen Freigabe traegt (§ 5 UWG, Persoenlichkeits- ' +
             'und Unternehmenspersoenlichkeitsrecht).',
         },
-        file: 'src/lib/case-studies.ts',
+        file: 'src/content/case-studies.ts',
         line: 0,
         text: 'kundeNennbar: true ohne freigegebenAm',
       })

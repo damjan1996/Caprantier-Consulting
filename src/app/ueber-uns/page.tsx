@@ -8,7 +8,7 @@ import UeberUnsIntro from './_components/UeberUnsIntro'
 import ZusagenSection from './_components/ZusagenSection'
 import { UEBER_UNS_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/ueber-uns.module.css'
 

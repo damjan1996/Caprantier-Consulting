@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { MapPin } from 'lucide-react'
-import { cities } from '@/lib/cities'
+import { cities } from '@/content/cities'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './leistungen.module.css'
 

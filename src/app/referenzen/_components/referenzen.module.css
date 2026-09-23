@@ -133,7 +133,7 @@
 /*
  * Der Zählerstreifen.
  *
- * Drei Angaben, alle aus `src/lib/case-studies.ts` abgeleitet — keine
+ * Drei Angaben, alle aus `src/content/case-studies.ts` abgeleitet — keine
  * abgetippte Zahl. Er ersetzt die Merkmalszeile der anderen Seiten: Dort steht
  * eine Zusage, hier ein Kontostand. Senkrechte Linien statt Trennpunkten,
  * damit man den Unterschied sieht.

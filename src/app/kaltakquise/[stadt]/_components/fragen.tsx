@@ -1,5 +1,5 @@
-import type { City } from '@/lib/cities'
-import type { CityAcquisition } from '@/lib/city-acquisition'
+import type { City } from '@/content/cities'
+import type { CityAcquisition } from '@/content/city-acquisition'
 import { getKaltakquiseFAQs } from '@/lib/schemas'
 import type { FragenInhalt } from '@/components/seite/FragenSection'
 

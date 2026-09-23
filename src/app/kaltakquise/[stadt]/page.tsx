@@ -9,10 +9,10 @@ import { termin } from './_components/termin'
 import UmgebungSection from './_components/UmgebungSection'
 import { KALTAKQUISE_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
-import { getCityBySlug, getAllCitySlugs, type City } from '@/lib/cities'
-import { getCityAcquisition, type CityAcquisition } from '@/lib/city-acquisition'
+import { getCityBySlug, getAllCitySlugs, type City } from '@/content/cities'
+import { getCityAcquisition, type CityAcquisition } from '@/content/city-acquisition'
 import { generateKaltakquiseFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import styles from './_components/kaltakquise.module.css'
 
 /**

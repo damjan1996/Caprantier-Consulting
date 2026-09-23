@@ -42,8 +42,8 @@ const COMPONENTS_DIR = path.join(ROOT, 'src', 'components')
 const MINDEST_EINGEHENDE_LINKS = 2
 
 const { blogPosts } = await loadTsModule('src/lib/blog.ts')
-const { industryPages } = await loadTsModule('src/lib/industries.ts')
-const { cities } = await loadTsModule('src/lib/cities.ts')
+const { industryPages } = await loadTsModule('src/content/industries.ts')
+const { cities } = await loadTsModule('src/content/cities.ts')
 const slugs = blogPosts.map((post) => post.slug)
 
 /** {slug -> Set<Quelle>} */
@@ -65,7 +65,7 @@ for (const post of blogPosts) {
 // 2) Verweise aus den Branchenseiten.
 //
 // `relatedPosts` wird auf /branchen/[branche] als echter Link gerendert. Die
-// Slugs stehen aber in einem Datenmodul unter src/lib/, das der Dateiscan
+// Slugs stehen aber in einem Datenmodul unter src/content/, das der Dateiscan
 // unten bewusst nicht durchsucht -- dort liegen auch Umleitungsziele und
 // Bildzuordnungen, die keine Verlinkung sind.
 for (const industry of industryPages) {

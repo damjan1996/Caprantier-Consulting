@@ -333,7 +333,7 @@
 }
 
 /*
- * Die Belegzeile zitiert eine Leistungszusage aus `leistungen-content.ts` —
+ * Die Belegzeile zitiert eine Leistungszusage aus `src/content/leistungen.ts` —
  * nicht abgetippt, sondern gelesen. Zwei Textstände liefen beim ersten
  * Umformulieren auseinander (Baukasten § 8.3).
  */
@@ -562,7 +562,7 @@
  * Die nachprüfbaren Angaben.
  *
  * Anschrift, Rufnummer und Inhaber kommen ausschliesslich aus `businessInfo`
- * (`src/lib/local-seo.ts`). Abgetippt wären sie die zweite Quelle — es waren
+ * (`src/content/local-seo.ts`). Abgetippt wären sie die zweite Quelle — es waren
  * an dieser Stelle schon zwei verschiedene Postleitzahlen im Umlauf.
  */
 .hausHead {

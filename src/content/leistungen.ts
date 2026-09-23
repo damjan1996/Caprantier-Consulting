@@ -8,7 +8,7 @@
  * niemandem auf, der die Seite ansieht.
  *
  * Die Preismodelle stehen bewusst **nicht** hier, sondern weiterhin in
- * `src/lib/pricing.ts` — dort hängen die Freigabe-Logik und die Prüfung in
+ * `src/content/pricing.ts` — dort hängen die Freigabe-Logik und die Prüfung in
  * `scripts/check-pricing.mjs` daran.
  */
 

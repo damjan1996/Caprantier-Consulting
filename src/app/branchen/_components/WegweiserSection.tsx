@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { industryPages } from '@/lib/industries'
+import { industryPages } from '@/content/industries'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './branchen.module.css'
 

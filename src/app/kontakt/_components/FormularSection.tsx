@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { trackEvent } from '@/lib/analytics'
 import { CONTACT_CONSENT_TEXT, contactRequestSchema } from '@/lib/contact'
 import { useReveal } from '@/components/seite/useReveal'

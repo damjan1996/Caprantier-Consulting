@@ -2,8 +2,8 @@
 
 import { useRef, useState } from 'react'
 import { Building2, Clock, Search } from 'lucide-react'
-import { getCityBySlug } from '@/lib/cities'
-import { getCityAcquisition } from '@/lib/city-acquisition'
+import { getCityBySlug } from '@/content/cities'
+import { getCityAcquisition } from '@/content/city-acquisition'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'

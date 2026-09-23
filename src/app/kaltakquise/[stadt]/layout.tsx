@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getCityBySlug, getAllCitySlugs } from '@/lib/cities'
-import { getCityAcquisition } from '@/lib/city-acquisition'
-import { businessInfo } from '@/lib/local-seo'
+import { getCityBySlug, getAllCitySlugs } from '@/content/cities'
+import { getCityAcquisition } from '@/content/city-acquisition'
+import { businessInfo } from '@/content/local-seo'
 
 interface Props {
   params: Promise<{ stadt: string }>

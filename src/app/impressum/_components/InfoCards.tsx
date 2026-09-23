@@ -3,7 +3,7 @@
 import { User, Building, Phone } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionCard from '@/components/ui/SectionCard'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 
 /**
  * Bewusst ohne Angabe zur Umsatzsteuer-Identifikationsnummer.

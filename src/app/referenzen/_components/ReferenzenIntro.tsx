@@ -14,7 +14,7 @@ import styles from './referenzen.module.css'
  * Statt der Merkmalszeile der anderen Seiten — dort steht eine Zusage — trägt
  * dieser Einstieg einen Kontostand: freigegebene Fälle, Blindmuster,
  * Indexierung. Alle drei Angaben werden übergeben und nicht abgetippt; sie
- * stammen aus `src/lib/case-studies.ts` und ändern sich mit dem Bestand.
+ * stammen aus `src/content/case-studies.ts` und ändern sich mit dem Bestand.
  */
 export default function ReferenzenIntro({
   freigegeben,

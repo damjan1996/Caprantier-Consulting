@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import type { City } from '@/lib/cities'
-import { getNearbyCities } from '@/lib/cities'
-import { industryPages } from '@/lib/industries'
+import type { City } from '@/content/cities'
+import { getNearbyCities } from '@/content/cities'
+import { industryPages } from '@/content/industries'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './stadt.module.css'
 
@@ -21,7 +21,7 @@ import styles from './stadt.module.css'
  *
  * Die Nachbarorte kommen aus `getNearbyCities` — `nearbyAreas` nennt die
  * geografischen Nachbarn, nicht die vorhandenen Seiten; die Begründung steht
- * in `src/lib/cities.ts`.
+ * in `src/content/cities.ts`.
  */
 export default function RegionSection({ city }: { city: City }) {
   const { ref, isIn } = useReveal<HTMLElement>()

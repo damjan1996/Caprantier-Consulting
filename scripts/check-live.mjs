@@ -26,7 +26,7 @@ import { loadTsModule } from './lib/load-ts-module.mjs'
 const require = createRequire(import.meta.url)
 const { blogRedirects } = require('../config/blog-redirects.js')
 const { default: sitemap } = await loadTsModule('src/app/sitemap.ts')
-const { businessInfo } = await loadTsModule('src/lib/local-seo.ts')
+const { businessInfo } = await loadTsModule('src/content/local-seo.ts')
 
 const ziel = (process.argv[2] ?? 'http://localhost:3000').replace(/\/$/, '')
 const quelle = businessInfo.website

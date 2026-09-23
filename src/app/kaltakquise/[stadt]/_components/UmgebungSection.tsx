@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import type { City } from '@/lib/cities'
-import { getNearbyCities } from '@/lib/cities'
-import { industryPages } from '@/lib/industries'
+import type { City } from '@/content/cities'
+import { getNearbyCities } from '@/content/cities'
+import { industryPages } from '@/content/industries'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './kaltakquise.module.css'
 
@@ -37,7 +37,7 @@ export default function UmgebungSection({ city }: { city: City }) {
    * `getNearbyCities` füllt auf, wenn die genannten Nachbarn keine eigene
    * Seite haben. Ohne das ständen Frankfurt und Stuttgart hier ohne einen
    * einzigen Verweis in die Umgebung — ihre drei Nachbarorte gibt es alle
-   * nicht als Seite. Die Begründung steht in `src/lib/cities.ts`.
+   * nicht als Seite. Die Begründung steht in `src/content/cities.ts`.
    */
   const nachbarn = getNearbyCities(city)
 

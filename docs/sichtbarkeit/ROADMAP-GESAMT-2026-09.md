@@ -49,7 +49,7 @@ Die acht Punkte aus `docs/sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md` Abschnit
 - **Kein `aggregateRating`/`Review`-Markup ohne echte, freigegebene, sichtbare Kundenstimmen** (§ 5 UWG, Build-Gate).
 - **Keine erfundenen Zahlen** — keine Logos ohne Freigabe, keine Terminquoten ohne echtes Projekt.
 - **`/ki-transparenz` bleibt vollständig** (AI Act Art. 50, Aktivposten).
-- **NAP nur aus `businessInfo` in `src/lib/local-seo.ts`.**
+- **NAP nur aus `businessInfo` in `src/content/local-seo.ts`.**
 - **B2B-Telefonakquise bei mutmaßlicher Einwilligung zulässig, Kaltakquise-Mail ohne Einwilligung nicht** — diese Unterscheidung nie verwischen.
 
 ---
@@ -119,8 +119,8 @@ Der Branchenatlas empfahl Einträge bei Sortlist, ProvenExpert, werkenntdenbeste
 | **Blog** | 52 → **13 Beiträge**, Median 1.306 Wörter, Minimum 1.213. FAQ 13/13, externe Quelle 13/13, Stadt-/Leistungslink 13/13. Einzeldateien unter `src/content/blog/` |
 | **Blog-Verlinkung** | Client-Pagination in `BlogGrid.tsx` **entfernt** — der Kernbefund ist adressiert |
 | **Neue Routen** | `/kaltakquise`, `/kaltakquise/[stadt]`, `/branchen`, `/branchen/[branche]`, `/referenzen`, `/llms.txt` |
-| **Branchenseiten** | `src/lib/industries.ts`, **2 Einträge**: `personaldienstleister`, `it-systemhaeuser` |
-| **Preisgefäß** | `src/lib/pricing.ts` mit `PREISE_FREIGEGEBEN = false`, Beträge `null`, `check-pricing.mjs` als Gate |
+| **Branchenseiten** | `src/content/industries.ts`, **2 Einträge**: `personaldienstleister`, `it-systemhaeuser` |
+| **Preisgefäß** | `src/content/pricing.ts` mit `PREISE_FREIGEGEBEN = false`, Beträge `null`, `check-pricing.mjs` als Gate |
 | **Datengefäße** | `case-studies.ts`, `industries.ts`, `city-acquisition.ts`, `blog-types.ts` |
 | **Prüfskripte** | `blog-audit`, `check-blog-redirects`, `check-content-duplication`, `check-directories`, `check-internal-links`, `check-pricing`, `check-sitemap` |
 | **robots.txt** | KI-Crawler erlaubt, SEO-Crawler entsperrt, `/*?*` entfernt — **nicht committet** |
@@ -173,7 +173,7 @@ Quellen: cloro AI Search Index (735 Prompts × 5 Engines) · arXiv 2506.11097 ·
 
 **Blockiert den höchstbewerteten Hebel des Projekts.**
 
-- **Befund:** Vereinheitlicht wurde auf **50935** (Sülz/Klettenberg). Nominatim ordnet „Stammheimer Straße 123, Köln" eindeutig **50735** (Riehl/Nippes) zu, Koordinaten 50.9654857 / 6.9768817. Zusätzlich steht `geo` in `src/lib/local-seo.ts` auf 50.9375 / 6.9603 — **3,32 km vom tatsächlichen Standort entfernt**, und geht in `LocalBusiness`-JSON-LD auf jeder Stadtseite ein.
+- **Befund:** Vereinheitlicht wurde auf **50935** (Sülz/Klettenberg). Nominatim ordnet „Stammheimer Straße 123, Köln" eindeutig **50735** (Riehl/Nippes) zu, Koordinaten 50.9654857 / 6.9768817. Zusätzlich steht `geo` in `src/content/local-seo.ts` auf 50.9375 / 6.9603 — **3,32 km vom tatsächlichen Standort entfernt**, und geht in `LocalBusiness`-JSON-LD auf jeder Stadtseite ein.
 - **Vorgehen:** (1) **Nico bestätigt die Anschrift** — OSM ist ein Hinweis, keine Rechtsgrundlage. (2) PLZ und Koordinaten an **einer** Stelle korrigieren (`businessInfo`), alle Vorkommen darauf zurückführen: Impressum, Datenschutz, `layout.tsx`, `leistungen/[stadt]/page.tsx`, `chat/tool-executor.ts`. (3) `check-compliance.mjs` um NAP-Konsistenzprüfung erweitern.
 - **Akzeptanz:** Genau ein PLZ-Wert im Repo, Koordinaten auf die bestätigte Anschrift, `pnpm verify` grün.
 - **Warum zuerst:** `[RECHTLICH]` § 5 DDG, falsche PLZ ist abmahnfähig. `[OFFIZIELL]` Google verweigert GBP-Verifizierung bei nicht zustellbarer Adresse — **AP-4.1 hängt vollständig hieran**. Und jede Verzeichnisanmeldung zementiert eine falsche NAP weiter.

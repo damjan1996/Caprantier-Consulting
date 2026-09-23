@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react'
 import Link from 'next/link'
-import { cities } from '@/lib/cities'
+import { cities } from '@/content/cities'
 import styles from './footer.module.css'
 
 /**

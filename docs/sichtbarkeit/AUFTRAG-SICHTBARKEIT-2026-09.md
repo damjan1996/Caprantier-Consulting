@@ -48,8 +48,8 @@ pnpm test:e2e            # Playwright
 | Pfad | Inhalt |
 |---|---|
 | `src/lib/blog.ts` | **8.287 Zeilen**, alle 52 Blogartikel als Objekte mit `content` als Template-Literal |
-| `src/lib/cities.ts` | 17 Stadt-Datensätze, speisen `/leistungen/[stadt]` |
-| `src/lib/local-seo.ts` | `businessInfo` (NAP), `localDirectories` (15 Einträge, **alle `status: 'pending'`**), `getLocalBusinessSchema` |
+| `src/content/cities.ts` | 17 Stadt-Datensätze, speisen `/leistungen/[stadt]` |
+| `src/content/local-seo.ts` | `businessInfo` (NAP), `localDirectories` (15 Einträge, **alle `status: 'pending'`**), `getLocalBusinessSchema` |
 | `src/lib/schemas.ts` | JSON-LD-Generatoren: City-FAQ, BlogPost, Blog-FAQ, Breadcrumb, HowTo, Homepage-FAQ, ServiceArea, HomepageVideo |
 | `src/app/sitemap.ts` | Sitemap, dynamisch |
 | `public/robots.txt` | **statisch** — hier liegen die Crawler-Sperren |
@@ -112,7 +112,7 @@ Diese Punkte sind nicht verhandelbar. `pnpm check:compliance` erzwingt die erste
 3. **Kein Link auf die EU-Plattform zur Online-Streitbeilegung** (seit 20.07.2025 abgeschaltet).
 4. **`/ki-transparenz` bleibt bestehen und bleibt vollständig.** Die Seite legt offen, dass alle fotorealistischen Personenbilder KI-generiert sind und Blog-/Glossartexte KI-gestützt entstanden. Das ist AI Act Art. 50 und ein Aktivposten. Sie wird nicht abgeschwächt, nicht versteckt, nicht aus der Navigation genommen. Wenn Bilder ersetzt werden, wird die Seite **nachgeführt**, nicht gelöscht.
 5. **Keine erfundenen Zahlen.** Keine Kundenlogos ohne Freigabe, keine Fallzahlen ohne Beleg, keine Terminquoten, die nicht aus echten Projekten stammen. Wettbewerber behaupten „489 Mio. € Abschlusssummen" — das ist deren Risiko, nicht unser Vorbild.
-6. **NAP bleibt konsistent.** `businessInfo` in `src/lib/local-seo.ts` ist die einzige Quelle für Name, Adresse, Telefon. Keine abweichende Schreibweise irgendwo sonst im Code.
+6. **NAP bleibt konsistent.** `businessInfo` in `src/content/local-seo.ts` ist die einzige Quelle für Name, Adresse, Telefon. Keine abweichende Schreibweise irgendwo sonst im Code.
 7. **Rechtsaussagen zur Kaltakquise bleiben korrekt.** B2B-Telefonakquise ist nach § 7 UWG bei mutmaßlicher Einwilligung zulässig; Kaltakquise-**Mail** ohne Einwilligung ist es nicht. Diese Unterscheidung darf in keinem Text verwischt werden.
 8. **Nicht committen und nicht deployen ohne ausdrückliche Freigabe.** Arbeiten, `pnpm verify` grün melden, Ergebnis berichten. Push entscheidet Damjan.
 
@@ -221,7 +221,7 @@ Nach vollständiger Umsetzung:
 
 - **Ziel:** Die zweite Begriffsfamilie besetzen. Heute rankt `vertriebsagentur [stadt]`; `kaltakquise agentur [stadt]` und `telefonakquise agentur [stadt]` fallen bisher an Wettbewerber.
 - **Vorgehen:**
-  1. `src/lib/cities.ts` enthält 15 Städte (`koeln duesseldorf bonn essen dortmund frankfurt muenchen hamburg berlin stuttgart hannover leipzig dresden nuernberg bremen`); `src/app/sitemap.ts` mappt sie direkt. Bestand ist konsistent, hier ist nichts zu reparieren.
+  1. `src/content/cities.ts` enthält 15 Städte (`koeln duesseldorf bonn essen dortmund frankfurt muenchen hamburg berlin stuttgart hannover leipzig dresden nuernberg bremen`); `src/app/sitemap.ts` mappt sie direkt. Bestand ist konsistent, hier ist nichts zu reparieren.
   2. Zweite Route anlegen, Muster von `/leistungen/[stadt]` übernehmen: `/kaltakquise/[stadt]`. **Keine Kopie der Texte** — sonst entsteht dasselbe Dünn-Content-Problem eine Ebene höher. Je Stadt braucht es einen eigenen Absatz mit lokalem Bezug (Branchenstruktur, Industrie vor Ort, Erreichbarkeit).
   3. `generateCityFAQSchema` und `generateServiceAreaSchema` aus `src/lib/schemas.ts` wiederverwenden.
   4. Interne Verlinkung: Jede Stadtseite verlinkt auf die passenden Kernartikel aus AP-3 und umgekehrt.
@@ -265,7 +265,7 @@ Nach vollständiger Umsetzung:
 
 ### AP-9 · `localDirectories` an die Wirklichkeit binden
 
-- **Problem:** Alle 15 Einträge in `src/lib/local-seo.ts` stehen auf `status: 'pending'` — inklusive Google Business Profile. Das ist ein Aufgabenzettel, der als Datenstruktur getarnt ist.
+- **Problem:** Alle 15 Einträge in `src/content/local-seo.ts` stehen auf `status: 'pending'` — inklusive Google Business Profile. Das ist ein Aufgabenzettel, der als Datenstruktur getarnt ist.
 - **Vorgehen:** Feld um `submittedAt` und `profileUrl` erweitern, Sortlist / OMR Reviews / ProvenExpert ergänzen (Sortlist stand in 13 von 29 gemessenen SERPs und wird von der KI-Übersicht als Vergleichsquelle empfohlen — dort zu fehlen kostet mehr als jedes einzelne Ranking). Status nach jeder tatsächlichen Anmeldung pflegen.
 - **Akzeptanz:** Struktur erweitert, Sortlist/OMR/ProvenExpert enthalten, `pnpm typecheck` grün.
 
@@ -336,7 +336,7 @@ Was du zusätzlich brauchst und was nicht:
 1. `pnpm install`, dann einmal `pnpm verify`, um den Ausgangszustand zu kennen. Erst danach die erste Änderung.
    Stand 10.09.2026 geprüft: `check:compliance` meldet „keine Beanstandungen", `tsc --noEmit` läuft ohne Fehler durch. `lint` und `build` waren nicht Teil dieser Prüfung — der erste vollständige `pnpm verify`-Lauf gehört an den Anfang der Session, nicht in die Mitte.
 2. `git log --oneline -10` und `git status` — der letzte Stand betraf die Videoseite unter `/wissen`, nicht den Blog.
-3. `src/lib/blog.ts`, `src/lib/cities.ts`, `src/lib/local-seo.ts`, `scripts/check-compliance.mjs` lesen, bevor du sie änderst. Die Compliance-Datei erklärt in Kommentaren, welcher Punkt schon einmal live beanstandet war.
+3. `src/lib/blog.ts`, `src/content/cities.ts`, `src/content/local-seo.ts`, `scripts/check-compliance.mjs` lesen, bevor du sie änderst. Die Compliance-Datei erklärt in Kommentaren, welcher Punkt schon einmal live beanstandet war.
 4. `COMPETITOR-SEO-EXPLORATION.md` für die vollständige Wettbewerbsanalyse mit allen 29 gemessenen Suchanfragen.
 
 **Musst du erfragen, bevor du damit anfängst:**

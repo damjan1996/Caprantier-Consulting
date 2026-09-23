@@ -8,7 +8,7 @@ import { TERMIN } from './_components/termin'
 import WegeSection from './_components/WegeSection'
 import { KONTAKT_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/kontakt.module.css'
 

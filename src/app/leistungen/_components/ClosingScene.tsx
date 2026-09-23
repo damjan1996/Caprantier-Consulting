@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { erstgespraechAgenda } from '@/lib/leistungen-content'
+import { erstgespraechAgenda } from '@/content/leistungen'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'

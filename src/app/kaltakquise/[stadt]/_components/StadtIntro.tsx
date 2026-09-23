@@ -1,7 +1,7 @@
 'use client'
 
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import type { City } from '@/lib/cities'
+import type { City } from '@/content/cities'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './kaltakquise.module.css'

@@ -570,7 +570,7 @@ für jede weitere Seite.
 > (§ 5 UWG) — daran ist die frühere Fallstudienseite bereits gescheitert.
 > Gesetzt sind deshalb die anonymisierten, veröffentlichten Ergebnisse. Sobald
 > Zahlen **und schriftliche Freigaben** vorliegen, gehören sie in
-> `src/lib/case-studies.ts` und von dort in die Seite.
+> `src/content/case-studies.ts` und von dort in die Seite.
 
 ### 8.2 Zugänglichkeit
 
@@ -593,7 +593,7 @@ für jede weitere Seite.
 ### 8.3 Inhalt und strukturierte Daten
 
 Texte, die **zugleich als JSON-LD** ausgeliefert werden, stehen in einem
-Datenmodul — nicht zweimal im Code. Vorbild: `src/lib/home-content.ts` mit
+Datenmodul — nicht zweimal im Code. Vorbild: `src/content/home.ts` mit
 `homeFaqs` und `homeProcessSteps`, verwendet von `FaqSection`, `ProcessSection`
 und `generateHomepageFAQSchema()` / `generateHowToSchema()`.
 
@@ -627,8 +627,8 @@ Nicht alles auf einmal. Reihenfolge nach Wirkung:
 
 1. ~~**`/leistungen`**~~ — **umgestellt am 15.09.2026.** Fünf Abschnitte,
    drei davon als Bühne; Vorlage für alles Weitere. Die Preismodelle liegen
-   weiterhin in `src/lib/pricing.ts`, die vier Leistungen neu in
-   `src/lib/leistungen-content.ts` (zugleich Quelle des `Service`-Markups).
+   weiterhin in `src/content/pricing.ts`, die vier Leistungen neu in
+   `src/content/leistungen.ts` (zugleich Quelle des `Service`-Markups).
 2. ~~**`/kaltakquise`**~~ und ~~**`/branchen`**~~ — **umgestellt am
    15.09.2026.** Beide fünf Abschnitte, zwei davon als Bühne; zusammen mit
    `/wissen` die drei Familien-Einstiege. `/branchen` hat nur zwei Kinder
@@ -639,7 +639,7 @@ Nicht alles auf einmal. Reihenfolge nach Wirkung:
    Familie.
    - ~~**`/kaltakquise/[stadt]`**~~ — **umgestellt am 15.09.2026**, fünfzehn
      Seiten aus einer Vorlage. Sechs Abschnitte, zwei davon als Bühne; die
-     Ortstexte weiterhin aus `src/lib/city-acquisition.ts`, die Fragen
+     Ortstexte weiterhin aus `src/content/city-acquisition.ts`, die Fragen
      weiterhin aus `getKaltakquiseFAQs` in `src/lib/schemas.ts`.
    - ~~**`/leistungen/[stadt]`**~~ — **umgestellt am 15.09.2026**, fünfzehn
      Seiten aus einer Vorlage. Sechs Abschnitte, zwei davon als Bühne. Mit
@@ -649,7 +649,7 @@ Nicht alles auf einmal. Reihenfolge nach Wirkung:
    - **`/branchen/[branche]`** — noch auf Tailwind, zwei Seiten.
 4. ~~**`/wissen`**~~ — **umgestellt am 15.09.2026.** Sechs Abschnitte, zwei
    davon als Bühne; zweiter Familien-Einstieg nach `/kaltakquise`. Die
-   Begriffe liegen dabei neu in `src/lib/glossar-content.ts` — sie standen
+   Begriffe liegen dabei neu in `src/content/glossar.ts` — sie standen
    als Feld in `src/app/glossar/page.tsx` und sind jetzt dreifach in
    Gebrauch (Glossarseite, `DefinedTermSet`, Kurzliste auf `/wissen`).
 5. ~~**`/referenzen`**~~ — **umgestellt am 16.09.2026.** Fünf Abschnitte,
@@ -707,7 +707,7 @@ oben und `--page-max` unten hat zwei verschiedene Kanten.
 > stillschweigend weg — zwei von fünfzehn Seiten ohne einen einzigen Verweis
 > in die Umgebung. Eine Vorlage zeigt solche Lücken nicht, weil sie überall
 > gleich aussieht; nur die Daten sind ungleich. Seitdem füllt
-> `getNearbyCities` in `src/lib/cities.ts` auf drei auf.
+> `getNearbyCities` in `src/content/cities.ts` auf drei auf.
 
 ---
 
@@ -777,7 +777,7 @@ Damit diese Punkte nicht als Fehler „korrigiert" werden:
 | Abschnittsliste der Startseite | `src/app/(home)/_components/sections.ts` |
 | Abschnitte der Startseite | `src/app/(home)/_components/` |
 | Buchung | `src/components/calendly/CalendlyProvider.tsx` |
-| Texte mit Markup-Zweitverwendung | `src/lib/home-content.ts` |
+| Texte mit Markup-Zweitverwendung | `src/content/home.ts` |
 | Strukturierte Daten | `src/lib/schemas.ts` |
 | Satzbreite der übrigen Seiten | `.container-custom` in `src/app/globals.css` |
 | Kopf- und Fußzeile | `src/components/layout/` |

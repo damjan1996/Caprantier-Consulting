@@ -16,7 +16,7 @@
 
 import { loadTsModule } from './lib/load-ts-module.mjs'
 
-const { localDirectories } = await loadTsModule('src/lib/local-seo.ts')
+const { localDirectories } = await loadTsModule('src/content/local-seo.ts')
 
 const heute = new Date().toISOString().slice(0, 10)
 const beanstandungen = []

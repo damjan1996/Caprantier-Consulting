@@ -2,8 +2,8 @@
 
 import { useRef, useState } from 'react'
 import { Building2, Clock, Target } from 'lucide-react'
-import type { City } from '@/lib/cities'
-import type { CityAcquisition } from '@/lib/city-acquisition'
+import type { City } from '@/content/cities'
+import type { CityAcquisition } from '@/content/city-acquisition'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -13,7 +13,7 @@ import styles from './kaltakquise.module.css'
  * „Der Markt vor Ort“ — klebende Bühne mit drei Einträgen.
  *
  * Das ist der Abschnitt, den keine zweite Seite dieser Domain so hat. Die
- * Texte stehen je Stadt in `src/lib/city-acquisition.ts` und werden von
+ * Texte stehen je Stadt in `src/content/city-acquisition.ts` und werden von
  * `scripts/check-content-duplication.mjs` gegeneinander geprüft: Fünfzehn
  * Seiten mit denselben Absätzen wären genau der Dünn-Content-Fehler, an dem
  * der Blog gescheitert ist.

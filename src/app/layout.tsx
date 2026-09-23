@@ -5,7 +5,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
 import { ClientSideComponents } from '@/components/layout/ClientComponents'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 
 const inter = Inter({
   subsets: ['latin'],

@@ -1,4 +1,4 @@
-import type { City } from '@/lib/cities'
+import type { City } from '@/content/cities'
 import { getCityFAQs } from '@/lib/schemas'
 import type { FragenInhalt } from '@/components/seite/FragenSection'
 

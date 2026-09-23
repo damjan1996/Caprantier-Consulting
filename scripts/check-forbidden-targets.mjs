@@ -46,7 +46,7 @@ import { loadTsModule } from './lib/load-ts-module.mjs'
 const ROOT = path.resolve(import.meta.dirname, '..')
 const APP_DIR = path.join(ROOT, 'src', 'app')
 
-const { industryPages } = await loadTsModule('src/lib/industries.ts')
+const { industryPages } = await loadTsModule('src/content/industries.ts')
 
 /**
  * Gesperrte Begriffe.

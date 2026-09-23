@@ -30,11 +30,11 @@ import { loadTsModule } from './lib/load-ts-module.mjs'
 
 const basis = (process.argv[2] || 'http://localhost:3000').replace(/\/$/, '')
 
-const { cities } = await loadTsModule('src/lib/cities.ts')
-const { industryPages } = await loadTsModule('src/lib/industries.ts')
+const { cities } = await loadTsModule('src/content/cities.ts')
+const { industryPages } = await loadTsModule('src/content/industries.ts')
 const { blogPosts } = await loadTsModule('src/lib/blog.ts')
-const { cityAcquisition } = await loadTsModule('src/lib/city-acquisition.ts')
-const { priceModels, PREISE_FREIGEGEBEN } = await loadTsModule('src/lib/pricing.ts')
+const { cityAcquisition } = await loadTsModule('src/content/city-acquisition.ts')
+const { priceModels, PREISE_FREIGEGEBEN } = await loadTsModule('src/content/pricing.ts')
 
 /**
  * Schneidet einen Prüfausschnitt aus einem längeren Text.

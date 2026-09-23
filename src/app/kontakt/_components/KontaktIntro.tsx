@@ -1,7 +1,7 @@
 'use client'
 
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './kontakt.module.css'

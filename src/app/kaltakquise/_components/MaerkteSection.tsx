@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { cities } from '@/lib/cities'
-import { getCityAcquisition } from '@/lib/city-acquisition'
+import { cities } from '@/content/cities'
+import { getCityAcquisition } from '@/content/city-acquisition'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './uebersicht.module.css'
 

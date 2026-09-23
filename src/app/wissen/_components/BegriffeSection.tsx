@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { glossarBegriffe } from '@/lib/glossar-content'
+import { glossarBegriffe } from '@/content/glossar'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './wissen.module.css'
 
@@ -14,7 +14,7 @@ import styles from './wissen.module.css'
  *
  * Keine Bühne — Nachschlagewerk, kein Ablauf (Designleitfaden § 5.2).
  *
- * Die Begriffe kommen aus `src/lib/glossar-content.ts`, derselben Quelle wie
+ * Die Begriffe kommen aus `src/content/glossar.ts`, derselben Quelle wie
  * die Glossarseite und ihr `DefinedTermSet`-Markup. Bis zum 15.09.2026 standen
  * sie als Feld in `src/app/glossar/page.tsx`; ein zweiter Textstand hier wäre
  * beim ersten Redigieren still auseinandergelaufen (Baukasten § 8.3).

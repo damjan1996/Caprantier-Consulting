@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Shield, Eye, Server, Cookie, UserCheck, Lock, Ban, Globe, BarChart3, Sparkles } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionCard from '@/components/ui/SectionCard'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 
 const STORAGE_TABLE_HEADERS = [
   'Name',

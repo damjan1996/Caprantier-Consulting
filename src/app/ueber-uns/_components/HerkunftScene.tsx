@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { services } from '@/lib/leistungen-content'
+import { services } from '@/content/leistungen'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -24,7 +24,7 @@ import styles from './ueber-uns.module.css'
  * ## Die Belegzeile
  *
  * Jeder Eintrag endet mit der Stelle, an der die Erfahrung heute im Ablauf
- * steht — **zitiert** aus `src/lib/leistungen-content.ts`, nicht abgetippt.
+ * steht — **zitiert** aus `src/content/leistungen.ts`, nicht abgetippt.
  * Dieselben Sätze werden als `Service`-Markup ausgeliefert; zwei Textstände
  * laufen beim ersten Umformulieren auseinander, und es fällt niemandem auf,
  * der die Seite ansieht (Baukasten § 8.3).

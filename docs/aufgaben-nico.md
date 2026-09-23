@@ -67,7 +67,7 @@ kommt:
 - Google lehnt die Verifizierung eines Business Profiles ab, wenn die Adresse
   nicht zustellbar ist — Punkt 2 hängt also daran.
 
-Zu ändern ist danach nur eine Stelle: `address` in `src/lib/local-seo.ts`.
+Zu ändern ist danach nur eine Stelle: `address` in `src/content/local-seo.ts`.
 Impressum, Datenschutz, Chatbot und alle strukturierten Daten lesen von dort.
 
 ---
@@ -118,7 +118,7 @@ genannt — im Wesentlichen deshalb.
 - **Fragen und Antworten:** Drei Fragen selbst stellen und beantworten, Vorlage
   in `docs/GOOGLE_BUSINESS_SETUP.md`, Schritt 8.
 
-Nach der Freischaltung: Status in `src/lib/local-seo.ts` auf `verified` setzen
+Nach der Freischaltung: Status in `src/content/local-seo.ts` auf `verified` setzen
 und `profileUrl` eintragen. `pnpm run check:directories` prüft das.
 
 ---
@@ -201,7 +201,7 @@ Gebraucht wird pro Fall:
 - Ob der Kundenname genannt werden darf, und wenn ja: **schriftliche Freigabe**
   mit Datum
 
-Sobald ein echter Fall in `src/lib/case-studies.ts` steht und das Blindmuster
+Sobald ein echter Fall in `src/content/case-studies.ts` steht und das Blindmuster
 entfernt ist, wird die Seite automatisch indexierbar und landet in der Sitemap.
 
 ---
@@ -227,7 +227,7 @@ mit dem Namen Carpantier daran — nur nicht auf einer Seite, die verkauft.
 
 ### Freigabe in zwei Schritten
 
-1. In `src/lib/pricing.ts` bei den Modellen `preis` eintragen (und optional
+1. In `src/content/pricing.ts` bei den Modellen `preis` eintragen (und optional
    `preisHinweis`, etwa „zzgl. USt.").
 2. `PREISE_FREIGEGEBEN` auf `true` setzen.
 
@@ -272,7 +272,7 @@ indexierten Beitragsadressen im URL-Prüftool erneut anfordern.
 ## 8 · Verzeichnisse anlegen
 
 Reihenfolge nach Wirkung. Die Liste steht als Datenstruktur in
-`src/lib/local-seo.ts` und will nach jeder Anmeldung gepflegt werden
+`src/content/local-seo.ts` und will nach jeder Anmeldung gepflegt werden
 (`status`, `submittedAt`, `profileUrl`).
 
 | # | Plattform | Warum |

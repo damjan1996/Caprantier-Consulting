@@ -6,8 +6,8 @@ import ServicesScene from './_components/ServicesScene'
 import { LEISTUNGEN_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
 import { generateBreadcrumbSchema, generateServicesSchema } from '@/lib/schemas'
-import { generateOfferSchema } from '@/lib/pricing'
-import { businessInfo } from '@/lib/local-seo'
+import { generateOfferSchema } from '@/content/pricing'
+import { businessInfo } from '@/content/local-seo'
 import styles from './_components/leistungen.module.css'
 
 /**

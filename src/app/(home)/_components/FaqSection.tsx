@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { homeFaqs } from '@/lib/home-content'
+import { homeFaqs } from '@/content/home'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -10,7 +10,7 @@ import styles from './home.module.css'
 /**
  * Häufige Fragen — klebende Bühne wie die übrigen Abschnitte.
  *
- * Die Antworten stehen in `src/lib/home-content.ts`, weil dieselben Texte als
+ * Die Antworten stehen in `src/content/home.ts`, weil dieselben Texte als
  * FAQPage-Markup ausgeliefert werden. Strukturierte Daten müssen den sichtbaren
  * Inhalt wiedergeben — zwei Textstände wären ein Verstoß, den man der Seite
  * nicht ansieht.

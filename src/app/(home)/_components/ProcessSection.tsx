@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { homeProcessSteps } from '@/lib/home-content'
+import { homeProcessSteps } from '@/content/home'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import { STACK_BREAKPOINT, clamp01, easeOut, isStacked, useScrollScene } from '@/components/seite/useScrollScene'
@@ -15,7 +15,7 @@ import styles from './home.module.css'
  * danach null Eigenaufwand — das steht als Balken in jeder Karte, und der
  * Balken läuft erst an, wenn seine Karte vorne steht.
  *
- * Die Schritte kommen aus `src/lib/home-content.ts`, weil dieselben Angaben als
+ * Die Schritte kommen aus `src/content/home.ts`, weil dieselben Angaben als
  * HowTo-Markup ausgeliefert werden.
  *
  * Ab 1100px abwärts fällt die Klebe-Mechanik weg: Die Karten stehen dann

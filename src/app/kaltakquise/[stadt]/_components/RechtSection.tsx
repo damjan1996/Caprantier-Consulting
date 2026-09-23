@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import type { City } from '@/lib/cities'
+import type { City } from '@/content/cities'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './kaltakquise.module.css'
 

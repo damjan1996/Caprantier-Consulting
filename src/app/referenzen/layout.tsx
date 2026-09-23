@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { enthaeltBeispiele } from '@/lib/case-studies'
-import { businessInfo } from '@/lib/local-seo'
+import { enthaeltBeispiele } from '@/content/case-studies'
+import { businessInfo } from '@/content/local-seo'
 
 const PAGE_URL = `${businessInfo.website}/referenzen`
 

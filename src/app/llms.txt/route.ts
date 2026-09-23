@@ -1,7 +1,7 @@
-import { businessInfo } from '@/lib/local-seo'
-import { cities } from '@/lib/cities'
+import { businessInfo } from '@/content/local-seo'
+import { cities } from '@/content/cities'
 import { blogPosts } from '@/lib/blog'
-import { industryPages } from '@/lib/industries'
+import { industryPages } from '@/content/industries'
 
 /**
  * `/llms.txt` -- die Kurzfassung dieser Website für Sprachmodelle.

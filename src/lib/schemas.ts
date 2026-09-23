@@ -1,7 +1,7 @@
-import type { City } from './cities'
-import type { CityAcquisition } from './city-acquisition'
-import { homeFaqs, homeProcessSteps } from './home-content'
-import { services } from './leistungen-content'
+import type { City } from '@/content/cities'
+import type { CityAcquisition } from '@/content/city-acquisition'
+import { homeFaqs, homeProcessSteps } from '@/content/home'
+import { services } from '@/content/leistungen'
 
 /*
  * Kein Bewertungs-Markup.
@@ -32,13 +32,13 @@ import { services } from './leistungen-content'
  * Rest der Website und zu den eigenen Textregeln:
  *
  * - „oft schon in der ersten Woche“ gegen „innerhalb von 10–14 Tagen … oft in
- *   der zweiten Woche“ in `home-content.ts`. Dieselbe Zusage in zwei Fassungen,
+ *   der zweiten Woche“ in `src/content/home.ts`. Dieselbe Zusage in zwei Fassungen,
  *   die aggressivere auf fünfzehn Seiten.
  * - „maßgeschneiderte Vertriebsstrategien“ und „liefern schnelle Ergebnisse“ —
  *   beides führt `docs/seitentexte.md` § 9.1 und § 1 ausdrücklich als das auf,
  *   was nicht geschrieben wird.
  * - „Pay-per-Lead bis zu monatlichen Vertriebspaketen“ gegen die drei Modelle
- *   in `src/lib/pricing.ts`, die anders heißen.
+ *   in `src/content/pricing.ts`, die anders heißen.
  * - „über 3 Jahre Vertriebserfahrung“ — eine Zahl ohne zweite Quelle im
  *   Projekt.
  */
@@ -173,7 +173,7 @@ export function generateBreadcrumbSchema(
 /**
  * HowTo zum Abschnitt „Der Prozess“ auf der Startseite.
  *
- * Die Schritte kommen aus `src/lib/home-content.ts` und sind damit
+ * Die Schritte kommen aus `src/content/home.ts` und sind damit
  * zwangsläufig dieselben, die der Abschnitt anzeigt. Strukturierte Daten
  * müssen den sichtbaren Inhalt wiedergeben — vorher standen hier drei
  * Schritte mit eigenen Texten, während die Seite vier andere zeigte.
@@ -429,13 +429,13 @@ export function generateKaltakquiseFAQSchema(city: City, acquisition: CityAcquis
  * Die vier Leistungen als `ItemList` von `Service`-Einträgen.
  *
  * Wortgleich mit dem sichtbaren Abschnitt „Was wir übernehmen“ auf
- * `/leistungen` — beide lesen `services` aus `src/lib/leistungen-content.ts`.
+ * `/leistungen` — beide lesen `services` aus `src/content/leistungen.ts`.
  * Strukturierte Daten müssen den sichtbaren Inhalt wiedergeben; zwei
  * Textstände wären ein Verstoß, den man der Seite nicht ansieht.
  *
  * Bewusst ohne `offers`: Beträge sind nicht freigegeben, und ein `Offer` ohne
  * `price` ist gegenüber Google wertlos. Die Preismodelle liefert
- * `generateOfferSchema` in `src/lib/pricing.ts`, sobald es Zahlen gibt.
+ * `generateOfferSchema` in `src/content/pricing.ts`, sobald es Zahlen gibt.
  */
 export function generateServicesSchema() {
   return {

@@ -9,9 +9,9 @@ import { termin } from './_components/termin'
 import UebergabeScene from './_components/UebergabeScene'
 import { STADT_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
-import { getCityBySlug, getAllCitySlugs, type City } from '@/lib/cities'
+import { getCityBySlug, getAllCitySlugs, type City } from '@/content/cities'
 import { generateCityFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import styles from './_components/stadt.module.css'
 
 /**

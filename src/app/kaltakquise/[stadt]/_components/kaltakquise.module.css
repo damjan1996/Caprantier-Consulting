@@ -276,7 +276,7 @@
  * Drei Einträge, in der Reihenfolge, in der die Fragen kommen: Wer sitzt hier,
  * wen rufen wir davon an, wann nehmen die ab. Das ist der einzige Abschnitt,
  * den keine zweite Seite dieser Domain so hat — die Texte stammen je Stadt aus
- * `src/lib/city-acquisition.ts` und werden von
+ * `src/content/city-acquisition.ts` und werden von
  * `scripts/check-content-duplication.mjs` gegeneinander geprüft.
  */
 .sceneMarkt {

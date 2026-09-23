@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next'
-import { cities } from '@/lib/cities'
+import { cities } from '@/content/cities'
 import { blogPosts } from '@/lib/blog'
-import { industryPages } from '@/lib/industries'
-import { businessInfo } from '@/lib/local-seo'
-import { enthaeltBeispiele } from '@/lib/case-studies'
+import { industryPages } from '@/content/industries'
+import { businessInfo } from '@/content/local-seo'
+import { enthaeltBeispiele } from '@/content/case-studies'
 
 /**
  * Sitemap.

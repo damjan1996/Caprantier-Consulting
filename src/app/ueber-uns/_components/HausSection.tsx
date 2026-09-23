@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { businessInfo } from '@/lib/local-seo'
+import { businessInfo } from '@/content/local-seo'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './ueber-uns.module.css'
 
@@ -16,7 +16,7 @@ import styles from './ueber-uns.module.css'
  *
  * ## Eine Quelle für Name, Anschrift und Rufnummer
  *
- * Alle Werte kommen aus `businessInfo` (`src/lib/local-seo.ts`). Abgetippt
+ * Alle Werte kommen aus `businessInfo` (`src/content/local-seo.ts`). Abgetippt
  * wären sie die zweite Quelle, und genau das ist hier schon einmal
  * passiert: Bis zum 10.09.2026 standen zwei verschiedene Postleitzahlen im
  * Umlauf. Im Quelltext fällt so etwas nicht auf.
