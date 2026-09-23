@@ -689,7 +689,7 @@ pnpm run build
 pnpm exec playwright test # Umbruchprüfung über 7 Breiten
 ```
 
-> **Auf Windows:** `pnpm run build` scheitert mit einem Prisma-`EPERM`, solange
+> **Auf Windows:** `pnpm run build` scheitert mit einem `EPERM`, solange
 > ein Dev-Server läuft — das ist eine Dateisperre, kein Konfigurationsfehler.
 > Erst alle `next dev` beenden. Kommt danach immer noch veralteter Inhalt an,
 > ist der Turbopack-Cache schal: `rm -rf .next`.

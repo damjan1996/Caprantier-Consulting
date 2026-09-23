@@ -44,5 +44,3 @@ export function useWebVitals() {
     onTTFB(handleMetric) // Time to First Byte
   }, [])
 }
-
-export default useWebVitals

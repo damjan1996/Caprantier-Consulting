@@ -138,11 +138,13 @@ export const metadata: Metadata = {
   verification: {
     google: 'google657f39b03f350aac',
   },
+  // Wie das JSON-LD unten: Ort und Koordinaten nur aus `businessInfo`, damit eine
+  // Korrektur der Geo-Daten nicht an einer zweiten Stelle vergessen wird.
   other: {
-    'geo.region': 'DE-NW',
-    'geo.placename': 'Köln',
-    'geo.position': '50.9375;6.9603',
-    ICBM: '50.9375, 6.9603',
+    'geo.region': `${businessInfo.address.countryCode}-${businessInfo.address.regionCode}`,
+    'geo.placename': businessInfo.address.city,
+    'geo.position': `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`,
+    ICBM: `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`,
   },
 }
 

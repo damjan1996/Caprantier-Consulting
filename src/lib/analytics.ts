@@ -20,7 +20,7 @@ declare global {
  * cookiefrei, da dabei die IP-Adresse an einen Drittanbieter übertragen würde
  * (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
  */
-export function hasAnalyticsConsent(): boolean {
+function hasAnalyticsConsent(): boolean {
   if (typeof window === 'undefined') return false
 
   try {
@@ -71,26 +71,8 @@ export function trackPageView(url: string, title?: string): void {
 }
 
 /**
- * Track button clicks
- */
-export function trackButtonClick(buttonName: string, location?: string): void {
-  trackEvent('click', 'button', `${buttonName}${location ? ` - ${location}` : ''}`)
-}
-
-/**
- * Track CTA clicks
- */
-export function trackCTAClick(ctaName: string): void {
-  trackEvent('cta_click', 'engagement', ctaName)
-}
-
-/**
  * Track Calendly events
  */
-export function trackCalendlyOpen(): void {
-  trackEvent('calendly_open', 'conversion', 'popup_opened')
-}
-
 export function trackCalendlyScheduled(): void {
   trackEvent('calendly_scheduled', 'conversion', 'meeting_booked')
 }
@@ -100,24 +82,6 @@ export function trackCalendlyScheduled(): void {
  */
 export function trackScrollDepth(percentage: number): void {
   trackEvent('scroll', 'engagement', `${percentage}%`, percentage)
-}
-
-/**
- * Track outbound links
- */
-export function trackOutboundLink(url: string): void {
-  trackEvent('click', 'outbound', url)
-}
-
-/**
- * Track form interactions
- */
-export function trackFormStart(formName: string): void {
-  trackEvent('form_start', 'form', formName)
-}
-
-export function trackFormSubmit(formName: string, success: boolean): void {
-  trackEvent('form_submit', 'form', formName, success ? 1 : 0)
 }
 
 /**

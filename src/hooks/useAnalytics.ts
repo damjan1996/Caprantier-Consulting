@@ -8,7 +8,7 @@ import { useWebVitals } from './useWebVitals'
 /**
  * Hook for automatic page view and engagement tracking
  */
-export function usePageTracking() {
+function usePageTracking() {
   const pathname = usePathname()
   // Bewusst ohne Startwert: Date.now() im Render wäre nicht idempotent. Der
   // Effekt unten setzt den Zeitpunkt beim ersten Lauf und bei jedem
@@ -36,7 +36,7 @@ export function usePageTracking() {
 /**
  * Hook for scroll depth tracking
  */
-export function useScrollTracking() {
+function useScrollTracking() {
   const tracked = useRef<Set<number>>(new Set())
 
   useEffect(() => {

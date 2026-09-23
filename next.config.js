@@ -9,10 +9,6 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
 
-  // Standalone output nur für Docker-Deployment (nicht für Vercel)
-  // Bei Hetzner-Migration: output: 'standalone' wieder aktivieren
-  ...(process.env.STANDALONE === 'true' && { output: 'standalone' }),
-
   // Image Optimization
   images: {
     unoptimized: false,
@@ -75,7 +71,7 @@ const nextConfig = {
    * werden. Zuvor standen dieselben Header zusaetzlich in vercel.json — mit
    * widerspruechlichen Werten (X-Frame-Options: SAMEORIGIN hier, DENY dort).
    * Zwei Quellen fuer denselben Header sind nicht pruefbar, deshalb haelt
-   * vercel.json jetzt nur noch Region und Cron-Zeitplan.
+   * vercel.json nur noch die Region.
    */
   async headers() {
     // Content Security Policy.

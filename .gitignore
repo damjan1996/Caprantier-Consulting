@@ -68,12 +68,6 @@ logs
 # Turbo
 .turbo
 
-# PWA
-**/public/sw.js
-**/public/workbox-*.js
-
-/src/generated/prisma
-
 # Auto Claude data directory
 .auto-claude/
 
@@ -90,6 +84,9 @@ logs/security/
 /tests/screenshots/
 /playwright-report/
 /.playwright-mcp/
+
+# graphify-Wissensgraph: lokal erzeugt, jederzeit neu aufbaubar
+/graphify-out/
 
 # Claude Code Arbeitsverzeichnisse
 .claude/worktrees/

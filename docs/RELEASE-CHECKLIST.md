@@ -22,10 +22,10 @@ pnpm run verify
 | `typecheck` | `tsc --noEmit` |
 | `lint` | `eslint .` (ESLint 9 Flat Config) |
 | `check:compliance` | Bewertungs-Markup, „§ 5 TMG", Link auf die abgeschaltete OS-Plattform, zurückgekehrte Fallstudienseite, Platzhalter statt USt-IdNr. |
-| `build` | `prisma generate && next build` |
+| `build` | `next build` |
 
-**Wenn `prisma generate` mit `EPERM ... query_engine-windows.dll.node`
-abbricht:** Es läuft noch ein Server, der die Datei geöffnet hält. Alle
+**Wenn `next build` mit `EPERM` abbricht oder veraltete Inhalte ausliefert:**
+Es läuft noch ein Server, der Dateien unter `.next/` geöffnet hält. Alle
 `next dev` und `next start` beenden und erneut versuchen.
 
 ```powershell
@@ -57,8 +57,6 @@ Wert schaltet die jeweilige Funktion stillschweigend ab.
 | `NEXT_PUBLIC_BREVO_CLIENT_KEY` | optional | Kein Marketing-Tracking — zulässig |
 
 - [ ] Alle Pflichtwerte in Production gesetzt
-- [ ] `CHAT_SESSION_SECRET` ist ein zufälliger Wert, kein wiederverwendetes Passwort
-- [ ] Cron-Job `/api/cron/cleanup-chats` ist in Vercel sichtbar und aktiv
 
 ## 3. Nach dem Deployment — technische Abnahme auf der Live-Domain
 

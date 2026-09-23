@@ -28,7 +28,7 @@ import vertriebsteamAufbauen from '@/../public/images/blog/vertriebsteam-aufbaue
 import kiB2bVertrieb from '@/../public/images/blog/ki-b2b-vertrieb.webp'
 
 /** Zuordnung Slug -> Beitragsbild. Muss zu `image` im Beitrag passen. */
-export const blogImages: Record<string, StaticImageData> = {
+const blogImages: Record<string, StaticImageData> = {
   'b2b-kaltakquise-leitfaden': b2bKaltakquise,
   'vertrieb-auslagern-kosten-vorteile': vertriebAuslagern,
   'vertriebsagentur-finden-checkliste': vertriebsagenturFinden,

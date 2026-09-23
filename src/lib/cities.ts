@@ -210,14 +210,8 @@ export function getCityKeywords(city: City): string[] {
 }
 
 // Get city by name (for nearby areas linking)
-export function getCityByName(name: string): City | undefined {
+function getCityByName(name: string): City | undefined {
   return cities.find((city) => city.name === name)
-}
-
-// Get slug from city name
-export function getSlugFromName(name: string): string | undefined {
-  const city = getCityByName(name)
-  return city?.slug
 }
 
 /**

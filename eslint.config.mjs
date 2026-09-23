@@ -21,9 +21,6 @@ export default defineConfig([
     'build/**',
     'next-env.d.ts',
 
-    // Erzeugter Prisma-Client.
-    'src/generated/**',
-
     // Arbeitsmaterial und Hilfsskripte ausserhalb der Anwendung: kein
     // Bestandteil des Deployments, deshalb auch nicht Teil der Pruefung.
     'scripts/**',

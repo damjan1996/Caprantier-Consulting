@@ -13,7 +13,7 @@
 import { blogPosts } from '@/content/blog'
 import type { BlogPost } from '@/lib/blog-types'
 
-export type { BlogPost, BlogPostFAQ, BlogPostPreview } from '@/lib/blog-types'
+export type { BlogPostPreview } from '@/lib/blog-types'
 export { blogPosts }
 
 /** Lesegeschwindigkeit für Fachtexte. Konservativ gewählt, eher zu langsam als zu schnell. */
@@ -25,7 +25,7 @@ const WOERTER_PRO_MINUTE = 200
  * Markdown-Auszeichnung zählt nicht mit: Rauten, Tabellenstriche, Listenpunkte
  * und Link-Ziele sind Syntax. Der Linktext dagegen wird gelesen und zählt.
  */
-export function countContentWords(markdown: string): number {
+function countContentWords(markdown: string): number {
   const text = markdown
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/^\s*\|[\s:|-]+\|\s*$/gm, ' ')
@@ -56,14 +56,6 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 
 export function getAllBlogSlugs(): string[] {
   return blogPosts.map((post) => post.slug)
-}
-
-export function getFeaturedPosts(): BlogPost[] {
-  return blogPosts.filter((post) => post.featured)
-}
-
-export function getPostsByCategory(category: string): BlogPost[] {
-  return blogPosts.filter((post) => post.category === category)
 }
 
 export function getAllCategories(): string[] {

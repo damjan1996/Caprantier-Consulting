@@ -116,7 +116,3 @@ export function getBeispielFallstudien(): CaseStudy[] {
 export function enthaeltBeispiele(): boolean {
   return caseStudies.some((fall) => fall.istBeispiel)
 }
-
-export function getFallstudieBySlug(slug: string): CaseStudy | undefined {
-  return caseStudies.find((fall) => fall.slug === slug)
-}

@@ -13,7 +13,7 @@
  * `/api/youtube/thumbnail/[id]` vom eigenen Server.
  */
 
-export const YOUTUBE_CHANNEL_ID = 'UCgD_0ner1biCooDW6smcZRA'
+const YOUTUBE_CHANNEL_ID = 'UCgD_0ner1biCooDW6smcZRA'
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@nico_carpantier'
 
 const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`

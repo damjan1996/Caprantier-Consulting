@@ -1,8 +1,7 @@
 /**
  * Ladeverhalten und Core Web Vitals gegen einen antwortenden Server.
  *
- * Warum nicht `pagespeed-check.js`: Das Skript fragt Googles PageSpeed-API, und
- * die erreicht keinen lokalen Server. Vor dem Deployment lässt sich die
+ * Warum nicht Googles PageSpeed-API: Die erreicht keinen lokalen Server. Vor dem Deployment lässt sich die
  * Feldmessung also nicht nachholen -- die Laborwerte hier schon, und sie fangen
  * genau die Fehler ab, die man selbst verursacht: ein zu grosses Bild, ein
  * blockierendes Skript, ein Layout, das nachspringt.
