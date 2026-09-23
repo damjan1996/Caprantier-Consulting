@@ -21,7 +21,7 @@ pnpm run verify
 |---|---|
 | `typecheck` | `tsc --noEmit` |
 | `lint` | `eslint .` (ESLint 9 Flat Config) |
-| `check:compliance` | Bewertungs-Markup, „§ 5 TMG", Link auf die abgeschaltete OS-Plattform, zurückgekehrte Fallstudienseite, Platzhalter statt USt-IdNr. |
+| `check:all` | Neun inhaltliche Prüfungen, darunter `check:compliance`: Bewertungs-Markup, „§ 5 TMG", Link auf die abgeschaltete OS-Plattform, zurückgekehrte Fallstudienseite, Platzhalter statt USt-IdNr., Anschrift außerhalb von `businessInfo`. Die übrigen: Blog, Umleitungen, interne Verlinkung, Sitemap, Dopplungen, Preise, Verzeichnisse, Sperrliste |
 | `build` | `next build` |
 
 **Wenn `next build` mit `EPERM` abbricht oder veraltete Inhalte ausliefert:**

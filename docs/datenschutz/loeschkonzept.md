@@ -12,6 +12,15 @@ festgelegten Ablauf, nicht nur eine Aussage in der Datenschutzerklärung.
 
 ## 1. Löschfristen
 
+> **Chat: beendet.** Der KI-Chat wurde am 30.08.2026 von der Website entfernt,
+> der verbliebene Code am 16.09.2026 — mit ihm der Löschlauf
+> `/api/cron/cleanup-chats` und sein Zeitplan in `vercel.json`. Die drei
+> Chat-Zeilen unten und die Abschnitte zum Löschlauf beschreiben deshalb den
+> Stand bis dahin. **Seitdem wird nichts mehr automatisch gelöscht:** Der
+> Altbestand in `chat_sessions` und `chat_messages` wird einmalig von Hand
+> gelöscht, siehe `docs/RELEASE-CHECKLIST.md`, Abschnitt 3.5, und
+> `verzeichnis-verarbeitungstaetigkeiten.md`, Abschnitt 3.
+
 | Daten | Speicherort | Frist | Auslöser |
 |---|---|---|---|
 | Chat-Sitzungen ohne Kontaktdaten | PostgreSQL, `chat_sessions` | 90 Tage ab Erstellung | Täglicher Lauf von `/api/cron/cleanup-chats` |
