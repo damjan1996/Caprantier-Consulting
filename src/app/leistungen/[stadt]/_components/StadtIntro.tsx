@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AiGeneratedBadge from '@/components/ui/AiGeneratedBadge'
 import { AI_GENERATED_MEDIA_ATTRS } from '@/components/ui/ai-media'
-import type { City } from '@/content/cities'
+import { STANDARD_SUCHBEGRIFF, type City } from '@/content/cities'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './stadt.module.css'
@@ -24,11 +24,19 @@ import nicoSalesCall from '@/../public/images/nico-sales-call.jpg'
  * Die Überschrift nennt den Suchbegriff („Vertrieb auslagern in <Stadt>“) und
  * im selben Satz die Grenze der Zusage. Die frühere Fassung hiess nur
  * „Vertrieb <Stadt>“ — zwei Wörter im Nominalstil, die nichts behaupten und
- * nichts einlösen.
+ * nichts einlösen. Wo die Search Console für eine Stadt einen anderen Begriff
+ * zeigt, steht dieser vorn (`suchbegriff` in `cities.ts`, etwa „Akquise
+ * auslagern“ für Hamburg).
+ *
+ * Der Einleitungssatz nennt „Vertriebsoutsourcing“ als zweites Wort für
+ * dieselbe Sache. Seit dem 01.10.2026: Der Begriff wird gesucht (Nürnberg
+ * Ø Position 5,4, dazu Hamburg und „vertriebsoutsourcing kosten“) und stand auf
+ * keiner der fünfzehn Seiten.
  */
 export default function StadtIntro({ city }: { city: City }) {
   const { openCalendly, onHover } = useCalendly()
   const { ref, isIn } = useReveal<HTMLDivElement>()
+  const suchbegriff = city.suchbegriff ?? STANDARD_SUCHBEGRIFF
 
   return (
     <section id="einstieg" className={styles.intro} aria-labelledby="intro-title">
@@ -51,7 +59,7 @@ export default function StadtIntro({ city }: { city: City }) {
             data-fade-in=""
             style={{ '--rd': '0.08s' } as React.CSSProperties}
           >
-            Vertrieb auslagern in {city.name} – ohne den Abschluss aus der Hand zu geben.
+            {suchbegriff.h1} in {city.name} – ohne den Abschluss aus der Hand zu geben.
           </h1>
 
           <p
@@ -59,8 +67,9 @@ export default function StadtIntro({ city }: { city: City }) {
             data-fade-in=""
             style={{ '--rd': '0.16s' } as React.CSSProperties}
           >
-            Wir übernehmen Zielgruppe, Anruf und Qualifizierung. Das Verkaufsgespräch führen Sie –
-            weil Preis und Zusage bei Ihnen bleiben.
+            Beim Vertriebsoutsourcing in {city.name} übernehmen wir Zielgruppe, Anruf und
+            Qualifizierung. Das Verkaufsgespräch führen Sie – weil Preis und Zusage bei Ihnen
+            bleiben.
           </p>
 
           <div

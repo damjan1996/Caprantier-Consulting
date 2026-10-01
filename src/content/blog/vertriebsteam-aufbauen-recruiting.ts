@@ -16,7 +16,7 @@ export const vertriebsteamAufbauenRecruiting: BlogPost = {
   title: 'Vertriebsteam aufbauen: einstellen, auslagern oder beides',
   seoTitle: 'Vertriebsteam aufbauen: einstellen oder auslagern',
   description:
-    'Wann sich die erste Vertriebsstelle rechnet, wie man sie besetzt, ohne auf Selbstdarstellung hereinzufallen, was die ersten 90 Tage entscheiden – und in welchen Fällen eine externe Lösung die ehrlichere Antwort ist.',
+    'Vertriebsteam aufbauen: wann sich die erste Vertriebsstelle rechnet, wie man sie besetzt, was die ersten 90 Tage entscheiden – und wann Auslagern ehrlicher ist.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2025-12-30',
   updatedAt: '2026-09-10',
@@ -86,7 +86,7 @@ Erst wenn diese Summe über zwölf Monate vom erwarteten Deckungsbeitrag getrage
 
 Ein verbreiteter Fehler ist, "einen Vertriebler" zu suchen. Der Begriff umfasst mindestens drei Rollen mit unterschiedlichen Anforderungen – und Menschen, die alle drei können, sind selten und teuer.
 
-**Sales Development (SDR).** Liste, Erstansprache, Qualifizierung, Terminvereinbarung. Braucht Ausdauer, Frustrationstoleranz und Struktur. Braucht **kein** tiefes Produktwissen.
+**[Sales Development](/glossar#sdr) (SDR).** Liste, Erstansprache, Qualifizierung, Terminvereinbarung. Braucht Ausdauer, Frustrationstoleranz und Struktur. Braucht **kein** tiefes Produktwissen.
 
 **Account Executive.** Führt das Verkaufsgespräch, erstellt das Angebot, verhandelt, schließt ab. Braucht Produktwissen, Verhandlungssicherheit und Entscheidungsbefugnis.
 

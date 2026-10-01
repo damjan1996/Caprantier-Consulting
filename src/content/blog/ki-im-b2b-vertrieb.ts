@@ -12,7 +12,7 @@ export const kiImB2bVertrieb: BlogPost = {
   title: 'KI im B2B-Vertrieb: Was sie übernimmt und was sie nicht kann',
   seoTitle: 'KI im B2B-Vertrieb: was sie kann und was nicht',
   description:
-    'Wo Sprachmodelle und Automatisierung im B2B-Vertrieb echte Arbeit abnehmen – Recherche, Vorbereitung, Dokumentation, Auswertung – und wo ihr Einsatz rechtlich oder inhaltlich an Grenzen stößt. Mit dem Rahmen aus DSGVO und KI-Verordnung.',
+    'KI im B2B-Vertrieb: wo Sprachmodelle Recherche, Vorbereitung, Dokumentation und Auswertung abnehmen – und wo DSGVO und KI-Verordnung Grenzen setzen.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-18',
   updatedAt: '2026-09-10',

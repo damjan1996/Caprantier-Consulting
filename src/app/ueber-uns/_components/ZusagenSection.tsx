@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './ueber-uns.module.css'
 
@@ -116,14 +115,12 @@ export default function ZusagenSection() {
         <Link href="/leistungen" className={styles.textLink}>
           Was wir übernehmen
         </Link>
-        <a
-          href={YOUTUBE_CHANNEL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.textLink} ${styles.textLinkMuted}`}
-        >
+        {/* Bis zum 01.10.2026 direkt auf den YouTube-Kanal. Die Videoseite
+            zeigt dieselben Videos erst nach Einwilligung, verweist selbst auf
+            den Kanal — und hatte aus Seiteninhalten nur zwei Verweise. */}
+        <Link href="/wissen/videos" className={`${styles.textLink} ${styles.textLinkMuted}`}>
           Wie das am Telefon klingt
-        </a>
+        </Link>
       </div>
     </section>
   )

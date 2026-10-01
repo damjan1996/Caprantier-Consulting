@@ -16,7 +16,7 @@ export const b2bKaltakquiseLeitfaden: BlogPost = {
   slug: 'b2b-kaltakquise-leitfaden',
   title: 'B2B-Kaltakquise: Leitfaden für das Telefongespräch',
   description:
-    'Vom Listenaufbau bis zum vereinbarten Termin: rechtlicher Rahmen nach § 7 UWG, Anrufzeiten, Gatekeeper, Gesprächseinstieg, Einwände und Mailbox. Der vollständige Leitfaden für B2B-Telefonakquise.',
+    'B2B-Kaltakquise am Telefon, Schritt für Schritt: Liste, Anrufzeiten, Gatekeeper, Einstieg, Einwände und Mailbox – mit dem rechtlichen Rahmen nach § 7 UWG.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-18',
   updatedAt: '2026-09-10',
@@ -86,6 +86,8 @@ Eine belastbare Liste beantwortet vor dem ersten Anruf vier Fragen:
 
 Wer diese vier Fragen nicht beantworten kann, sollte nicht mit dem Wählen anfangen. Die Zeit ist in der Recherche besser investiert. Beim Aufbau der Kriterien hilft der Beitrag zur [Lead-Qualifizierung nach BANT](/blog/bant-methode-erklaert).
 
+Wie verschieden die Antworten ausfallen, zeigt der [Beitrag zur Akquise nach Branche](/blog/akquise-nach-branche-b2b-dienstleister) für Agenturen, Beratungen, Maschinenbau und Startups. Für Systemhäuser, Managed Service Provider und SaaS-Anbieter gibt es einen eigenen Beitrag zur [Akquise für IT-Dienstleister](/blog/leadgenerierung-it-dienstleister).
+
 ## Anrufzeiten: messen statt glauben
 
 Zu den beliebtesten Behauptungen im Vertrieb gehört, es gebe eine allgemein beste Uhrzeit für Akquiseanrufe. Es gibt keine. Es gibt nur ein bestes Zeitfenster **pro Zielgruppe**, und das hängt an der Rolle, nicht am Wochentag.
@@ -154,7 +156,7 @@ Sinnvoll ist die Mailbox beim zweiten und dritten Versuch, nicht beim ersten. Be
 
 ## Kaltakquise oder Warmakquise
 
-Der Unterschied ist nicht rechtlicher, sondern gesprächspsychologischer Natur.
+Der Unterschied zwischen Kaltakquise und [Warmakquise](/glossar#warmakquise) ist nicht rechtlicher, sondern gesprächspsychologischer Natur.
 
 | Merkmal | Kaltakquise | Warmakquise |
 |---|---|---|
@@ -164,7 +166,7 @@ Der Unterschied ist nicht rechtlicher, sondern gesprächspsychologischer Natur.
 | Aufwand pro Termin | hoch | deutlich niedriger |
 | Skalierbarkeit | hoch, Liste ist beliebig erweiterbar | begrenzt durch bestehende Kontakte |
 
-In der Praxis ist die Frage nie entweder oder. Warmakquise ist immer zuerst dran, weil sie günstiger ist – sie geht nur irgendwann aus. Kaltakquise ist der Kanal, der nicht ausgeht.
+In der Praxis ist die Frage nie entweder oder. Warmakquise ist immer zuerst dran, weil sie günstiger ist – sie geht nur irgendwann aus. Kaltakquise ist der Kanal, der nicht ausgeht. Wann LinkedIn, E-Mail, Messen oder Webinare das Telefon ergänzen, vergleicht der [Beitrag zu den Kanälen der B2B-Leadgenerierung](/blog/b2b-leadgenerierung-kanaele).
 
 ## Nachfassen: der Teil, an dem die meisten aufhören
 
@@ -176,7 +178,7 @@ Drei Regeln haben sich bewährt: das Datum nennen, den Anlass notieren, und beim
 
 Kaltakquise funktioniert, wenn sie regelmäßig stattfindet. Genau daran scheitert sie in kleinen und mittleren Unternehmen: Nach zwei guten Monaten ist die Pipeline voll, die Akquise pausiert, und drei Monate später ist sie leer. Wer diesen Zyklus kennt, hat entweder ein Kapazitäts- oder ein Prozessproblem – und beides löst sich nicht durch ein besseres Skript.
 
-Ein Weg heraus ist, die Akquise auszulagern. Was das kostet und welche Modelle es gibt, steht im [Beitrag zu den Kosten von Vertriebsoutsourcing](/blog/vertrieb-auslagern-kosten-vorteile). Wie wir das konkret umsetzen, steht auf der Seite zu [unseren Leistungen](/leistungen); für das Rheinland gibt es eine eigene Übersicht zur [Kaltakquise in Köln](/kaltakquise/koeln).
+Ein Weg heraus ist, die Akquise auszulagern. Was das kostet und welche Modelle es gibt, steht im [Beitrag zu den Kosten von Vertriebsoutsourcing](/blog/vertrieb-auslagern-kosten-vorteile). Der andere ist eine eigene Stelle; wann sie sich rechnet und was die ersten 90 Tage entscheiden, steht im [Beitrag zum Aufbau eines Vertriebsteams](/blog/vertriebsteam-aufbauen-recruiting). Wie wir das konkret umsetzen, steht auf der Seite zu [unseren Leistungen](/leistungen); für das Rheinland gibt es eine eigene Übersicht zur [Kaltakquise in Köln](/kaltakquise/koeln).
 
 ## Quellen
 

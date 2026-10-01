@@ -7,16 +7,27 @@ import type { BlogPost } from '@/lib/blog-types'
 // aus deiner Statistik. Wenn du aus 100 Gesprächen mitzählst, welcher Einwand
 // wie oft kommt, wird aus der Reihenfolge in diesem Beitrag eine belegte
 // Rangfolge – das kann sonst niemand im Wettbewerbsfeld liefern.
+//
+// Am 01.10.2026 ergänzt: Der Beitrag steht im Index und rankt für
+// „einwandbehandlung“ (Ø Position 19,7) und „einwandbehandlung zu teuer“
+// (16,5). Deshalb hat „Das ist zu teuer“ jetzt einen eigenen H2-Abschnitt mit
+// drei Beispielantworten. Für „vertriebsoutsourcing kosten“ (22,5) soll er
+// dagegen nicht ranken – den Begriff trägt der Kostenbeitrag; der Verweis
+// „Kosten für Vertriebsoutsourcing“ gibt das Thema dorthin ab.
+//
+// TODO(Nico): Die drei Antworten auf „Das ist zu teuer“ sind aus der Methode
+// formuliert. Wenn du Sätze hast, die in deinen Gesprächen tatsächlich
+// getragen haben, gehören sie an ihre Stelle.
 
 export const einwandbehandlungVertrieb: BlogPost = {
   slug: 'einwandbehandlung-vertrieb',
   title: 'Einwandbehandlung im B2B-Vertrieb: Die fünf Sätze, die wirklich kommen',
   seoTitle: 'Einwandbehandlung: die fünf häufigsten Einwände',
   description:
-    'Kein Interesse, keine Zeit, zu teuer, schicken Sie Unterlagen, wir haben schon jemanden: Wie man die fünf häufigsten Einwände im B2B-Telefonvertrieb behandelt – und wie man danach professionell nachfasst.',
+    'Einwandbehandlung im B2B: Antworten auf kein Interesse, keine Zeit, zu teuer, Unterlagen und wir haben schon jemanden – und wie man danach sauber nachfasst.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-14',
-  updatedAt: '2026-09-10',
+  updatedAt: '2026-10-01',
   category: 'Vertriebsmethoden',
   tags: [
     'Einwandbehandlung',
@@ -101,7 +112,7 @@ Ein Termin ist hier selten. Eine Wiedervorlage drei Monate vor Vertragsende dage
 
 Im Erstgespräch praktisch nie ein Preiseinwand. Wer den Nutzen nicht beziffern kann, vergleicht mit null – und gegen null ist jeder Preis zu hoch.
 
-Die Frage, die weiterführt, lautet: **womit verglichen wird.** Mit einer internen Lösung? Mit einem anderen Anbieter? Mit Nichtstun? Erst wenn das feststeht, ist eine Preisdiskussion überhaupt sinnvoll. Wie man den Preis danach sauber verhandelt, steht im [Beitrag zu Angebot, Verhandlung und Abschluss](/blog/angebot-verhandlung-abschluss-b2b).
+Die Frage, die weiterführt, lautet: **womit verglichen wird.** Mit einer internen Lösung? Mit einem anderen Anbieter? Mit Nichtstun? Erst wenn das feststeht, ist eine Preisdiskussion überhaupt sinnvoll. Wie die Antwort im Gespräch klingt, zeigt der eigene Abschnitt zu diesem Einwand weiter unten.
 
 ## Das Muster hinter allen fünf
 
@@ -113,6 +124,26 @@ Alle fünf Reaktionen folgen derselben Reihenfolge, und die ist wichtiger als je
 4. **Einen konkreten Vorschlag** – Termin, Wiedervorlage oder sauberes Ende.
 
 Was in keiner der vier Stufen vorkommt: das eigene Angebot. Wer im Einwand über die eigene Leistung spricht, hat die Stufen übersprungen.
+
+## Einwandbehandlung bei "Das ist zu teuer": drei Antworten
+
+Der Satz kommt in zwei Lagen, und sie brauchen verschiedene Antworten. Im Erstkontakt, bevor ein Angebot auf dem Tisch liegt, ist er fast nie ein Preiseinwand – der Angerufene kennt den Preis noch gar nicht. Nach dem Angebot ist er häufiger echt, aber auch dann selten ein Nein, sondern eine Frage nach dem Gegenwert.
+
+Drei Antworten nach dem Muster oben – anerkennen, eine Frage, zuhören, ein Vorschlag:
+
+**Wenn noch kein Preis genannt wurde.** Der Einwand richtet sich gegen die Situation, nicht gegen eine Zahl.
+
+> "Wenn es Ihnen nichts bringt, ist jeder Betrag zu viel – da haben Sie recht. Womit vergleichen Sie gerade: mit dem, was es kostet, das selbst zu machen, oder mit gar nichts?"
+
+**Wenn ein Vergleichsangebot im Raum steht.** Hier ist der Einwand echt, und die Frage gilt dem Unterschied, nicht dem Betrag.
+
+> "Gut, dass Sie vergleichen. Damit wir über dasselbe reden: Was ist im anderen Angebot enthalten, das bei uns fehlt – oder umgekehrt?"
+
+**Wenn das Budget das eigentliche Thema ist.** Dann ist der Einwand eine Terminfrage, wie bei "Keine Zeit".
+
+> "Dann geht es nicht um das Ob, sondern um das Wann. Wann wird bei Ihnen das Budget für das nächste Halbjahr festgelegt? Dann melde ich mich zwei Wochen vorher – mit dem, was Sie mir heute gesagt haben."
+
+Keine der drei Antworten enthält einen Nachlass. Ein Rabatt im ersten Gespräch bestätigt nur, dass der Preis verhandelbar war, und macht jedes weitere Gespräch teurer. Über den Preis wird erst gesprochen, wenn der Bedarf feststeht – wie man ihn vorher prüft, steht im [Beitrag zur BANT-Methode](/blog/bant-methode-erklaert), wie man danach verhandelt, im [Beitrag zu Angebot, Verhandlung und Abschluss](/blog/angebot-verhandlung-abschluss-b2b).
 
 ## Nachfassen: der Teil, an dem 80 Prozent aufhören
 
@@ -169,11 +200,11 @@ Der Mitschnitt ist die unbeliebteste und wirksamste Methode. Wer die eigenen ers
 
 ## Warum Einwandbehandlung nicht am Skript hängt
 
-Wer die fünf Antworten auswendig lernt, klingt beim sechsten Gespräch wie ein Anrufbeantworter. Was tatsächlich trägt, ist die Kenntnis der Zielgruppe: Wer weiß, welche drei Probleme ein [IT-Systemhaus](/branchen/it-systemhaeuser) mit 25 Mitarbeitern im Vertrieb hat, braucht keine Einwandtechnik – der Einwand kommt gar nicht erst, weil der Einstieg schon den richtigen Punkt getroffen hat.
+Wer die fünf Antworten auswendig lernt, klingt beim sechsten Gespräch wie ein Anrufbeantworter. Was tatsächlich trägt, ist die Kenntnis der Zielgruppe: Wer weiß, welche drei Probleme ein [IT-Systemhaus](/branchen/it-systemhaeuser) mit 25 Mitarbeitern im Vertrieb hat, braucht keine Einwandtechnik – der Einwand kommt gar nicht erst, weil der Einstieg schon den richtigen Punkt getroffen hat. Wie verschieden diese Probleme je Branche ausfallen, zeigt der [Beitrag zur Akquise nach Branche](/blog/akquise-nach-branche-b2b-dienstleister).
 
 Deshalb liegt der Hebel vor dem Gespräch. Der [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden) behandelt die Liste, den Anlass und den Einstieg – die drei Stellen, an denen Einwände entstehen oder eben nicht.
 
-Wenn die eigene Kapazität für regelmäßige Akquise nicht reicht, ist die Auslagerung eine Option. Was wir dabei übernehmen, steht unter [Leistungen](/leistungen); für den Raum Düsseldorf gibt es eine eigene Seite zur [Vertriebsagentur Düsseldorf](/leistungen/duesseldorf).
+Wenn die eigene Kapazität für regelmäßige Akquise nicht reicht, ist die Auslagerung eine Option. Was sie gegenüber einer eigenen Stelle kostet, steht im Beitrag zu den [Kosten für Vertriebsoutsourcing](/blog/vertrieb-auslagern-kosten-vorteile); was wir dabei übernehmen, unter [Leistungen](/leistungen). Für den Raum Düsseldorf gibt es eine eigene Seite zur [Vertriebsagentur Düsseldorf](/leistungen/duesseldorf).
 
 ## Quellen
 

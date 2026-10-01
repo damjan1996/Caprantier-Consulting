@@ -1,6 +1,6 @@
 # SEO-Analyse und Umsetzung — Suchbegriffe, Verlinkung, Technik
 
-**Stand:** 01.10.2026 · **Deployt:** 01.10.2026 als `ac019d8` (Branch `seo/querverlinkung-2026-10`, auf `main` gebracht) — Abnahme auf der Live-Domain in 7.4
+**Stand:** 01.10.2026 · **Deployt:** 01.10.2026 als `ac019d8` (Branch `seo/querverlinkung-2026-10`, auf `main` gebracht) — Abnahme auf der Live-Domain in 7.4 · **Nachtrag** nach dem Search-Console-Abgleich: Abschnitt 10 (Branch `seo/indexierung-2026-10`)
 **Grundlage:** Crawl aller 58 Live-Adressen am 01.10.2026; Positionsmessung vom 10.09.2026 in
 `C:\Users\damja\Documents\Carpantier Consulting\COMPETITOR-SEO-EXPLORATION.md` (außerhalb des Repos);
 Repo-Stand `8c6a854`
@@ -378,3 +378,76 @@ src/content/industries.ts            Titel/Beschreibung, keywords entfernt
 src/content/cities.ts                getCityKeywords entfernt
 src/lib/blog-types.ts                Feld seoTitle
 ```
+
+---
+
+## 10 · Nachtrag: Search Console (01.10.2026)
+
+**Grundlage:** Search Console 01.09.–28.09.2026 gegen die 28 Tage davor (73 Klicks, 5.581
+Impressionen, Ø Position 51,7); URL-Prüfung aller 58 Sitemap-Adressen am 01.10.2026 — 27 im Index.
+Die Sitemap war bis dahin nie eingereicht, das ist am 01.10.2026 nachgeholt. Damit ist Schritt 2
+aus Abschnitt 8 erledigt und die Einschränkung aus Abschnitt 1 („Search Console nicht verfügbar“)
+überholt.
+
+### 10.1 Befund
+
+| Lage | Adressen |
+|---|---|
+| Google unbekannt | `/kaltakquise`, `/branchen`, 11 Kaltakquise-Stadtseiten, `/leistungen/dortmund`, beide Branchenseiten, 5 Beiträge |
+| Gecrawlt, nicht indexiert | 4 Kaltakquise-Stadtseiten (damit alle 15), 5 Beiträge – darunter der Kostenbeitrag, der für elf Anfragen rankt |
+| Im Index | 27 – Startseite, `/leistungen`, 14 Vertriebs-Stadtseiten, 3 Beiträge (Leitfaden, Recht, Einwandbehandlung), Blog, Wissen, Videos, Glossar, Über uns, Kontakt, Impressum, Datenschutz |
+
+### 10.2 Umgesetzt
+
+| Stelle | Änderung |
+|---|---|
+| Startseite, unter dem Selbsttest | Satz mit Verweisen auf `/branchen`, beide Branchenseiten und `/kaltakquise` – im Fluss, auch auf dem Telefon sichtbar |
+| `/leistungen` | Regionen-Hinweis zusätzlich auf beide Branchenseiten; Preis-Hinweis verweist auf den Kostenbeitrag („Kosten von Vertriebsoutsourcing“) |
+| 15 × `/leistungen/[stadt]` | „Passend dazu“ zusätzlich auf `/kaltakquise` und `/branchen`; „Vertriebsoutsourcing“ im Einleitungssatz und in der Beschreibung; in `cities.ts` optionales Ortswissen (`lokal`, Abschnitt „Vor Ort“) und optionaler Titelbegriff (`suchbegriff`) |
+| `/leistungen/hamburg` | Titel „Vertriebsagentur Hamburg: Akquise & B2B-Vertrieb“, H1 „Akquise auslagern in Hamburg …“ |
+| `/leistungen/koeln` | Abschnitt „Neukundengewinnung in Köln“, nur aus Belegtem: Sitz, Anrufe aus Köln, Erstgespräch und Kick-off durch den Gründer |
+| 15 × `/kaltakquise/[stadt]` | Verweis auf die Schwesterseite heißt „Vertriebsagentur <Stadt>“; zusätzlich `/branchen` |
+| Kostenbeitrag | Kurzantwort „Was kostet Vertriebsoutsourcing?“, Vollkostenvergleich in zwei Spalten, Rechenbeispiel zum ersten Quartal (ohne Euro-Beträge, auf beiden Seiten Kosten je Termin), „Akquise auslagern, Abschluss behalten“, „So rechnen wir ab“, FAQ zu Akquise und Vertrieb auslagern; Suchtitel unverändert |
+| Einwandbehandlung | eigener H2-Abschnitt „Das ist zu teuer“ mit drei Antworten; gibt „Kosten für Vertriebsoutsourcing“ an den Kostenbeitrag ab |
+| Rechtsbeitrag | H2 „Was bedeutet Kaltakquise?“ mit Definition in drei Sätzen direkt nach der Einleitung |
+| 13 Beiträge | Beschreibung 147–160 Zeichen (vorher 195–249); je mindestens drei Fließtextverweise aus anderen Beiträgen; fünf neue Anker „Einwandbehandlung“; sieben Verweise ins Glossar |
+| Glossar | neuer Begriff „Vorwand“ |
+| Beitragsvorlage | Verweis auf `/blog`; Abschluss ohne „Strategiegespräch … nächste Level“, mit Verweis auf die Startseite |
+| Impressum, Über uns | Verweis auf `/datenschutz` bzw. `/wissen/videos` |
+| `scripts/blog-audit.mjs` | Beschreibung mit 70–160 Zeichen ist jetzt Pflicht |
+| `scripts/check-content-duplication.mjs` | prüft auch die `lokal`-Felder |
+
+Jede Zahl im Kostenbeitrag hat eine Quelle im Repository; welche, steht im Kommentar am
+Dateianfang. Eine unabhängige Durchsicht vor dem Deployment fand keine erfundene Angabe, aber
+Widersprüche zwischen neuem und bestehendem Text – darunter ein Rechenbeispiel, das die externe
+Lösung schöngerechnet hätte. Behoben vor dem Commit.
+
+### 10.3 Ergebnis (Produktionsbuild, Zählweise aus 4.1)
+
+| | vorher | nachher |
+|---|---|---|
+| Sitemap-Adressen mit weniger als drei Inhaltsverweisen | 5 | **0** |
+| Inhaltsverweise auf Sitemap-Adressen (eindeutig je Seite) | 613 | **717** |
+| `/kaltakquise` · `/branchen` | 17 · 4 | 34 · 35 |
+| Hinweise in `check-seo` | 14 | 1 (`/ki-transparenz`) |
+| Vorlagenanteil `/leistungen/koeln` gegen `/leistungen/bonn` (Stadtname getauscht) | – | 73 % (Hamburg gegen Bremen, ohne Ortswissen: 89 %) |
+
+Die 613 lassen sich mit den 656 aus 4.3 nicht vergleichen: Gezählt sind hier nur Verweise auf
+Sitemap-Adressen.
+
+### 10.4 Bewusst nicht umgesetzt
+
+- **Gemeinsame Vorlagenteile der Stadtseiten kürzen.** Ohne Ortswissen würden die Seiten nur
+  dünner, nicht eigenständiger. Gehört zusammen mit dem Ortswissen (`docs/aufgaben-nico.md`,
+  Punkt 10) und mit der offenen Entscheidung, ob weniger, dafür stärkere Stadtseiten besser wären
+  als 30 ähnliche – die liegt bei Nico und Damjan.
+- **Ankertexte der Fußzeile** („Vertrieb Köln“ statt „Vertriebsagentur Köln“): Die Fußzeile zählt
+  nicht als Inhalt, und eine Änderung betrifft das Layout jeder Seite.
+- **Impressum, Abschnitt „Einsatz künstlicher Intelligenz“:** nennt noch einen Chat, den es seit
+  dem 30.08.2026 nicht mehr gibt. Rechtstext – nicht im Zuge eines SEO-Pakets geändert.
+
+### 10.5 Nach dem Deployment
+
+In der Search Console die Indexierung anfordern, etwa zehn Adressen pro Tag: zuerst `/kaltakquise`,
+`/branchen` und den Kostenbeitrag, dann die Stadtseiten mit Impressionen. Nachmessung frühestens
+vier Wochen nach dem Deployment.

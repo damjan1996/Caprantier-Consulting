@@ -43,7 +43,7 @@ import { services } from '@/content/leistungen'
  *   Projekt.
  */
 function getCityFAQs(city: City) {
-  return [
+  const vorlage = [
     {
       question: `Kann ich meinen Vertrieb in ${city.name} komplett auslagern?`,
       answer: `Die Neukundengewinnung ja, den Abschluss nicht. Wir übernehmen Zielgruppe, Telefonakquise, Qualifizierung und Bericht; das Verkaufsgespräch führen Sie selbst, weil Preis und Zusage bei Ihnen liegen. ${city.regionalText}`,
@@ -69,6 +69,10 @@ function getCityFAQs(city: City) {
       answer: `Wir telefonieren aus Köln, mit korrekt übermittelter Rufnummer und ohne vorgetäuschte Ortsvorwahl. Für den Vertrieb am Telefon zählt nicht die Anfahrt, sondern ob der Anlass des Anrufs zum angerufenen Unternehmen passt und ob wir den Markt ${city.businessContext} kennen.`,
     },
   ]
+
+  // Fragen, die nur in dieser Stadt gestellt werden (`lokal.fragen` in
+  // `cities.ts`), stehen hinter der Vorlage — sichtbar und im Markup.
+  return [...vorlage, ...(city.lokal?.fragen ?? [])]
 }
 
 // Generate FAQPage Schema for city pages

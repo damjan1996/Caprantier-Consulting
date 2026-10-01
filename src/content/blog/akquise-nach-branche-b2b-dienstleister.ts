@@ -19,7 +19,7 @@ export const akquiseNachBrancheB2bDienstleister: BlogPost = {
   title: 'Akquise nach Branche: Agenturen, Beratungen, Maschinenbau, Startups',
   seoTitle: 'Akquise nach Branche: Agenturen bis Maschinenbau',
   description:
-    'Was sich in der B2B-Neukundengewinnung je Branche tatsächlich unterscheidet – Zielgruppe, Auslöser, Zykluslänge und der typische Engpass – für Agenturen, Unternehmensberatungen, technischen Vertrieb im Maschinenbau und Startups ohne Vertriebsbudget.',
+    'Akquise nach Branche: was sich in der B2B-Neukundengewinnung für Agenturen, Beratungen, Maschinenbau und Startups unterscheidet – Auslöser, Zyklus, Engpass.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-05',
   updatedAt: '2026-09-10',
@@ -141,7 +141,7 @@ Die praktische Konsequenz gilt für alle vier: **Der Vertrauensträger gehört i
 
 ## Wenn die eigene Branche nicht dabei ist
 
-Die vier Beispiele sind keine abschließende Liste. Wer die eigene Lage einordnen will, beantwortet vier Fragen – die Antworten bestimmen Kanal, Frequenz und Erwartung:
+Die vier Beispiele sind keine abschließende Liste. Für Systemhäuser, Managed Service Provider und SaaS-Anbieter steht die Einordnung im Beitrag zur [Akquise für IT-Dienstleister](/blog/leadgenerierung-it-dienstleister). Wer die eigene Lage einordnen will, beantwortet vier Fragen – die Antworten bestimmen Kanal, Frequenz und Erwartung:
 
 1. **Wie viele Unternehmen kommen realistisch als Kunde infrage?** Unter 200 heißt Einzelansprache, über 2.000 heißt System. Der [Kanalvergleich](/blog/b2b-leadgenerierung-kanaele) leitet daraus die Kanalwahl ab.
 2. **Was löst den Kauf aus, und ist dieser Auslöser von außen erkennbar?** Wenn ja, ist die Recherche der wichtigste Teil der Arbeit. Wenn nein, entscheidet die Frequenz – man muss präsent sein, wenn es passiert.
@@ -156,7 +156,7 @@ Bei aller Unterschiedlichkeit sind es vier Dinge, die überall über das Ergebni
 
 **Die Liste.** Wer angerufen wird, entscheidet mehr als das, was gesagt wird – und trägt zugleich die mutmaßliche Einwilligung nach [§ 7 UWG](https://www.gesetze-im-internet.de/uwg_2004/__7.html), die das Gespräch überhaupt zulässig macht.
 
-**Der Anlass.** In jeder der vier Branchen ist es derselbe Unterschied: Wer sagen kann, warum ausgerechnet dieses Unternehmen angerufen wird, führt ein Gespräch. Wer es nicht kann, führt ein Standardgespräch.
+**Der Anlass.** In jeder der vier Branchen ist es derselbe Unterschied: Wer sagen kann, warum ausgerechnet dieses Unternehmen angerufen wird, führt ein Gespräch. Wer es nicht kann, führt ein Standardgespräch – und bekommt Einwände, die die [Einwandbehandlung](/blog/einwandbehandlung-vertrieb) danach nur noch auffangen kann.
 
 **Die Regelmäßigkeit.** Der Wellenverlauf, der bei Agenturen am deutlichsten sichtbar ist, existiert überall. Die einzige Gegenmaßnahme ist eine Aktivitätszahl, die auch in guten Wochen gilt.
 

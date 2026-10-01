@@ -17,7 +17,7 @@ export const angebotVerhandlungAbschlussB2b: BlogPost = {
   title: 'Vom Angebot zum Abschluss: B2B-Angebote, Preisverhandlung und Closing',
   seoTitle: 'B2B-Angebot, Preisverhandlung und Closing',
   description:
-    'Wie ein B2B-Angebot aufgebaut sein muss, damit es entschieden wird, wie man einen Preis verhandelt ohne Rabattspirale, und warum der häufigste verlorene Auftrag nicht an den Wettbewerber geht, sondern an die Nichtentscheidung.',
+    'B2B-Angebot und Preisverhandlung: wie Angebote entschieden werden, Rabatt nur gegen Gegenleistung – und warum der häufigste Verlust die Nichtentscheidung ist.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-10',
   updatedAt: '2026-09-10',
@@ -91,7 +91,7 @@ Mehr als drei Varianten führen erfahrungsgemäß zu keiner Entscheidung. Wer di
 
 Zwei Fehler dominieren die Preisdiskussion im deutschen Mittelstand, und sie sind gegenläufig.
 
-**Fehler eins: Der Preis erscheint zu früh.** Wer im Erstgespräch einen Preis nennt, bevor die Kosten des Problems geklärt sind, wird mit null verglichen. Gegen null ist jeder Preis zu hoch.
+**Fehler eins: Der Preis erscheint zu früh.** Wer im Erstgespräch einen Preis nennt, bevor die Kosten des Problems geklärt sind, wird mit null verglichen. Gegen null ist jeder Preis zu hoch. Wie man reagiert, wenn "Das ist zu teuer" schon am Telefon fällt, steht im Beitrag zur [Einwandbehandlung](/blog/einwandbehandlung-vertrieb).
 
 **Fehler zwei: Der Preis erscheint zu spät.** Wer die Größenordnung bis zum schriftlichen Angebot geheim hält, riskiert, dass drei Wochen Arbeit an einer Zahl scheitern, die in Minute 30 des Erstgesprächs hätte fallen können. Eine Bandbreite gehört ins Erstgespräch, sobald der Bedarf steht.
 

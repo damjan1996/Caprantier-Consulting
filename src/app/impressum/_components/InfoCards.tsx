@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { User, Building, Phone } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionCard from '@/components/ui/SectionCard'
@@ -57,6 +58,16 @@ const infoCards = [
           <a href={`mailto:${businessInfo.email}`} className="text-primary hover:underline">
             {businessInfo.email}
           </a>
+        </p>
+        {/* Wer hier Kontaktdaten sucht, fragt oft im selben Zug, was mit den
+            eigenen geschieht. Zugleich der dritte Verweis auf die
+            Datenschutzerklärung aus einem Seiteninhalt (01.10.2026). */}
+        <p>
+          Wie wir Ihre Angaben verarbeiten, steht in der{' '}
+          <Link href="/datenschutz" className="text-primary hover:underline">
+            Datenschutzerklärung
+          </Link>
+          .
         </p>
       </div>
     ),

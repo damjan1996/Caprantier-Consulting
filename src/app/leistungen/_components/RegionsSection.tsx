@@ -20,7 +20,9 @@ import styles from './leistungen.module.css'
  * Der Hinweis darunter verweist seit dem 01.10.2026 auf die beiden anderen
  * Familien-Einstiege — Vorbild ist derselbe Hinweis auf `/kaltakquise`. Vorher
  * führte von dieser Seite kein einziger Verweis zu `/kaltakquise` oder
- * `/branchen`; `/branchen` hatte aus Seiteninhalten genau zwei.
+ * `/branchen`; `/branchen` hatte aus Seiteninhalten genau zwei. Die beiden
+ * Branchenseiten selbst sind seit dem Search-Console-Abgleich vom 01.10.2026
+ * dabei — Google kannte sie zu dem Zeitpunkt nicht.
  */
 export default function RegionsSection() {
   const { ref, isIn } = useReveal<HTMLElement>()
@@ -80,7 +82,9 @@ export default function RegionsSection() {
         Ihr Standort ist nicht dabei? Das ändert nichts am Ablauf –{' '}
         <Link href="/kontakt">sprechen Sie uns an</Link>. Wie der Anruf selbst je Standort aussieht,
         steht unter <Link href="/kaltakquise">Kaltakquise nach Standort</Link>; was in einzelnen
-        Branchen anders läuft, unter <Link href="/branchen">Branchenlösungen</Link>.
+        Branchen anders läuft, unter <Link href="/branchen">Branchenlösungen</Link> – ausführlich
+        für <Link href="/branchen/personaldienstleister">Personaldienstleister</Link> und{' '}
+        <Link href="/branchen/it-systemhaeuser">IT-Systemhäuser</Link>.
       </p>
     </section>
   )

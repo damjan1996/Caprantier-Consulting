@@ -312,6 +312,27 @@ Sprachaufnahme-Memo reicht — der Rest ist Redaktion.
 
 ---
 
+## 10 · Ortswissen, Zahlen und Sätze für die Search-Console-Arbeiten
+
+*Ergänzt am 01.10.2026.* Im Code steht jede dieser Stellen als `TODO(Nico)`. Was die Search
+Console dazu gezeigt hat, steht in `docs/sichtbarkeit/SEO-ANALYSE-2026-10.md`, Abschnitt 10.
+
+| Datei | Was gebraucht wird |
+|---|---|
+| `src/content/cities.ts` (`lokal`) | Je Stadt, zuerst Köln, Hamburg, Berlin, München, Nürnberg, Düsseldorf und Frankfurt: Branchen, für die du dort tatsächlich arbeitest; ein Projekt (anonymisiert, mit schriftlicher Freigabe); das Gebiet, das du von dort aus bearbeitest; ein bis zwei Fragen, die Auftraggeber dort stellen. Ohne Eintrag erscheint nichts – Fülltext wird bewusst nicht geschrieben. |
+| `vertrieb-auslagern-kosten-vorteile.ts` | Eine echte Kalkulation aus einem Kundenprojekt: Zielgehalt der Stelle, Arbeitsplatz- und Toolkosten, Wochen bis zum ersten eigenen Termin, Terminzahl im ersten Quartal. Mit den Preisen aus Punkt 5 wird aus dem Rechenweg dann ein Beispiel in Euro. |
+| `vertrieb-auslagern-kosten-vorteile.ts` | Eine zitierbare Quelle für die Marktspanne von 2.000–8.000 € im Monat und rund 300 € je Termin. Sie stützt sich bisher nur auf Googles KI-Übersicht. |
+| `einwandbehandlung-vertrieb.ts` | Sätze auf „Das ist zu teuer“, die in deinen Gesprächen tatsächlich getragen haben |
+
+**Telefonnummern:** Acht Suchanfragen nach Telefonnummern landen auf den Stadtseiten München,
+Berlin, Düsseldorf und Köln – vermutlich Angerufene, die nachsehen, wer sie angerufen hat. Wenn
+das eure ausgehenden Nummern sind, gehören sie auf die Website. Bitte bestätigen.
+
+**Zu entscheiden, mit Damjan:** Für Städte, zu denen es nichts Eigenes zu sagen gibt, wären
+weniger, dafür stärkere Seiten womöglich besser als 30 ähnliche.
+
+---
+
 ## Was ohne dich weiterläuft
 
 Nichts von der Liste blockiert das Deployment. Die Website ist in dem Zustand,

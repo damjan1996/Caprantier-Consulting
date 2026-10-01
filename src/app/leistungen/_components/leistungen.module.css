@@ -454,6 +454,17 @@
   hyphens: auto;
 }
 
+/* Wie `.regionNote a`: im leisen Grau sonst nicht als Verweis zu erkennen. */
+.priceNote a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.priceNote a:hover {
+  color: var(--accent);
+}
+
 /* ------------------------------------------------------------------ Regionen */
 
 .regionHead {

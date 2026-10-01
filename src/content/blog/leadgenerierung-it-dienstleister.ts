@@ -20,7 +20,7 @@ export const leadgenerierungItDienstleister: BlogPost = {
   // die Branchenseite das Angebot.
   seoTitle: 'Akquise für IT-Dienstleister, MSP und SaaS',
   description:
-    'Warum Akquise im IT-Umfeld anders funktioniert: wer im Systemhaus-Markt entscheidet, welche drei Anlässe einen Wechsel auslösen, wie man mit technischen Entscheidern spricht und warum SaaS eine andere Kadenz braucht als Managed Services.',
+    'Akquise für IT-Dienstleister, Systemhäuser, MSP und SaaS: wer entscheidet, welche Anlässe einen Wechsel auslösen und wie man technische Entscheider anspricht.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-18',
   updatedAt: '2026-09-10',
@@ -138,13 +138,15 @@ Die Qualität der Liste entscheidet im IT-Vertrieb stärker als anderswo, weil d
 
 **Handelsregisterbekanntmachungen.** Sitzverlegungen, Gesellschafterwechsel, Verschmelzungen. Weniger bequem als die anderen drei, aber die Quelle mit dem größten Vorsprung, weil kaum jemand sie systematisch auswertet.
 
+Beim Auswerten aller vier Quellen können Sprachmodelle viel Recherchearbeit abnehmen. Wo das trägt und wo nicht, steht im [Beitrag zu KI im B2B-Vertrieb](/blog/ki-im-b2b-vertrieb).
+
 Was in dieser Aufzählung fehlt, ist Absicht: **gekaufte Adresslisten.** Sie enthalten keinen Anlass, und ohne Anlass fehlt sowohl das Gesprächsargument als auch die belegbare Grundlage der mutmaßlichen Einwilligung.
 
 ## Was bei Managed Service Providern anders ist
 
 MSP verdienen an wiederkehrenden Verträgen. Daraus folgen drei Besonderheiten für die Ansprache:
 
-**Der Wettbewerber ist bekannt und namentlich.** In regionalen Märkten kennen sich die Anbieter. Ein Gespräch, das den bestehenden Dienstleister schlechtmacht, endet sofort – die Frage nach dem, was heute nicht abgedeckt ist, führt dagegen weiter.
+**Der Wettbewerber ist bekannt und namentlich.** In regionalen Märkten kennen sich die Anbieter. Ein Gespräch, das den bestehenden Dienstleister schlechtmacht, endet sofort – die Frage nach dem, was heute nicht abgedeckt ist, führt dagegen weiter. Es ist der Einwand "Wir haben schon jemanden", wie ihn der Beitrag zur [Einwandbehandlung](/blog/einwandbehandlung-vertrieb) beschreibt.
 
 **Die Wechselhürde ist hoch und technisch.** Ein Betreuungswechsel bedeutet Dokumentationsübergabe, Zugangsdaten, Monitoring-Umstellung. Wer diese Hürde im Gespräch nicht anerkennt, wirkt ahnungslos; wer sie benennt und einen Übergabeweg skizziert, wirkt vorbereitet.
 
@@ -161,7 +163,7 @@ MSP verdienen an wiederkehrenden Verträgen. Daraus folgen drei Besonderheiten f
 
 Schritt sechs ist der, der über zwölf Monate den größten Anteil der Abschlüsse erzeugt – und der, der ohne System zuverlässig ausfällt. Wie man ihn verankert, steht im [Beitrag zur Vertriebssteuerung](/blog/vertriebssteuerung-kpis-pipeline).
 
-Eine ausführliche Darstellung dessen, was wir für IT-Systemhäuser und Managed Service Provider konkret übernehmen, steht auf der [Branchenseite für IT-Systemhäuser](/branchen/it-systemhaeuser). Der allgemeine Leistungsumfang steht unter [Leistungen](/leistungen), für den Raum Köln unter [Kaltakquise Köln](/kaltakquise/koeln).
+Eine ausführliche Darstellung dessen, was wir für IT-Systemhäuser und Managed Service Provider konkret übernehmen, steht auf der [Branchenseite für IT-Systemhäuser](/branchen/it-systemhaeuser). Wie sich die Lage in Agenturen, Beratungen, Maschinenbau und Startups davon unterscheidet, zeigt der [Beitrag zur Akquise nach Branche](/blog/akquise-nach-branche-b2b-dienstleister). Der allgemeine Leistungsumfang steht unter [Leistungen](/leistungen), für den Raum Köln unter [Kaltakquise Köln](/kaltakquise/koeln).
 
 ## Quellen
 

@@ -14,7 +14,7 @@ export const vertriebsagenturFindenCheckliste: BlogPost = {
   title: 'Vertriebsagentur auswählen: 12 Fragen vor der Beauftragung',
   seoTitle: 'Vertriebsagentur finden: Checkliste mit 12 Fragen',
   description:
-    'Woran man eine seriöse Vertriebsagentur für B2B-Kaltakquise erkennt: Terminqualität, Abrechnungsmodell, Auftragsverarbeitung, Reporting und die Warnzeichen, die vor der Unterschrift auffallen – plus die Kennzahlen für die laufende Steuerung.',
+    'Vertriebsagentur finden: 12 Fragen vor der Beauftragung – Terminqualität, Abrechnung, Auftragsverarbeitung, Reporting – und Warnzeichen vor der Unterschrift.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-07',
   updatedAt: '2026-09-10',

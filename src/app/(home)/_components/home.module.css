@@ -2571,6 +2571,33 @@
 }
 
 /*
+ * Der Satz unter dem Selbsttest, der zu Branchen- und Standortseiten führt.
+ * Wie `.regionNote` auf /leistungen: leise gesetzt, Verweise unterstrichen,
+ * sonst sind sie in --ink-3 nicht als Verweis zu erkennen. Der Abstand zur
+ * Karte ist der `gap` von `.sceneAfter` — kein eigener negativer Rand: Der
+ * `gap` fällt unter 768 px auf 24 px, ein halber Desktop-Abstand hätte den
+ * Satz dort an die Karte geschoben.
+ */
+.fitMore {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 46em;
+  text-wrap: pretty;
+}
+
+.fitMore a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fitMore a:hover {
+  color: var(--accent);
+}
+
+/*
  * Ergebnisse: Kopf links, die fünf Fälle rechts.
  *
  * Nacheinander statt als Raster. Fünf Karten nebeneinander liest niemand

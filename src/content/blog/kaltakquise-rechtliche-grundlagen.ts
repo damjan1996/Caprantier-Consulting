@@ -9,6 +9,15 @@ import type { BlogPost } from '@/lib/blog-types'
 // Achtung bei künftigen Änderungen: Die Trennung Telefon/E-Mail ist in
 // Abschnitt 3 des Auftrags "Sichtbarkeit" als unantastbar geführt. Sie darf in
 // keiner Überarbeitung verwischt werden.
+//
+// Am 01.10.2026 ergänzt: „Was bedeutet Kaltakquise?“ als eigener Abschnitt
+// gleich nach der Einleitung, die Antwort in drei Sätzen direkt darunter. Der
+// Beitrag steht für „was bedeutet kaltakquise“ auf Ø Position 5,7 (Search
+// Console 01.09.–28.09.2026) – eine knappe Definition unter einer Überschrift,
+// die die Frage wörtlich stellt, ist die Form, die Google als hervorgehobenes
+// Snippet übernimmt. Die Definition passt zum Glossar (`cold-calling`,
+// `warmakquise` in `src/content/glossar.ts`); sie ist weiter gefasst als der
+// Eintrag `cold-calling`, der nur die telefonische Ansprache beschreibt.
 
 export const kaltakquiseRechtlicheGrundlagen: BlogPost = {
   slug: 'kaltakquise-rechtliche-grundlagen',
@@ -17,10 +26,10 @@ export const kaltakquiseRechtlicheGrundlagen: BlogPost = {
   // zur Aussage, auch im Suchergebnis.
   seoTitle: 'Kaltakquise im B2B: was erlaubt ist und was nicht',
   description:
-    'B2B-Telefonakquise ist nach § 7 UWG bei mutmaßlicher Einwilligung zulässig – Werbe-E-Mails ohne Einwilligung sind es nicht. Der Unterschied, die Beweislast, die DSGVO-Pflichten und was bei einem Widerspruch zu tun ist.',
+    'Kaltakquise im B2B: Anrufe sind nach § 7 UWG bei mutmaßlicher Einwilligung zulässig, Werbe-E-Mails ohne Einwilligung nicht. Dazu Beweislast, DSGVO, Widerspruch.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-17',
-  updatedAt: '2026-09-10',
+  updatedAt: '2026-10-01',
   category: 'Rechtliches',
   tags: [
     'Kaltakquise Recht',
@@ -66,6 +75,12 @@ Die verbreitetste Fehlannahme im deutschen B2B-Vertrieb lautet: Kaltakquise ist 
 
 Dieser Beitrag klärt, was tatsächlich gilt – getrennt nach Telefon, E-Mail und Datenschutz – und was daraus praktisch folgt.
 
+## Was bedeutet Kaltakquise?
+
+Kaltakquise bedeutet, potenzielle Kunden zu werblichen Zwecken anzusprechen, ohne dass vorher ein Kontakt oder eine Geschäftsbeziehung bestand – am Telefon, per E-Mail oder persönlich. Im B2B ist damit meist der erste Anruf bei einem Unternehmen gemeint, das den Anrufer und sein Angebot noch nicht kennt. Das Gegenstück ist die [Warmakquise](/glossar#warmakquise): die Ansprache von Kontakten, zu denen schon eine Verbindung besteht.
+
+Ob Kaltakquise erlaubt ist, entscheidet sich nicht am Begriff, sondern am Kanal und am Empfänger. Darum geht es im Rest dieses Beitrags.
+
 ## Die Vorschrift, um die es geht
 
 Maßgeblich ist [§ 7 UWG, "Unzumutbare Belästigungen"](https://www.gesetze-im-internet.de/uwg_2004/__7.html). Absatz 2 Nummer 1 lautet im Wortlaut:
@@ -102,7 +117,7 @@ Das ist die Stelle, an der die meisten Vertriebsprojekte rechtlich kippen – un
 
 Die einzige praktische Ausnahme steht in § 7 Abs. 3 UWG und ist eng: Sie setzt voraus, dass die Adresse **im Zusammenhang mit einem Verkauf** an den Empfänger erlangt wurde, dass für **eigene ähnliche Waren oder Dienstleistungen** geworben wird, dass der Empfänger nicht widersprochen hat und dass er bei Erhebung und bei jeder Verwendung auf sein Widerspruchsrecht hingewiesen wurde. Auf einen kalt recherchierten Kontakt trifft davon nichts zu.
 
-**Praktische Folge:** Nach einem Telefonat darf eine Unterlage verschickt werden, wenn der Gesprächspartner sie erbeten hat – das ist keine unverlangte Werbung, sondern die Erfüllung einer Bitte. Was nicht geht: den Kontakt danach in einen Newsletter oder eine Mail-Sequenz aufnehmen. Dafür braucht es eine gesonderte Einwilligung.
+**Praktische Folge:** Nach einem Telefonat darf eine Unterlage verschickt werden, wenn der Gesprächspartner sie erbeten hat – das ist keine unverlangte Werbung, sondern die Erfüllung einer Bitte. Was nicht geht: den Kontakt danach in einen Newsletter oder eine Mail-Sequenz aufnehmen. Dafür braucht es eine gesonderte Einwilligung. Wo die Grenze bei LinkedIn, Messen und Webinaren verläuft, steht im [Vergleich der Kanäle für B2B-Leadgenerierung](/blog/b2b-leadgenerierung-kanaele).
 
 ## Datenschutz: zwei Pflichten, die regelmäßig übersehen werden
 
@@ -112,7 +127,7 @@ Neben dem Wettbewerbsrecht gilt die DSGVO, sobald eine natürliche Person betrof
 
 Die Verarbeitung recherchierter Geschäftskontakte stützt sich üblicherweise auf [Art. 6 Abs. 1 lit. f DSGVO](https://dsgvo-gesetz.de/art-6-dsgvo/): "die Verarbeitung ist zur Wahrung der berechtigten Interessen des Verantwortlichen oder eines Dritten erforderlich, sofern nicht die Interessen oder Grundrechte und Grundfreiheiten der betroffenen Person ... überwiegen".
 
-Direktwerbung ist als berechtigtes Interesse anerkannt. Die Abwägung fällt aber nur dann zugunsten des Werbenden aus, wenn die Verarbeitung auf das Erforderliche beschränkt bleibt: geschäftliche Kontaktdaten und Auswahlkriterium ja, private Rufnummern und Profildaten aus sozialen Netzwerken nein.
+Direktwerbung ist als berechtigtes Interesse anerkannt. Die Abwägung fällt aber nur dann zugunsten des Werbenden aus, wenn die Verarbeitung auf das Erforderliche beschränkt bleibt: geschäftliche Kontaktdaten und Auswahlkriterium ja, private Rufnummern und Profildaten aus sozialen Netzwerken nein. Dieselbe Abwägung gilt, wenn Sprachmodelle bei der Recherche zu Zielunternehmen helfen; was dort zusätzlich zu beachten ist, steht im [Beitrag zu KI im B2B-Vertrieb](/blog/ki-im-b2b-vertrieb).
 
 ### Informationspflicht bei Daten aus Drittquellen
 
@@ -168,9 +183,9 @@ Fünf Punkte, die ein sauberes Akquiseprojekt ohnehin erfüllt:
 4. **Werbe-E-Mails nur mit Einwilligung.** Angeforderte Unterlagen sind etwas anderes; die Grenze verläuft an der Bitte des Empfängers.
 5. **Widersprüche zentral sperren.** Ein Feld im CRM, das jeder Listenimport respektiert.
 
-Wer diese fünf Punkte einhält, muss den Rechtsrahmen nicht fürchten – er ist ihm günstig gesinnt. Der deutsche Gesetzgeber hat B2B-Telefonakquise ausdrücklich anders behandelt als Verbraucherwerbung, und das ist eine bewusste Entscheidung.
+Wer diese fünf Punkte einhält, muss den Rechtsrahmen nicht fürchten – er ist ihm günstig gesinnt. Der deutsche Gesetzgeber hat B2B-Telefonakquise ausdrücklich anders behandelt als Verbraucherwerbung, und das ist eine bewusste Entscheidung. Wer die Akquise mit eigenem Personal aufbaut, nimmt diesen Rahmen in die erste Woche der Einarbeitung auf; wie die ersten 90 Tage insgesamt aussehen, steht im [Beitrag zum Aufbau eines Vertriebsteams](/blog/vertriebsteam-aufbauen-recruiting).
 
-Wie das Gespräch danach aufgebaut wird, steht im [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden); wie man auf die häufigsten Reaktionen antwortet, im [Beitrag zur Einwandbehandlung](/blog/einwandbehandlung-vertrieb). Was wir bei einer Zusammenarbeit an dieser Stelle übernehmen – Listenaufbau, Dokumentation, Sperrliste – steht unter [Leistungen](/leistungen) und für den Heimatmarkt unter [Kaltakquise Köln](/kaltakquise/koeln).
+Wie das Gespräch danach aufgebaut wird, steht im [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden); wie man auf die häufigsten Reaktionen antwortet, im [Beitrag zur Einwandbehandlung](/blog/einwandbehandlung-vertrieb). Was wir bei einer Zusammenarbeit an dieser Stelle übernehmen – Listenaufbau, Dokumentation, Sperrliste – steht unter [Leistungen](/leistungen), für den Heimatmarkt unter [Kaltakquise Köln](/kaltakquise/koeln) und für alle übrigen Städte unter [Kaltakquise nach Standort](/kaltakquise).
 
 **Hinweis:** Dieser Beitrag gibt den Rechtsrahmen wieder, ersetzt aber keine Rechtsberatung im Einzelfall.
 

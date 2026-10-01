@@ -44,6 +44,19 @@ function erfassen(text, herkunft) {
 
 for (const city of cities) {
   erfassen(city.regionalText, `cities.ts/${city.slug}/regionalText`)
+
+  // Ortswissen (`lokal`, seit 01.10.2026): Es soll eine Stadtseite von den
+  // übrigen vierzehn unterscheiden. Derselbe Satz in zwei Städten wäre genau
+  // das Vorlagenmuster, gegen das die Felder angelegt sind.
+  const lokal = city.lokal ?? {}
+  const herkunft = `cities.ts/${city.slug}/lokal`
+  for (const absatz of lokal.neukundengewinnung?.absaetze ?? []) {
+    erfassen(absatz, `${herkunft}/neukundengewinnung`)
+  }
+  for (const branche of lokal.branchen ?? []) erfassen(branche.text, `${herkunft}/branchen`)
+  erfassen(lokal.projekt?.text, `${herkunft}/projekt`)
+  erfassen(lokal.einzugsgebiet, `${herkunft}/einzugsgebiet`)
+  for (const frage of lokal.fragen ?? []) erfassen(frage.answer, `${herkunft}/fragen`)
 }
 
 for (const [slug, eintrag] of Object.entries(cityAcquisition)) {

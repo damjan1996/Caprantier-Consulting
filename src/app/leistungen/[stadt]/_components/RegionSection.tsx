@@ -29,6 +29,11 @@ import styles from './stadt.module.css'
  * Vertrieb abgeben?“) und unterscheidet sich bewusst von den drei Beiträgen
  * auf `/kaltakquise/[stadt]` — zwei davon hatten zuvor nur vier bis fünf
  * eingehende Verweise.
+ *
+ * „Passend dazu“ führt seit dem Search-Console-Abgleich vom 01.10.2026 auch auf
+ * die beiden Familien-Einstiege `/kaltakquise` und `/branchen`. Beide kannte
+ * Google zu dem Zeitpunkt nicht; diese Seiten dagegen stehen bis auf Dortmund
+ * im Index.
  */
 
 /** Drei Beiträge, die zur Frage dieser Seite passen. */
@@ -113,6 +118,9 @@ export default function RegionSection({ city }: { city: City }) {
             <Link href={`/kaltakquise/${city.slug}`} className={styles.regionLink}>
               Kaltakquise in {city.name}
             </Link>
+            <Link href="/kaltakquise" className={styles.regionLink}>
+              Kaltakquise nach Standort
+            </Link>
             {industryPages.map((industry) => (
               <Link
                 key={industry.slug}
@@ -122,6 +130,9 @@ export default function RegionSection({ city }: { city: City }) {
                 {industry.shortTitle}
               </Link>
             ))}
+            <Link href="/branchen" className={styles.regionLink}>
+              Alle Branchenlösungen
+            </Link>
           </div>
         </div>
 

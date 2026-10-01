@@ -21,7 +21,7 @@ export const b2bLeadgenerierungKanaele: BlogPost = {
   slug: 'b2b-leadgenerierung-kanaele',
   title: 'B2B-Leadgenerierung: Welcher Kanal wann funktioniert',
   description:
-    'Telefon, LinkedIn, E-Mail, Content, Webinare, Messen und ABM im direkten Vergleich: Aufwand, Vorlaufzeit, Skalierbarkeit und rechtliche Grenzen jedes Kanals – und warum die Wahl an der Zielgruppengröße hängt, nicht am Trend.',
+    'B2B-Leadgenerierung im Kanalvergleich: Telefon, LinkedIn, E-Mail, Content, Webinare, Messen und ABM – Aufwand, Vorlauf und rechtliche Grenzen je Kanal.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-16',
   updatedAt: '2026-09-10',
@@ -68,7 +68,7 @@ export const b2bLeadgenerierungKanaele: BlogPost = {
   content: `
 Die Frage nach dem besten Kanal für B2B-Leads wird meistens falsch gestellt. Sie lautet nicht "Telefon oder LinkedIn", sondern: **Wie viele Unternehmen kommen als Kunde überhaupt infrage?** Aus dieser einen Zahl folgt fast alles Weitere.
 
-Bei 80 möglichen Kunden ist jeder Kanal falsch, der auf Reichweite setzt. Bei 8.000 ist jeder Kanal falsch, der Einzelansprache verlangt. Dieser Beitrag ordnet die sieben relevanten Kanäle nach diesem Kriterium – und nennt bei jedem die rechtliche Grenze, die in Deutschland gilt.
+Bei 80 möglichen Kunden ist jeder Kanal falsch, der auf Reichweite setzt. Bei 8.000 ist jeder Kanal falsch, der Einzelansprache verlangt. Dieser Beitrag ordnet die sieben relevanten Kanäle der [Leadgenerierung](/glossar#leadgenerierung) nach diesem Kriterium – und nennt bei jedem die rechtliche Grenze, die in Deutschland gilt.
 
 ## Die Übersicht
 
@@ -88,11 +88,11 @@ Der direkte Anruf hat eine Eigenschaft, die kein anderer Kanal bietet: Er liefer
 
 **Rechtlich** ist das Telefon im B2B der einzige Direktkanal mit einer echten Erleichterung. [§ 7 Abs. 2 Nr. 1 UWG](https://www.gesetze-im-internet.de/uwg_2004/__7.html) verlangt gegenüber einem sonstigen Marktteilnehmer nur eine "zumindest mutmaßliche Einwilligung" – gegenüber Verbrauchern dagegen eine vorherige ausdrückliche. Diese Unterscheidung ist der Grund, warum Telefonakquise im deutschen B2B funktioniert und im Endkundengeschäft nicht.
 
-**Grenze:** Der Aufwand pro Termin ist hoch und lässt sich nicht durch Technik senken, nur durch bessere Listen. Der vollständige Ablauf steht im [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden).
+**Grenze:** Der Aufwand pro Termin ist hoch und lässt sich nicht durch Technik senken, nur durch bessere Listen. Der vollständige Ablauf steht im [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden); was nach dem ersten Satz kommt, im Beitrag zur [Einwandbehandlung](/blog/einwandbehandlung-vertrieb).
 
 ## LinkedIn: Zugang, wo das Telefon nicht mehr durchkommt
 
-In manchen Rollen – IT-Leitung, Produktmanagement, jüngere Geschäftsführung – ist das Telefon faktisch tot. Dort ist LinkedIn kein Trend, sondern der einzige verbleibende Direktkanal.
+In manchen Rollen – IT-Leitung, Produktmanagement, jüngere Geschäftsführung – ist das Telefon faktisch tot. Dort ist LinkedIn kein Trend, sondern der einzige verbleibende Direktkanal. Wie sich das im Systemhaus- und SaaS-Markt auswirkt, steht im Beitrag zur [Akquise für IT-Dienstleister](/blog/leadgenerierung-it-dienstleister).
 
 Was funktioniert:
 
@@ -124,7 +124,7 @@ Fachbeiträge, die eine echte Frage beantworten, erzeugen Anfragen von Menschen,
 
 Was in diesem Kanal tatsächlich zählt, ist nicht Menge, sondern Tiefe. Fünfzig kurze Beiträge zu überlappenden Themen bewirken weniger als zehn, die eine Frage vollständig beantworten – eine Erfahrung, die dieser Blog selbst gemacht hat.
 
-**Grenze:** Als alleiniger Kanal in der Anlaufphase ungeeignet. Wer heute Kunden braucht, kann nicht auf einen Kanal setzen, der in neun Monaten wirkt.
+**Grenze:** Als alleiniger Kanal in der Anlaufphase ungeeignet. Wer heute Kunden braucht, kann nicht auf einen Kanal setzen, der in neun Monaten wirkt. Schneller wird er auch nicht, wenn Sprachmodelle die Texte schreiben – wo KI im Vertrieb tatsächlich Arbeit abnimmt, steht im [Beitrag zu KI im B2B-Vertrieb](/blog/ki-im-b2b-vertrieb).
 
 ## Webinare: Qualifizierung durch Selbstauswahl
 

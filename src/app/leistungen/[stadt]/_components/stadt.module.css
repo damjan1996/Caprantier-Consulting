@@ -6,9 +6,10 @@
  * Aufklappbereich und Fortschrittsleiste kommen aus
  * `src/components/seite/basis.module.css`.
  *
- * Aufbau (sechs Abschnitte, zwei davon als Bühne):
+ * Aufbau (sechs Abschnitte, zwei davon als Bühne; mit Ortswissen sieben):
  *   Einstieg    Fluss, gut zwei Drittel Bildschirmhöhe, rechts das Porträt
  *   Übergabe    Bühne, drei Einträge — die Entscheidung dieser Seite
+ *   Vor Ort     Fluss, nur wenn `city.lokal` etwas enthält
  *   Region      Fluss, Ortstext und Verweise
  *   Aufwand     Fluss, dunkle Karte
  *   Fragen      Fluss, sechs Fragen zum Aufklappen
@@ -401,6 +402,53 @@
   color: var(--accent);
 }
 
+/* -------------------------------------------------------------------- Vor Ort */
+
+/*
+ * Ortswissen aus `city.lokal` — nur auf Seiten, für die es welches gibt.
+ * Kopf wie „Ihr Markt vor Ort“ (`.regionHead`), darunter die Absätze
+ * nebeneinander und, falls vorhanden, Branchen, Gebiet und Projekt als
+ * Spalten im selben Raster wie die Verweise der Region.
+ */
+.ortText {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 48px);
+}
+
+.ortAbsatz {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+.ortBloecke {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  margin-top: clamp(32px, 5vh, 56px);
+}
+
+.ortBlockText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.ortListe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /* ------------------------------------------------------------------- Aufwand */
 
 /*
@@ -517,7 +565,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .regionCols {
+  .regionCols,
+  .ortText,
+  .ortBloecke {
     grid-template-columns: minmax(0, 1fr);
     row-gap: clamp(28px, 5vw, 44px);
   }

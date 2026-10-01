@@ -16,7 +16,7 @@ export const vertriebssteuerungKpisPipeline: BlogPost = {
   title: 'Vertriebssteuerung: Von der Jahreszahl zur Wochenaktivität',
   seoTitle: 'Vertriebssteuerung: KPIs und Pipeline im B2B',
   description:
-    'Wie man aus einem Umsatzziel eine wöchentliche Aktivitätszahl ableitet, welche vier Kennzahlen im B2B-Mittelstand ausreichen, wie eine belastbare Pipeline aufgebaut ist und woran man erkennt, an welcher Stelle sie klemmt.',
+    'Vertriebssteuerung im B2B: vom Umsatzziel zur Wochenaktivität, die vier Kennzahlen, die im Mittelstand reichen, und eine Pipeline, die zeigt, wo es klemmt.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2025-12-30',
   updatedAt: '2026-09-10',
@@ -93,11 +93,11 @@ Nur das zweite gehört in ein wöchentliches Gespräch. Das erste gehört ins Qu
 
 ## Die vier Kennzahlen
 
-Mehr als vier braucht kein B2B-Mittelständler. Der Wert dieser vier liegt darin, dass jede von ihnen auf eine **andere Ursache** zeigt.
+Mehr als vier braucht kein B2B-Mittelständler. Alle vier sind Quoten – jede eine [Conversion Rate](/glossar#conversion-rate) an einer anderen Stelle des Ablaufs –, und ihr Wert liegt darin, dass jede von ihnen auf eine **andere Ursache** zeigt.
 
 **Netto-Kontaktquote** – erreichte Entscheider je Wählversuch. Misst Liste und Anrufzeit. Fällt sie, sind die Daten veraltet oder die Zeitfenster falsch. Sie hat nichts mit der Gesprächsqualität zu tun.
 
-**Terminquote** – Termine je erreichtem Entscheider. Misst Einstieg, Angebot und Einwandbehandlung. Fällt sie bei stabiler Kontaktquote, liegt es am Gespräch oder daran, dass die Zielgruppe das Problem nicht hat.
+**Terminquote** – Termine je erreichtem Entscheider. Misst Einstieg, Angebot und [Einwandbehandlung](/blog/einwandbehandlung-vertrieb). Fällt sie bei stabiler Kontaktquote, liegt es am Gespräch oder daran, dass die Zielgruppe das Problem nicht hat.
 
 **Wahrnehmungsquote** – stattgefundene je vereinbarte Termine. Misst Terminqualität. Der aussagekräftigste der vier Werte, weil er als einziger unterscheidet, ob ein voller Kalender auch ein guter Kalender ist.
 
@@ -153,7 +153,7 @@ Die einzige wirksame Gegenmaßnahme ist, die wöchentliche Aktivitätszahl als *
 
 Was ein Unternehmen über seinen Markt lernen kann, steckt fast vollständig in den Absagen – und wird fast nie erfasst.
 
-Fünf Kategorien genügen: kein Bedarf, kein Budget, Zeitpunkt falsch, Wettbewerber gewonnen, keine Entscheidung getroffen. Die letzte ist im B2B regelmäßig die größte, und sie ist die einzige, gegen die sich etwas tun lässt, das nichts mit dem Preis zu tun hat.
+Fünf Kategorien genügen: kein Bedarf, kein Budget, Zeitpunkt falsch, Wettbewerber gewonnen, keine Entscheidung getroffen. Die letzte ist im B2B regelmäßig die größte, und sie ist die einzige, gegen die sich etwas tun lässt, das nichts mit dem Preis zu tun hat. Was das ist, steht im [Beitrag zu Angebot, Verhandlung und Abschluss](/blog/angebot-verhandlung-abschluss-b2b).
 
 Wer diese fünf Kategorien über ein Jahr führt, weiß am Jahresende, ob das Problem im Angebot, in der Zielgruppe oder im Prozess liegt. Wer sie nicht führt, diskutiert im Januar über Rabatte.
 

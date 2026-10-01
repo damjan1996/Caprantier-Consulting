@@ -23,6 +23,16 @@ const MINDESTWOERTER = 1200
 const MINDEST_FAQ = 3
 const MINDEST_EXTERNE_QUELLEN = 1
 
+/**
+ * Länge der Beschreibung (Meta-Description und Anreißer auf /blog, /wissen).
+ *
+ * Bis zum 01.10.2026 lagen alle 13 Beiträge bei 195–249 Zeichen; Google
+ * schneidet bei rund 155 ab, der Schluss fehlte also in jedem Snippet. Die
+ * Search Console zeigte zugleich zehn der 13 Beiträge außerhalb des Index.
+ */
+const BESCHREIBUNG_MIN = 70
+const BESCHREIBUNG_MAX = 160
+
 const EIGENE_DOMAIN = 'carpantier-consulting.de'
 
 const nurInventar = process.argv.includes('--inventar')
@@ -138,6 +148,16 @@ for (const bericht of berichte) {
   }
   if (!bericht.verlinktLeistungen) {
     beanstandungen.push(`${bericht.slug}: kein interner Link auf /leistungen.`)
+  }
+}
+
+for (const post of blogPosts) {
+  const laenge = post.description.length
+  if (laenge < BESCHREIBUNG_MIN || laenge > BESCHREIBUNG_MAX) {
+    beanstandungen.push(
+      `${post.slug}: Beschreibung mit ${laenge} Zeichen, erlaubt sind ` +
+        `${BESCHREIBUNG_MIN}–${BESCHREIBUNG_MAX}. Suchbegriff und Nutzen nach vorn.`
+    )
   }
 }
 

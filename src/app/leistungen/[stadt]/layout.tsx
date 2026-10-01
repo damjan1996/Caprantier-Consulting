@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getCityBySlug, getAllCitySlugs } from '@/content/cities'
+import { getCityBySlug, getAllCitySlugs, STANDARD_SUCHBEGRIFF } from '@/content/cities'
 import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 interface Props {
@@ -38,9 +38,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    * <Stadt>“. `absolute` mit dem kurzen Firmennamen, weil die Vorlage aus
    * `layout.tsx` mit „Carpantier Consulting“ das Zielband von 65 Zeichen
    * sprengt. Die Beschreibung bleibt unter 160 Zeichen, auch für Düsseldorf.
+   *
+   * Seit dem Search-Console-Abgleich vom 01.10.2026 kann eine Stadt nach dem
+   * Doppelpunkt einen eigenen Begriff tragen (`suchbegriff` in `cities.ts`) —
+   * Hamburg wird über „akquise agentur hamburg“ gefunden, und „Akquise“ stand
+   * nirgends im Titel. Die Beschreibung nennt „Vertriebsoutsourcing“: Der
+   * Begriff wird für Nürnberg (Ø Position 5,4), Hamburg und zusammen mit
+   * „kosten“ gesucht und stand bis dahin auf keiner Stadtseite. Längste
+   * Fassung (Frankfurt): 157 Zeichen.
    */
-  const title = `Vertriebsagentur ${city.name}: Vertrieb auslagern | Carpantier`
-  const description = `Vertrieb auslagern in ${city.name}: Telefonakquise und Terminqualifizierung ${city.businessContext} – das Verkaufsgespräch führen Sie selbst.`
+  const suchbegriff = city.suchbegriff ?? STANDARD_SUCHBEGRIFF
+  const title = `Vertriebsagentur ${city.name}: ${suchbegriff.titel} | Carpantier`
+  const description = `Vertrieb auslagern in ${city.name}: Vertriebsoutsourcing für Akquise und Termine ${city.businessContext} – das Verkaufsgespräch führen Sie.`
 
   return {
     title: { absolute: title },

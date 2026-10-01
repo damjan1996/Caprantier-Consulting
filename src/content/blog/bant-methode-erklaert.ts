@@ -18,7 +18,7 @@ export const bantMethodeErklaert: BlogPost = {
   title: 'Leads qualifizieren: BANT, Lead Scoring und das Buying Center',
   seoTitle: 'BANT-Methode: Leads im B2B qualifizieren',
   description:
-    'Wie man im B2B erkennt, ob aus einem Gespräch ein Kunde werden kann: die BANT-Kriterien und ihre Grenzen, Lead Scoring ohne Werkzeugballast, die Rollen im Buying Center und der Ablauf eines Discovery Calls.',
+    'BANT-Methode im B2B: Leads nach Budget, Entscheidungsbefugnis, Bedarf und Zeitpunkt qualifizieren – dazu Lead Scoring, Buying Center und der Discovery Call.',
   author: 'Nico-Luca Carpantier',
   publishedAt: '2026-01-16',
   updatedAt: '2026-09-10',
@@ -99,7 +99,7 @@ Diese drei Fragen gehören ergänzt, sonst entsteht ein Kalender voller technisc
 
 ## Das Buying Center: wer außer dem Gesprächspartner mitredet
 
-Im B2B entscheidet selten eine Person allein. Die Beteiligten lassen sich sechs Rollen zuordnen – die sich in kleinen Unternehmen überlagern:
+Im B2B entscheidet selten eine Person allein. Die Beteiligten – zusammen das [Buying Center](/glossar#buying-center) – lassen sich sechs Rollen zuordnen, die sich in kleinen Unternehmen überlagern:
 
 | Rolle | Interesse | Erkennbar an |
 |---|---|---|
@@ -146,7 +146,7 @@ Der Discovery Call ist der erste Termin nach der Terminvereinbarung – der Ort,
 
 **Minute 55-60 – Nächster Schritt mit Datum.** Kein "wir melden uns".
 
-Der Anteil eigener Redezeit sollte unter 30 Prozent liegen. Wer mehr spricht, präsentiert – und Präsentation ist der Termin danach.
+Der Anteil eigener Redezeit sollte unter 30 Prozent liegen. Wer mehr spricht, präsentiert – und Präsentation ist der Termin danach. Wie aus diesem Termin ein Angebot wird, über das tatsächlich entschieden wird, steht im [Beitrag zu Angebot, Verhandlung und Abschluss](/blog/angebot-verhandlung-abschluss-b2b).
 
 ### Wenn der Termin per Video stattfindet
 

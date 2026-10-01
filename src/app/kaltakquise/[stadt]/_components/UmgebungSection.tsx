@@ -21,6 +21,10 @@ import styles from './kaltakquise.module.css'
  * Die Verweise entstehen aus `cities` und `industryPages` als Schleife;
  * `scripts/check-internal-links.mjs` sucht genau diese Form, um die
  * Seitenfamilien als verlinkt zu zählen.
+ *
+ * Der Verweis auf die Schwesterseite derselben Stadt heißt seit dem 01.10.2026
+ * „Vertriebsagentur <Stadt>“ statt „Vertrieb auslagern in <Stadt>“ — so beginnt
+ * der Titel der Zielseite, und so wird sie gesucht.
  */
 
 /** Drei Beiträge, die zur Frage dieser Seite passen. */
@@ -88,7 +92,7 @@ export default function UmgebungSection({ city }: { city: City }) {
               </Link>
             ))}
             <Link href={`/leistungen/${city.slug}`} className={styles.umgebungLink}>
-              Vertrieb auslagern in {city.name}
+              Vertriebsagentur {city.name}
             </Link>
             <Link href="/kaltakquise" className={styles.umgebungLink}>
               Alle Standorte
@@ -108,6 +112,9 @@ export default function UmgebungSection({ city }: { city: City }) {
                 {industry.shortTitle}
               </Link>
             ))}
+            <Link href="/branchen" className={styles.umgebungLink}>
+              Alle Branchenlösungen
+            </Link>
           </div>
         </div>
 

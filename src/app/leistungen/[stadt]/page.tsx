@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import AufwandSection from './_components/AufwandSection'
 import FragenSection from '@/components/seite/FragenSection'
 import { fragen } from './_components/fragen'
+import OrtSection from './_components/OrtSection'
 import RegionSection from './_components/RegionSection'
 import StadtIntro from './_components/StadtIntro'
 import TerminScene from '@/components/seite/TerminScene'
@@ -9,7 +10,7 @@ import { termin } from './_components/termin'
 import UebergabeScene from './_components/UebergabeScene'
 import { STADT_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
-import { getCityBySlug, getAllCitySlugs, type City } from '@/content/cities'
+import { getCityBySlug, getAllCitySlugs, hatOrtswissen, type City } from '@/content/cities'
 import { generateCityFAQSchema, generateBreadcrumbSchema } from '@/lib/schemas'
 import { businessInfo } from '@/content/local-seo'
 import styles from './_components/stadt.module.css'
@@ -18,7 +19,8 @@ import styles from './_components/stadt.module.css'
  * Vertrieb nach Stadt — eine Vorlage, fünfzehn Adressen.
  *
  * Aufgebaut wie die Startseite: sechs Abschnitte, zwei davon als Klebe-Bühne,
- * rund dreizehn Bildschirmhöhen.
+ * rund dreizehn Bildschirmhöhen. Ein siebter („Vor Ort“, `OrtSection`) steht
+ * nur auf Seiten, für die `city.lokal` belegtes Ortswissen enthält.
  *
  * **Abgrenzung zur Schwesterfamilie.** `/kaltakquise/[stadt]` beantwortet
  * „darf man das, und wen ruft ihr an“. Diese Seite beantwortet „soll ich den
@@ -29,8 +31,8 @@ import styles from './_components/stadt.module.css'
  *
  * Die Reihenfolge folgt der Frage, mit der jemand hier ankommt: Was bekomme
  * ich (Einstieg) — wie ist die Arbeit geteilt (Übergabe) — kennt ihr meinen
- * Markt (Region) — was kostet es mich (Aufwand) — was ist noch offen (Fragen)
- * — und dann der Abschluss.
+ * Markt (Vor Ort, Region) — was kostet es mich (Aufwand) — was ist noch offen
+ * (Fragen) — und dann der Abschluss.
  *
  * Kein `'use client'`: Die Abschnitte bringen es selbst mit, wo sie Zustand
  * oder Scroll brauchen.
@@ -187,6 +189,8 @@ export default async function StadtPage({ params }: Props) {
 
       <StadtIntro city={city} />
       <UebergabeScene />
+      {/* Nur mit belegtem Ortswissen aus `city.lokal` — sonst gar nicht. */}
+      {hatOrtswissen(city) && <OrtSection city={city} />}
       <RegionSection city={city} />
       <AufwandSection />
       <FragenSection {...fragen(city)} />

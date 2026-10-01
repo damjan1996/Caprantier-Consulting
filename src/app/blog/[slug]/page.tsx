@@ -259,13 +259,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               {/* Der Wissensbereich bündelt Beiträge, Videos und Glossar. Bis zum
                   01.10.2026 erreichte man ihn aus keinem Seiteninhalt, nur über
-                  Menü und Fußzeile. */}
-              <Link
-                href="/wissen"
-                className="mt-6 inline-flex min-h-[44px] items-center gap-1 text-sm text-primary hover:underline"
-              >
-                Alle Beiträge, Videos und Begriffe im Wissensbereich
-              </Link>
+                  Menü und Fußzeile. Die Blogübersicht hatte danach als einzige
+                  Seite der Sitemap weniger als drei Verweise aus Inhalten — die
+                  Brotkrumen stehen in <nav> und zählen nicht. */}
+              <div className="mt-6 flex flex-wrap gap-x-6">
+                <Link
+                  href="/blog"
+                  className="inline-flex min-h-[44px] items-center gap-1 text-sm text-primary hover:underline"
+                >
+                  Alle Fachbeiträge
+                </Link>
+                <Link
+                  href="/wissen"
+                  className="inline-flex min-h-[44px] items-center gap-1 text-sm text-primary hover:underline"
+                >
+                  Alle Beiträge, Videos und Begriffe im Wissensbereich
+                </Link>
+              </div>
             </FadeIn>
           </div>
         </section>
@@ -305,9 +315,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
                 Bereit für mehr qualifizierte Termine?
               </h2>
+              {/* Bis zum 01.10.2026 stand hier „Strategiegespräch … auf das
+                  nächste Level“ — beides schließt der Textleitfaden aus (§ 5,
+                  § 9.1). Der Verweis auf die Startseite trägt deren Titelbegriff;
+                  aus Seiteninhalten verwies vorher nur `/ueber-uns` auf sie. */}
               <p className="text-muted-foreground mb-6">
-                Erfahren Sie in einem kostenlosen Strategiegespräch, wie wir Ihren Vertrieb auf das
-                nächste Level bringen.
+                Carpantier Consulting ist eine{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  B2B-Vertriebsagentur aus Köln
+                </Link>
+                : Wir übernehmen Telefonakquise und Terminvereinbarung, das Verkaufsgespräch führen
+                Sie. Ob das zu Ihnen passt, klären wir in einem kostenlosen Erstgespräch.
               </p>
               <Link
                 href="/kontakt"

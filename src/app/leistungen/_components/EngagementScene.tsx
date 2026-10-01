@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { formatPreis, istPreisSichtbar, priceModels } from '@/content/pricing'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
@@ -18,6 +19,11 @@ import styles from './leistungen.module.css'
  * (`PREISE_FREIGEGEBEN`), das `Offer`-Markup und die Prüfung in
  * `scripts/check-pricing.mjs` daran. Solange kein Betrag freigegeben ist,
  * nennt die Seite keine Zahl und erklärt stattdessen das Modell.
+ *
+ * Wer hier nach einer Zahl sucht, findet seit dem 01.10.2026 den Weg zum
+ * Kostenbeitrag: Marktspannen und der Vollkostenvergleich mit einer eigenen
+ * Stelle stehen dort, nicht hier. Der Beitrag rankt für „vertriebsoutsourcing
+ * kosten“ (Ø Position 11,0) und war trotzdem nicht im Index.
  */
 export default function EngagementScene() {
   const { openCalendly, onHover } = useCalendly()
@@ -102,7 +108,10 @@ export default function EngagementScene() {
                 style={{ '--rd': '0.2s' } as React.CSSProperties}
               >
                 Wir verkaufen keine Standardpakete, deshalb variiert der Preis. Im Erstgespräch
-                nennen wir Ihnen nach kurzer Analyse eine transparente Hausnummer.
+                nennen wir Ihnen nach kurzer Analyse eine transparente Hausnummer. Was es im
+                Markt kostet und wie es sich gegen eine eigene Stelle rechnet, steht im Beitrag zu
+                den <Link href="/blog/vertrieb-auslagern-kosten-vorteile">Kosten von
+                Vertriebsoutsourcing</Link>.
               </p>
 
               <div

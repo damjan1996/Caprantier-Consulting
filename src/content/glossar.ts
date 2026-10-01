@@ -98,7 +98,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
     term: 'Einwandbehandlung',
     shortDescription: 'Professioneller Umgang mit Kundenbedenken',
     fullDescription:
-      'Einwandbehandlung bezeichnet Techniken, um auf Bedenken und Einwände potenzieller Kunden professionell zu reagieren. Typische Einwände sind "kein Interesse", "keine Zeit", "zu teuer" oder "wir haben schon einen Anbieter". Eine gute Einwandbehandlung wandelt Einwände in Verkaufschancen um.',
+      'Einwandbehandlung bezeichnet Techniken, um auf Bedenken und Einwände potenzieller Kunden professionell zu reagieren. Typische Einwände und Vorwände sind "kein Interesse", "keine Zeit", "zu teuer" oder "wir haben schon einen Anbieter". Eine gute Einwandbehandlung wandelt Einwände in Verkaufschancen um.',
     relatedTerms: ['Kaltakquise', 'Verkaufsgespräch'],
     category: 'Methoden',
     blogLink: '/blog/einwandbehandlung-vertrieb',
@@ -156,6 +156,21 @@ export const glossarBegriffe: GlossarBegriff[] = [
     category: 'Strategien',
     blogLink: '/blog/vertrieb-auslagern-kosten-vorteile',
     leistung: { href: '/leistungen', label: 'Vertrieb auslagern: unsere Leistungen' },
+  },
+  {
+    // Seit 01.10.2026. Die Definition steht so im Beitrag zur
+    // Einwandbehandlung, auf den der Begriff verweist – zweiter Verweis aus
+    // dem Glossar auf den Beitrag, der für „einwandbehandlung“ rankt. Der
+    // Eintrag `einwandbehandlung` nennt deshalb „Einwände und Vorwände“: „kein
+    // Interesse“ ist nach dem Beitrag ein Vorwand, kein Einwand.
+    id: 'vorwand',
+    term: 'Vorwand',
+    shortDescription: 'Gesprächsende ohne genannten Grund',
+    fullDescription:
+      'Ein Vorwand beendet ein Akquisegespräch, ohne einen Grund zu nennen – "kein Interesse" ist der häufigste. Anders als ein Einwand, der einen prüfbaren Hinderungsgrund nennt, etwa einen laufenden Vertrag bis Jahresende, lässt er sich nicht beantworten, nur einmal freundlich hinterfragen. Kommt danach wieder ein Vorwand, endet das Gespräch.',
+    relatedTerms: ['Einwandbehandlung', 'Kaltakquise'],
+    category: 'Methoden',
+    blogLink: '/blog/einwandbehandlung-vertrieb',
   },
   {
     id: 'warmakquise',

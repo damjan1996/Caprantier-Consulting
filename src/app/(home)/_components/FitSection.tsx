@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
@@ -16,6 +17,13 @@ import styles from './home.module.css'
  *
  * Der Selbsttest darunter macht dieselbe Prüfung in zehn Sekunden. Er läuft
  * vollständig im Browser: Es wird nichts gesendet, nichts gespeichert.
+ *
+ * Der Satz unter dem Selbsttest führt seit dem 01.10.2026 zu den Branchen- und
+ * Standortseiten. `/branchen` und `/kaltakquise` waren Google bis dahin
+ * unbekannt, und die Startseite verwies aus keinem Abschnitt auf sie. Er steht
+ * im Fluss nach der Bühne, nicht in den Karten: Ein Verweis in einem
+ * ausgeblendeten Bühneneintrag wäre unsichtbar per Tastatur erreichbar, und die
+ * Aktionszeile `.pinAction` ist auf dem Telefon ausgeblendet.
  */
 
 const GOOD_FIT = [
@@ -332,6 +340,18 @@ export default function FitSection() {
             ))}
           </div>
         </div>
+
+        <p
+          className={`${styles.fitMore} ${styles.reveal} ${isIn ? styles.revealIn : ''}`}
+          data-fade-in=""
+          style={{ '--rd': '0.18s' } as React.CSSProperties}
+        >
+          Was in einzelnen Branchen anders läuft, steht unter{' '}
+          <Link href="/branchen">Branchenlösungen</Link> – ausführlich für{' '}
+          <Link href="/branchen/personaldienstleister">Personaldienstleister</Link> und{' '}
+          <Link href="/branchen/it-systemhaeuser">IT-Systemhäuser</Link>. Wie der Anruf je Stadt
+          aussieht, zeigt <Link href="/kaltakquise">Kaltakquise nach Standort</Link>.
+        </p>
       </div>
     </section>
   )
