@@ -16,6 +16,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const bantMethodeErklaert: BlogPost = {
   slug: 'bant-methode-erklaert',
   title: 'Leads qualifizieren: BANT, Lead Scoring und das Buying Center',
+  seoTitle: 'BANT-Methode: Leads im B2B qualifizieren',
   description:
     'Wie man im B2B erkennt, ob aus einem Gespräch ein Kunde werden kann: die BANT-Kriterien und ihre Grenzen, Lead Scoring ohne Werkzeugballast, die Rollen im Buying Center und der Ablauf eines Discovery Calls.',
   author: 'Nico-Luca Carpantier',

@@ -13,6 +13,9 @@ import type { BlogPost } from '@/lib/blog-types'
 export const kaltakquiseRechtlicheGrundlagen: BlogPost = {
   slug: 'kaltakquise-rechtliche-grundlagen',
   title: 'Kaltakquise und Recht: Was im B2B erlaubt ist und was nicht',
+  // Nie verkürzt auf „was erlaubt ist“ (Textleitfaden § 7.1): Die Grenze gehört
+  // zur Aussage, auch im Suchergebnis.
+  seoTitle: 'Kaltakquise im B2B: was erlaubt ist und was nicht',
   description:
     'B2B-Telefonakquise ist nach § 7 UWG bei mutmaßlicher Einwilligung zulässig – Werbe-E-Mails ohne Einwilligung sind es nicht. Der Unterschied, die Beweislast, die DSGVO-Pflichten und was bei einem Widerspruch zu tun ist.',
   author: 'Nico-Luca Carpantier',

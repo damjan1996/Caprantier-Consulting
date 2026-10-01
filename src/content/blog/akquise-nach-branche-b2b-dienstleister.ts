@@ -17,6 +17,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const akquiseNachBrancheB2bDienstleister: BlogPost = {
   slug: 'akquise-nach-branche-b2b-dienstleister',
   title: 'Akquise nach Branche: Agenturen, Beratungen, Maschinenbau, Startups',
+  seoTitle: 'Akquise nach Branche: Agenturen bis Maschinenbau',
   description:
     'Was sich in der B2B-Neukundengewinnung je Branche tatsächlich unterscheidet – Zielgruppe, Auslöser, Zykluslänge und der typische Engpass – für Agenturen, Unternehmensberatungen, technischen Vertrieb im Maschinenbau und Startups ohne Vertriebsbudget.',
   author: 'Nico-Luca Carpantier',
@@ -114,7 +115,7 @@ Was in diesem Umfeld tatsächlich wirkt, ist deshalb weniger der Abschluss als d
 
 ## Startups: erst verstehen, dann skalieren
 
-Der häufigste Fehler junger Unternehmen ist nicht zu wenig Vertrieb, sondern zu früh delegierter Vertrieb. Wer einen Vertriebsmitarbeiter einstellt, bevor feststeht, welche Zielgruppe warum kauft, bekommt zwei Probleme statt eines.
+Der häufigste Fehler junger Unternehmen ist nicht zu wenig Vertrieb, sondern zu früh delegierter Vertrieb. Wer [einen Vertriebsmitarbeiter einstellt](/blog/vertriebsteam-aufbauen-recruiting), bevor feststeht, welche Zielgruppe warum kauft, bekommt zwei Probleme statt eines.
 
 Die belastbare Reihenfolge lautet:
 

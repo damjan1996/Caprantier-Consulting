@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import Link from 'next/link'
 import { homeFaqs } from '@/content/home'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
@@ -118,6 +119,16 @@ export default function FaqSection() {
                 >
                   info@carpantier-consulting.de
                 </a>
+                {/* Die Rechtsfrage verweist im Hinweis auf „den Beitrag zu den
+                    rechtlichen Grundlagen“ — der Verweis steht hier und nicht
+                    in der Antwort: Nicht aktive Antworten sind nur durchsichtig,
+                    ein Verweis darin wäre unsichtbar per Tastatur erreichbar. */}
+                <Link
+                  href="/blog/kaltakquise-rechtliche-grundlagen"
+                  className={`${styles.textLink} ${styles.textLinkMuted}`}
+                >
+                  Kaltakquise und Recht
+                </Link>
               </div>
 
               <span className={styles.sceneRail} aria-hidden="true">

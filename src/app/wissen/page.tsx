@@ -13,6 +13,7 @@ import { getVideos } from '@/lib/youtube'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/wissen.module.css'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/wissen`
 
@@ -20,17 +21,12 @@ const PAGE_URL = `${businessInfo.website}/wissen`
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Wissen | B2B-Vertrieb, Kaltakquise & Leadgenerierung',
+  title: 'Wissen: B2B-Vertrieb und Kaltakquise',
   description:
     'Fachartikel, Videos und Begriffserklärungen rund um B2B-Vertrieb, Telefonakquise und Leadgenerierung — gebündelt an einer Stelle.',
-  keywords: [
-    'B2B Vertrieb Wissen',
-    'Kaltakquise Ratgeber',
-    'Vertrieb Glossar',
-    'Leadgenerierung Tipps',
-  ],
   openGraph: {
-    title: 'Wissen | B2B-Vertrieb, Kaltakquise & Leadgenerierung',
+    ...OG_GRUNDWERTE,
+    title: 'Wissen: B2B-Vertrieb und Kaltakquise',
     description:
       'Fachartikel, Videos und Begriffserklärungen rund um B2B-Vertrieb und Telefonakquise.',
     url: PAGE_URL,

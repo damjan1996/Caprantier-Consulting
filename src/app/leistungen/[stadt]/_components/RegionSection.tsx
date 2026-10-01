@@ -22,7 +22,22 @@ import styles from './stadt.module.css'
  * Die Nachbarorte kommen aus `getNearbyCities` — `nearbyAreas` nennt die
  * geografischen Nachbarn, nicht die vorhandenen Seiten; die Begründung steht
  * in `src/content/cities.ts`.
+ *
+ * Die dritte Spalte kam am 01.10.2026 dazu, nach dem Vorbild der
+ * Schwesterseite: Bis dahin verwies keine der fünfzehn Seiten auf einen
+ * Fachbeitrag. Die Auswahl folgt der Frage dieser Familie („soll ich den
+ * Vertrieb abgeben?“) und unterscheidet sich bewusst von den drei Beiträgen
+ * auf `/kaltakquise/[stadt]` — zwei davon hatten zuvor nur vier bis fünf
+ * eingehende Verweise.
  */
+
+/** Drei Beiträge, die zur Frage dieser Seite passen. */
+const BEITRAEGE = [
+  { slug: 'vertrieb-auslagern-kosten-vorteile', label: 'Was Vertrieb auslagern kostet' },
+  { slug: 'vertriebsteam-aufbauen-recruiting', label: 'Eigenes Vertriebsteam oder Agentur' },
+  { slug: 'b2b-leadgenerierung-kanaele', label: 'Welcher Akquisekanal wann trägt' },
+]
+
 export default function RegionSection({ city }: { city: City }) {
   const { ref, isIn } = useReveal<HTMLElement>()
   const nachbarn = getNearbyCities(city)
@@ -81,7 +96,7 @@ export default function RegionSection({ city }: { city: City }) {
                 href={`/leistungen/${nachbar.slug}`}
                 className={styles.regionLink}
               >
-                Vertrieb {nachbar.name}
+                Vertriebsagentur {nachbar.name}
               </Link>
             ))}
             <Link href="/leistungen" className={styles.regionLink}>
@@ -105,6 +120,17 @@ export default function RegionSection({ city }: { city: City }) {
                 className={styles.regionLink}
               >
                 {industry.shortTitle}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.regionCol}>
+          <span className={styles.regionColTitle}>Zum Weiterlesen</span>
+          <div className={styles.regionLinks}>
+            {BEITRAEGE.map((beitrag) => (
+              <Link key={beitrag.slug} href={`/blog/${beitrag.slug}`} className={styles.regionLink}>
+                {beitrag.label}
               </Link>
             ))}
           </div>

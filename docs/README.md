@@ -35,6 +35,7 @@ Diese drei Dokumente gelten für jede Änderung an einer Seite.
 | [sichtbarkeit/ROADMAP-GESAMT-2026-09.md](sichtbarkeit/ROADMAP-GESAMT-2026-09.md) | **Maßgeblicher Plan.** Führt die beiden Vorgänger zusammen |
 | [sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md](sichtbarkeit/AUFTRAG-SICHTBARKEIT-2026-09.md) | Ursprünglicher Auftrag; Abschnitt 3 („Unantastbar") gilt weiter |
 | [sichtbarkeit/ROADMAP-KI-SICHTBARKEIT-2026-09.md](sichtbarkeit/ROADMAP-KI-SICHTBARKEIT-2026-09.md) | Evidenz und Paket-IDs, auf denen die Gesamt-Roadmap aufbaut |
+| [sichtbarkeit/SEO-ANALYSE-2026-10.md](sichtbarkeit/SEO-ANALYSE-2026-10.md) | Suchbegriffe je Seite, interne Verlinkung, Inhalt außerhalb von `<main>`; was am 01.10.2026 umgesetzt wurde und was offen ist |
 
 ## Archiv
 

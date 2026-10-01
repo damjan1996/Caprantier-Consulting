@@ -18,6 +18,14 @@
  * eines echten Absatzes -- Überschriften allein genügen nicht, weil die oft
  * auch in einer leeren Hülle stehen.
  *
+ * **Seit dem 01.10.2026 zählt nur, was in `<main>` steht.** Vorher reichte es,
+ * wenn der Text irgendwo im HTML vorkam -- und genau so ist durchgerutscht,
+ * dass ein `src/app/loading.tsx` jede Seite hinter eine Suspense-Grenze
+ * gelegt hatte: In `<main>` stand nur „Wird geladen…“, der Inhalt samt h1 lag
+ * als `<div hidden id="S:0">` hinter der Fußzeile und wurde erst per
+ * JavaScript eingesetzt. Diese Prüfung meldete grün, weil der Text ja im HTML
+ * stand. Textauszieher wie Readability verwerfen `hidden` vollständig.
+ *
  * Das Skript braucht einen antwortenden Server und gehört deshalb nicht in
  * `pnpm verify`, sondern vor das Deployment -- wie `check-live.mjs`.
  *
@@ -35,6 +43,9 @@ const { industryPages } = await loadTsModule('src/content/industries.ts')
 const { blogPosts } = await loadTsModule('src/lib/blog.ts')
 const { cityAcquisition } = await loadTsModule('src/content/city-acquisition.ts')
 const { priceModels, PREISE_FREIGEGEBEN } = await loadTsModule('src/content/pricing.ts')
+const { homeFaqs } = await loadTsModule('src/content/home.ts')
+const { businessInfo } = await loadTsModule('src/content/local-seo.ts')
+const { default: sitemap } = await loadTsModule('src/app/sitemap.ts')
 
 /**
  * Schneidet einen Prüfausschnitt aus einem längeren Text.
@@ -67,8 +78,27 @@ function nurText(html) {
     .replace(/\s+/g, ' ')
 }
 
+/**
+ * Das HTML zwischen `<main …>` und `</main>`. Gestreamte Teilstücke
+ * (`<div hidden id="S:…">`) stehen hinter `</main>` und zählen damit nicht.
+ */
+function hauptinhalt(html) {
+  const start = html.search(/<main[\s>]/i)
+  const ende = html.lastIndexOf('</main>')
+  return start >= 0 && ende > start ? html.slice(start, ende) : ''
+}
+
 /** Was auf welcher Adresse im HTML stehen muss. */
 const pruefungen = []
+
+// Die Startseite: eine FAQ-Antwort aus dem Datenmodul, das auch das Markup speist.
+const startseitenAntwort = homeFaqs?.find((faq) => faq.answer.length > 120)?.answer
+if (startseitenAntwort) {
+  pruefungen.push({
+    pfad: '/',
+    erwartet: [{ was: 'FAQ-Antwort', text: ausschnitt(startseitenAntwort) }],
+  })
+}
 
 // Eine Stadtseite je Familie -- Köln, weil dort der längste eigene Ortstext liegt.
 const koeln = cities.find((c) => c.slug === 'koeln')
@@ -182,7 +212,15 @@ for (const pruefung of pruefungen) {
     continue
   }
 
-  const text = nurText(html)
+  if (/<div hidden id="S:\d+"/.test(html)) {
+    beanstandungen.push(
+      `${pruefung.pfad}: Inhalt wird gestreamt (<div hidden id="S:…"> hinter </main>).\n` +
+        '      Meist liegt ein loading.tsx über der Seite. Ohne JavaScript steht in <main> ' +
+        'dann nur der Platzhalter.'
+    )
+  }
+
+  const text = nurText(hauptinhalt(html))
 
   for (const { was, text: erwartet } of pruefung.erwartet) {
     geprueft++
@@ -190,15 +228,43 @@ for (const pruefung of pruefungen) {
       beanstandungen.push(
         `${pruefung.pfad}: ${was} fehlt im Server-HTML.\n` +
           `      gesucht: "${erwartet}"\n` +
-          '      Der Text wird vermutlich erst im Browser gerendert. Fuer ' +
-          'ClaudeBot, GPTBot und PerplexityBot existiert er damit nicht.'
+          '      Der Text steht nicht in <main> -- er wird erst im Browser gerendert ' +
+          'oder eingesetzt. Fuer ClaudeBot, GPTBot und PerplexityBot existiert er damit nicht.'
       )
     }
   }
 }
 
+// --- Alle Adressen der Sitemap: kein gestreamter Inhalt ----------------------
+// Die Stichproben oben prüfen Text, dieser Durchlauf nur das Muster — dafür auf
+// jeder Adresse. So ist am 01.10.2026 aufgefallen, dass auch Impressum,
+// Datenschutz und die Branchenseiten Teile als `<div hidden>` nachreichten.
+const produktion = businessInfo.website.replace(/\/$/, '')
+const geprueftePfade = new Set(pruefungen.map((pruefung) => pruefung.pfad))
+let durchlaufen = 0
+
+for (const { url } of sitemap()) {
+  const pfad = url.startsWith(produktion) ? url.slice(produktion.length) || '/' : url
+  if (geprueftePfade.has(pfad)) continue
+  try {
+    const antwort = await fetch(`${basis}${pfad}`, { headers: KOPF, redirect: 'manual' })
+    durchlaufen++
+    // Ohne diese Zeile galt eine 404 oder eine leere Umleitung als „nicht gestreamt“.
+    if (antwort.status !== 200) {
+      beanstandungen.push(`${pfad}: Statuscode ${antwort.status}, erwartet 200.`)
+      continue
+    }
+    if (/<div hidden id="S:\d+"/.test(await antwort.text())) {
+      beanstandungen.push(`${pfad}: Inhalt wird gestreamt (<div hidden id="S:…"> hinter </main>).`)
+    }
+  } catch (fehler) {
+    beanstandungen.push(`${pfad}: nicht erreichbar (${fehler.message}).`)
+  }
+}
+
 console.log(
-  `SSR-Prüfung gegen ${basis}: ${pruefungen.length} Adressen · ${geprueft} Textstellen geprüft`
+  `SSR-Prüfung gegen ${basis}: ${pruefungen.length} Adressen · ${geprueft} Textstellen geprüft · ` +
+    `${durchlaufen} weitere Adressen auf gestreamten Inhalt`
 )
 
 if (beanstandungen.length === 0) {

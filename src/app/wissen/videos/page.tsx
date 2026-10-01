@@ -6,6 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import VideoCard from './_components/VideoCard'
 import { getVideos, YOUTUBE_CHANNEL_URL, type YouTubeVideo } from '@/lib/youtube'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 /**
  * Video-Übersicht.
@@ -21,18 +22,12 @@ const PAGE_URL = 'https://carpantier-consulting.de/wissen/videos'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Videos | B2B-Vertrieb & Kaltakquise erklärt',
+  title: 'Videos zu B2B-Vertrieb und Kaltakquise',
   description:
     'Videos zu B2B-Vertrieb, Telefonakquise und Leadgenerierung — direkt aus der Praxis von Nico-Luca Carpantier. Kurz, konkret, ohne Theorie.',
-  keywords: [
-    'B2B Vertrieb Video',
-    'Kaltakquise Video',
-    'Telefonakquise lernen',
-    'Leadgenerierung B2B',
-    'Vertriebstipps',
-  ],
   openGraph: {
-    title: 'Videos | B2B-Vertrieb & Kaltakquise erklärt',
+    ...OG_GRUNDWERTE,
+    title: 'Videos zu B2B-Vertrieb und Kaltakquise',
     description:
       'Videos zu B2B-Vertrieb, Telefonakquise und Leadgenerierung — direkt aus der Praxis.',
     url: PAGE_URL,

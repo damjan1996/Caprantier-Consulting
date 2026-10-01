@@ -15,7 +15,13 @@ export interface BlogPostFAQ {
 
 export interface BlogPost {
   slug: string
+  /** Überschrift auf der Seite und Titel in Übersichten. */
   title: string
+  /**
+   * Kürzere Fassung für das `<title>`-Element, Suchbegriff vorn. Nur dort
+   * gesetzt, wo `title` mit Firmennamen über 65 Zeichen käme.
+   */
+  seoTitle?: string
   description: string
   content: string
   author: string

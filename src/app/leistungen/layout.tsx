@@ -1,29 +1,22 @@
 import { Metadata } from 'next'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
+/*
+ * „Vertrieb auslagern“ ist der Kaufbegriff dieser Seite; die Stadtseiten
+ * darunter tragen „Vertriebsagentur <Stadt>“, der Fachbeitrag
+ * `/blog/vertrieb-auslagern-kosten-vorteile` die Kostenfrage. Die frühere
+ * Beschreibung trug drei Häkchen-Zeichen und kam auf 247 Zeichen — Google
+ * zeigt rund 155.
+ */
 export const metadata: Metadata = {
-  title: 'B2B Vertriebsdienstleister - Telefonakquise & Leadgenerierung',
+  title: 'Vertrieb auslagern: B2B-Telefonakquise',
   description:
-    'Ihr B2B Vertriebsdienstleister für Telefonakquise & Leadgenerierung. Als Vertriebsagentur & B2B Sales Agentur übernehmen wir Ihren Vertrieb. ✓ Vertrieb auslagern ✓ Kaltakquise ✓ Terminvereinbarung. Für Agenturen & IT-Dienstleister deutschlandweit.',
-  keywords: [
-    'B2B Vertriebsdienstleister',
-    'Vertriebsagentur Leistungen',
-    'B2B Sales Agentur',
-    'Telefonakquise Service',
-    'Leadgenerierung Agentur',
-    'Terminvereinbarung B2B',
-    'Kaltakquise Dienstleistung',
-    'Sales Outsourcing',
-    'Vertrieb auslagern',
-    'Vertriebsunterstützung',
-    'Akquise für Agenturen',
-    'IT Dienstleister Akquise',
-    'B2B Vertrieb Köln',
-    'Leadgenerierung NRW',
-  ],
+    'Vertrieb auslagern, ohne den Abschluss abzugeben: Zielgruppe, Telefonakquise, Terminqualifizierung und Wochenbericht. Erste Termine in rund 14 Tagen.',
   openGraph: {
-    title: 'B2B Vertriebsdienstleister - Telefonakquise & Leadgenerierung | Carpantier',
+    ...OG_GRUNDWERTE,
+    title: 'Vertrieb auslagern: B2B-Telefonakquise | Carpantier Consulting',
     description:
-      'Ihr Vertriebsdienstleister für B2B Telefonakquise, Leadgenerierung und Terminvereinbarung. Vertrieb auslagern an Profis.',
+      'Zielgruppe, Telefonakquise, Terminqualifizierung und Wochenbericht – das Verkaufsgespräch führen Sie selbst.',
     url: 'https://carpantier-consulting.de/leistungen',
     images: [
       {

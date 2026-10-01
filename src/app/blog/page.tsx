@@ -2,34 +2,25 @@ import { Metadata } from 'next'
 import PageWrapper from '@/components/ui/PageWrapper'
 import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { getBlogPostPreviews, getAllCategories } from '@/lib/blog'
+import { getBlogPostPreviews, getAllCategories, getAllBlogSlugs } from '@/lib/blog'
 import BlogGrid from './_components/BlogGrid'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
+
+/*
+ * Die Anzahl wird gezählt, nicht behauptet. Bis zum 01.10.2026 versprach die
+ * Beschreibung „50+ Fachartikel“ — seit der Zusammenführung am 10.09.2026 sind
+ * es dreizehn, und das Suchergebnis widersprach der Seite, auf die es führte.
+ */
+const BEITRAEGE = getAllBlogSlugs().length
 
 export const metadata: Metadata = {
-  title: 'Blog | B2B Vertrieb, Kaltakquise & Leadgenerierung',
-  description: 'B2B Vertriebswissen: Kaltakquise Tipps, Leadgenerierung Strategien, Vertriebsoutsourcing, BANT-Methode, Einwandbehandlung. 50+ Fachartikel von Vertriebsprofis aus Köln.',
-  keywords: [
-    'B2B Vertrieb Blog',
-    'Kaltakquise Tipps',
-    'Leadgenerierung B2B',
-    'Vertriebsoutsourcing',
-    'Telefonakquise Leitfaden',
-    'BANT-Methode',
-    'SDR as a Service',
-    'Vertrieb auslagern',
-    'Einwandbehandlung',
-    'Sales Blog Deutschland',
-    'B2B Akquise Strategien',
-    'Neukundengewinnung',
-    'Cold Calling Tipps',
-    'Vertriebsagentur Blog',
-  ],
+  title: 'Blog: B2B-Vertrieb und Kaltakquise',
+  description: `${BEITRAEGE} Fachbeiträge zu B2B-Kaltakquise, Leadgenerierung und Vertriebsoutsourcing: Rechtsrahmen, Gesprächsführung, Kosten und Kennzahlen – ohne Anmeldung.`,
   openGraph: {
-    title: 'B2B Vertrieb Blog | Kaltakquise, Leadgenerierung & mehr',
-    description: 'Praxiswissen zu B2B Vertrieb, Kaltakquise und Leadgenerierung. 50+ Fachartikel von erfahrenen Vertriebsprofis.',
+    ...OG_GRUNDWERTE,
+    title: 'Blog: B2B-Vertrieb und Kaltakquise | Carpantier Consulting',
+    description: `${BEITRAEGE} Fachbeiträge zu Kaltakquise, Leadgenerierung und Vertriebsoutsourcing – aus der Praxis, ohne Anmeldung.`,
     url: 'https://carpantier-consulting.de/blog',
-    type: 'website',
-    siteName: 'Carpantier Consulting',
   },
   alternates: {
     canonical: 'https://carpantier-consulting.de/blog',
@@ -51,7 +42,7 @@ export default function BlogPage() {
         <div className="container-custom">
           {/* Breadcrumbs */}
           <FadeIn className="mb-6">
-            <Breadcrumbs items={[{ label: 'Blog' }]} />
+            <Breadcrumbs items={[{ label: 'Wissen', href: '/wissen' }, { label: 'Blog' }]} />
           </FadeIn>
 
           <FadeIn className="text-center max-w-3xl mx-auto">

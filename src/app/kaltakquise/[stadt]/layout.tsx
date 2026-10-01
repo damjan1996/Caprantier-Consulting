@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { getCityBySlug, getAllCitySlugs } from '@/content/cities'
 import { getCityAcquisition } from '@/content/city-acquisition'
 import { businessInfo } from '@/content/local-seo'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 interface Props {
   params: Promise<{ stadt: string }>
@@ -20,6 +21,13 @@ export async function generateStaticParams() {
  * "Kaltakquise", "Telefonakquise" und "Terminvereinbarung". Zwei Seiten
  * derselben Domain, die auf denselben Begriff optimiert sind, konkurrieren
  * miteinander statt mit dem Wettbewerb.
+ *
+ * Gemessen am 10.09.2026: `kaltakquise agentur köln` #6, `telefonakquise
+ * agentur köln` #8. Beide Begriffe stehen deshalb im Titel, der mit dem kurzen
+ * Firmennamen unter 65 Zeichen bleibt (die Vorlage aus `layout.tsx` brachte
+ * ihn auf 90–96). Die Beschreibung nennt die erste Leitbranche als Nachsatz:
+ * Zwei mit „und“ verbunden ergaben „Software und IT und Logistik“, und im Satz
+ * („Entscheider aus …“) fehlte je nach Branche der Artikel.
  */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { stadt } = await params
@@ -30,26 +38,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const title = `Kaltakquise Agentur ${city.name} | B2B-Telefonakquise & Terminvereinbarung`
-  const description = `Kaltakquise und Telefonakquise für B2B-Unternehmen in ${city.name}: Wir sprechen Entscheider in ${acquisition.leitbranchen.slice(0, 2).join(' und ')} an und vereinbaren qualifizierte Termine. Rechtssicher nach § 7 UWG, mit dokumentiertem Anlass je Kontakt.`
+  const title = `Kaltakquise Agentur ${city.name} – Telefonakquise | Carpantier`
+  const description = `Kaltakquise in ${city.name}: Termine mit Entscheidern, telefonisch nach § 7 UWG und mit dokumentiertem Anlass je Kontakt. Leitbranche: ${acquisition.leitbranchen[0]}.`
   const url = `${businessInfo.website}/kaltakquise/${city.slug}`
 
   return {
-    title,
+    title: { absolute: title },
     description,
-    keywords: [
-      `Kaltakquise Agentur ${city.name}`,
-      `Telefonakquise Agentur ${city.name}`,
-      `Kaltakquise ${city.name}`,
-      `Telefonakquise ${city.name}`,
-      `B2B Terminvereinbarung ${city.name}`,
-      `Terminvereinbarung Agentur ${city.name}`,
-      `Neukundengewinnung ${city.name}`,
-      `Akquise Agentur ${city.name}`,
-      `Kaltakquise ${city.regionShort}`,
-      `B2B Telefonakquise ${city.region}`,
-    ],
     openGraph: {
+      ...OG_GRUNDWERTE,
       title,
       description,
       url,

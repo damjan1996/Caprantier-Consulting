@@ -14,6 +14,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const vertriebsteamAufbauenRecruiting: BlogPost = {
   slug: 'vertriebsteam-aufbauen-recruiting',
   title: 'Vertriebsteam aufbauen: einstellen, auslagern oder beides',
+  seoTitle: 'Vertriebsteam aufbauen: einstellen oder auslagern',
   description:
     'Wann sich die erste Vertriebsstelle rechnet, wie man sie besetzt, ohne auf Selbstdarstellung hereinzufallen, was die ersten 90 Tage entscheiden – und in welchen Fällen eine externe Lösung die ehrlichere Antwort ist.',
   author: 'Nico-Luca Carpantier',

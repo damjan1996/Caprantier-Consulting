@@ -11,6 +11,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const einwandbehandlungVertrieb: BlogPost = {
   slug: 'einwandbehandlung-vertrieb',
   title: 'Einwandbehandlung im B2B-Vertrieb: Die fünf Sätze, die wirklich kommen',
+  seoTitle: 'Einwandbehandlung: die fünf häufigsten Einwände',
   description:
     'Kein Interesse, keine Zeit, zu teuer, schicken Sie Unterlagen, wir haben schon jemanden: Wie man die fünf häufigsten Einwände im B2B-Telefonvertrieb behandelt – und wie man danach professionell nachfasst.',
   author: 'Nico-Luca Carpantier',
@@ -168,7 +169,7 @@ Der Mitschnitt ist die unbeliebteste und wirksamste Methode. Wer die eigenen ers
 
 ## Warum Einwandbehandlung nicht am Skript hängt
 
-Wer die fünf Antworten auswendig lernt, klingt beim sechsten Gespräch wie ein Anrufbeantworter. Was tatsächlich trägt, ist die Kenntnis der Zielgruppe: Wer weiß, welche drei Probleme ein IT-Systemhaus mit 25 Mitarbeitern im Vertrieb hat, braucht keine Einwandtechnik – der Einwand kommt gar nicht erst, weil der Einstieg schon den richtigen Punkt getroffen hat.
+Wer die fünf Antworten auswendig lernt, klingt beim sechsten Gespräch wie ein Anrufbeantworter. Was tatsächlich trägt, ist die Kenntnis der Zielgruppe: Wer weiß, welche drei Probleme ein [IT-Systemhaus](/branchen/it-systemhaeuser) mit 25 Mitarbeitern im Vertrieb hat, braucht keine Einwandtechnik – der Einwand kommt gar nicht erst, weil der Einstieg schon den richtigen Punkt getroffen hat.
 
 Deshalb liegt der Hebel vor dem Gespräch. Der [Leitfaden zur B2B-Kaltakquise](/blog/b2b-kaltakquise-leitfaden) behandelt die Liste, den Anlass und den Einstieg – die drei Stellen, an denen Einwände entstehen oder eben nicht.
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { homeProcessSteps } from '@/content/home'
 import { useCalendly } from '@/components/calendly/CalendlyProvider'
 import { useReveal } from '@/components/seite/useReveal'
@@ -175,6 +176,12 @@ export default function ProcessSection() {
                   <span>Schritt 1 starten</span>
                   <span className={styles.btnHint}>15 Min.</span>
                 </button>
+                {/* Derselbe Zuschnitt wie bei den häufigen Fragen: Knopf plus
+                    leiser Verweis. Bis zum 01.10.2026 verwies die Startseite
+                    aus keinem Abschnitt auf /leistungen — nur aus dem Menü. */}
+                <Link href="/leistungen" className={`${styles.textLink} ${styles.textLinkMuted}`}>
+                  Leistungen im Detail
+                </Link>
               </div>
 
               <span className={styles.sceneRail} aria-hidden="true">

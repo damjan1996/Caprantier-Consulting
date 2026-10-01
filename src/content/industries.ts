@@ -44,7 +44,6 @@ export interface IndustryPage {
   summary: string
   metaTitle: string
   metaDescription: string
-  keywords: string[]
   /** Kleiner Text über der H1. */
   kicker: string
   /** Einleitung unter der H1, zwei bis drei Sätze. */
@@ -69,19 +68,9 @@ export const industryPages: IndustryPage[] = [
     headline: 'Vertriebsagentur für Personaldienstleister',
     summary:
       'B2B-Kaltakquise für Personaldienstleister, Personalvermittler und Zeitarbeitsunternehmen: Termine mit Entscheidern, die tatsächlich Personal suchen.',
-    metaTitle: 'Vertriebsagentur für Personaldienstleister – Kaltakquise & Kundengewinnung',
+    metaTitle: 'Kundenakquise für Personaldienstleister',
     metaDescription:
-      'Kundengewinnung für Personaldienstleister, Personalvermittler und Zeitarbeit: Wir übernehmen die Kaltakquise bei Unternehmen mit echtem Personalbedarf und liefern qualifizierte Entscheidertermine. Aus Köln, deutschlandweit.',
-    keywords: [
-      'Vertriebsagentur Personaldienstleister',
-      'Kaltakquise Personaldienstleister',
-      'Kundengewinnung Zeitarbeit',
-      'Neukundengewinnung Personalvermittlung',
-      'Vertrieb Personaldienstleistung',
-      'Akquise Zeitarbeitsfirma',
-      'Leadgenerierung Personaldienstleister',
-      'Terminvereinbarung Personalvermittler',
-    ],
+      'Kaltakquise für Personaldienstleister und Zeitarbeit: Wir rufen Unternehmen mit echtem Personalbedarf an und vereinbaren Termine mit Entscheidern.',
     kicker: 'Branchenlösung Personaldienstleistung',
     intro:
       'Personaldienstleister verkaufen an dieselben Entscheider, die auch alle anderen anrufen. Wer hier Termine bekommen will, braucht keinen weiteren Anruf mit einem Bewerberprofil, sondern einen Anlass, der zeigt, dass im Zielunternehmen gerade etwas nicht besetzt wird.',
@@ -168,19 +157,9 @@ export const industryPages: IndustryPage[] = [
     headline: 'Leadgenerierung für IT-Systemhäuser und Managed Service Provider',
     summary:
       'B2B-Akquise für Systemhäuser, MSP und IT-Dienstleister: Entscheidertermine bei Unternehmen, deren Betreuungsvertrag ausläuft oder deren IT dem Wachstum nicht mehr folgt.',
-    metaTitle: 'Leadgenerierung für IT-Systemhäuser & Managed Service Provider',
+    metaTitle: 'Leadgenerierung für IT-Systemhäuser',
     metaDescription:
-      'Neukundengewinnung für IT-Systemhäuser, MSP und IT-Dienstleister: Wir sprechen Geschäftsführer an, deren Betreuungsvertrag ausläuft oder deren IT dem Wachstum nicht mehr folgt – und liefern qualifizierte Termine.',
-    keywords: [
-      'Leadgenerierung IT-Systemhaus',
-      'Neukundengewinnung Systemhaus',
-      'Kaltakquise IT-Dienstleister',
-      'Managed Service Provider Vertrieb',
-      'MSP Leadgenerierung',
-      'Vertriebsagentur IT',
-      'B2B Akquise IT-Branche',
-      'Terminvereinbarung Systemhaus',
-    ],
+      'Kaltakquise für IT-Systemhäuser und MSP: Wir sprechen Geschäftsführer an, deren Betreuungsvertrag ausläuft – und vereinbaren qualifizierte Termine.',
     kicker: 'Branchenlösung IT und Managed Services',
     intro:
       'IT-Betreuung wird selten aus Unzufriedenheit gewechselt und fast immer aus einem Anlass. Wer diesen Anlass kennt, bevor er anruft, führt ein Fachgespräch. Wer ihn nicht kennt, führt das Standardgespräch, das jeder Geschäftsführer eines Systemhauskunden schon dreimal geführt hat.',

@@ -2,8 +2,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, ArrowLeft, Tag, User } from 'lucide-react'
+import { Calendar, Clock, Tag, User } from 'lucide-react'
 import PageWrapper from '@/components/ui/PageWrapper'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FadeIn from '@/components/ui/FadeIn'
 import { getBlogPostBySlug, getAllBlogSlugs, getRelatedPosts, getReadingTime } from '@/lib/blog'
 import { getBlogImage } from '@/lib/blog-images'
@@ -13,6 +14,7 @@ import BlogIllustration from './_components/BlogIllustration'
 import AiGeneratedBadge from '@/components/ui/AiGeneratedBadge'
 import { AI_GENERATED_MEDIA_ATTRS } from '@/components/ui/ai-media'
 import AiContentNotice from '@/components/ui/AiContentNotice'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -32,12 +34,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
   }
 
+  /*
+   * `seoTitle` ist die kurze Fassung für das Suchergebnis, die Überschrift auf
+   * der Seite bleibt `title`. Mit „| Blog | Carpantier Consulting“ kamen die
+   * Titel auf 81–101 Zeichen; Google zeigt rund 60, der Suchbegriff am Ende
+   * fiel also weg. Kurzer Firmenname aus demselben Grund wie bei den
+   * Stadtseiten.
+   */
   return {
-    title: `${post.title} | Blog`,
+    title: { absolute: `${post.seoTitle ?? post.title} | Carpantier` },
     description: post.description,
-    keywords: post.tags,
     authors: [{ name: post.author }],
     openGraph: {
+      ...OG_GRUNDWERTE,
       title: post.title,
       description: post.description,
       url: `https://carpantier-consulting.de/blog/${post.slug}`,
@@ -46,12 +55,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       modifiedTime: post.updatedAt,
       authors: [post.author],
       tags: post.tags,
-      images: post.image ? [{
-        url: `https://carpantier-consulting.de${post.image}`,
-        width: 1200,
-        height: 675,
-        alt: post.title,
-      }] : undefined,
+      ...(post.image && {
+        images: [{
+          url: `https://carpantier-consulting.de${post.image}`,
+          width: 1200,
+          height: 675,
+          alt: post.title,
+        }],
+      }),
     },
     alternates: {
       canonical: `https://carpantier-consulting.de/blog/${post.slug}`,
@@ -71,8 +82,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   // Schema.org structured data
   const articleSchema = generateBlogPostSchema(post)
+  /* Wie die sichtbaren Brotkrumen: Der Blog gehört zum Wissensbereich. Bis zum
+     01.10.2026 hatte `/wissen` keinen einzigen Verweis aus einem Seiteninhalt —
+     nur aus Kopf- und Fußzeile. */
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://carpantier-consulting.de' },
+    { name: 'Startseite', url: 'https://carpantier-consulting.de' },
+    { name: 'Wissen', url: 'https://carpantier-consulting.de/wissen' },
     { name: 'Blog', url: 'https://carpantier-consulting.de/blog' },
     { name: post.title, url: `https://carpantier-consulting.de/blog/${post.slug}` },
   ])
@@ -100,14 +115,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="relative pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container-custom">
           <FadeIn className="max-w-3xl mx-auto">
-            {/* Back Link */}
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Zurück zum Blog
-            </Link>
+            <Breadcrumbs
+              items={[
+                { label: 'Wissen', href: '/wissen' },
+                { label: 'Blog', href: '/blog' },
+              ]}
+              className="mb-6"
+            />
 
             {/* Category */}
             <div className="flex items-center gap-2 mb-4">
@@ -122,10 +136,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Meta */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-2">
+              {/* Verweis auf die Person hinter dem Text — dieselbe Adresse,
+                  die das Article-Markup als `author.url` nennt. */}
+              <Link
+                href="/ueber-uns"
+                rel="author"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
                 <User className="h-4 w-4" />
                 {post.author}
-              </span>
+              </Link>
               <span className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 {new Date(post.publishedAt).toLocaleDateString('de-DE', {
@@ -237,6 +257,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </Link>
                 ))}
               </div>
+              {/* Der Wissensbereich bündelt Beiträge, Videos und Glossar. Bis zum
+                  01.10.2026 erreichte man ihn aus keinem Seiteninhalt, nur über
+                  Menü und Fußzeile. */}
+              <Link
+                href="/wissen"
+                className="mt-6 inline-flex min-h-[44px] items-center gap-1 text-sm text-primary hover:underline"
+              >
+                Alle Beiträge, Videos und Begriffe im Wissensbereich
+              </Link>
             </FadeIn>
           </div>
         </section>

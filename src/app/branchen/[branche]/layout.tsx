@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getIndustryBySlug, getAllIndustrySlugs } from '@/content/industries'
 import { businessInfo } from '@/content/local-seo'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 interface Props {
   params: Promise<{ branche: string }>
@@ -24,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: industry.metaTitle,
     description: industry.metaDescription,
-    keywords: industry.keywords,
     openGraph: {
+      ...OG_GRUNDWERTE,
       title: industry.metaTitle,
       description: industry.metaDescription,
       url,

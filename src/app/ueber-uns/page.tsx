@@ -11,6 +11,7 @@ import SectionRail from '@/components/seite/SectionRail'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/ueber-uns.module.css'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/ueber-uns`
 
@@ -24,18 +25,11 @@ const PAGE_URL = `${businessInfo.website}/ueber-uns`
 export const metadata: Metadata = {
   /* Kurz gehalten: Die Vorlage im Wurzel-Layout hängt „ | Carpantier
      Consulting" an, und ab etwa 65 Zeichen schneidet Google ab. */
-  title: 'Über uns – Vertriebsagentur aus Köln',
+  title: 'Über uns: Nico-Luca Carpantier',
   description:
     'Carpantier Consulting ist eine B2B-Vertriebsagentur aus Köln. Wer die Anrufe führt, woher die Arbeitsweise stammt und warum es fünf Kunden im Monat sind.',
-  keywords: [
-    'Carpantier Consulting',
-    'B2B Vertriebsagentur Köln',
-    'Vertriebsdienstleister Köln',
-    'Nico-Luca Carpantier',
-    'Vertriebsagentur Nordrhein-Westfalen',
-    'Telefonakquise Agentur',
-  ],
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Über uns | Carpantier Consulting',
     description:
       'Wer bei Carpantier Consulting telefoniert, woher die Arbeitsweise stammt und woran Sie uns messen können.',

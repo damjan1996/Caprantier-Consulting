@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { enthaeltBeispiele } from '@/content/case-studies'
 import { businessInfo } from '@/content/local-seo'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/referenzen`
 
@@ -21,6 +22,12 @@ export const metadata: Metadata = {
   robots: enthaeltBeispiele()
     ? { index: false, follow: true }
     : { index: true, follow: true },
+  openGraph: {
+    ...OG_GRUNDWERTE,
+    title: 'Referenzen und Fallstudien | Carpantier Consulting',
+    description: 'Dokumentierte Ergebnisse aus abgeschlossenen Akquiseprojekten – veröffentlicht nur mit schriftlicher Freigabe.',
+    url: PAGE_URL,
+  },
   alternates: {
     canonical: PAGE_URL,
   },

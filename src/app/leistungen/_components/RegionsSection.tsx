@@ -16,6 +16,11 @@ import styles from './leistungen.module.css'
  * Die Verweise entstehen aus `cities` — als Schleife über die Vorlage, nicht
  * als fünfzehn einzelne Zeilen. `scripts/check-internal-links.mjs` sucht diese
  * Schleife, um die Seitenfamilie als verlinkt zu zählen.
+ *
+ * Der Hinweis darunter verweist seit dem 01.10.2026 auf die beiden anderen
+ * Familien-Einstiege — Vorbild ist derselbe Hinweis auf `/kaltakquise`. Vorher
+ * führte von dieser Seite kein einziger Verweis zu `/kaltakquise` oder
+ * `/branchen`; `/branchen` hatte aus Seiteninhalten genau zwei.
  */
 export default function RegionsSection() {
   const { ref, isIn } = useReveal<HTMLElement>()
@@ -72,7 +77,10 @@ export default function RegionsSection() {
         data-fade-in=""
         style={{ '--rd': '0.3s' } as React.CSSProperties}
       >
-        Ihr Standort ist nicht dabei? Das ändert nichts am Ablauf – sprechen Sie uns an.
+        Ihr Standort ist nicht dabei? Das ändert nichts am Ablauf –{' '}
+        <Link href="/kontakt">sprechen Sie uns an</Link>. Wie der Anruf selbst je Standort aussieht,
+        steht unter <Link href="/kaltakquise">Kaltakquise nach Standort</Link>; was in einzelnen
+        Branchen anders läuft, unter <Link href="/branchen">Branchenlösungen</Link>.
       </p>
     </section>
   )

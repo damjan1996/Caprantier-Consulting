@@ -12,6 +12,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const vertriebsagenturFindenCheckliste: BlogPost = {
   slug: 'vertriebsagentur-finden-checkliste',
   title: 'Vertriebsagentur auswählen: 12 Fragen vor der Beauftragung',
+  seoTitle: 'Vertriebsagentur finden: Checkliste mit 12 Fragen',
   description:
     'Woran man eine seriöse Vertriebsagentur für B2B-Kaltakquise erkennt: Terminqualität, Abrechnungsmodell, Auftragsverarbeitung, Reporting und die Warnzeichen, die vor der Unterschrift auffallen – plus die Kennzahlen für die laufende Steuerung.',
   author: 'Nico-Luca Carpantier',
@@ -118,7 +119,7 @@ Der Markt sieht von außen homogen aus, zerfällt aber in drei Gruppen mit sehr 
 
 Schwächer, wo das Angebot erklärungsbedürftig ist und der erste Satz je Gespräch anders klingen muss. Wer hier bucht, kauft Prozesssicherheit und Volumen – und sollte damit rechnen, dass der Mitarbeiter am Telefon parallel für andere Auftraggeber arbeitet.
 
-**Die spezialisierte Boutique.** Ein bis fünf Personen, klarer Branchenschwerpunkt. Stark bei erklärungsbedürftigen Leistungen und kleinen, hochwertigen Zielgruppen, in denen jedes einzelne Gespräch zählt. Der Anrufende kennt das Fachvokabular und erkennt am Tonfall, ob es weitergeht.
+**Die spezialisierte Boutique.** Ein bis fünf Personen, [klarer Branchenschwerpunkt](/branchen). Stark bei erklärungsbedürftigen Leistungen und kleinen, hochwertigen Zielgruppen, in denen jedes einzelne Gespräch zählt. Der Anrufende kennt das Fachvokabular und erkennt am Tonfall, ob es weitergeht.
 
 Schwächer bei großen Volumina und bei Ausfallsicherheit: Wer krank wird, wird nicht ersetzt. Wer hier bucht, sollte nach der Vertretungsregelung fragen.
 

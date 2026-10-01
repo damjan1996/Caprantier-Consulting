@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 export const metadata: Metadata = {
   title: 'KI-Transparenz',
@@ -7,6 +8,15 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  /* Ohne eigenes `openGraph` erbte die Seite das der Startseite: Geteilt zeigte
+     sie deren Titel, Beschreibung und Adresse (`og:url` = Startseite). */
+  openGraph: {
+    ...OG_GRUNDWERTE,
+    title: 'KI-Transparenz | Carpantier Consulting',
+    description:
+      'Wo auf carpantier-consulting.de künstliche Intelligenz eingesetzt wird: KI-generierte Bilder und KI-gestützte Texte, nach Art. 50 KI-VO.',
+    url: 'https://carpantier-consulting.de/ki-transparenz',
   },
   alternates: {
     canonical: 'https://carpantier-consulting.de/ki-transparenz',

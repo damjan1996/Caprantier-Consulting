@@ -14,6 +14,11 @@ import type { BlogPost } from '@/lib/blog-types'
 export const leadgenerierungItDienstleister: BlogPost = {
   slug: 'leadgenerierung-it-dienstleister',
   title: 'Leadgenerierung für IT-Systemhäuser, MSP und SaaS-Anbieter',
+  // Bewusst ohne „Leadgenerierung für IT-Systemhäuser“: Den Begriff trägt die
+  // Branchenseite /branchen/it-systemhaeuser. Beide Seiten hatten fast denselben
+  // Titel und konkurrierten um dieselbe Suche; der Beitrag ist die Erklärung,
+  // die Branchenseite das Angebot.
+  seoTitle: 'Akquise für IT-Dienstleister, MSP und SaaS',
   description:
     'Warum Akquise im IT-Umfeld anders funktioniert: wer im Systemhaus-Markt entscheidet, welche drei Anlässe einen Wechsel auslösen, wie man mit technischen Entscheidern spricht und warum SaaS eine andere Kadenz braucht als Managed Services.',
   author: 'Nico-Luca Carpantier',

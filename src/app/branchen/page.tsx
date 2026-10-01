@@ -11,22 +11,16 @@ import { industryPages } from '@/content/industries'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/branchen.module.css'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/branchen`
 
 export const metadata: Metadata = {
-  title: 'Branchenlösungen – Vertrieb für Personaldienstleister und IT-Systemhäuser',
+  title: 'Branchenlösungen im B2B-Vertrieb',
   description:
-    'B2B-Akquise mit Branchenschärfe: eigene Vorgehensweisen für Personaldienstleister und für IT-Systemhäuser sowie Managed Service Provider. Was in diesen Märkten anders läuft und wie wir arbeiten.',
-  keywords: [
-    'Vertriebsagentur Branchen',
-    'Vertriebsagentur Personaldienstleister',
-    'Leadgenerierung IT-Systemhaus',
-    'B2B Akquise Branchenlösung',
-    'Managed Service Provider Vertrieb',
-    'Kaltakquise Personalvermittlung',
-  ],
+    'Akquise mit Branchenschärfe: wie wir für Personaldienstleister, IT-Systemhäuser und Managed Service Provider Kunden gewinnen – und was dort anders läuft.',
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Branchenlösungen | Carpantier Consulting',
     description:
       'Vertriebsagentur mit Branchenschärfe: Personaldienstleister und IT-Systemhäuser.',

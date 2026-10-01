@@ -14,6 +14,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const vertriebssteuerungKpisPipeline: BlogPost = {
   slug: 'vertriebssteuerung-kpis-pipeline',
   title: 'Vertriebssteuerung: Von der Jahreszahl zur Wochenaktivität',
+  seoTitle: 'Vertriebssteuerung: KPIs und Pipeline im B2B',
   description:
     'Wie man aus einem Umsatzziel eine wöchentliche Aktivitätszahl ableitet, welche vier Kennzahlen im B2B-Mittelstand ausreichen, wie eine belastbare Pipeline aufgebaut ist und woran man erkennt, an welcher Stelle sie klemmt.',
   author: 'Nico-Luca Carpantier',

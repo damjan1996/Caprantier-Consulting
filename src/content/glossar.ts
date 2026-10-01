@@ -22,8 +22,14 @@ interface GlossarBegriff {
   fullDescription: string
   relatedTerms: string[]
   category: string
-  /** Weiterfuehrender Beitrag, falls es einen gibt. */
+  /**
+   * Weiterfuehrender Beitrag, falls es einen gibt. Die Glossarseite nimmt
+   * dessen Titel als Verweistext — bis zum 01.10.2026 hiess jeder dieser
+   * Verweise „Mehr erfahren“, und einer zeigte auf eine umgeleitete Adresse.
+   */
   blogLink?: string
+  /** Die Leistungsseite zum Begriff, wo es eine gibt — mit eigenem Verweistext. */
+  leistung?: { href: string; label: string }
 }
 
 export const glossarBegriffe: GlossarBegriff[] = [
@@ -35,6 +41,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Akquise bezeichnet alle Maßnahmen zur Gewinnung von Neukunden. Man unterscheidet zwischen Kaltakquise (Ansprache ohne vorherigen Kontakt) und Warmakquise (Kontaktaufnahme mit bereits bekannten Interessenten). Im B2B-Bereich ist die telefonische Akquise nach wie vor eine der effektivsten Methoden.',
     relatedTerms: ['Kaltakquise', 'Warmakquise', 'Leadgenerierung'],
     category: 'Grundlagen',
+    blogLink: '/blog/b2b-kaltakquise-leitfaden',
   },
   {
     id: 'bant',
@@ -64,6 +71,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
     relatedTerms: ['Akquise', 'Telefonakquise', 'Einwandbehandlung'],
     category: 'Methoden',
     blogLink: '/blog/kaltakquise-rechtliche-grundlagen',
+    leistung: { href: '/kaltakquise', label: 'Kaltakquise-Agentur nach Standort' },
   },
   {
     id: 'crm',
@@ -73,6 +81,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Ein CRM-System ist eine Software zur Verwaltung und Analyse von Kundeninteraktionen. Es hilft Vertriebsteams, Leads zu verfolgen, Verkaufschancen zu managen und Kundenbeziehungen zu pflegen. Bekannte CRM-Systeme sind Salesforce, HubSpot und Pipedrive.',
     relatedTerms: ['Pipeline', 'Lead Management'],
     category: 'Tools',
+    blogLink: '/blog/vertriebssteuerung-kpis-pipeline',
   },
   {
     id: 'decision-maker',
@@ -82,6 +91,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Ein Decision Maker ist die Person in einem Unternehmen, die die finale Entscheidung über einen Kauf treffen kann. Im B2B-Vertrieb ist es entscheidend, den richtigen Entscheider zu identifizieren und anzusprechen. Oft gibt es mehrere Stakeholder im Buying Center.',
     relatedTerms: ['Buying Center', 'Gatekeeper', 'BANT'],
     category: 'Grundlagen',
+    blogLink: '/blog/bant-methode-erklaert',
   },
   {
     id: 'einwandbehandlung',
@@ -101,6 +111,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Ein Lead ist ein potenzieller Kunde, der Interesse an einem Produkt oder einer Dienstleistung gezeigt hat. Leads werden typischerweise nach ihrer Qualität unterschieden: Marketing Qualified Leads (MQL) zeigen erstes Interesse, Sales Qualified Leads (SQL) sind kaufbereit.',
     relatedTerms: ['MQL', 'SQL', 'Lead-Qualifizierung'],
     category: 'Grundlagen',
+    blogLink: '/blog/bant-methode-erklaert',
   },
   {
     id: 'leadgenerierung',
@@ -110,7 +121,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Leadgenerierung umfasst alle Maßnahmen zur Gewinnung von Kontaktdaten potenzieller Kunden. Methoden sind u.a. Content Marketing, Social Selling, Kaltakquise, Events und Paid Advertising. Ziel ist es, eine Pipeline mit qualifizierten Interessenten aufzubauen.',
     relatedTerms: ['Lead', 'Pipeline', 'Akquise'],
     category: 'Methoden',
-    blogLink: '/blog/leadgenerierung-it-dienstleister',
+    blogLink: '/blog/b2b-leadgenerierung-kanaele',
   },
   {
     id: 'pipeline',
@@ -120,6 +131,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Die Sales Pipeline ist eine visuelle Darstellung aller aktiven Verkaufschancen in verschiedenen Phasen des Verkaufsprozesses. Typische Phasen sind: Lead, Qualifizierung, Angebot, Verhandlung, Abschluss. Eine gut gefüllte Pipeline ist entscheidend für planbaren Umsatz.',
     relatedTerms: ['CRM', 'Forecast', 'Conversion Rate'],
     category: 'Tools',
+    blogLink: '/blog/vertriebssteuerung-kpis-pipeline',
   },
   {
     id: 'sdr',
@@ -129,7 +141,10 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Ein SDR ist ein Vertriebsmitarbeiter, der sich auf die Generierung und Qualifizierung von Leads spezialisiert hat. SDRs führen Erstgespräche, qualifizieren Interessenten nach BANT-Kriterien und übergeben qualifizierte Termine an Account Executives. SDR as a Service ermöglicht Unternehmen, diese Funktion auszulagern.',
     relatedTerms: ['BDR', 'Account Executive', 'Inside Sales'],
     category: 'Rollen',
-    blogLink: '/blog/sdr-as-a-service',
+    // Der Beitrag sdr-as-a-service ist am 10.09.2026 in diesem aufgegangen;
+    // vorher zeigte der Verweis auf die Umleitung.
+    blogLink: '/blog/vertrieb-auslagern-kosten-vorteile',
+    leistung: { href: '/leistungen', label: 'Vertrieb auslagern: unsere Leistungen' },
   },
   {
     id: 'vertriebsoutsourcing',
@@ -140,6 +155,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
     relatedTerms: ['SDR as a Service', 'Vertriebsagentur'],
     category: 'Strategien',
     blogLink: '/blog/vertrieb-auslagern-kosten-vorteile',
+    leistung: { href: '/leistungen', label: 'Vertrieb auslagern: unsere Leistungen' },
   },
   {
     id: 'warmakquise',
@@ -149,6 +165,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Warmakquise bezeichnet die Kontaktaufnahme mit Personen, zu denen bereits eine Verbindung besteht - sei es durch vorherige Gespräche, Empfehlungen, Website-Besuche oder Event-Teilnahmen. Die Erfolgsquote bei Warmakquise ist typischerweise höher als bei Kaltakquise.',
     relatedTerms: ['Kaltakquise', 'Lead Nurturing'],
     category: 'Methoden',
+    blogLink: '/blog/b2b-kaltakquise-leitfaden',
   },
   {
     id: 'buying-center',
@@ -158,6 +175,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Das Buying Center umfasst alle Personen in einem Unternehmen, die am Kaufentscheidungsprozess beteiligt sind. Typische Rollen sind: Initiator, Beeinflusser, Entscheider, Einkäufer und Nutzer. Im B2B-Vertrieb ist es wichtig, alle relevanten Stakeholder zu identifizieren und anzusprechen.',
     relatedTerms: ['Decision Maker', 'Stakeholder'],
     category: 'Grundlagen',
+    blogLink: '/blog/bant-methode-erklaert',
   },
   {
     id: 'conversion-rate',
@@ -167,6 +185,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
       'Die Conversion Rate misst, wie viele Leads oder Interessenten in die nächste Phase des Vertriebsprozesses oder zu Kunden konvertiert werden. Eine typische Lead-to-Customer Conversion Rate im B2B liegt bei 2-5%. Die Optimierung der Conversion Rate ist ein wichtiger Hebel für mehr Umsatz.',
     relatedTerms: ['Pipeline', 'KPIs', 'Forecast'],
     category: 'Metriken',
+    blogLink: '/blog/vertriebssteuerung-kpis-pipeline',
   },
 ]
 

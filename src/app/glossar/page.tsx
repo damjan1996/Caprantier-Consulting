@@ -6,6 +6,8 @@ import FadeIn from '@/components/ui/FadeIn'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AiContentNotice from '@/components/ui/AiContentNotice'
 import { glossarBegriffe, glossarKategorien } from '@/content/glossar'
+import { getBlogPostBySlug } from '@/lib/blog'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 /**
  * Datum der letzten redaktionellen Prüfung der Begriffserklärungen.
@@ -17,17 +19,8 @@ export const metadata: Metadata = {
   title: 'Vertrieb Glossar | B2B Begriffe erklärt',
   description:
     'Vertrieb Glossar: Alle wichtigen B2B-Begriffe verständlich erklärt. Von Kaltakquise über BANT bis SDR - lernen Sie die Fachbegriffe der Vertriebswelt kennen.',
-  keywords: [
-    'Vertrieb Glossar',
-    'B2B Begriffe',
-    'Kaltakquise Definition',
-    'BANT Methode',
-    'SDR Sales Development',
-    'Leadgenerierung erklärt',
-    'Vertriebsoutsourcing Definition',
-    'Akquise Bedeutung',
-  ],
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Vertrieb Glossar | B2B Begriffe erklärt',
     description:
       'Alle wichtigen B2B-Vertriebsbegriffe verständlich erklärt. Von Kaltakquise über BANT bis SDR.',
@@ -47,6 +40,17 @@ export const metadata: Metadata = {
  */
 const glossaryTerms = glossarBegriffe
 const categories = glossarKategorien
+
+/**
+ * Der Titel des verlinkten Beitrags ist der Verweistext. Ein Verweis auf einen
+ * Beitrag, den es nicht gibt, bricht den Build — so ist bis zum 01.10.2026 ein
+ * Verweis auf eine umgeleitete Adresse stehen geblieben.
+ */
+function beitragZu(blogLink: string) {
+  const beitrag = getBlogPostBySlug(blogLink.replace(/^\/blog\//, ''))
+  if (!beitrag) throw new Error(`Glossar: ${blogLink} ist kein vorhandener Beitrag.`)
+  return beitrag
+}
 
 // Generate DefinedTermSet Schema
 function generateGlossarySchema() {
@@ -81,7 +85,7 @@ export default function GlossarPage() {
         <div className="container-custom">
           {/* Breadcrumbs */}
           <FadeIn className="mb-6">
-            <Breadcrumbs items={[{ label: 'Glossar' }]} />
+            <Breadcrumbs items={[{ label: 'Wissen', href: '/wissen' }, { label: 'Glossar' }]} />
           </FadeIn>
 
           <FadeIn className="text-center max-w-3xl mx-auto">
@@ -97,7 +101,11 @@ export default function GlossarPage() {
             </h1>
             <p className="text-base md:text-lg text-muted-foreground">
               Von Akquise bis Vertriebsoutsourcing - alle wichtigen Fachbegriffe der
-              B2B-Vertriebswelt verständlich erklärt.
+              B2B-Vertriebswelt verständlich erklärt. Fachbeiträge und Videos dazu stehen im{' '}
+              <Link href="/wissen" className="text-primary hover:underline">
+                Wissensbereich
+              </Link>
+              .
             </p>
           </FadeIn>
 
@@ -173,14 +181,27 @@ export default function GlossarPage() {
                                 ))}
                               </div>
                             )}
-                            {item.blogLink && (
-                              <Link
-                                href={item.blogLink}
-                                className="inline-flex items-center gap-1 text-sm text-primary hover:underline ml-auto"
-                              >
-                                Mehr erfahren
-                                <ArrowRight className="h-3 w-3" />
-                              </Link>
+                            {(item.blogLink || item.leistung) && (
+                              <div className="flex flex-col items-start gap-1 sm:ml-auto sm:items-end">
+                                {item.blogLink && (
+                                  <Link
+                                    href={item.blogLink}
+                                    className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                                  >
+                                    Beitrag: {beitragZu(item.blogLink).title}
+                                    <ArrowRight className="h-3 w-3 shrink-0" />
+                                  </Link>
+                                )}
+                                {item.leistung && (
+                                  <Link
+                                    href={item.leistung.href}
+                                    className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                                  >
+                                    {item.leistung.label}
+                                    <ArrowRight className="h-3 w-3 shrink-0" />
+                                  </Link>
+                                )}
+                              </div>
                             )}
                           </div>
                         </div>

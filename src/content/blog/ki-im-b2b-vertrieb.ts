@@ -10,6 +10,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const kiImB2bVertrieb: BlogPost = {
   slug: 'ki-im-b2b-vertrieb',
   title: 'KI im B2B-Vertrieb: Was sie übernimmt und was sie nicht kann',
+  seoTitle: 'KI im B2B-Vertrieb: was sie kann und was nicht',
   description:
     'Wo Sprachmodelle und Automatisierung im B2B-Vertrieb echte Arbeit abnehmen – Recherche, Vorbereitung, Dokumentation, Auswertung – und wo ihr Einsatz rechtlich oder inhaltlich an Grenzen stößt. Mit dem Rahmen aus DSGVO und KI-Verordnung.',
   author: 'Nico-Luca Carpantier',

@@ -11,22 +11,16 @@ import { cities } from '@/content/cities'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/uebersicht.module.css'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/kaltakquise`
 
 export const metadata: Metadata = {
-  title: 'Kaltakquise Agentur – B2B-Telefonakquise nach Standorten',
+  title: 'Kaltakquise Agentur: B2B-Telefonakquise',
   description:
-    'B2B-Kaltakquise und Telefonakquise in 15 deutschen Wirtschaftsräumen: Zielgruppenauswahl mit dokumentiertem Anlass, Entscheideransprache und qualifizierte Terminvereinbarung. Rechtssicher nach § 7 UWG.',
-  keywords: [
-    'Kaltakquise Agentur',
-    'B2B Telefonakquise Agentur',
-    'Telefonakquise Agentur',
-    'B2B Terminvereinbarung Agentur',
-    'Kaltakquise auslagern',
-    'Neukundengewinnung Telefon',
-  ],
+    `Telefonische B2B-Kaltakquise in ${cities.length} Wirtschaftsräumen: Zielgruppe mit dokumentiertem Anlass, Ansprache der Entscheider, qualifizierte Termine – nach § 7 UWG.`,
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Kaltakquise Agentur | Carpantier Consulting',
     description: 'B2B-Telefonakquise und Terminvereinbarung in 15 deutschen Wirtschaftsräumen.',
     url: PAGE_URL,

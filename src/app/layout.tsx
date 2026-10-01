@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
 import { ClientSideComponents } from '@/components/layout/ClientComponents'
 import { businessInfo } from '@/content/local-seo'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,78 +15,32 @@ const inter = Inter({
   preload: true,
 })
 
-// Relevante Keywords für Vertrieb, B2B Akquise, Leadgenerierung - optimiert für lokale Suche
-const keywords = [
-  // PRIMÄRE KEYWORDS: "Vertrieb + Stadt" (höchste Priorität für Rankings)
-  'Vertrieb Köln',
-  'Vertrieb Düsseldorf',
-  'Vertrieb Bonn',
-  'Vertrieb Essen',
-  'Vertrieb Dortmund',
-  'Vertrieb Frankfurt',
-  'Vertrieb München',
-  'Vertrieb Hamburg',
-  'Vertrieb Berlin',
-  'Vertrieb NRW',
-  // Vertrieb-Varianten
-  'Vertriebsagentur',
-  'Vertrieb auslagern',
-  'Vertriebsunterstützung',
-  'Vertriebsoutsourcing',
-  'Vertriebspartner',
-  'Vertriebsberatung',
-  'B2B Vertrieb',
-  'Vertrieb outsourcen',
-  'B2B Sales Agentur',
-  'Vertriebsdienstleister',
-  'Vertriebsdienstleister Köln',
-  'Vertriebsdienstleister NRW',
-  'Sales Agentur Deutschland',
-  'B2B Vertriebsagentur',
-  'Vertriebsagentur Deutschland',
-  // Sekundäre Keywords
-  'B2B Akquise',
-  'B2B Leadgenerierung',
-  'Telefonakquise',
-  'Kaltakquise Agentur',
-  'Terminvereinbarung B2B',
-  'Neukundengewinnung',
-  'Sales Outsourcing',
-  'Akquise Dienstleister',
-  'Lead Generation',
-  // Zielgruppen
-  'Vertrieb für Agenturen',
-  'Vertrieb für IT-Dienstleister',
-  'Vertrieb für Beratungsunternehmen',
-  'Vertrieb für Softwareunternehmen',
-  // Städte + Vertriebsagentur
-  'Vertriebsagentur Köln',
-  'Vertriebsagentur Düsseldorf',
-  'Vertriebsagentur Frankfurt',
-  'Vertriebsagentur München',
-  'Vertriebsagentur Hamburg',
-  'Vertriebsagentur Berlin',
-  // Long-tail Keywords
-  'qualifizierte Termine B2B',
-  'Entscheider Termine',
-  'planbare Kundengewinnung',
-  'professionelle Kaltakquise',
-  'outbound Sales',
-  'SDR as a Service',
-]
+/*
+ * Hier stand eine Liste mit 50 `keywords`, und jede Unterseite brachte ihre
+ * eigene mit. Google wertet das Feld seit 2009 nicht aus; Bing nennt eine
+ * überladene Keyword-Angabe ausdrücklich als Spam-Signal — und für jeden
+ * Wettbewerber lag die Suchwortstrategie der Seite im Quelltext offen. Seit
+ * dem 01.10.2026 gibt es das Feld auf keiner Seite mehr. Welche Seite welchen
+ * Suchbegriff trägt, steht in docs/sichtbarkeit/SEO-ANALYSE-2026-10.md.
+ */
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://carpantier-consulting.de'),
   // Die Vorlage haengt den Firmennamen an jeden Seitentitel an. Seitentitel
   // duerfen ihn deshalb nicht selbst mitbringen, sonst steht er doppelt im
   // Browser-Tab und in den Suchergebnissen.
+  //
+  // Der Titel der Startseite nennt Köln, aber nicht wortgleich „Vertriebsagentur
+  // Köln“: Den Begriff trägt `/leistungen/koeln`. „Vertriebsagentur aus Köln“
+  // steht nur hier — `/kontakt` und `/ueber-uns` trugen ihn bis zum 01.10.2026
+  // ebenfalls. Seiten mit demselben Titelbegriff konkurrieren miteinander statt
+  // mit dem Wettbewerb. Höchstens 65 Zeichen samt Firmenname (`check-seo.mjs`).
   title: {
-    default: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
+    default: 'B2B-Vertriebsagentur aus Köln | Carpantier Consulting',
     template: '%s | Carpantier Consulting',
   },
   description:
-    'Ihre Vertriebsagentur für B2B Vertrieb & Leadgenerierung aus Köln. Als erfahrener Vertriebsdienstleister & Sales Agentur liefern wir qualifizierte Termine durch professionelle Kaltakquise. ✓ Vertrieb auslagern ✓ Telefonakquise ✓ Jetzt Strategiegespräch buchen!',
-  keywords: keywords,
+    'B2B-Vertriebsagentur aus Köln: Telefonakquise und Terminvereinbarung – qualifizierte Termine mit Entscheidern, direkt in Ihrem Kalender.',
   authors: [{ name: 'Nico-Luca Carpantier', url: 'https://carpantier-consulting.de' }],
   creator: 'Carpantier Consulting',
   publisher: 'Carpantier Consulting',
@@ -104,28 +59,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: 'website',
-    locale: 'de_DE',
+    ...OG_GRUNDWERTE,
     url: 'https://carpantier-consulting.de',
-    siteName: 'Carpantier Consulting',
-    title: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
+    title: 'B2B-Vertriebsagentur aus Köln | Carpantier Consulting',
     description:
-      'Ihre Vertriebsagentur für B2B Vertrieb & Leadgenerierung aus Köln. Vertriebsdienstleister für qualifizierte Termine mit Entscheidern.',
-    images: [
-      {
-        url: 'https://carpantier-consulting.de/images/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Carpantier Consulting - B2B Vertriebsagentur für Leadgenerierung aus Köln',
-        type: 'image/jpeg',
-      },
-    ],
+      'Telefonakquise und Terminvereinbarung für B2B-Dienstleister: qualifizierte Termine mit Entscheidern, direkt in Ihrem Kalender.',
   },
+  // Bewusst ohne `title` und `description`: Jede Unterseite ohne eigenen
+  // twitter-Block erbte sonst Titel und Beschreibung der Startseite. Ohne sie
+  // greift X auf `og:title` und `og:description` der jeweiligen Seite zurück.
   twitter: {
     card: 'summary_large_image',
-    title: 'Vertriebsagentur für B2B Vertrieb & Leadgenerierung | Carpantier Consulting',
-    description:
-      'Ihre B2B Vertriebsagentur für planbare Neukundengewinnung. Vertriebsdienstleister aus Köln.',
     images: ['https://carpantier-consulting.de/images/og-image.jpg'],
     creator: '@carpantier',
   },
@@ -433,6 +377,17 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>
           <Header />
+          {/*
+            Bewusst kein `src/app/loading.tsx`. Bis zum 01.10.2026 lag dort ein
+            Lade-Kreisel, und Next.js legt um jede Seite unter einer solchen Datei
+            eine Suspense-Grenze. Selbst die statisch erzeugten Seiten lieferten
+            dadurch in <main> nur „Wird geladen…“; der eigentliche Inhalt samt h1
+            stand als `<div hidden>` hinter der Fußzeile und wurde erst per
+            JavaScript an seinen Platz geschoben. Google rendert das, GPTBot,
+            ClaudeBot und PerplexityBot nicht — und Textauszieher wie Readability
+            verwerfen `hidden` ganz. `scripts/check-ssr.mjs` prüft deshalb, dass
+            der Inhalt in <main> steht.
+          */}
           <main>{children}</main>
           <Footer />
           {/* Client-side Components (Chat Widget + Tracking) */}

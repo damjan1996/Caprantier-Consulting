@@ -17,6 +17,9 @@ import type { BlogPost } from '@/lib/blog-types'
 export const vertriebAuslagernKostenVorteile: BlogPost = {
   slug: 'vertrieb-auslagern-kosten-vorteile',
   title: 'Vertrieb auslagern: Kosten, Modelle und wann es sich rechnet',
+  // Nicht „Vertrieb auslagern: …“ — damit beginnt der Titel von /leistungen. Der
+  // Beitrag beantwortet die Kostenfrage, die Leistungsseite das Angebot.
+  seoTitle: 'Was kostet es, den Vertrieb auszulagern?',
   description:
     'Was Vertriebsoutsourcing kostet, welche Abrechnungsmodelle es gibt und wie sich eine externe Vertriebsagentur gegen einen eigenen Vertriebsmitarbeiter rechnet – mit Vollkostenvergleich und den Fällen, in denen Auslagern die falsche Antwort ist.',
   author: 'Nico-Luca Carpantier',
@@ -127,7 +130,7 @@ Dem gegenüber steht bei einer externen Lösung: keine Lohnnebenkosten, Produkti
 In der Praxis ist die Frage selten "entweder oder". Die verbreitetste Aufteilung trennt nach Prozessschritt statt nach Person:
 
 - **Extern:** Listenaufbau, Erstansprache, Qualifizierung, Terminvereinbarung – der Teil, der Volumen und Frustrationstoleranz braucht.
-- **Intern:** Verkaufsgespräch, Angebot, Verhandlung, Abschluss, Betreuung – der Teil, der Produktwissen und Entscheidungsbefugnis braucht.
+- **Intern:** Verkaufsgespräch, [Angebot, Verhandlung, Abschluss](/blog/angebot-verhandlung-abschluss-b2b), Betreuung – der Teil, der Produktwissen und Entscheidungsbefugnis braucht.
 
 Das ist genau der Zuschnitt von **SDR as a Service**. Der Sales Development Representative arbeitet den vorderen Trichter ab; der Abschluss bleibt dort, wo das Produkt zu Hause ist. Für die meisten B2B-Dienstleister mit fünf bis fünfzig Mitarbeitern ist das die wirtschaftlichste Aufteilung, weil der Engpass fast nie beim Abschluss liegt, sondern bei der Zahl der Gespräche.
 

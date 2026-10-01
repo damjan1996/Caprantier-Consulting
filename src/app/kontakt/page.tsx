@@ -11,6 +11,7 @@ import SectionRail from '@/components/seite/SectionRail'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema } from '@/lib/schemas'
 import styles from './_components/kontakt.module.css'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 const PAGE_URL = `${businessInfo.website}/kontakt`
 
@@ -21,18 +22,11 @@ const PAGE_URL = `${businessInfo.website}/kontakt`
  * Website steht sonst kein einziges Ausrufezeichen (Textleitfaden § 9).
  */
 export const metadata: Metadata = {
-  title: 'Kontakt – B2B-Vertriebsagentur aus Köln',
+  title: 'Kontakt und Erstgespräch',
   description:
     'Erstgespräch buchen, schreiben oder anrufen – die drei Wege zu Carpantier Consulting in Köln, jeweils mit Antwortzeit und dem, was mit Ihrer Nachricht passiert.',
-  keywords: [
-    'Kontakt Carpantier Consulting',
-    'Vertriebsagentur Köln Kontakt',
-    'B2B Vertrieb Beratung anfragen',
-    'Erstgespräch Telefonakquise',
-    'Vertrieb auslagern Kontakt',
-    'Leadgenerierung Anfrage',
-  ],
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Kontakt | Carpantier Consulting',
     description:
       'Erstgespräch, Nachricht oder Anruf – mit der Antwortzeit, die jeweils dahintersteht.',

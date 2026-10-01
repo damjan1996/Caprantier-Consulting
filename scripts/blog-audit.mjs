@@ -141,6 +141,17 @@ for (const bericht of berichte) {
   }
 }
 
+// FAQ-Antworten sind reiner Text: Die Seite zeigt sie ohne Markdown, und sie
+// gehen wortgleich ins FAQPage-Markup. Ein `[Text](/adresse)` darin stünde dem
+// Leser und im Markup als Klammersalat da. Verweise gehören in `content`.
+for (const post of blogPosts) {
+  for (const faq of post.faqs ?? []) {
+    if (/\]\(/.test(faq.answer) || /\]\(/.test(faq.question)) {
+      beanstandungen.push(`${post.slug}: Markdown-Verweis in der FAQ „${faq.question}“ – FAQs sind reiner Text.`)
+    }
+  }
+}
+
 if (beanstandungen.length === 0) {
   console.log('')
   console.log('Blog-Audit: keine Beanstandungen.')

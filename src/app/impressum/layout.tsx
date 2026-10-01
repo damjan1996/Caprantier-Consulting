@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { OG_GRUNDWERTE } from '@/lib/open-graph'
 
 export const metadata: Metadata = {
   title: 'Impressum',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
+    ...OG_GRUNDWERTE,
     title: 'Impressum | Carpantier Consulting',
     description: 'Rechtliche Informationen und Kontaktdaten von Carpantier Consulting.',
     url: 'https://carpantier-consulting.de/impressum',

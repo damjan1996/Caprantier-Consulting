@@ -15,6 +15,7 @@ import type { BlogPost } from '@/lib/blog-types'
 export const angebotVerhandlungAbschlussB2b: BlogPost = {
   slug: 'angebot-verhandlung-abschluss-b2b',
   title: 'Vom Angebot zum Abschluss: B2B-Angebote, Preisverhandlung und Closing',
+  seoTitle: 'B2B-Angebot, Preisverhandlung und Closing',
   description:
     'Wie ein B2B-Angebot aufgebaut sein muss, damit es entschieden wird, wie man einen Preis verhandelt ohne Rabattspirale, und warum der häufigste verlorene Auftrag nicht an den Wettbewerber geht, sondern an die Nichtentscheidung.',
   author: 'Nico-Luca Carpantier',

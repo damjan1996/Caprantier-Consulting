@@ -1,5 +1,3 @@
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, CheckCircle, MapPin, Target } from 'lucide-react'
@@ -13,10 +11,12 @@ import { getCityBySlug } from '@/content/cities'
 import { getBlogPostBySlug } from '@/lib/blog'
 import { businessInfo } from '@/content/local-seo'
 import { generateBreadcrumbSchema, generateBlogFAQSchema } from '@/lib/schemas'
-
-const CTA = dynamic(() => import('./_components/CTA'), {
-  loading: () => <div className="section-padding" />,
-})
+/*
+ * Direkt eingebunden, nicht über `dynamic()` in einer Suspense-Grenze: So stand
+ * der Abschluss bis zum 01.10.2026 als gestreamtes `<div hidden>` hinter der
+ * Fußzeile und kam erst per JavaScript an seinen Platz (Baukasten § 2.2).
+ */
+import CTA from './_components/CTA'
 
 interface Props {
   params: Promise<{ branche: string }>
@@ -85,7 +85,7 @@ export default async function BranchePage({ params }: Props) {
   const serviceSchema = generateIndustryJsonLd(industry)
   const faqSchema = generateBlogFAQSchema(industry.faqs)
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: businessInfo.website },
+    { name: 'Startseite', url: businessInfo.website },
     { name: 'Branchen', url: `${businessInfo.website}/branchen` },
     { name: industry.shortTitle, url: `${businessInfo.website}/branchen/${industry.slug}` },
   ])
@@ -300,9 +300,7 @@ export default async function BranchePage({ params }: Props) {
         </div>
       </section>
 
-      <Suspense fallback={<div className="section-padding" />}>
-        <CTA />
-      </Suspense>
+      <CTA />
     </PageWrapper>
   )
 }

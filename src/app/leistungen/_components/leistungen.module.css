@@ -527,7 +527,21 @@
 .regionNote {
   margin: clamp(28px, 4vh, 44px) 0 0;
   font-size: 14px;
+  line-height: 1.6;
   color: var(--ink-3);
+  max-width: 42em;
+}
+
+/* Wie `.marktNote a` auf /kaltakquise: Verweise im Fliesstext unterstrichen,
+   sonst sind sie in --ink-3 nicht als Verweis zu erkennen. */
+.regionNote a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.regionNote a:hover {
+  color: var(--accent);
 }
 
 /* ------------------------------------------------------------------- Termin */
