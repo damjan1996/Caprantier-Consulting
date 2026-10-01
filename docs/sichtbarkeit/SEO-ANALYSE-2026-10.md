@@ -1,6 +1,6 @@
 # SEO-Analyse und Umsetzung — Suchbegriffe, Verlinkung, Technik
 
-**Stand:** 01.10.2026 · **Branch:** `seo/querverlinkung-2026-10` · nicht committet, nicht deployt
+**Stand:** 01.10.2026 · **Deployt:** 01.10.2026 als `ac019d8` (Branch `seo/querverlinkung-2026-10`, auf `main` gebracht) — Abnahme auf der Live-Domain in 7.4
 **Grundlage:** Crawl aller 58 Live-Adressen am 01.10.2026; Positionsmessung vom 10.09.2026 in
 `C:\Users\damja\Documents\Carpantier Consulting\COMPETITOR-SEO-EXPLORATION.md` (außerhalb des Repos);
 Repo-Stand `8c6a854`
@@ -310,13 +310,30 @@ die Änderungen dieses Pakets gleich gemessen (772–804 ms). Die Revision vom 1
 von 2,5 s, aber eine Verdopplung seit dem 12.09., deren Ursache in einem der späteren Umbauten
 liegt. Nicht untersucht.
 
+### 7.4 Abnahme auf der Live-Domain (01.10.2026, nach dem Deployment von `ac019d8`)
+
+Mit dem Branch gingen die elf bis dahin nicht gepushten Commits vom 23.09.2026 (Seitenstruktur,
+Aufräumen, Dokumentation) live; sie waren Grundlage aller Prüfungen oben. Der JUKE-Talents-Commit
+vom 18.09.2026 (`5eb9069`) ist per Rebase in die neue Struktur übernommen.
+
+| Prüfung gegen `https://carpantier-consulting.de` | Ergebnis |
+|---|---|
+| Vercel-Deployment `ac019d8`, Umgebung Production | erfolgreich, rund eine Minute Build |
+| `check-live` | 103 Abrufe, keine Beanstandung |
+| `check-ssr` | Inhalt in `<main>` auf 6 Stichproben; 52 weitere Adressen mit Status 200, nichts gestreamt |
+| `check-seo` | 58 eindeutige Titel und Beschreibungen, 14 Hinweise (vorher 88) |
+| Inhaltsverweise (Zählweise aus 4) | 585 → 656; `/wissen` 0 → 14, `/ueber-uns` 1 → 14 |
+| Einwilligung (Release-Checkliste 3.1) | vor der Einwilligung und nach „Alle ablehnen“ kein Abruf eines fremden Hosts |
+| Entfernte Endpunkte (3.4) | `/api/chat`, `/api/admin/leads`, `/api/cron/cleanup-chats` → 404 |
+| **Nicht** automatisch geprüft | Kontaktformular mit echter Anfrage (3.2) und „Alle akzeptieren“ (3.1) — beide erzeugen echte Zustellung bzw. Messdaten |
+
 ---
 
 ## 8 · Nächste Schritte nach Hebel
 
 | # | Schritt | Wer | Warum jetzt |
 |---|---|---|---|
-| 1 | Diesen Branch prüfen, freigeben, deployen; danach in der Search Console die Sitemap neu einreichen | Damjan | Titeländerungen wirken erst nach dem nächsten Crawl |
+| 1 | ~~Branch prüfen, freigeben, deployen~~ — erledigt 01.10.2026 (`ac019d8`). **Offen:** in der Search Console die Sitemap neu einreichen | Damjan | Titeländerungen wirken erst nach dem nächsten Crawl |
 | 2 | **Search-Console-Zugang** — oder den Connector „AdvisorPPC (Search Console)“ in claude.ai autorisieren | Nico / Damjan | Ohne ihn bleibt jede Positionsaussage eine Stichprobe. Erst damit lässt sich sagen, für welche Anfragen die Seite tatsächlich Impressionen hat — und welche Adresse für „vertriebsagentur köln“ rankt |
 | 3 | Google Business Profile (AP-4.1), Anschrift vorher klären (AP-1.0) | Nico | Local Pack für „vertriebsagentur köln“ gewinnt AS Concepts mit 52 Bewertungen; ohne Profil ist die Firma dort nicht vorhanden |
 | 4 | Ortssubstanz für `/leistungen/[stadt]` (AP-5.1), zuerst Frankfurt und Düsseldorf | Nico liefert Ortswissen, Umsetzung im Code | 83 % Vorlage auf der Familie, die rankt — Risiko und Hebel zugleich (3.3) |
