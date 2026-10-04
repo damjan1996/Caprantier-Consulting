@@ -41,11 +41,16 @@ const additionalSections = [
     iconBg: 'bg-pink-400/10',
     content: (
       <div className="text-muted-foreground space-y-3">
+        {/* Bis zum 01.10.2026 stand hier zusätzlich „der Chat wird von einem
+            KI-Assistenten beantwortet“ – der Chat ist seit dem 30.08.2026
+            entfernt. Der Absatz gibt jetzt wieder, was `/ki-transparenz`
+            sagt: Bilder KI-generiert, Texte teils KI-gestützt, kein Chatbot. */}
         <p>
           Auf dieser Website setzen wir künstliche Intelligenz ein: Die fotorealistischen Personen-
-          und Situationsbilder sind KI-generiert und zeigen keine realen fotografischen Aufnahmen,
-          der Chat wird von einem KI-Assistenten beantwortet. Beides ist unmittelbar am jeweiligen
-          Inhalt gekennzeichnet.
+          und Situationsbilder sind KI-generiert und zeigen keine realen fotografischen Aufnahmen;
+          sie sind unmittelbar am Bild gekennzeichnet. Ein Teil der Blog- und Glossarbeiträge ist
+          mit Unterstützung von KI-Werkzeugen entstanden und redaktionell geprüft. Einen
+          KI-Chatbot setzen wir nicht ein.
         </p>
         <p>
           Die vollständigen Transparenzangaben nach Art. 50 der Verordnung (EU) 2024/1689 (KI-VO)
