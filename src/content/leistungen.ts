@@ -34,10 +34,10 @@ export const services: ServiceEntry[] = [
     description:
       'Bevor jemand zum Hörer greift, steht fest, wen wir anrufen und warum gerade jetzt. Kein Abtelefonieren gekaufter Adressen.',
     features: [
-      'Auswahlkriterien je Kontakt, schriftlich festgehalten',
+      'Termine nur bei Interesse am Angebot',
       'Listenaufbau aus öffentlich zugänglichen Anlässen',
       'Entscheider statt Zentrale – Rolle vorab geprüft',
-      'Übergabe in Ihr CRM, nicht in eine Tabelle bei uns',
+      'Übergabe der Termine und Notizen in Ihr CRM',
     ],
   },
   {
@@ -68,10 +68,10 @@ export const services: ServiceEntry[] = [
     step: 'Schritt 4',
     title: 'Bericht und Nachsteuerung',
     description:
-      'Sie sehen wöchentlich, was passiert ist – auch das, was nicht funktioniert hat. Absagegründe stehen im Wortlaut im Bericht, nicht als Kategorie.',
+      'Sie sehen, was passiert ist – auch das, was nicht funktioniert hat. Rhythmus und Form des Berichts richten sich nach Ihrem Wunsch.',
     features: [
-      'Vier Kennzahlen im Reporting statt zwanzig',
-      'Absagegründe unverändert, nicht zusammengefasst',
+      'Reporting in dem Rhythmus, den Sie wünschen',
+      'Rückmeldung zu Gesprächen und Terminen',
       'Wiedervorlagen mit Datum und Anlass',
       'Regelmäßiger Abgleich, im Umfang mit Ihnen abgestimmt',
     ],

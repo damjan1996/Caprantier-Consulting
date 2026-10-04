@@ -15,8 +15,7 @@ import styles from './kaltakquise.module.css'
  * Bildschirmhöhe und gibt den Weg nach unten frei.
  *
  * Rechts steht kein Porträt und kein Stadtbild, sondern das Schaubild des
- * Abschnitts: die zwei Angaben, die vor jedem Anruf feststehen. Mehr behauptet
- * die Seite über ihren Ablauf nicht.
+ * Abschnitts: die zwei Angaben, die ein Termin voraussetzt.
  *
  * Die Merkmalszeile nennt dieselben Zahlen wie Startseite und Leistungsseite:
  * fünf Kunden pro Monat, erste Termine in vierzehn Tagen. Zwei Fassungen
@@ -24,19 +23,19 @@ import styles from './kaltakquise.module.css'
  */
 
 /**
- * Was vor dem Anruf feststeht.
+ * Was ein Termin voraussetzt.
  *
  * Bewusst ohne Beispielzahlen und ohne Beispielquote. Die Liste nennt, **was**
  * geklärt ist — das ist die Aussage, an der die Rechtmäßigkeit des Anrufs hängt.
  */
 const DOKUMENTATION = [
   {
-    label: 'Auswahlkriterium',
-    text: 'Warum dieses Unternehmen und warum jetzt – vor dem ersten Wählversuch geklärt.',
+    label: 'Entscheider',
+    text: 'Ein Gespräch mit jemandem, der über das Angebot entscheiden kann.',
   },
   {
-    label: 'Rolle',
-    text: 'Wer entscheidet, wird vorab geprüft und nicht aus dem Impressum geraten.',
+    label: 'Interesse',
+    text: 'Ein erkennbarer Bedarf und grundlegendes Interesse am Angebot.',
   },
 ]
 
@@ -114,7 +113,7 @@ export default function StadtIntro({ city }: { city: City }) {
         >
           {/* Kein Symbol daneben: Ein Symbol gibt es nur als Marke einer
               Karte, nicht neben einer Beschriftung (Designleitfaden § 7). */}
-          <span className={styles.introDocHead}>Vor dem Anruf geklärt</span>
+          <span className={styles.introDocHead}>Was ein Termin voraussetzt</span>
 
           <ul className={styles.introDocList}>
             {DOKUMENTATION.map((zeile) => (
@@ -127,7 +126,6 @@ export default function StadtIntro({ city }: { city: City }) {
 
           <span className={styles.introDocNote}>
             Die Beweislast für die mutmaßliche Einwilligung liegt beim werbenden Unternehmen.
-            Deshalb ist das kein Zusatz, sondern die Grundlage.
           </span>
         </div>
       </div>

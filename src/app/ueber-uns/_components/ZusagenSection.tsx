@@ -38,9 +38,9 @@ const ZUSAGEN = [
     probe: 'Ein Zielkunde fragt Sie, wer denn diese Agentur gewesen sei, die da angerufen hat.',
   },
   {
-    titel: 'Absagegründe stehen im Wortlaut im Bericht.',
-    text: 'Nicht als Kategorie, nicht zusammengefasst. Dazu vier Kennzahlen statt zwanzig und Wiedervorlagen mit Datum und Anlass, damit ein Nein auf später nicht verloren geht.',
-    probe: 'Im Bericht steht „kein Bedarf“ statt des Satzes, den der Angerufene gesagt hat.',
+    titel: 'Termine nur mit Entscheidern, die am Angebot interessiert sind.',
+    text: 'Ein Termin steht erst im Kalender, wenn ein relevanter Entscheider Interesse und einen erkennbaren Bedarf hat. Ein Nein auf später halten wir als Wiedervorlage fest.',
+    probe: 'Im Kalender steht ein Termin mit jemandem, der weder entscheidet noch Interesse hat.',
   },
   {
     titel: 'Wir sagen im Erstgespräch ab, wenn wir nicht liefern können.',

@@ -24,6 +24,7 @@ Dieses Dokument ist der interne Nachweis dahinter.
 | ~~Claude (API)~~ | ~~Anthropic PBC~~ | ~~Chat-Assistent auf der Website~~ | **Beendet am 30.08.2026** — der Chat wurde entfernt. Damit interagiert kein KI-System mehr mit Besuchern, und Art. 50 Abs. 1 KI-VO greift auf dieser Website nicht mehr |
 | Bildgenerator | _(verwendetes Werkzeug eintragen)_ | Personen- und Situationsbilder | `AiGeneratedBadge` unmittelbar am Bild, Hinweis im Alternativtext, Hinweis im Vorschaubild für soziale Netzwerke |
 | Textwerkzeuge | _(verwendete Werkzeuge eintragen)_ | Entwürfe für Blog- und Glossarbeiträge | `AiContentNotice` am jeweiligen Beitrag mit Datum der redaktionellen Prüfung |
+| Sprachsynthese (Stimmklon) | _(verwendetes Werkzeug eintragen)_ | Stimme in sechs Kurzvideos des YouTube-Kanals (29.09. bis 03.10.2026); die Stimme ist ein Klon der Stimme von Nico-Luca Carpantier | Hinweis an jedem Video auf `/wissen/videos`, Sammelhinweis auf `/wissen`, Karte auf `/ki-transparenz` |
 
 ## 2. Umsetzung des Art. 50 KI-VO
 
@@ -32,12 +33,15 @@ Dieses Dokument ist der interne Nachweis dahinter.
 | Abs. 1 — Offenlegung der Interaktion mit einem KI-System | **Nicht mehr einschlägig.** Seit dem 30.08.2026 gibt es kein KI-System, das mit Besuchern interagiert. Die Seite `/ki-transparenz` sagt das ausdrücklich, statt den Punkt wegzulassen | `src/app/ki-transparenz/page.tsx` |
 | Abs. 4 — Kennzeichnung KI-erzeugter Bilder | Sichtbares Kennzeichen an jedem betroffenen Bild | `src/components/ui/AiGeneratedBadge.tsx` |
 | Abs. 4 — Kennzeichnung KI-gestützter Texte | Hinweis am Beitrag mit Datum der Prüfung und Nennung des Verantwortlichen | `src/components/ui/AiContentNotice.tsx` |
+| Abs. 4 — Kennzeichnung der synthetischen Stimme in Videos | Hinweis am Video und Sammelhinweis; die betroffenen Videos stehen in einer Liste | `src/content/video-kennzeichnung.ts`, `src/app/wissen/videos/_components/VideoCard.tsx`, `src/app/wissen/_components/VideosSection.tsx`, `src/app/ki-transparenz/page.tsx` |
 | Abs. 2 — maschinenlesbare Markierung | **Trifft den Anbieter des erzeugenden Systems, nicht den Betreiber.** Freiwillig ergänzt durch `data-ai-generated` im Markup; das ist kein anerkannter Provenienzstandard | `src/components/ui/ai-media.ts` |
 
 **Bewusst nicht behauptet:** Die Bilddateien tragen derzeit keine
 Provenienzdaten nach IPTC oder C2PA. Wer sie ergänzt, muss beachten, dass die
 Bildoptimierung von Next.js Dateien neu schreibt und Metadaten dabei verwirft.
 Für die Betreiberpflicht nach Abs. 4 ist das nicht erforderlich.
+
+**Offen:** Neue Videos mit synthetischer Stimme müssen in `src/content/video-kennzeichnung.ts` eingetragen werden, sonst bleiben sie ungekennzeichnet. Ältere Videos sind nicht erfasst. Ob YouTube beim Upload zusätzlich eine Offenlegung für synthetische Inhalte verlangt, ist am Kanal zu prüfen.
 
 ## 3. Redaktionelle Freigabe KI-gestützter Texte
 
@@ -79,7 +83,7 @@ gemessen an Kenntnissen, Erfahrung, Ausbildung und Einsatzkontext.
 
 | Person | Rolle | Einsatzkontext | Unterweisung am | Nachweis |
 |---|---|---|---|---|
-| Nico-Luca Carpantier | Betreiber, redaktionelle Freigabe | Chatbot, Bildgenerierung, Textentwürfe | _(Datum)_ | Dieses Dokument |
+| Nico-Luca Carpantier | Betreiber, redaktionelle Freigabe | Bildgenerierung, Textentwürfe, Stimmklon (Chatbot bis 30.08.2026) | _(Datum)_ | Dieses Dokument |
 | _(weitere Personen ergänzen)_ | | | | |
 
 **Inhalte der Unterweisung:**

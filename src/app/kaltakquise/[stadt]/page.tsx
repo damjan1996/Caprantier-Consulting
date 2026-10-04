@@ -66,7 +66,7 @@ function generateKaltakquiseJsonLd(city: City, acquisition: CityAcquisition) {
         '@id': `${url}#service`,
         serviceType: 'B2B Telefonakquise und Terminvereinbarung',
         name: `Kaltakquise Agentur ${city.name}`,
-        description: `B2B-Kaltakquise und Telefonakquise für Unternehmen in ${city.name}: Zielgruppenauswahl mit dokumentiertem Anlass, Entscheideransprache und qualifizierte Terminvereinbarung ${city.businessContext}.`,
+        description: `B2B-Kaltakquise und Telefonakquise für Unternehmen in ${city.name}: Zielgruppenauswahl mit erkennbarem Anlass, Entscheideransprache und qualifizierte Terminvereinbarung ${city.businessContext}.`,
         url,
         provider: {
           '@type': 'LocalBusiness',
@@ -101,7 +101,7 @@ function generateKaltakquiseJsonLd(city: City, acquisition: CityAcquisition) {
               itemOffered: {
                 '@type': 'Service',
                 name: `Kaltakquise ${city.name}`,
-                description: `Telefonische Erstansprache von Entscheidern in ${city.name} auf Grundlage eines dokumentierten Auswahlkriteriums.`,
+                description: `Telefonische Erstansprache von Entscheidern in ${city.name} auf Grundlage eines erkennbaren Anlasses.`,
               },
             },
             {

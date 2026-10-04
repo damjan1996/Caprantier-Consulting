@@ -87,11 +87,11 @@ export const priceModels: PriceModel[] = [
     preis: null,
     einheit: 'einmalig',
     leistungen: [
-      'Zielgruppendefinition und Auswahlkriterium je Kontakt',
+      'Zielgruppendefinition mit dem Auftraggeber',
       'Listenaufbau aus öffentlich zugänglichen Anlässen',
       'Gesprächsgerüst, Qualifizierungsfragen, Terminkriterien',
       '10–15 qualifizierte Termine im Projektmonat',
-      'Wöchentliches Reporting mit Absagegründen im Wortlaut',
+      'Reporting in dem Rhythmus, den Sie wünschen',
       'Auftragsverarbeitungsvertrag nach Art. 28 DSGVO',
     ],
     grenze:
@@ -110,7 +110,7 @@ export const priceModels: PriceModel[] = [
       'Qualifizierte Termine direkt in Ihren Kalender',
       'Wiedervorlagen mit Datum und Anlass',
       'Regelmäßiger Abgleich, im Umfang mit Ihnen abgestimmt',
-      'Vier Kennzahlen im Reporting statt zwanzig',
+      'Reporting nach Absprache',
     ],
     grenze:
       'Sinnvoll erst, wenn intern Kapazität besteht, die Termine innerhalb weniger Tage wahrzunehmen. Termine, die niemand annimmt, sind der häufigste Grund für abgebrochene Kampagnen.',

@@ -90,7 +90,7 @@ export const cities: City[] = [
         titel: 'Neukundengewinnung in Köln – telefoniert und betreut von Köln aus.',
         absaetze: [
           'Carpantier Consulting hat seinen Sitz in Köln, und von hier aus wird telefoniert. Erstgespräch und Kick-off führt der Gründer selbst – für Kölner Auftraggeber also jemand aus derselben Stadt.',
-          'Am Ablauf ändert das nichts: Liste mit dokumentiertem Anlass, Anruf in Ihrem Namen, Termin erst bei geklärtem Bedarf. Wen wir in Köln anrufen, steht auf der Seite zur Kaltakquise in Köln.',
+          'Am Ablauf ändert das nichts: Liste mit erkennbarem Anlass, Anruf in Ihrem Namen, Termin erst bei geklärtem Bedarf. Wen wir in Köln anrufen, steht auf der Seite zur Kaltakquise in Köln.',
         ],
       },
     },

@@ -18,7 +18,7 @@ const PAGE_URL = `${businessInfo.website}/kaltakquise`
 export const metadata: Metadata = {
   title: 'Kaltakquise Agentur: B2B-Telefonakquise',
   description:
-    `Telefonische B2B-Kaltakquise in ${cities.length} Wirtschaftsräumen: Zielgruppe mit dokumentiertem Anlass, Ansprache der Entscheider, qualifizierte Termine – nach § 7 UWG.`,
+    `Telefonische B2B-Kaltakquise in ${cities.length} Wirtschaftsräumen: Zielgruppe mit erkennbarem Anlass, Ansprache der Entscheider, qualifizierte Termine – nach § 7 UWG.`,
   openGraph: {
     ...OG_GRUNDWERTE,
     title: 'Kaltakquise Agentur | Carpantier Consulting',

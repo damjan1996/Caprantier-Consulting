@@ -95,7 +95,7 @@ export const industryPages: IndustryPage[] = [
     approach: [
       {
         title: 'Zielunternehmen nach echtem Bedarf auswählen',
-        text: 'Wir bauen die Liste aus veröffentlichten Stellenanzeigen, Wachstumssignalen und Standortereignissen auf – nicht aus einem gekauften Adressbestand. Jeder Kontakt trägt einen dokumentierten Anlass, der zugleich die Grundlage der mutmaßlichen Einwilligung nach § 7 UWG ist.',
+        text: 'Wir bauen die Liste aus veröffentlichten Stellenanzeigen, Wachstumssignalen und Standortereignissen auf – nicht aus einem gekauften Adressbestand. Der Bezug zum Angebot des Auftraggebers ist zugleich die Grundlage der mutmaßlichen Einwilligung nach § 7 UWG.',
       },
       {
         title: 'Die richtige Rolle ansprechen',
@@ -131,7 +131,7 @@ export const industryPages: IndustryPage[] = [
       {
         question: 'Woher kommen die Zielunternehmen?',
         answer:
-          'Aus öffentlich zugänglichen Quellen mit erkennbarem Anlass: laufende Stellenausschreibungen, Wachstums- und Standortmeldungen, Handelsregisterbekanntmachungen. Jeder Kontakt trägt ein dokumentiertes Auswahlkriterium – das ist zugleich die Grundlage dafür, dass der Anruf nach § 7 Abs. 2 Nr. 1 UWG zulässig ist.',
+          'Aus öffentlich zugänglichen Quellen mit erkennbarem Anlass: laufende Stellenausschreibungen, Wachstums- und Standortmeldungen, Handelsregisterbekanntmachungen. Der Bezug zum Angebot ist zugleich die Grundlage dafür, dass der Anruf nach § 7 Abs. 2 Nr. 1 UWG zulässig ist.',
       },
       {
         question: 'Rufen Sie in unserem Namen an oder im eigenen?',

@@ -25,9 +25,9 @@ const SCHRITTE = [
     kind: 'An uns',
     Marke: PhoneOutgoing,
     titel: 'Alles bis zum Termin',
-    text: 'Zielgruppe und Liste, die Anrufe in Ihrem Namen, die Qualifizierung und der wöchentliche Bericht. Wir melden uns mit Ihrem Firmennamen; für die Gegenseite sind wir Ihr Vertrieb.',
+    text: 'Zielgruppe und Liste, die Anrufe in Ihrem Namen, die Qualifizierung und das Reporting. Wir melden uns mit Ihrem Firmennamen; für die Gegenseite sind wir Ihr Vertrieb.',
     punkte: [
-      'Auswahlkriterium je Kontakt, schriftlich festgehalten',
+      'Termine nur bei Interesse am Angebot',
       'Anruf in Ihrem Namen, in der Wir-Form',
       'Rolle, Bedarf und Zeitpunkt vorab geklärt',
       'Einladung aus Ihrem Kalender, Notiz in Ihrem CRM',

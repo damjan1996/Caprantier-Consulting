@@ -11,12 +11,12 @@ import { OG_GRUNDWERTE } from '@/lib/open-graph'
 export const metadata: Metadata = {
   title: 'Vertrieb auslagern: B2B-Telefonakquise',
   description:
-    'Vertrieb auslagern, ohne den Abschluss abzugeben: Zielgruppe, Telefonakquise, Terminqualifizierung und Wochenbericht. Erste Termine in rund 14 Tagen.',
+    'Vertrieb auslagern, ohne den Abschluss abzugeben: Zielgruppe, Telefonakquise, Terminqualifizierung und Reporting. Erste Termine in rund 14 Tagen.',
   openGraph: {
     ...OG_GRUNDWERTE,
     title: 'Vertrieb auslagern: B2B-Telefonakquise | Carpantier Consulting',
     description:
-      'Zielgruppe, Telefonakquise, Terminqualifizierung und Wochenbericht – das Verkaufsgespräch führen Sie selbst.',
+      'Zielgruppe, Telefonakquise, Terminqualifizierung und Reporting – das Verkaufsgespräch führen Sie selbst.',
     url: 'https://carpantier-consulting.de/leistungen',
     images: [
       {

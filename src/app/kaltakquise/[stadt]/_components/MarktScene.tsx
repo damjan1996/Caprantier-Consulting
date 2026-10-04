@@ -130,7 +130,7 @@ export default function MarktScene({
                 style={{ '--rd': '0.16s' } as React.CSSProperties}
               >
                 Markt, Zielgruppe und Zeitfenster sind kein Nebenprodukt der Kampagne. Sie stehen am
-                Anfang, schriftlich – und werden an den gemessenen Quoten nachgeschärft.
+                Anfang und werden mit Ihnen gemeinsam festgelegt.
               </p>
 
               <div

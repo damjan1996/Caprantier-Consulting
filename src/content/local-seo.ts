@@ -71,6 +71,10 @@ export const businessInfo = {
   // Social Media
   social: {
     linkedin: 'https://www.linkedin.com/company/carpantier-consulting',
+    linkedinPerson: 'https://www.linkedin.com/in/nico-luca-carpantier-50687a246',
+    youtube: 'https://www.youtube.com/@nico_carpantier',
+    tiktok: 'https://www.tiktok.com/@nico.carpantier',
+    instagram: 'https://www.instagram.com/carpantier_consulting/',
     // Weitere Kanäle hier hinzufügen wenn vorhanden
   },
 

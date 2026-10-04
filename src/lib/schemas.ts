@@ -62,7 +62,7 @@ function getCityFAQs(city: City) {
     },
     {
       question: `Was bleibt bei uns, wenn die Zusammenarbeit endet?`,
-      answer: `Die Anrufliste mit ihren Auswahlkriterien, die Gesprächsnotizen und das erarbeitete Gesprächsgerüst. Alles läuft von Anfang an in Ihr CRM und nicht in eine Tabelle bei uns; Absagegründe stehen im Wortlaut im Bericht. Wer die Akquise danach selbst weiterführen will, kann das mit dem, was vorliegt.`,
+      answer: `Das hängt von der vertraglichen Vereinbarung ab. Was mit Anrufliste, Gesprächsnotizen und Gesprächsgerüst nach dem Ende der Zusammenarbeit geschieht, klären wir deshalb im Erstgespräch und halten es im Vertrag fest.`,
     },
     {
       question: `Arbeiten Sie vor Ort in ${city.name}?`,
@@ -388,7 +388,7 @@ export function getKaltakquiseFAQs(city: City, acquisition: CityAcquisition) {
   return [
     {
       question: `Ist Kaltakquise per Telefon in ${city.name} erlaubt?`,
-      answer: `Gegenüber Unternehmen ja. § 7 Abs. 2 Nr. 1 UWG verlangt beim Anruf gegenüber einem sonstigen Marktteilnehmer nur eine zumindest mutmaßliche Einwilligung – diese liegt vor, wenn das Angebot einen konkreten sachlichen Bezug zur Geschäftstätigkeit des angerufenen Unternehmens in ${city.name} hat. Gegenüber Verbrauchern ist eine vorherige ausdrückliche Einwilligung nötig, und für Werbe-E-Mails gilt die Erleichterung ebenfalls nicht. Wir dokumentieren zu jedem Kontakt das Auswahlkriterium, weil die Beweislast beim werbenden Unternehmen liegt.`,
+      answer: `Gegenüber Unternehmen ja. § 7 Abs. 2 Nr. 1 UWG verlangt beim Anruf gegenüber einem sonstigen Marktteilnehmer nur eine zumindest mutmaßliche Einwilligung – diese liegt vor, wenn das Angebot einen konkreten sachlichen Bezug zur Geschäftstätigkeit des angerufenen Unternehmens in ${city.name} hat. Gegenüber Verbrauchern ist eine vorherige ausdrückliche Einwilligung nötig, und für Werbe-E-Mails gilt die Erleichterung ebenfalls nicht. Die Beweislast dafür liegt beim werbenden Unternehmen.`,
     },
     {
       question: `Welche Unternehmen rufen Sie in ${city.name} an?`,

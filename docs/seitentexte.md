@@ -31,7 +31,7 @@ Alles andere folgt daraus:
 | **Den Einwand zuerst nennen, dann beantworten.** „Kein Call-Center. Ihr externer Vertrieb – mit einem Gesicht." | den Einwand hoffen zu überhören |
 | **Sagen, was es kostet — auch an Zeit und Geduld.** „Setup braucht rund 14 Tage, planbare Zahlen drei Monate. Wer das nicht mitgeht, wird enttäuscht." | „schnelle Erfolge" |
 | **Kein Superlativ, kein Ausrufezeichen.** Auf der ganzen Startseite steht **kein einziges** Ausrufezeichen. | „der beste", „einzigartig", „revolutionär!" |
-| **Eine Zusage bekommt ihre Gegenprobe.** „Absagegründe stehen im Wortlaut im Bericht." – *Gebrochen, wenn:* „Im Bericht steht „kein Bedarf" statt des Satzes, den der Angerufene gesagt hat." | eine Zusage, die sich nicht widerlegen lässt |
+| **Eine Zusage bekommt ihre Gegenprobe.** „Termine nur mit Entscheidern, die am Angebot interessiert sind." – *Gebrochen, wenn:* „Im Kalender steht ein Termin mit jemandem, der weder entscheidet noch Interesse hat." | eine Zusage, die sich nicht widerlegen lässt |
 
 Ein Satz, der auf jeder Vertriebsseite stehen könnte, hat auf dieser nichts
 verloren. Prüffrage: **Könnte der Wettbewerber denselben Satz unverändert

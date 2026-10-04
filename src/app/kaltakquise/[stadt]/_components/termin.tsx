@@ -33,7 +33,7 @@ const ERSTE_WOCHEN = [
   {
     when: 'Ab Tag 14',
     what: 'Die ersten Termine',
-    detail: 'Einladungen aus Ihrem Kalender, dazu der erste Wochenbericht.',
+    detail: 'Einladungen aus Ihrem Kalender, dazu ein erster Bericht.',
   },
 ]
 

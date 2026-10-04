@@ -22,7 +22,7 @@
 export interface CityAcquisition {
   /** Wirtschaftsstruktur vor Ort, zwei bis drei Sätze. Eigenständig je Stadt. */
   marktText: string
-  /** Wen wir hier typischerweise anrufen. Eigenständig je Stadt. */
+  /** Welche Zielgruppen hier in Frage kommen. Eigenständig je Stadt. */
   zielgruppenText: string
   /** Leitbranchen am Ort, für Aufzählung und Metadaten. */
   leitbranchen: string[]
@@ -31,107 +31,107 @@ export interface CityAcquisition {
 export const cityAcquisition: Record<string, CityAcquisition> = {
   koeln: {
     marktText:
-      'Köln ist unser Heimatmarkt und einer der wenigen deutschen Standorte, an denen Medien, Versicherungswirtschaft und ein sehr breiter inhabergeführter Mittelstand direkt nebeneinander liegen. Für die Telefonakquise heißt das: kurze Entscheidungswege in den Agenturen und Dienstleistern des linksrheinischen Gürtels, deutlich formalere Wege in Versicherung und Konzernumfeld.',
+      'Köln ist der Sitz von Carpantier Consulting. Medien, Versicherungswirtschaft und ein breiter inhabergeführter Mittelstand liegen hier nah beieinander.',
     zielgruppenText:
-      'Wir rufen im Kölner Raum überwiegend Geschäftsführungen von Dienstleistern mit fünf bis fünfzig Mitarbeitern an – Agenturen, IT-Häuser, Personalvermittler und Beratungen. In dieser Größenordnung ist die Geschäftsführung zugleich Entscheider und Fachbereich, was den Weg vom Erstkontakt zum Termin auf einen Schritt verkürzt.',
+      'Für das Angebot kommen im Kölner Raum vor allem Dienstleister mit fünf bis fünfzig Mitarbeitern in Frage – Agenturen, IT-Häuser, Personalvermittler und Beratungen. In dieser Größenordnung ist die Geschäftsführung häufig zugleich Entscheider und Fachbereich.',
     leitbranchen: ['Medien und Agenturen', 'Versicherungswirtschaft', 'IT-Dienstleistung', 'Handel und Logistik'],
   },
   duesseldorf: {
     marktText:
-      'Düsseldorf ist Landeshauptstadt, Messestandort und Sitz überdurchschnittlich vieler Landesgesellschaften internationaler Konzerne. Diese Doppelstruktur prägt die Akquise: Neben dem klassischen Mittelstand sitzen hier Niederlassungen, deren Budgetentscheidungen anderswo fallen – das gehört im Erstgespräch geklärt, bevor ein Termin vereinbart wird.',
+      'Düsseldorf ist Landeshauptstadt, Messestandort und Sitz vieler Landesgesellschaften internationaler Konzerne. Neben dem klassischen Mittelstand gibt es hier deshalb Niederlassungen, deren Budgetentscheidungen an anderer Stelle fallen.',
     zielgruppenText:
-      'Unser Schwerpunkt liegt auf inhabergeführten Beratungs-, Werbe- und Handelsunternehmen sowie auf IT-Dienstleistern zwischen Medienhafen und Ratinger Umland. Bei Landesgesellschaften klären wir vorab, ob die Beauftragung vor Ort oder in der Zentrale entschieden wird.',
+      'In Frage kommen inhabergeführte Beratungs-, Werbe- und Handelsunternehmen sowie IT-Dienstleister zwischen Medienhafen und Ratinger Umland. Bei Landesgesellschaften ist vorab zu klären, ob über die Beauftragung vor Ort oder in der Zentrale entschieden wird.',
     leitbranchen: ['Unternehmensberatung', 'Werbung und Kommunikation', 'Mode und Handel', 'Telekommunikation'],
   },
   bonn: {
     marktText:
-      'Bonn ist geprägt von Telekommunikation, Wissenschaft und einer ungewöhnlichen Dichte an Bundesbehörden und internationalen Organisationen. Der Mittelstand im Rhein-Sieg-Kreis arbeitet häufig als Zulieferer oder Dienstleister für genau dieses Umfeld – mit entsprechend langen Beschaffungswegen.',
+      'Bonn ist geprägt von Telekommunikation, Wissenschaft sowie Bundesbehörden und internationalen Organisationen. Der Mittelstand im Rhein-Sieg-Kreis arbeitet häufig als Zulieferer oder Dienstleister für dieses Umfeld.',
     zielgruppenText:
-      'Wir sprechen im Bonner Raum vor allem IT- und Ingenieurdienstleister sowie spezialisierte Beratungen an. Weil viele von ihnen im öffentlichen Umfeld arbeiten, ist die Frage nach laufenden Rahmenverträgen und deren Ende hier wichtiger als in jedem anderen von uns bearbeiteten Markt.',
+      'In Frage kommen vor allem IT- und Ingenieurdienstleister sowie spezialisierte Beratungen. Wer im öffentlichen Umfeld arbeitet, hat oft laufende Rahmenverträge, deren Ende ein möglicher Anlass für ein Gespräch ist.',
     leitbranchen: ['Telekommunikation', 'Wissenschaft und Forschung', 'Öffentliche Auftraggeber', 'IT-Sicherheit'],
   },
   essen: {
     marktText:
       'Essen hat den Wandel von der Montanindustrie zum Dienstleistungs- und Energiestandort weitgehend vollzogen. Zwei Konzernzentralen der Energiewirtschaft und ein dichtes Netz technischer Dienstleister bestimmen das Bild – und mit ihnen ein Mittelstand, der überwiegend als Zulieferer und Instandhalter arbeitet.',
     zielgruppenText:
-      'Im Essener Raum rufen wir vorwiegend technische Dienstleister, Instandhaltungs- und Ingenieurbüros sowie IT-Häuser an. Diese Zielgruppe erwartet am Telefon Sachlichkeit und Zahlen; ein Gespräch, das mit Nutzenversprechen beginnt, ist hier nach zehn Sekunden beendet.',
+      'In Frage kommen technische Dienstleister, Instandhaltungs- und Ingenieurbüros sowie IT-Häuser, die Energiewirtschaft und Industrie beliefern.',
     leitbranchen: ['Energiewirtschaft', 'Technische Dienstleistung', 'Instandhaltung', 'Logistik'],
   },
   dortmund: {
     marktText:
-      'Dortmund hat sich über den Technologiepark und die Hochschulen zu einem der wachstumsstärksten IT-Standorte Westfalens entwickelt. Neben den jungen Software- und Logistikunternehmen steht ein traditionsreicher Maschinenbau, dessen Investitionszyklen den Takt vorgeben.',
+      'Dortmund hat sich über den Technologiepark und die Hochschulen zu einem wichtigen IT-Standort Westfalens entwickelt. Neben den jungen Software- und Logistikunternehmen steht ein traditionsreicher Maschinenbau.',
     zielgruppenText:
-      'Wir arbeiten hier zweigleisig: Software- und IT-Dienstleister im Umfeld des Technologiezentrums erreichen wir über kurze, fachliche Gespräche, den produzierenden Mittelstand über den Investitions- oder Instandhaltungsanlass. Beide Gruppen brauchen unterschiedliche Gesprächsgerüste.',
+      'In Frage kommen Software- und IT-Dienstleister im Umfeld des Technologiezentrums sowie der produzierende Mittelstand und seine technischen Dienstleister. Der Anlass für ein Gespräch ist in beiden Gruppen ein anderer: hier der Wachstumsschritt, dort die Investition oder die Instandhaltung.',
     leitbranchen: ['Software und IT', 'Logistik', 'Maschinenbau', 'Versicherungen'],
   },
   frankfurt: {
     marktText:
-      'Frankfurt ist der Finanzplatz des Kontinents, und das verändert die Akquise messbar: Compliance-Anforderungen, dokumentierte Beschaffungsprozesse und ein hoher Anteil internationaler Entscheider prägen selbst mittelständische Zulieferer. Daneben steht ein Rhein-Main-Umland mit klassischem Mittelstand und einer der dichtesten Logistikstrukturen Europas.',
+      'Frankfurt ist ein bedeutender Finanzplatz Europas. Compliance-Anforderungen und formalisierte Beschaffungsprozesse prägen dort auch viele mittelständische Zulieferer; daneben steht ein Rhein-Main-Umland mit klassischem Mittelstand und viel Logistik.',
     zielgruppenText:
-      'Unser Schwerpunkt liegt auf Beratungs-, IT- und Personaldienstleistern, die den Finanzsektor und die Logistik beliefern. Weil die Beschaffung hier häufig formalisiert ist, klären wir im Erstkontakt konsequent, wer freigibt und ob ein Lieferantenprozess durchlaufen werden muss.',
+      'In Frage kommen Beratungs-, IT- und Personaldienstleister, die den Finanzsektor und die Logistik beliefern. Weil die Beschaffung dort häufig formalisiert ist, ist vorab zu klären, wer freigibt und ob ein Lieferantenprozess zu durchlaufen ist.',
     leitbranchen: ['Finanzdienstleistung', 'IT und Rechenzentren', 'Logistik und Luftfracht', 'Beratung'],
   },
   muenchen: {
     marktText:
-      'München verbindet Konzernzentralen, eine sehr aktive Technologieszene und einen wohlhabenden Mittelstand im Umland. Der Wettbewerb um Aufmerksamkeit ist entsprechend hoch: Entscheider in München werden häufiger kalt angerufen als in jeder anderen von uns bearbeiteten Stadt, was den Anspruch an den ersten Satz erhöht.',
+      'München verbindet Konzernzentralen, eine aktive Technologieszene und einen wohlhabenden Mittelstand im Umland. Besonders viele Software- und IT-Unternehmen haben hier ihren Sitz.',
     zielgruppenText:
-      'Wir sprechen hier überwiegend Software- und SaaS-Anbieter, IT-Systemhäuser und spezialisierte Beratungen an. In dieser Zielgruppe ist ein recherchierter Anlass keine Kür, sondern die Voraussetzung dafür, dass das Gespräch über die Begrüßung hinauskommt.',
+      'In Frage kommen Software- und SaaS-Anbieter, IT-Systemhäuser und spezialisierte Beratungen. Ein Anruf braucht in dieser Zielgruppe einen erkennbaren Anlass, damit er über die Begrüßung hinauskommt.',
     leitbranchen: ['Software und SaaS', 'Automotive-Zulieferung', 'Versicherung', 'Medien'],
   },
   hamburg: {
     marktText:
-      'Hamburg lebt von Hafen, Handel und Medien. Der Außenhandel bringt eine Besonderheit mit: Viele Entscheider arbeiten in Zeitzonen ihrer Handelspartner, was die Erreichbarkeit nach hinten verschiebt. Dazu kommt eine große Zahl inhabergeführter Handelshäuser mit sehr kurzen Entscheidungswegen.',
+      'Hamburg lebt von Hafen, Handel und Medien. Dazu kommt eine große Zahl inhabergeführter Handelshäuser.',
     zielgruppenText:
-      'Wir rufen in Hamburg vor allem Handels-, Logistik- und Medienunternehmen sowie deren IT-Dienstleister an. In den klassischen Handelshäusern entscheidet häufig die Inhaberfamilie selbst – dort ist der Weg vom ersten Gespräch zur Entscheidung kürzer als überall sonst im Norden.',
+      'In Frage kommen Handels-, Logistik- und Medienunternehmen sowie deren IT-Dienstleister. In klassischen Handelshäusern entscheidet häufig die Inhaberfamilie selbst.',
     leitbranchen: ['Außenhandel', 'Logistik und Hafenwirtschaft', 'Medien und Verlage', 'Konsumgüter'],
   },
   berlin: {
     marktText:
-      'Berlin hat den größten Anteil junger Unternehmen unter allen deutschen Großstädten und zugleich einen stark öffentlich geprägten Sektor. Diese beiden Welten kaufen völlig unterschiedlich: schnelle, formlose Entscheidungen auf der einen Seite, langwierige Beschaffung auf der anderen.',
+      'Berlin hat viele junge Unternehmen und zugleich einen stark öffentlich geprägten Sektor. Beide Seiten beschaffen unterschiedlich: formloser und schneller auf der einen, formalisiert auf der anderen.',
     zielgruppenText:
-      'Unser Schwerpunkt liegt auf inhabergeführten Dienstleistern und Softwareunternehmen abseits des öffentlichen Sektors. In jungen Unternehmen ist die Ansprechperson oft nicht die Geschäftsführung, sondern die Fachbereichsleitung mit eigenem Budget – das erkennen wir im Erstgespräch, statt es vorauszusetzen.',
+      'In Frage kommen inhabergeführte Dienstleister und Softwareunternehmen abseits des öffentlichen Sektors. In jungen Unternehmen ist die Ansprechperson oft die Fachbereichsleitung mit eigenem Budget und nicht die Geschäftsführung.',
     leitbranchen: ['Software und Digitalwirtschaft', 'Kreativwirtschaft', 'Gesundheitswirtschaft', 'Öffentlicher Sektor'],
   },
   stuttgart: {
     marktText:
-      'Der Großraum Stuttgart hat die höchste Dichte an mittelständischen Zulieferern der Automobil- und Maschinenbauindustrie in Deutschland. Viele dieser Betriebe sind seit Generationen inhabergeführt, technisch führend und im Vertrieb bewusst zurückhaltend – ein Umfeld, in dem Sachlichkeit deutlich weiter trägt als jedes Verkaufsargument.',
+      'Der Großraum Stuttgart ist stark von mittelständischen Zulieferern der Automobil- und Maschinenbauindustrie geprägt. Viele dieser Betriebe sind seit Generationen inhabergeführt.',
     zielgruppenText:
-      'Wir sprechen im Ländle vor allem technische Dienstleister, Engineering-Büros und IT-Häuser an, die diese Zulieferer beliefern. Weil hier über Investitionszyklen entschieden wird, ist die Wiedervorlage mit Datum wichtiger als der schnelle Termin.',
+      'In Frage kommen technische Dienstleister, Engineering-Büros und IT-Häuser, die diese Zulieferer beliefern. Weil dort über Investitionszyklen entschieden wird, hat ein Gespräch häufig einen langen Vorlauf; eine Wiedervorlage mit Datum gehört dazu.',
     leitbranchen: ['Automobilzulieferung', 'Maschinenbau', 'Engineering-Dienstleistung', 'Messtechnik'],
   },
   hannover: {
     marktText:
-      'Hannover ist Messestadt, Versicherungsstandort und Zentrum eines flächigen niedersächsischen Mittelstands. Der Messebetrieb strukturiert das Geschäftsjahr spürbar: In den Wochen um die großen Industriemessen verschieben sich Prioritäten und Erreichbarkeiten im gesamten Umland.',
+      'Hannover ist Messestadt, Versicherungsstandort und Zentrum eines flächigen niedersächsischen Mittelstands. Der Messekalender gibt dem Geschäftsjahr vieler Unternehmen im Umland eine feste Struktur.',
     zielgruppenText:
-      'Wir rufen hier überwiegend Industriedienstleister, Versicherungsmakler und IT-Häuser an. Der Messekalender ist dabei ein doppelter Anlass: Vor der Messe geht es um Vorbereitung, danach um die Nachbearbeitung von Kontakten, für die intern selten Kapazität da ist.',
+      'In Frage kommen Industriedienstleister, Versicherungsmakler und IT-Häuser. Der Messekalender kann dabei ein Anlass sein: vor der Messe die Vorbereitung, danach die Nachbearbeitung der Kontakte.',
     leitbranchen: ['Messewirtschaft', 'Versicherung', 'Industriedienstleistung', 'Nutzfahrzeuge'],
   },
   leipzig: {
     marktText:
-      'Leipzig wächst seit Jahren schneller als der Bundesdurchschnitt, getragen von Logistik, Automobilfertigung und einer wachsenden Digitalwirtschaft. Viele Unternehmen befinden sich in der Phase, in der aus dem Gründerbetrieb eine Organisation wird – und genau in dieser Phase entsteht erstmals Bedarf an strukturierter Neukundengewinnung.',
+      'Leipzig wächst seit Jahren, getragen von Logistik, Automobilfertigung und einer wachsenden Digitalwirtschaft. Viele Unternehmen befinden sich in der Phase, in der aus dem Gründerbetrieb eine Organisation wird.',
     zielgruppenText:
-      'Unser Schwerpunkt liegt auf wachsenden Dienstleistern und IT-Unternehmen, bei denen die Geschäftsführung den Vertrieb bislang selbst gemacht hat. Der Anlass ist hier fast immer derselbe: Das Wachstum hat die Zeit aufgebraucht, die früher für Akquise da war.',
+      'In Frage kommen wachsende Dienstleister und IT-Unternehmen, bei denen die Geschäftsführung den Vertrieb bislang selbst gemacht hat. Ein häufiger Anlass ist, dass das Wachstum die Zeit für Akquise aufgebraucht hat.',
     leitbranchen: ['Logistik', 'Automobilfertigung', 'Digitalwirtschaft', 'Energie'],
   },
   dresden: {
     marktText:
-      'Dresden ist der bedeutendste Mikroelektronikstandort Europas. Um die Halbleiterfertigung hat sich ein Netz hochspezialisierter Zulieferer, Reinraum- und Messtechnikdienstleister gebildet, deren Zielmärkte fast durchweg international sind – die Akquise vor Ort betrifft daher oft nur die Zulieferkette, nicht den Endmarkt.',
+      'Dresden ist ein bedeutender Mikroelektronikstandort Europas. Um die Halbleiterfertigung hat sich ein Netz spezialisierter Zulieferer sowie Reinraum- und Messtechnikdienstleister gebildet, deren Zielmärkte häufig international sind.',
     zielgruppenText:
-      'Wir sprechen hier technische Dienstleister, Ingenieurbüros und IT-Unternehmen an, die die Halbleiter- und Forschungslandschaft beliefern. Diese Zielgruppe ist fachlich außerordentlich anspruchsvoll; wir qualifizieren am Telefon und beraten ausdrücklich nicht.',
+      'In Frage kommen technische Dienstleister, Ingenieurbüros und IT-Unternehmen, die die Halbleiter- und Forschungslandschaft beliefern. Am Telefon wird qualifiziert, fachlich beraten wird dort nicht.',
     leitbranchen: ['Mikroelektronik', 'Reinraumtechnik', 'Forschung', 'Softwareentwicklung'],
   },
   nuernberg: {
     marktText:
-      'Die Metropolregion Nürnberg verbindet klassische Industrie mit einem starken Markt für Automatisierungs- und Medizintechnik. Fürth, Erlangen und Nürnberg bilden dabei einen zusammenhängenden Wirtschaftsraum, in dem viele Zulieferbeziehungen über Jahrzehnte gewachsen sind – neue Anbieter kommen fast ausschließlich über einen konkreten Anlass hinein.',
+      'Die Metropolregion Nürnberg verbindet klassische Industrie mit einem starken Markt für Automatisierungs- und Medizintechnik. Fürth, Erlangen und Nürnberg bilden einen zusammenhängenden Wirtschaftsraum, in dem viele Zulieferbeziehungen über Jahrzehnte gewachsen sind.',
     zielgruppenText:
-      'Wir rufen hier vorwiegend technische Dienstleister, Automatisierungsspezialisten und IT-Systemhäuser an. Weil bestehende Lieferantenbeziehungen sehr stabil sind, arbeiten wir konsequent mit Vertragsenden und Investitionszyklen statt mit allgemeinem Interesse.',
+      'In Frage kommen technische Dienstleister, Automatisierungsspezialisten und IT-Systemhäuser. Wo Lieferantenbeziehungen lange bestehen, sind Vertragsenden und Investitionszyklen ein naheliegender Anlass.',
     leitbranchen: ['Automatisierungstechnik', 'Medizintechnik', 'Marktforschung', 'Logistik'],
   },
   bremen: {
     marktText:
-      'Bremen verbindet Hafenwirtschaft mit Luft- und Raumfahrt sowie einer bedeutenden Nahrungsmittelindustrie. Der Wirtschaftsraum ist überschaubar und gut vernetzt – was bedeutet, dass ein unsauber geführtes Akquisegespräch schneller die Runde macht als in jedem größeren Markt.',
+      'Bremen verbindet Hafenwirtschaft mit Luft- und Raumfahrt sowie einer bedeutenden Nahrungsmittelindustrie. Der Wirtschaftsraum ist überschaubar und gut vernetzt.',
     zielgruppenText:
-      'Unser Schwerpunkt liegt auf technischen Dienstleistern und Zulieferern der Luftfahrt- und Lebensmittelbranche sowie auf IT-Häusern. In einem Markt dieser Größe arbeiten wir bewusst mit kleineren Listen und höherer Vorbereitung je Kontakt.',
+      'In Frage kommen technische Dienstleister und Zulieferer der Luftfahrt- und Lebensmittelbranche sowie IT-Häuser. In einem überschaubaren Markt lohnt sich eine gründliche Vorbereitung je Kontakt.',
     leitbranchen: ['Luft- und Raumfahrt', 'Hafenwirtschaft', 'Nahrungsmittelindustrie', 'Windenergie'],
   },
 }

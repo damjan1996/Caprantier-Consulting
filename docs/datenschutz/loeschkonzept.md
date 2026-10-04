@@ -26,7 +26,7 @@ festgelegten Ablauf, nicht nur eine Aussage in der Datenschutzerklärung.
 | Chat-Sitzungen ohne Kontaktdaten | PostgreSQL, `chat_sessions` | 90 Tage ab Erstellung | Täglicher Lauf von `/api/cron/cleanup-chats` |
 | Chat-Sitzungen mit Kontaktdaten | PostgreSQL, `chat_sessions` | 365 Tage ab Erstellung | Derselbe Lauf |
 | Chatnachrichten | PostgreSQL, `chat_messages` | Mit der Sitzung | `onDelete: Cascade` |
-| Kontaktanfragen | E-Mail-Postfach | Nach Abschluss der Anfrage, spätestens _(Frist festlegen)_ | Manuell, siehe Abschnitt 3 |
+| Kontaktanfragen | E-Mail-Postfach | Nach Abschluss der Anfrage, spätestens 6 Monate nach der letzten Nachricht, wenn daraus kein Auftrag wurde _(Entscheidung vom 04.10.2026, rechtliche Prüfung offen)_ | Manuell, siehe Abschnitt 3 |
 | Anfragen, die zu einem Vertrag geführt haben | E-Mail-Postfach und Buchhaltung | 6 beziehungsweise 10 Jahre nach §§ 257 HGB, 147 AO | Gesetzliche Aufbewahrung |
 | Server-Logs | Vercel | _(zu ermitteln)_ | Automatisch durch den Anbieter |
 | Terminbuchungen | Calendly | _(zu ermitteln)_ | Automatisch nach Kontoeinstellung |

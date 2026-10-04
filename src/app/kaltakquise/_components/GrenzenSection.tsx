@@ -27,7 +27,7 @@ const GRENZEN = [
   },
   {
     label: 'Gekaufte Adressen',
-    text: 'Keine Liste ohne dokumentierten Anlass je Kontakt. Die Beweislast für die mutmaßliche Einwilligung liegt beim werbenden Unternehmen, nicht beim Adresshändler.',
+    text: 'Keine Liste ohne erkennbaren Anlass. Die Beweislast für die mutmaßliche Einwilligung liegt beim werbenden Unternehmen, nicht beim Adresshändler.',
   },
   {
     label: 'Vorgetäuschte Vorwahl',

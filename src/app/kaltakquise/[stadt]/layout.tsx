@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = `Kaltakquise Agentur ${city.name} – Telefonakquise | Carpantier`
-  const description = `Kaltakquise in ${city.name}: Termine mit Entscheidern, telefonisch nach § 7 UWG und mit dokumentiertem Anlass je Kontakt. Leitbranche: ${acquisition.leitbranchen[0]}.`
+  const description = `Kaltakquise in ${city.name}: Termine mit Entscheidern, telefonisch nach § 7 UWG und mit erkennbarem Anlass. Leitbranche: ${acquisition.leitbranchen[0]}.`
   const url = `${businessInfo.website}/kaltakquise/${city.slug}`
 
   return {
