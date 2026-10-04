@@ -15,9 +15,8 @@ import styles from './kaltakquise.module.css'
  * Bildschirmhöhe und gibt den Weg nach unten frei.
  *
  * Rechts steht kein Porträt und kein Stadtbild, sondern das Schaubild des
- * Abschnitts: die vier Angaben, die zu jedem Kontakt festgehalten werden. Die
- * Seite behauptet, dass jeder Anruf einen dokumentierten Anlass hat — dann
- * soll sie die Dokumentation zeigen (Designleitfaden § 7).
+ * Abschnitts: die zwei Angaben, die vor jedem Anruf feststehen. Mehr behauptet
+ * die Seite über ihren Ablauf nicht.
  *
  * Die Merkmalszeile nennt dieselben Zahlen wie Startseite und Leistungsseite:
  * fünf Kunden pro Monat, erste Termine in vierzehn Tagen. Zwei Fassungen
@@ -25,29 +24,19 @@ import styles from './kaltakquise.module.css'
  */
 
 /**
- * Was zu jedem Kontakt festgehalten wird.
+ * Was vor dem Anruf feststeht.
  *
- * Bewusst ohne Beispielzahlen und ohne Beispielquote: Vier Protokollzeilen mit
- * einem Termin darin behaupten eine Trefferquote, die niemand zugesagt hat.
- * Die Liste zeigt stattdessen, **was** dokumentiert wird — das ist die
- * Aussage, an der die Rechtmäßigkeit des Anrufs hängt.
+ * Bewusst ohne Beispielzahlen und ohne Beispielquote. Die Liste nennt, **was**
+ * geklärt ist — das ist die Aussage, an der die Rechtmäßigkeit des Anrufs hängt.
  */
 const DOKUMENTATION = [
   {
     label: 'Auswahlkriterium',
-    text: 'Warum dieses Unternehmen und warum jetzt – festgehalten vor dem ersten Wählversuch.',
+    text: 'Warum dieses Unternehmen und warum jetzt – vor dem ersten Wählversuch geklärt.',
   },
   {
     label: 'Rolle',
     text: 'Wer entscheidet, wird vorab geprüft und nicht aus dem Impressum geraten.',
-  },
-  {
-    label: 'Wählversuch',
-    text: 'Uhrzeit und Ergebnis, jeder einzelne – auch die, bei denen niemand abnimmt.',
-  },
-  {
-    label: 'Widerspruch',
-    text: 'Wird gesperrt und gesperrt gehalten, nicht gelöscht. Gelöschte Kontakte ruft man erneut an.',
   },
 ]
 
@@ -112,7 +101,7 @@ export default function StadtIntro({ city }: { city: City }) {
           >
             <span>Unverbindlich</span>
             <span className={styles.dot} aria-hidden="true" />
-            <span>Nur 5 Kunden pro Monat</span>
+            <span>Maximal 5 Kunden gleichzeitig</span>
             <span className={styles.dot} aria-hidden="true" />
             <span>Erste Termine in 14 Tagen</span>
           </div>
@@ -125,7 +114,7 @@ export default function StadtIntro({ city }: { city: City }) {
         >
           {/* Kein Symbol daneben: Ein Symbol gibt es nur als Marke einer
               Karte, nicht neben einer Beschriftung (Designleitfaden § 7). */}
-          <span className={styles.introDocHead}>Zu jedem Kontakt festgehalten</span>
+          <span className={styles.introDocHead}>Vor dem Anruf geklärt</span>
 
           <ul className={styles.introDocList}>
             {DOKUMENTATION.map((zeile) => (

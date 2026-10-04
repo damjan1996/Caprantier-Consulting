@@ -12,9 +12,9 @@ import styles from './stadt.module.css'
  * Mindestgröße kostet. Wer sich hier nicht wiederfindet, bucht kein Gespräch,
  * das ohnehin zu nichts führt (Textleitfaden § 1).
  *
- * Die drei Zahlen stehen so auch auf der Startseite und in den häufigen
- * Fragen — 14 Tage bis zum ersten Termin, drei Monate bis belastbare Zahlen,
- * rund 10.000 € Mindestwert je Kunde. Dieselbe Zahl heißt überall gleich
+ * Die drei Angaben stehen so auch auf der Startseite und in den häufigen
+ * Fragen — 14 Tage bis zu den ersten Terminvereinbarungen, drei Monate als
+ * empfohlene Mindestdauer, rund 10.000 € Mindestwert je Kunde. Dieselbe Zahl heißt überall gleich
  * (Textleitfaden § 6.2).
  *
  * Keine Bühne: Die drei gehören zum Vergleich nebeneinander.
@@ -22,13 +22,13 @@ import styles from './stadt.module.css'
 const POSTEN = [
   {
     zahl: '14 Tage',
-    label: 'Bis zum ersten Termin',
+    label: 'Bis zu ersten Terminvereinbarungen',
     text: 'Kick-off, Liste und Gesprächsgerüst brauchen Zeit. Die ersten Anrufe laufen in der Regel nach 10–14 Tagen.',
   },
   {
     zahl: '3 Monate',
-    label: 'Bis die Zahlen tragen',
-    text: 'Vorher ist jede Quote eine Momentaufnahme. Kürzere Zusammenarbeit empfehlen wir deshalb nicht.',
+    label: 'Empfohlene Mindestdauer',
+    text: 'Ein Pilot lässt sich oft erst nach etwa zwei Monaten bewerten, weil nicht alle Termine innerhalb der ersten 30 Tage stattfinden. Eine feste Quote versprechen wir nicht.',
   },
   {
     zahl: '10.000 €',
@@ -62,7 +62,7 @@ export default function AufwandSection() {
             data-fade-in=""
             style={{ '--rd': '0.16s' } as React.CSSProperties}
           >
-            Setup braucht 14 Tage, belastbare Zahlen drei Monate.
+            Setup braucht 14 Tage, die Bewertung eines Piloten oft zwei Monate.
           </h2>
 
           <p

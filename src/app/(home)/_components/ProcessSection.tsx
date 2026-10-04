@@ -13,7 +13,7 @@ import styles from './home.module.css'
  *
  * Die Aufwandsbalken sind der eigentliche Inhalt: Der häufigste stille Einwand
  * lautet nicht „zu teuer“, sondern „dafür habe ich keine Zeit“. Zwei Gespräche,
- * danach null Eigenaufwand — das steht als Balken in jeder Karte, und der
+ * danach ein sehr geringer, abgestimmter Aufwand — das steht als Balken in jeder Karte, und der
  * Balken läuft erst an, wenn seine Karte vorne steht.
  *
  * Die Schritte kommen aus `src/content/home.ts`, weil dieselben Angaben als
@@ -85,7 +85,7 @@ export default function ProcessSection() {
 
   /*
    * Zählt von 3 auf 8 und bleibt dann auf der Spanne „3–8“ stehen — dieselbe
-   * Zahl, die oben im Einstieg versprochen wird. Anlass ist die letzte Karte,
+   * Zahl, die oben im Einstieg als Erfahrungswert steht. Anlass ist die letzte Karte,
    * nicht das Einblenden des Abschnitts: Vorher lief der Zähler ab, während
    * man noch beim ersten Schritt stand.
    */
@@ -137,15 +137,15 @@ export default function ProcessSection() {
                 data-fade-in=""
                 style={{ '--rd': '0.08s' } as React.CSSProperties}
               >
-                Vier Schritte. Weniger als 90 Minuten Ihrer Zeit.
+                Vier Schritte. Danach übernehmen wir, mit wenig Aufwand für Sie.
               </h2>
               <p
                 className={`${styles.lead} ${styles.reveal} ${isIn ? styles.revealIn : ''}`}
                 data-fade-in=""
                 style={{ '--rd': '0.16s' } as React.CSSProperties}
               >
-                Zwei Gespräche mit Ihnen, dann übernehmen wir. Die ersten qualifizierten Termine
-                stehen in der Regel innerhalb von 14 Tagen in Ihrem Kalender.
+                Zwei Gespräche mit Ihnen, dann übernehmen wir. Erste Terminvereinbarungen sind in
+                der Regel innerhalb von 14 Tagen möglich, garantieren können wir sie nicht.
               </p>
 
               {/* Der Satz beantwortet den stillen Einwand „worauf lasse ich
@@ -215,7 +215,7 @@ export default function ProcessSection() {
                         <div className={styles.procCardTop}>
                           <span className={styles.procPhase}>{step.phase}</span>
                           <span
-                            className={`${styles.procEffort} ${step.effortIsFree ? styles.procEffortFree : ''}`}
+                            className={styles.procEffort}
                           >
                             {step.effort}
                           </span>
@@ -233,7 +233,7 @@ export default function ProcessSection() {
                             <span ref={countRef} className={styles.procCountValue}>
                               3
                             </span>
-                            <span className={styles.procCountLabel}>Termine pro Woche</span>
+                            <span className={styles.procCountLabel}>Termine pro Woche, Erfahrungswert</span>
                           </div>
                         ) : (
                           <div className={styles.procEffortMeter}>

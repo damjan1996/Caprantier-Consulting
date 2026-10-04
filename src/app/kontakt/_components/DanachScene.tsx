@@ -31,11 +31,11 @@ const STATIONEN = [
     grund: 'Grundsatz der Datenminimierung, Art. 5 Abs. 1 lit. c DSGVO. Der Versand läuft über unseren Auftragsverarbeiter Brevo.',
   },
   {
-    wann: 'Innerhalb eines Werktags',
+    wann: 'In der Regel innerhalb eines Werktags',
     titel: 'Eine Antwort kommt',
     text: 'Auch dann, wenn wir absagen. Passt die Anfrage, schlagen wir 15 Minuten im Kalender vor; passt sie nicht, schreiben wir, woran es liegt. Eine Anfrage unbeantwortet liegen zu lassen, ist die unhöflichste Form der Absage.',
     grundLabel: 'Woran Sie uns messen',
-    grund: 'Ein Werktag, Montag bis Freitag. Länger dauert es nur, wenn der Monat voll ist – dann steht genau das in der Antwort.',
+    grund: 'In der Regel ein Werktag, Montag bis Freitag. Länger dauert es, wenn gerade alle fünf Plätze belegt sind – dann steht genau das in der Antwort.',
   },
   {
     wann: 'Wenn die Anfrage erledigt ist',

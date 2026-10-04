@@ -69,9 +69,9 @@ export default function MarktScene({
       kind: 'Das Zeitfenster',
       Marke: Clock,
       titel: 'Wann wir anrufen',
-      text: acquisition.erreichbarkeit,
+      text: 'Nach unserer Erfahrung ist der Zeitraum zwischen 9 und 11 Uhr branchenübergreifend häufig gut geeignet. Das ist ein Erfahrungswert und keine statistisch belegte Regel: Wann jemand ans Telefon geht, hängt an der Rolle und am Betrieb, nicht an der Stadt.',
       tags: null,
-      note: 'Mehr als eine Ausgangshypothese ist das nicht: Die Anrufblöcke verschieben sich dorthin, wo tatsächlich abgenommen wird.',
+      note: null,
     },
   ]
 

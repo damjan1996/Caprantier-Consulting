@@ -105,7 +105,6 @@ function generateCityJsonLd(city: City) {
           opens: '09:00',
           closes: '18:00',
         },
-        priceRange: '€€€',
       },
       {
         '@type': 'Service',

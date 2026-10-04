@@ -67,7 +67,7 @@ Gefärbt wird damit genau viererlei:
 |---|---|
 | die Hauptschaltfläche eines Abschnitts | „Erstgespräch buchen" |
 | der gefüllte Teil einer Fortschritts- oder Mengenanzeige | Bühnenlinie, Aufwandsbalken, Kalenderblöcke |
-| eine Auszeichnung, die eine Zusage trägt | `Kein Eigenaufwand`, der gesetzte Haken, `Kunde` |
+| eine Auszeichnung, die eine Zusage trägt | der gesetzte Haken |
 | ein Symbolfeld als Marke einer Karte | das 40-px-Feld der Referenzkarten |
 
 Die letzten beiden laufen über `--accent-soft` als Fläche mit `--accent` als
@@ -316,8 +316,8 @@ etwas, das die Seite ohnehin behauptet:
 | Problem | Balkendiagramm, das erst steigt und dann versiegt | die verzögerte Wirkung |
 | Ablauf | Karten, die durch drei Stufen laufen | die Qualifizierung |
 | Am Telefon | Gesprächsanzeige mit Uhr und Haken | ein Anruf in fünf Minuten |
-| Prozess | Aufwandsbalken je Schritt | „weniger als 90 Minuten" |
-| Ergebnisse | Fallkarten, einzeln | die Zahlen |
+| Prozess | Aufwandsbalken je Schritt | „sehr geringer Aufwand" |
+| Ergebnisse | entfällt | – |
 | Abschluss | dieselbe Woche wie im Einstieg, die sich füllt | das Ergebnis |
 
 Die Regeln dahinter:
@@ -697,7 +697,7 @@ aus § 9 erlaubt, alle an `/referenzen` erprobt:
 | **Mechanik weglassen, wenn der Anlass fehlt** | keine Bühne, keine Leiste — weil es einen Eintrag gibt, nicht neun |
 | **Ein Bauteil erfinden, das nur diese Seite braucht** | das Register (zwei Spalten, senkrechte Linie) und die gestrichelte Vorlage |
 | **Die Scroll-Bindung anders auswerten** | das Register schreibt sich, statt dass eine Bühne klebt (§ 8.1) |
-| **Eine Zeile umwidmen statt neu erfinden** | aus der Merkmalszeile („Unverbindlich · Nur 5 Kunden pro Monat") wird ein Zählerstreifen: 0 freigegebene Fallstudien · 1 Blindmuster · nicht im Index |
+| **Eine Zeile umwidmen statt neu erfinden** | aus der Merkmalszeile („Unverbindlich · Maximal 5 Kunden gleichzeitig") wird ein Zählerstreifen: 0 freigegebene Fallstudien · 1 Blindmuster · nicht im Index |
 | **Dieselbe Regel mit umgekehrtem Ergebnis anwenden** | auf der Stadtseite fällt das Porträt weg, auf `/ueber-uns` trägt es den Einstieg — beide Male, weil das Schaubild zeigen soll, was die Seite behauptet (§ 7) |
 
 Die Probe: **Lässt sich die Abweichung in einem Satz aus dem Inhalt

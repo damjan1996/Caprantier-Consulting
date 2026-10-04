@@ -16,11 +16,12 @@ import type { BlogPost } from '@/lib/blog-types'
 //
 // Jede Zahl darin hat eine Quelle im Repository: die Marktspannen aus der
 // FAQ-Antwort unten und `src/content/pricing.ts`, die Einarbeitungswochen aus
-// `vertriebsteam-aufbauen-recruiting.ts`, Erstgespräch, Kick-off, Anlauf und
-// „weniger als 90 Minuten“ aus `src/content/home.ts`, Pilotkontingent,
-// wöchentlicher Abgleich und „belastbare Quote ab etwa acht Wochen“ aus
-// `src/content/pricing.ts`. Ändert sich eine davon dort, ist sie hier
-// nachzuziehen.
+// `vertriebsteam-aufbauen-recruiting.ts`, Erstgespräch, Kick-off und Anlauf
+// aus `src/content/home.ts`, Pilotkontingent und Pilotdauer („oft erst nach
+// etwa zwei Monaten vollständig bewertbar“) aus `src/content/pricing.ts`.
+// Ändert sich eine davon dort, ist sie hier nachzuziehen. Seit dem 04.10.2026
+// stehen hier weder „30 Minuten pro Woche“ noch „belastbare Quote ab acht
+// Wochen“ noch ein fester Stundenumfang.
 //
 // Das Rechenbeispiel vergleicht beide Seiten gleich: Kosten je Termin, die
 // Lernphase jeweils eingeschlossen. Eine erste Fassung zählte beim eigenen
@@ -69,7 +70,7 @@ export const vertriebAuslagernKostenVorteile: BlogPost = {
     {
       question: 'Was kostet es, den Vertrieb auszulagern?',
       answer:
-        'Der Markt für B2B-Kaltakquise im DACH-Raum bewegt sich überwiegend zwischen etwa 2.000 und 8.000 Euro monatlich, je nach Umfang; pro qualifiziertem Entscheidertermin werden Größenordnungen um 300 Euro genannt. Vollservice-Mandate mit Strategie, Reporting und mehreren Kampagnen liegen darüber. Der Preis hängt vor allem an der Zahl der wöchentlichen Akquisestunden, nicht an der Branche.',
+        'Der Markt für B2B-Kaltakquise im DACH-Raum bewegt sich überwiegend zwischen etwa 2.000 und 8.000 Euro monatlich, je nach Umfang; pro qualifiziertem Entscheidertermin werden Größenordnungen um 300 Euro genannt. Vollservice-Mandate mit Strategie, Reporting und mehreren Kampagnen liegen darüber. Der Preis hängt vor allem an der Zahl der wöchentlichen Akquisestunden, nicht an der Branche. Das sind Orientierungswerte aus Googles KI-Übersicht (Abruf am 10.09.2026), keine repräsentative Marktstatistik und keine Preise von Carpantier Consulting.',
     },
     {
       question: 'Was ist SDR as a Service?',
@@ -104,7 +105,7 @@ Die Frage "Was kostet es, den Vertrieb auszulagern?" hat keine einzelne Antwort,
 
 Für ausgelagerte B2B-Telefonakquise im DACH-Raum nennt Googles KI-Übersicht überwiegend 2.000 bis 8.000 Euro im Monat, je nach Umfang, und Größenordnungen um 300 Euro je qualifiziertem Termin. Vollservice-Mandate mit Strategie, Reporting und mehreren Kampagnen liegen darüber.
 
-Das sind Marktspannen, keine Angebote. Wo ein Preis darin liegt, entscheiden drei Größen: der Umfang – wöchentliche Akquisestunden oder vereinbarte Termine –, das Abrechnungsmodell und die Frage, wer das Ergebnisrisiko trägt. Aussagekräftig wird jede dieser Zahlen erst neben der Gegenrechnung: Was kostet dieselbe Arbeit im eigenen Haus?
+Das sind Orientierungswerte (Abruf am 10.09.2026), keine repräsentative Marktstatistik und keine Angebote von uns. Wo ein Preis darin liegt, entscheiden drei Größen: der Umfang – wöchentliche Akquisestunden oder vereinbarte Termine –, das Abrechnungsmodell und die Frage, wer das Ergebnisrisiko trägt. Aussagekräftig wird jede dieser Zahlen erst neben der Gegenrechnung: Was kostet dieselbe Arbeit im eigenen Haus?
 
 ## Die vier Abrechnungsmodelle
 
@@ -154,7 +155,7 @@ Vollständig sieht der Vergleich zwischen einem eigenen [Sales Development Repre
 | Lohnnebenkosten | Arbeitgeberanteil zur Sozialversicherung, rund ein Fünftel des Bruttogehalts | entfallen |
 | Werkzeuge | Arbeitsplatz, Telefonie, CRM-Lizenz ab Tag 1, unabhängig von Produktivität | bringt der Dienstleister mit |
 | Anlaufzeit | Stellenbesetzung, dann Einarbeitung – eigene Termine frühestens ab Woche 5 | erste Anrufe nach 10 bis 14 Tagen |
-| Führungszeit | Einarbeitung, Begleitung am Telefon, wöchentliche Auswertung | Kick-off, bei laufender Akquise ein wöchentlicher Abgleich |
+| Führungszeit | Einarbeitung, Begleitung am Telefon, wöchentliche Auswertung | Kick-off, bei laufender Akquise ein regelmäßiger Abgleich |
 | Urlaub, Krankheit | Akquise pausiert vollständig | Sache des Dienstleisters – nach der Vertretung fragen |
 | Fluktuation | Recruiting und Einarbeitung beginnen von vorn | trägt der Dienstleister |
 
@@ -170,15 +171,15 @@ Ein Rechenbeispiel mit einem angenommenen Gehalt wäre schnell gemacht – und g
 
 **Eigener SDR.** Nach dem Einarbeitungsplan aus dem Beitrag zum Vertriebsteam hört eine neue Kraft in den Wochen 1 und 2 zu, telefoniert in den Wochen 3 und 4 begleitet, vereinbart ab Woche 5 erste eigene Termine und trägt ab Woche 9 Ergebnisverantwortung. Bezahlt werden alle 13 Wochen des Quartals, eigene Termine entstehen in höchstens neun davon. Dazu kommen die Kosten der Stellenbesetzung und die Zeit der Geschäftsführung für Begleitung und Auswertung.
 
-**Vertriebsoutsourcing bei uns.** Der Anlauf kostet Sie weniger als 90 Minuten: ein Erstgespräch von 15 Minuten und einen Kick-off von 45 bis 60 Minuten. Die ersten Anrufe laufen in der Regel nach 10 bis 14 Tagen; bei laufender Akquise kommt ein wöchentlicher Abgleich von 30 Minuten dazu. Eine Lernphase gibt es auch hier – die ersten Wochen kalibrieren Liste, Einstieg und Einwände, eine belastbare Quote entsteht erst ab etwa acht Wochen. Wer sie bezahlt, hängt am Modell: Wird nach Terminen abgerechnet, trägt sie der Dienstleister.
+**Vertriebsoutsourcing bei uns.** Der Anlauf kostet Sie ein Erstgespräch von 15 Minuten und einen Kick-off von 45 bis 60 Minuten. Die ersten Anrufe laufen in der Regel nach 10 bis 14 Tagen; bei laufender Akquise kommen Abstimmungen und Berichte dazu, deren Umfang wir mit Ihnen vereinbaren. Eine Lernphase gibt es auch hier – die ersten Wochen kalibrieren Liste, Einstieg und Einwände, und ein Pilot lässt sich oft erst nach etwa zwei Monaten bewerten. Wer sie bezahlt, hängt am Modell: Wird nach Terminen abgerechnet, trägt sie der Dienstleister.
 
 | Erstes Quartal, 13 Wochen | Eigener SDR | Vertriebsoutsourcing bei uns |
 |---|---|---|
 | Vor Woche 1 | Stelle ausschreiben und besetzen | Erstgespräch und Kick-off, zusammen unter 90 Minuten |
 | Erste eigene Anrufe | Woche 3, begleitet | nach 10 bis 14 Tagen |
-| Belastbare Zahlen | ab Woche 9, mit der Ergebnisverantwortung | ab etwa acht Wochen |
+| Belastbare Zahlen | ab Woche 9, mit der Ergebnisverantwortung | ein Pilot oft erst nach etwa zwei Monaten |
 | Wer die Lernphase bezahlt | Sie, mit 13 Wochen Vollkosten | im Terminmodell der Dienstleister |
-| Ihre Zeit | Begleitung und Auswertung, jede Woche | Anlauf unter 90 Minuten, bei laufender Akquise 30 Minuten pro Woche |
+| Ihre Zeit | Begleitung und Auswertung, jede Woche | Anlauf unter 90 Minuten, danach Abstimmungen nach Absprache |
 
 **Der Rechenweg für Ihre eigenen Zahlen:**
 
@@ -242,10 +243,10 @@ Drei Fälle, in denen keine Agentur hilft:
 
 ## So rechnen wir ab
 
-Anders als beim Stundenkontingent oben verkaufen wir in der Regel Termine, nicht Akquisestunden – das Ergebnisrisiko liegt dann bei uns. Drei Modelle stehen zur Wahl, jedes mit seiner Grenze:
+Anders als beim Stundenkontingent oben verkaufen wir Termine, nicht Akquisestunden – das Ergebnisrisiko liegt dann bei uns. Drei Modelle stehen zur Wahl, jedes mit seiner Grenze:
 
-- **Pilotprojekt:** ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat. Bezahlt werden dabei Termine, nicht die Kalibrierung. Ein Monat zeigt, ob die Zielgruppe trägt; eine belastbare Quote entsteht aber auch hier erst ab etwa acht Wochen.
-- **Laufende Akquise:** eine feste, schriftlich vereinbarte Terminzahl pro Monat, je nach Angebot stattdessen ein fester Stundenumfang. Sinnvoll erst, wenn intern jemand die Termine innerhalb weniger Tage wahrnehmen kann.
+- **Pilotprojekt:** ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat. Bezahlt werden dabei Termine, nicht die Kalibrierung. Ein Monat zeigt, ob die Zielgruppe trägt; weil nicht alle Termine innerhalb dieser 30 Tage stattfinden, lässt sich ein Pilot oft erst nach etwa zwei Monaten vollständig bewerten.
+- **Laufende Akquise:** eine feste, schriftlich vereinbarte Terminzahl pro Monat. Sinnvoll erst, wenn intern jemand die Termine innerhalb weniger Tage wahrnehmen kann.
 - **Pro qualifiziertem Termin:** abgerechnet nach stattgefundenen, nicht nach vereinbarten Terminen – auf Grundlage einer schriftlichen Definition des qualifizierten Termins vor Projektbeginn.
 
 Beträge stehen hier bewusst nicht: Wir verkaufen keine Standardpakete, deshalb variiert der Preis. Im Erstgespräch nennen wir Ihnen nach kurzer Analyse eine transparente Hausnummer. Die drei Modelle mit allem, was dazugehört, stehen auf der [Leistungsseite unter "Zusammenarbeit"](/leistungen#preise).

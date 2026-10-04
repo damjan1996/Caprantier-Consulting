@@ -86,7 +86,7 @@ export default function AbschlussSection() {
           <span className={styles.dot} aria-hidden="true" />
           <span>Direkt mit dem Gründer</span>
           <span className={styles.dot} aria-hidden="true" />
-          <span>Nur 5 Kunden pro Monat</span>
+          <span>Maximal 5 Kunden gleichzeitig</span>
         </div>
       </div>
     </section>

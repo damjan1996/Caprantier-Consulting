@@ -22,7 +22,7 @@ import styles from './kontakt.module.css'
  * „E-Mail“, „Standort“, „Erreichbarkeit“ und einen vierten Kasten „Schnelle
  * Antwort garantiert“. Das Wort „garantiert“ steht auf der Liste der Dinge,
  * die nie geschrieben werden (Textleitfaden § 10) — eine Zusage, die niemand
- * halten kann. Geblieben ist die Angabe selbst: ein Werktag.
+ * halten kann. Geblieben ist die Angabe selbst: in der Regel ein Werktag.
  */
 export default function WegeSection() {
   const { openCalendly, onHover } = useCalendly()
@@ -91,7 +91,7 @@ export default function WegeSection() {
           data-fade-in=""
           style={{ '--ry': '22px', '--rd': '0.32s' } as React.CSSProperties}
         >
-          <span className={styles.wegZeit}>Antwort in einem Werktag</span>
+          <span className={styles.wegZeit}>Antwort in der Regel in einem Werktag</span>
           <h3 className={styles.wegTitel}>Nachricht über das Formular</h3>
           <p className={styles.wegText}>
             Wenn Sie erst schreiben wollen. Fünf Felder, eines davon freiwillig. Was mit der

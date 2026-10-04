@@ -170,9 +170,8 @@ export default function MassstabSection() {
           data-fade-in=""
           style={{ '--rd': '0.38s' } as React.CSSProperties}
         >
-          Der letzte Punkt rechts ist keine Stilfrage, sondern § 5 UWG. An genau ihm ist die
-          frühere Fallstudienseite dieses Projekts gescheitert – sie stand mit erfundenen
-          Firmennamen und Kennzahlen im Suchindex und wurde entfernt.
+          Der letzte Punkt rechts ist keine Stilfrage, sondern § 5 UWG: Ein Firmenname neben
+          einer nicht freigegebenen Zahl wäre irreführend.
         </p>
       </div>
     </section>

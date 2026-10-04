@@ -83,7 +83,7 @@ export default function UebersichtIntro() {
       >
         <span>Unverbindlich</span>
         <span className={styles.dot} aria-hidden="true" />
-        <span>Nur 5 Kunden pro Monat</span>
+        <span>Maximal 5 Kunden gleichzeitig</span>
         <span className={styles.dot} aria-hidden="true" />
         <span>Erste Termine in 14 Tagen</span>
       </div>

@@ -136,7 +136,7 @@ export const industryPages: IndustryPage[] = [
       {
         question: 'Rufen Sie in unserem Namen an oder im eigenen?',
         answer:
-          'Beides ist möglich und wird vor Projektbeginn festgelegt. In Ihrem Namen anzurufen ist im Personalgeschäft meist sinnvoller, weil der Angerufene bei einer Recherche Ihr Unternehmen finden soll. Der Auftragsverarbeitungsvertrag nach Art. 28 DSGVO liegt in beiden Fällen vor dem ersten Anruf vor.',
+          'Wir rufen in Ihrem Namen an. Im Personalgeschäft ist das sinnvoll, weil der Angerufene bei einer Recherche Ihr Unternehmen finden soll. Der Auftragsverarbeitungsvertrag nach Art. 28 DSGVO liegt vor dem ersten Anruf vor.',
       },
       {
         question: 'Was kostet das?',
@@ -225,12 +225,12 @@ export const industryPages: IndustryPage[] = [
       {
         question: 'Sprechen Sie unsere Wettbewerber an?',
         answer:
-          'Nein. Zielgruppen, die wir für einen Auftraggeber bearbeiten, sind für die Dauer der Zusammenarbeit gesperrt. Wir arbeiten in einem regionalen Markt nicht gleichzeitig für zwei Systemhäuser mit demselben Zuschnitt.',
+          'Das vereinbaren wir im Einzelfall. Eine pauschale Sperre für die Dauer der Zusammenarbeit sagen wir nicht zu; welche Zielgruppen und Wettbewerber Sie ausschließen möchten, besprechen wir im Erstgespräch.',
       },
       {
         question: 'Wie lange dauert es bis zu den ersten Terminen?',
         answer:
-          'Die ersten Wochen dienen der Kalibrierung von Liste, Einstieg und Einwandbehandlung; belastbar wird eine Kampagne im IT-Umfeld ab etwa acht Wochen. Wer nach vier Wochen abbricht, hat ausschließlich die Lernphase bezahlt.',
+          'Die ersten Anrufe beginnen üblicherweise innerhalb von 10–14 Tagen nach Erstgespräch und Kick-off; erste Terminvereinbarungen innerhalb von 14 Tagen sind realistisch, aber nicht garantiert. Die ersten Wochen dienen der Kalibrierung von Liste, Einstieg und Einwandbehandlung, wer nach vier Wochen abbricht, hat ausschließlich die Lernphase bezahlt.',
       },
     ],
     relatedPosts: [

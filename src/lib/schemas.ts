@@ -50,7 +50,7 @@ function getCityFAQs(city: City) {
     },
     {
       question: `Wie läuft die Zusammenarbeit in ${city.name} an?`,
-      answer: `Zwei Gespräche mit Ihnen, dann übernehmen wir. Nach Kick-off und Setup starten wir in der Regel innerhalb von 10–14 Tagen mit den ersten Anrufen; die ersten qualifizierten Termine stehen oft in der zweiten Woche in Ihrem Kalender. Über den gesamten Prozess kostet Sie das weniger als 90 Minuten Ihrer Zeit.`,
+      answer: `Zwei Gespräche mit Ihnen, dann übernehmen wir. Die ersten Anrufe beginnen üblicherweise innerhalb von 10–14 Tagen nach Kick-off und Setup; erste Terminvereinbarungen innerhalb von 14 Tagen sind realistisch, eine Garantie ist das nicht. Ihr Aufwand bleibt gering und wird mit Ihnen abgestimmt: Manche Auftraggeber wünschen regelmäßige Gespräche, andere nur Berichte.`,
     },
     {
       question: `Was kostet eine Vertriebsagentur in ${city.name}?`,
@@ -186,9 +186,9 @@ export function generateHowToSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'B2B-Vertrieb auslagern — in vier Schritten zu wöchentlichen Entscheider-Terminen',
+    name: 'B2B-Vertrieb auslagern — in vier Schritten zu qualifizierten Entscheider-Terminen',
     description:
-      'Vom Erstgespräch bis zu wöchentlich 3–8 qualifizierten Terminen im eigenen Kalender. Der Ablauf einer Zusammenarbeit mit Carpantier Consulting.',
+      'Vom Erstgespräch bis zu den ersten qualifizierten Terminen im eigenen Kalender. Der Ablauf einer Zusammenarbeit mit Carpantier Consulting.',
     totalTime: 'P14D',
     estimatedCost: {
       '@type': 'MonetaryAmount',
@@ -400,7 +400,7 @@ export function getKaltakquiseFAQs(city: City, acquisition: CityAcquisition) {
     },
     {
       question: `Wann sind Entscheider in ${city.name} am besten erreichbar?`,
-      answer: `${acquisition.erreichbarkeit} Diese Zeitfenster sind ein Startpunkt: Wir protokollieren Uhrzeit und Ergebnis jedes Wählversuchs und richten die Anrufblöcke nach den tatsächlichen Verbindungsquoten Ihrer Zielgruppe aus.`,
+      answer: `Nach unserer Erfahrung ist der Zeitraum zwischen 9 und 11 Uhr branchenübergreifend häufig gut geeignet. Das ist ein Erfahrungswert und keine statistisch belegte Regel. Wann jemand ans Telefon geht, hängt an der Rolle und am Betrieb, nicht an der Stadt.`,
     },
     {
       question: `Rufen Sie in ${city.name} vor Ort an oder aus der Ferne?`,
@@ -408,7 +408,7 @@ export function getKaltakquiseFAQs(city: City, acquisition: CityAcquisition) {
     },
     {
       question: `Wie viele Termine sind in ${city.name} realistisch?`,
-      answer: `Das hängt an der Größe der Zielgruppe und am Angebot, nicht an der Stadt. Im Pilotprojekt vereinbaren wir ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat. Eine belastbare laufende Quote entsteht erst nach etwa acht Wochen, weil die ersten Wochen jeder Kampagne der Kalibrierung von Liste, Einstieg und Einwandbehandlung dienen.`,
+      answer: `Das hängt an der Größe der Zielgruppe und am Angebot, nicht an der Stadt. Im Pilotprojekt vereinbaren wir ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat. Nicht alle Termine liegen innerhalb dieser 30 Tage, deshalb lässt sich ein Pilot oft erst nach etwa zwei Monaten bewerten; die ersten Wochen jeder Kampagne dienen der Kalibrierung von Liste, Einstieg und Einwandbehandlung.`,
     },
   ]
 }

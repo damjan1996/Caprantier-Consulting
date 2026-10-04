@@ -134,7 +134,7 @@ export default function ClosingScene() {
                 <span className={styles.dot} aria-hidden="true" />
                 <span>Direkt mit dem Gründer</span>
                 <span className={styles.dot} aria-hidden="true" />
-                <span>Nur 5 Kunden pro Monat</span>
+                <span>Maximal 5 Kunden gleichzeitig</span>
               </div>
 
               <span className={styles.sceneRail} aria-hidden="true">

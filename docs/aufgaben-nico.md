@@ -6,6 +6,12 @@ Die Website ist umgebaut. Was jetzt noch fehlt, lässt sich nicht programmieren 
 es braucht Firmendaten, Identitätsnachweise, echte Projektzahlen und
 Geschäftsentscheidungen. Die Punkte stehen in der Reihenfolge ihrer Wirkung.
 
+> **Stand 04.10.2026:** § 0 und § 2b sind erledigt. Übrig sind ein Erfahrungswert („3–8 Termine pro Woche“) und ein
+> Zielwert („Terminquote 20–40 %“), beide mit dem Hinweis „keine Garantie“. Alle sechs Logos bleiben. Die Anschrift
+> stimmt, die Bezeichnung lautet „Inhaber“. Keine eigenen Preise, keine Stundenkontingente, Kapazität höchstens fünf
+> Kunden gleichzeitig. Offen: Profil-URLs, echte Fotos, Google-Unternehmensprofil. Die Abschnitte unten beschreiben
+> den Stand vom 10.09.2026.
+
 ---
 
 ## 0 · Kundenlogos auf der Startseite — **Freigabe schriftlich?**

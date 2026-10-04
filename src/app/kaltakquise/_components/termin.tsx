@@ -32,7 +32,7 @@ const VORAUSSETZUNGEN = [
   {
     when: 'Drittens',
     what: 'Kapazität für Termine',
-    detail: '3–8 Gespräche pro Woche wollen geführt werden. Wer die nicht führen kann, braucht keine Akquise.',
+    detail: 'Erfahrungsgemäß 3–8 Gespräche pro Woche wollen geführt werden. Wer die nicht führen kann, braucht keine Akquise.',
   },
 ]
 

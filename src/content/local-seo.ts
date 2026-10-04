@@ -64,7 +64,7 @@ export const businessInfo = {
   // Inhaber
   owner: {
     name: 'Nico-Luca Carpantier',
-    title: 'Geschäftsführer',
+    title: 'Inhaber',
     email: 'nico@carpantier-consulting.de',
   },
 

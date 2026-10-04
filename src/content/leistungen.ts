@@ -73,7 +73,7 @@ export const services: ServiceEntry[] = [
       'Vier Kennzahlen im Reporting statt zwanzig',
       'Absagegründe unverändert, nicht zusammengefasst',
       'Wiedervorlagen mit Datum und Anlass',
-      'Wöchentlicher Abgleich, 30 Minuten',
+      'Regelmäßiger Abgleich, im Umfang mit Ihnen abgestimmt',
     ],
   },
 ]

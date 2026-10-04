@@ -62,7 +62,6 @@ for (const city of cities) {
 for (const [slug, eintrag] of Object.entries(cityAcquisition)) {
   erfassen(eintrag.marktText, `city-acquisition/${slug}/marktText`)
   erfassen(eintrag.zielgruppenText, `city-acquisition/${slug}/zielgruppenText`)
-  erfassen(eintrag.erreichbarkeit, `city-acquisition/${slug}/erreichbarkeit`)
 }
 
 for (const industry of industryPages) {

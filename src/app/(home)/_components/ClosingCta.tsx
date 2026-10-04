@@ -247,7 +247,7 @@ export default function ClosingCta() {
                 <span className={styles.dot} aria-hidden="true" />
                 <span>Direkt mit dem Gründer</span>
                 <span className={styles.dot} aria-hidden="true" />
-                <span>Nur 5 Kunden pro Monat</span>
+                <span>Maximal 5 Kunden gleichzeitig</span>
               </div>
 
               <span className={styles.sceneRail} aria-hidden="true">
@@ -266,10 +266,10 @@ export default function ClosingCta() {
               <div
                 className={styles.ctaWeekBox}
                 role="img"
-                aria-label="Beispielhafte Woche zwei Wochen nach dem Start: sieben Termine, verteilt von Montag bis Freitag."
+                aria-label="Beispielhafte Woche mit sieben Terminen, verteilt von Montag bis Freitag. Keine Zusage."
               >
                 <div className={styles.ctaVisualHead}>
-                  <b>Ihre Woche in 14 Tagen</b>
+                  <b>Beispielwoche, keine Garantie</b>
                   <span className={styles.ctaCount}>
                     <span ref={countRef} className={styles.ctaCountValue}>
                       {TOTAL_SLOTS}

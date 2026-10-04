@@ -172,14 +172,13 @@ const jsonLd = {
         opens: '09:00',
         closes: '18:00',
       },
-      priceRange: '€€€',
       sameAs: [
         'https://www.linkedin.com/company/carpantier-consulting',
       ],
       founder: {
         '@type': 'Person',
         name: 'Nico-Luca Carpantier',
-        jobTitle: 'Geschäftsführer',
+        jobTitle: 'Inhaber',
       },
     },
     {

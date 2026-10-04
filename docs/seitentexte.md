@@ -27,7 +27,7 @@ Alles andere folgt daraus:
 | Regel | Statt |
 |---|---|
 | **Sie-Form, und der Kunde ist das Subjekt.** „Die ersten Termine stehen in **Ihrem** Kalender." | „Wir generieren Leads." |
-| **Eine Zahl schlägt jedes Adjektiv.** „3–8 Termine pro Woche", „weniger als 90 Minuten Ihrer Zeit" | „zahlreiche", „minimaler Aufwand" |
+| **Eine Zahl schlägt jedes Adjektiv.** „3–8 Termine pro Woche als Erfahrungswert", „höchstens fünf Kunden gleichzeitig" | „zahlreiche", „minimaler Aufwand" |
 | **Den Einwand zuerst nennen, dann beantworten.** „Kein Call-Center. Ihr externer Vertrieb – mit einem Gesicht." | den Einwand hoffen zu überhören |
 | **Sagen, was es kostet — auch an Zeit und Geduld.** „Setup braucht rund 14 Tage, planbare Zahlen drei Monate. Wer das nicht mitgeht, wird enttäuscht." | „schnelle Erfolge" |
 | **Kein Superlativ, kein Ausrufezeichen.** Auf der ganzen Startseite steht **kein einziges** Ausrufezeichen. | „der beste", „einzigartig", „revolutionär!" |
@@ -48,7 +48,7 @@ Längen sind an der Startseite gemessen, nicht geschätzt.
 | Teil | Rolle | Länge (gemessen) | Beispiel |
 |---|---|---|---|
 | **Etikett** | Wo bin ich? | 8–40 Zeichen, Mitte 17 | `Der Prozess` |
-| **Überschrift** | Die eine Aussage | 49–79 Zeichen, Mitte 60 | `Vier Schritte. Weniger als 90 Minuten Ihrer Zeit.` |
+| **Überschrift** | Die eine Aussage | 49–79 Zeichen, Mitte 60 | `Vier Schritte. Danach übernehmen wir, mit wenig Aufwand für Sie.` |
 | **Vorspann** | Löst die Überschrift ein | 108–180 Zeichen, 1–2 Sätze | `Zwei Gespräche mit Ihnen, dann übernehmen wir. Die ersten qualifizierten Termine stehen in der Regel innerhalb von 14 Tagen in Ihrem Kalender.` |
 | **Inhalt** | Die Einträge | Titel 8–61, Absatz 100–225 Zeichen | die vier Prozesskarten |
 | **Aufruf** | Der nächste Schritt | Knopf ≤ 25 Zeichen | `Schritt 1 starten` + `15 Min.` |
@@ -75,11 +75,11 @@ Drei Muster, alle auf der Startseite belegt:
 > Kein Call-Center. Ihr externer Vertrieb – mit einem Gesicht.
 > Wir passen nicht zu jedem. Das sagen wir Ihnen nach 15 Minuten.
 
-**B · Zahl im Satz.** Die Zahl ist das Versprechen, nicht die Zierde.
+**B · Zahl im Satz.** Die Zahl ist die Aussage, nicht die Zierde. Ist sie ein Erfahrungs- oder Zielwert, steht das dabei.
 
-> Vier Schritte. Weniger als 90 Minuten Ihrer Zeit.
+> Vier Schritte. Danach übernehmen wir, mit wenig Aufwand für Sie.
 > In 15 Minuten wissen Sie, ob wir Ihren Kalender füllen können.
-> Wöchentlich 3–8 Termine mit Entscheidern aus Ihrer Zielgruppe
+> Erfahrungsgemäß 3–8 Termine pro Woche mit Entscheidern aus Ihrer Zielgruppe
 
 **C · Konsequenz statt Merkmal.** Beschreibt, was passiert — nicht, was man tut.
 
@@ -90,7 +90,7 @@ Drei Muster, alle auf der Startseite belegt:
 Formale Regeln:
 
 - **Ein ganzer Satz mit Punkt**, kein Nominalstil. Nicht „Unser Prozess im
-  Überblick", sondern „Vier Schritte. Weniger als 90 Minuten Ihrer Zeit."
+  Überblick", sondern „Vier Schritte. Danach übernehmen wir, mit wenig Aufwand für Sie."
 - **Zwei kurze Sätze schlagen einen langen.** Der erste setzt, der zweite löst
   ein.
 - **Höchstens 79 Zeichen** — so lang ist die längste Überschrift der
@@ -111,7 +111,7 @@ darf spröde sein; es ist eine Ortsangabe, kein Werbetext.
 Ein bis zwei Sätze, die die Überschrift belegen — nicht umformulieren.
 
 > **Überschrift:** Wir passen nicht zu jedem. Das sagen wir Ihnen nach 15 Minuten.
-> **Vorspann:** Wir nehmen maximal fünf Kunden pro Monat auf. Deshalb prüfen wir
+> **Vorspann:** Wir betreuen maximal fünf Kunden gleichzeitig. Deshalb prüfen wir
 > vorher genau – auf beiden Seiten. Das spart Ihnen Geld und uns Gespräche, die
 > nirgendwo hinführen.
 
@@ -129,7 +129,7 @@ nur noch einmal sagt, wird gestrichen — dann trägt die Überschrift allein.
 | **Aufklapp-Zeile** | trägt den Inhalt, nicht den Aufruf — die 25 Zeichen gelten hier **nicht** | `Ist Kaltakquise per Telefon in Düsseldorf erlaubt?` |
 | **Hinweis in der Schaltfläche** | die Zeitangabe, sonst nichts | `15 Min.` |
 | **Begleittext daneben** | nimmt die Hürde | `Kostenlos, direkt mit dem Gründer` |
-| **Merkmalszeile** | drei Punkte, mit Trennpunkten | `Unverbindlich · Nur 5 Kunden pro Monat · Erste Termine in 14 Tagen` |
+| **Merkmalszeile** | drei Punkte, mit Trennpunkten | `Unverbindlich · Maximal 5 Kunden gleichzeitig · Erste Termine in 14 Tagen` |
 | **Fußnote am Schaubild** | sagt, was es *nicht* ist | `Beispielhafte Woche, keine echten Kundendaten` |
 | **Gegenprobe** | der beobachtbare Fall, in dem eine Zusage gebrochen ist — ein ganzer Satz, die 25 Zeichen gelten hier **nicht** | `Ein Zielkunde fragt Sie, wer denn diese Agentur gewesen sei, die da angerufen hat.` |
 | **Antwortzeit** | steht an jedem Weg, über den man uns erreicht, und ist eine Zusage — also nachprüfbar und ohne Verstärker | `Antwort in einem Werktag`, `Sofort buchbar`, `Montag bis Freitag, 9–18 Uhr` |
@@ -154,7 +154,7 @@ führen zum selben Ziel.
 | **90 Minuten** | Gesamtaufwand über den ganzen Prozess | Prozessüberschrift |
 | **3 Monate** | empfohlene Zusammenarbeit | Prozess, FAQ |
 | **10.000 €** | Mindest-Kundenwert | „Passt das?", FAQ |
-| **87 % / 35 %** | Entscheider-Quote / Abschlussquote | `PROOF` im Einstieg |
+| **3–8 / 20–40 %** | Termine pro Woche (Erfahrungswert) / Terminquote (Zielwert), jeweils mit „keine Garantie" | `PROOF` im Einstieg |
 
 ### 6.2 Die Regeln dazu
 
@@ -202,6 +202,10 @@ wörtlich in `homeFaqs` und ist die einzige freigegebene Fassung:
 > vorliegt […] (§ 7 Abs. 2 Nr. 1 UWG). […] Datenschutzrechtlich stützen wir uns
 > auf das berechtigte Interesse (Art. 6 Abs. 1 lit. f DSGVO) […] Privatpersonen
 > rufen wir grundsätzlich nicht an.
+
+**Stand 04.10.2026:** Der Satz zum Widerspruch in `homeFaqs` lautet „informieren transparent und beachten jeden
+Widerspruch – wer nicht angerufen werden möchte, wird nicht mehr angerufen“ (vorher „dokumentieren jeden Widerspruch“).
+Der Wortlaut in `homeFaqs` gilt, bis ihn eine anwaltliche Prüfung ändert. Diese Prüfung steht noch aus.
 
 Dazu **immer** der Hinweis darunter:
 
@@ -302,7 +306,7 @@ wenn nicht, fehlt der Gedanke, nicht das Wort.
 | Ein konkretes Datum in einem Schaubild („KW 38") | veraltet ab dem Tag nach dem Deployment |
 | „Garantiert", „100 %", „in nur X Tagen" | Zusagen, die niemand halten kann. Stand bis zum 16.09.2026 als „Schnelle Antwort garantiert" auf `/kontakt`; geblieben ist die Angabe ohne das Wort — ein Werktag |
 | Adresse oder Telefonnummer im Fließtext | gehört in `businessInfo`, sonst laufen die Angaben auseinander |
-| Dringlichkeit ohne Grund („nur noch heute") | die Seite hat einen echten Grund: fünf Kunden pro Monat |
+| Dringlichkeit ohne Grund („nur noch heute") | die Seite hat einen echten Grund: höchstens fünf Kunden gleichzeitig |
 
 ---
 

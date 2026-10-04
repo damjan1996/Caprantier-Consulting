@@ -48,8 +48,9 @@ export default function BranchenIntro() {
           data-fade-in=""
           style={{ '--rd': '0.16s' } as React.CSSProperties}
         >
-          Für zwei Märkte, die wir besonders gut kennen, gibt es ein eigenes Vorgehen – von der
-          Auswahl der Zielunternehmen bis zu den Fragen, die vor einem Termin geklärt sind.
+          Für zwei Märkte, in denen wir Erfahrung mit der telefonischen Terminvereinbarung haben,
+          gibt es ein eigenes Vorgehen – von der Auswahl der Zielunternehmen bis zu den Fragen, die
+          vor einem Termin geklärt sind.
         </p>
       </div>
 
@@ -77,7 +78,7 @@ export default function BranchenIntro() {
       >
         <span>Unverbindlich</span>
         <span className={styles.dot} aria-hidden="true" />
-        <span>Nur 5 Kunden pro Monat</span>
+        <span>Maximal 5 Kunden gleichzeitig</span>
         <span className={styles.dot} aria-hidden="true" />
         <span>Erste Termine in 14 Tagen</span>
       </div>

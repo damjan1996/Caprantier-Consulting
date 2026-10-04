@@ -29,7 +29,7 @@ import styles from './ueber-uns.module.css'
 const ZUSAGEN = [
   {
     titel: 'Ihr Erstgespräch und Ihren Kick-off führt der Gründer selbst.',
-    text: 'Sie sprechen von der ersten Minute mit dem, der die Verantwortung trägt. Telefoniert wird danach im Team – wer das ist und wie der Einstieg klingt, legen wir im Kick-off gemeinsam fest.',
+    text: 'Sie sprechen von der ersten Minute mit dem, der die Verantwortung trägt. Wer danach anruft und wie der Einstieg klingt, legen wir im Kick-off gemeinsam fest.',
     probe: 'Sie sitzen im Erstgespräch jemandem gegenüber, der Sie anschließend weiterreicht.',
   },
   {

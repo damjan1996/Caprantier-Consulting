@@ -66,8 +66,8 @@ export default function ZuschnittSection() {
             data-fade-in=""
             style={{ '--rd': '0.22s' } as React.CSSProperties}
           >
-            Eine Branchenseite entsteht erst, wenn wir in diesem Markt genug Gespräche geführt
-            haben, um etwas zu sagen, das nicht für jeden gilt. Für zwei Märkte ist das der Fall.
+            Eine Branchenseite entsteht erst, wenn wir in diesem Markt Erfahrung haben, die nicht
+            für jeden gilt. Für zwei Märkte ist das der Fall.
             Alle anderen bekommen keine eigene Seite, sondern dasselbe Vorgehen ohne Etikett.
           </p>
         </div>

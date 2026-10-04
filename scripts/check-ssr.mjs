@@ -114,7 +114,7 @@ if (koeln) {
 }
 
 if (koelnAkquise) {
-  const felder = ['marktText', 'zielgruppenText', 'erreichbarkeit']
+  const felder = ['marktText', 'zielgruppenText']
     .filter((f) => typeof koelnAkquise[f] === 'string' && koelnAkquise[f].length > 80)
     .map((f) => ({ was: `Ortstext (${f})`, text: ausschnitt(koelnAkquise[f]) }))
 

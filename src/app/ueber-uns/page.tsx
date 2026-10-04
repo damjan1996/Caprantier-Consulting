@@ -27,7 +27,7 @@ export const metadata: Metadata = {
      Consulting" an, und ab etwa 65 Zeichen schneidet Google ab. */
   title: 'Über uns: Nico-Luca Carpantier',
   description:
-    'Carpantier Consulting ist eine B2B-Vertriebsagentur aus Köln. Wer die Anrufe führt, woher die Arbeitsweise stammt und warum es fünf Kunden im Monat sind.',
+    'Carpantier Consulting ist eine B2B-Vertriebsagentur aus Köln. Wer die Anrufe führt, woher die Arbeitsweise stammt und warum es fünf Kunden gleichzeitig sind.',
   openGraph: {
     ...OG_GRUNDWERTE,
     title: 'Über uns | Carpantier Consulting',

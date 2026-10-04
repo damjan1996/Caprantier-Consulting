@@ -197,7 +197,7 @@ export const glossarBegriffe: GlossarBegriff[] = [
     term: 'Conversion Rate',
     shortDescription: 'Umwandlungsrate im Vertriebsprozess',
     fullDescription:
-      'Die Conversion Rate misst, wie viele Leads oder Interessenten in die nächste Phase des Vertriebsprozesses oder zu Kunden konvertiert werden. Eine typische Lead-to-Customer Conversion Rate im B2B liegt bei 2-5%. Die Optimierung der Conversion Rate ist ein wichtiger Hebel für mehr Umsatz.',
+      'Die Conversion Rate misst, wie viele Leads oder Interessenten in die nächste Phase des Vertriebsprozesses oder zu Kunden konvertiert werden. Die Optimierung der Conversion Rate ist ein wichtiger Hebel für mehr Umsatz.',
     relatedTerms: ['Pipeline', 'KPIs', 'Forecast'],
     category: 'Metriken',
     blogLink: '/blog/vertriebssteuerung-kpis-pipeline',

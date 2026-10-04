@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { YouTubeVideo } from '@/lib/youtube'
+import { kiStimmeHinweisFuer } from '@/content/video-kennzeichnung'
 import { useReveal } from '@/components/seite/useReveal'
 import styles from './wissen.module.css'
 
@@ -37,6 +38,7 @@ function datum(iso: string): string {
 export default function VideosSection({ videos }: { videos: YouTubeVideo[] }) {
   const { ref, isIn } = useReveal<HTMLElement>()
   const neueste = videos.slice(0, ANZAHL)
+  const hinweis = kiStimmeHinweisFuer(neueste.map((video) => video.id))
 
   return (
     <section id="videos" ref={ref} className={styles.section} aria-labelledby="videos-title">
@@ -62,9 +64,19 @@ export default function VideosSection({ videos }: { videos: YouTubeVideo[] }) {
           data-fade-in=""
           style={{ '--rd': '0.16s' } as React.CSSProperties}
         >
-          Kurze Aufnahmen aus der laufenden Arbeit: was am Telefon trägt und was nicht. Abgespielt
-          wird erst nach Ihrer Zustimmung – vorher lädt YouTube nichts.
+          Kurze Videos dazu, was am Telefon trägt und was nicht. Abgespielt wird erst nach Ihrer
+          Zustimmung – vorher lädt YouTube nichts.
         </p>
+
+        {hinweis && (
+          <p
+            className={`${styles.lead} ${styles.reveal} ${isIn ? styles.revealIn : ''}`}
+            data-fade-in=""
+            style={{ '--rd': '0.2s' } as React.CSSProperties}
+          >
+            {hinweis}
+          </p>
+        )}
       </div>
 
       {neueste.length > 0 ? (

@@ -8,7 +8,6 @@ import HowSection from './_components/HowSection'
 import MobileCtaBar from './_components/MobileCtaBar'
 import ProblemScene from './_components/ProblemScene'
 import ProcessSection from './_components/ProcessSection'
-import ReferencesSection from './_components/ReferencesSection'
 import TrustedLogos from './_components/TrustedLogos'
 import { HOME_SECTIONS } from './_components/sections'
 import SectionRail from '@/components/seite/SectionRail'
@@ -26,7 +25,7 @@ import styles from './_components/home.module.css'
  * Der Aufbau folgt einer einzigen Frage in der Reihenfolge, in der ein
  * Entscheider sie stellt: Was bekomme ich (Einstieg) — warum brauche ich das
  * (Problem) — wie läuft das ab (Termin, Anruf, Prozess) — bin ich der Richtige
- * dafür (Fit) — hat das schon funktioniert (Referenzen) — mit wem rede ich
+ * dafür (Fit) — mit wem rede ich
  * (Nico) — was ist noch offen (FAQ) — und dann der Abschluss.
  *
  * Kein `dynamic()` für die einzelnen Abschnitte: Sie stehen alle im
@@ -66,7 +65,6 @@ export default function Home() {
       <CallScene />
       <ProcessSection />
       <FitSection />
-      <ReferencesSection />
       <FounderSection />
       <FaqSection />
       <ClosingCta />

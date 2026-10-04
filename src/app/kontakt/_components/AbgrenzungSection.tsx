@@ -20,16 +20,12 @@ import styles from './kontakt.module.css'
  * wiedererkennt, soll nicht erst tippen. Zugleich trennt er die dunkle Karte
  * vom dunklen Abschluss (Designleitfaden § 2.2).
  *
- * Keine Bühne: Die drei Blöcke gehören zum Vergleich nebeneinander.
+ * Keine Bühne: Die zwei Blöcke gehören zum Vergleich nebeneinander.
  */
 const BLOECKE = [
   {
     label: 'Vertriebs- und Agenturangebote',
     text: 'Werden nicht beantwortet. Werbung per E-Mail ohne vorherige ausdrückliche Einwilligung ist unzulässig – gegenüber uns genauso wie gegenüber Ihren Zielkunden.',
-  },
-  {
-    label: 'Bewerbungen',
-    text: 'Offene Stellen schreiben wir aus, sobald es welche gibt. Im selben Postfach wie Kundenanfragen geht eine Initiativbewerbung unter, und das ist niemandem geholfen.',
   },
   {
     label: 'Anfragen von Privatpersonen',

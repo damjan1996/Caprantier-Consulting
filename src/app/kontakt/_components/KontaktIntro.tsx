@@ -79,7 +79,7 @@ export default function KontaktIntro() {
         data-fade-in=""
         style={{ '--rd': '0.32s' } as React.CSSProperties}
       >
-        <span>Antwort innerhalb eines Werktags</span>
+        <span>Antwort in der Regel innerhalb eines Werktags</span>
         <span className={styles.dot} aria-hidden="true" />
         <span>Montag bis Freitag, 9 bis 18 Uhr</span>
         <span className={styles.dot} aria-hidden="true" />

@@ -42,7 +42,7 @@ const GOOD_FIT = [
   },
   {
     title: 'Geduld für drei Monate',
-    detail: 'Erste Termine in 14 Tagen, planbare Zahlen nach dem ersten Quartal.',
+    detail: 'Erste Terminvereinbarungen in der Regel innerhalb von 14 Tagen, ein aussagekräftiges Bild braucht Zeit.',
   },
 ]
 
@@ -64,7 +64,7 @@ const BAD_FIT = [
   {
     title: 'Ergebnis bis nächste Woche',
     detail:
-      'Setup braucht rund 14 Tage, planbare Zahlen drei Monate. Wer das nicht mitgeht, wird enttäuscht.',
+      'Setup braucht rund 14 Tage, aussagekräftige Zahlen brauchen Zeit. Wer das nicht mitgeht, wird enttäuscht.',
   },
 ]
 
@@ -204,7 +204,7 @@ export default function FitSection() {
               data-fade-in=""
               style={{ '--rd': '0.16s' } as React.CSSProperties}
             >
-              Wir nehmen maximal fünf Kunden pro Monat auf. Deshalb prüfen wir vorher genau – auf
+              Wir betreuen maximal fünf Kunden gleichzeitig. Deshalb prüfen wir vorher genau – auf
               beiden Seiten. Das spart Ihnen Geld und uns Gespräche, die nirgendwo hinführen.
             </p>
 

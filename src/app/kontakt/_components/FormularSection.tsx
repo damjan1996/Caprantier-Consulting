@@ -155,7 +155,7 @@ export default function FormularSection() {
             <span className={styles.erfolgMarke}>Nachricht ist raus</span>
             <h3 className={styles.erfolgTitel}>Angekommen.</h3>
             <p className={styles.erfolgText}>
-              Eine Antwort kommt innerhalb eines Werktags – auch dann, wenn wir absagen. Gespeichert
+              Eine Antwort kommt in der Regel innerhalb eines Werktags – auch dann, wenn wir absagen. Gespeichert
               wird die Nachricht dabei nicht; sie liegt nur als E-Mail in unserem Postfach.
             </p>
             <button

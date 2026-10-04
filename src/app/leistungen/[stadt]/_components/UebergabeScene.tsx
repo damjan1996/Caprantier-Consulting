@@ -50,12 +50,12 @@ const SCHRITTE = [
   {
     kind: 'Ihr Aufwand',
     Marke: Clock,
-    titel: '90 Minuten Setup, dann 30 pro Woche',
-    text: 'Zwei Gespräche zu Beginn, danach ein wöchentlicher Abgleich. Weniger geht nicht, weil die Nachsteuerung an Ihrem Wissen über Ihre Kunden hängt – nicht an unserem.',
+    titel: 'Zwei Gespräche zu Beginn, danach nach Absprache',
+    text: 'Zwei Gespräche zu Beginn, danach ein Abgleich in dem Rhythmus, den Sie wünschen. Ganz ohne Sie geht es nicht, weil die Nachsteuerung an Ihrem Wissen über Ihre Kunden hängt – nicht an unserem.',
     punkte: [
       'Kick-off: Zielgruppe und Angebot',
       'Freigabe des Gesprächsgerüsts',
-      'Wöchentlicher Abgleich, 30 Minuten',
+      'Abgleich nach Absprache',
       'Rückmeldung, was aus den Terminen wurde',
     ],
     halten: false,

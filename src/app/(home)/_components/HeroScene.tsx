@@ -14,8 +14,9 @@ import nicoPortrait from '@/../public/images/nico-portrait-new.jpg'
  * Einstieg der Startseite.
  *
  * Der Abschnitt bleibt über mehrere Bildschirmhöhen stehen, während sich die
- * Beispielwoche im Kalender füllt: Das Versprechen der Überschrift —
- * wöchentlich 3–8 Termine — wird einmal vorgeführt, statt nur behauptet.
+ * Beispielwoche im Kalender füllt: Der Erfahrungswert der Überschrift —
+ * 3–8 Termine pro Woche, keine Garantie — wird einmal an einer Beispielwoche
+ * vorgeführt, statt nur behauptet.
  *
  * Ab 1100px abwärts fällt die Klebe-Mechanik weg (siehe `home.module.css`).
  * Die Woche füllt sich dann, während die Grafik durchs Bild wandert; auf dem
@@ -47,8 +48,8 @@ const APPOINTMENTS: Appointment[] = [
   { day: 1, hour: 10, minute: 30, duration: 1, role: 'Inhaber', industry: 'Personalvermittlung' },
   /* Dienstagnachmittag statt Donnerstag: Die Webcam-Einblendung liegt über
      der unteren rechten Ecke des Kalenders. Ein Termin dort wäre halb
-     verdeckt — und verdeckt zählt nicht, der Kalender ist der Beleg für die
-     acht Termine in der Überschrift. */
+     verdeckt — und verdeckt zählt nicht, der Kalender soll alle acht
+     Beispieltermine zeigen. */
   { day: 1, hour: 14, minute: 30, duration: 1, role: 'Vertriebsleiter', industry: 'IT-Systemhaus' },
   { day: 0, hour: 14, minute: 0, duration: 1, role: 'Head of Sales', industry: 'SaaS-Anbieter' },
   { day: 4, hour: 11, minute: 0, duration: 1, role: 'Prokurist', industry: 'Logistik' },
@@ -62,14 +63,29 @@ const HOURS = ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:
 /**
  * Die drei Kennzahlen der Beweisleiste.
  *
- * Dieselben Werte, die der Abschnitt „Das erreichen unsere Kunden“ schon
- * ausweist. Sie stehen hier zusammen mit ihrer Schreibweise, damit die Zahl
- * beim Hochzählen nicht an zwei Stellen formatiert werden muss.
+ * Es sind Erfahrungs- und Zielwerte, keine Messwerte aus freigegebenen
+ * Kundenfällen, und die Beschriftung sagt das.
+ *
+ * Die Spannen zählen hoch und bleiben dann als Spanne stehen. Die Schreibweise
+ * steht zusammen mit der Zahl hier, damit sie beim Hochzählen nicht an zwei
+ * Stellen formatiert werden muss.
  */
 const PROOF = [
-  { target: 87, format: (n: number) => `${n}\u00A0%`, label: 'Entscheider-Quote in den gelieferten Gesprächen' },
-  { target: 14, format: (n: number) => `<\u00A0${n} Tage`, label: 'bis zum ersten Termin in Ihrem Kalender' },
-  { target: 35, format: (n: number) => `${n}\u00A0%`, label: 'Ø Abschlussquote auf gelieferte Termine' },
+  {
+    target: 8,
+    format: (n: number) => (n >= 8 ? '3–8' : String(Math.max(3, n))),
+    label: 'Termine pro Woche, Erfahrungswert',
+  },
+  {
+    target: 40,
+    format: (n: number) => (n >= 40 ? '20–40\u00A0%' : `${Math.max(20, n)}\u00A0%`),
+    label: 'Terminquote als Zielwert, keine Garantie',
+  },
+  {
+    target: 14,
+    format: (n: number) => `<\u00A0${n} Tage`,
+    label: 'in der Regel bis zum ersten Termin, keine Garantie',
+  },
 ]
 
 function blockGeometry(appointment: Appointment) {
@@ -156,7 +172,7 @@ export default function HeroScene() {
             </div>
 
             <h1 className={`${styles.heroTitle} ${styles.introIn}`} data-fade-in="" style={{ '--rd': '0.12s' } as React.CSSProperties}>
-              Wöchentlich <span className={styles.nowrap}>3–8</span> Termine mit Entscheidern aus Ihrer Zielgruppe
+              Erfahrungsgemäß <span className={styles.nowrap}>3–8</span> Termine pro Woche mit Entscheidern aus Ihrer Zielgruppe
             </h1>
 
             <p className={`${styles.heroText} ${styles.introIn}`} data-fade-in="" style={{ '--rd': '0.22s' } as React.CSSProperties}>
@@ -175,7 +191,7 @@ export default function HeroScene() {
             <div className={`${styles.heroMeta} ${styles.introIn}`} data-fade-in="" style={{ '--rd': '0.42s' } as React.CSSProperties}>
               <span>Unverbindlich</span>
               <span className={styles.dot} aria-hidden="true" />
-              <span>Nur 5 Kunden pro Monat</span>
+              <span>Maximal 5 Kunden gleichzeitig</span>
               <span className={styles.dot} aria-hidden="true" />
               <span>Erste Termine in 14 Tagen</span>
             </div>

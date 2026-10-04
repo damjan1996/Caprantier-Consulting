@@ -240,7 +240,6 @@
 .sceneCall,
 .sceneProcess,
 .sceneFit,
-.sceneRefs,
 .sceneFounder,
 .sceneFaq,
 .sceneClose {
@@ -1640,11 +1639,6 @@
   white-space: nowrap;
 }
 
-.procEffortFree {
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
 .procCardAccent .procEffort {
   color: #fff;
   background: rgba(255, 255, 255, 0.16);
@@ -1974,114 +1968,6 @@
 .segBtnNo[aria-pressed='true'] {
   background: var(--ink);
   color: #fff;
-}
-
-/* --------------------------------------------------------------- Referenzen */
-
-/* Zweite Reihe mit nur zwei Karten: mittig und auf Kartenbreite begrenzt,
-   sonst stehen zwei überbreite Kacheln unter drei normalen. */
-
-.refIconGlyph {
-  width: 20px;
-  height: 20px;
-}
-
-.refCard {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  padding: clamp(22px, 2.2vw, 32px);
-  border-radius: 24px;
-  background: #fff;
-  border: 1px solid var(--line);
-  transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
-}
-
-.refCard:hover {
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.25);
-  transform: translateY(-2px);
-}
-
-.refCardTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 32px;
-}
-
-.refIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-}
-
-.refBadge {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  background: var(--accent-soft);
-  padding: 4px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.refWho {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.refWho b {
-  font-size: clamp(18px, 1.6vw, 22px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-}
-
-.refWho span {
-  font-size: 13px;
-  color: var(--ink-4);
-}
-
-.refResult {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 18px 16px;
-  border-radius: 14px;
-  background: var(--surface);
-  flex: 1;
-  justify-content: center;
-}
-
-.refResultLabel {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-}
-
-.refResultValue {
-  font-size: clamp(20px, 1.9vw, 26px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-
-.refText {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  text-wrap: pretty;
 }
 
 /* ---------------------------------------------------------------- Über Nico */
@@ -2595,39 +2481,6 @@
 
 .fitMore a:hover {
   color: var(--accent);
-}
-
-/*
- * Ergebnisse: Kopf links, die fünf Fälle rechts.
- *
- * Nacheinander statt als Raster. Fünf Karten nebeneinander liest niemand
- * einzeln — man überfliegt sie und merkt sich keine. Einzeln bekommt jeder
- * Fall seine Branche, seine Zahl und seinen Satz für sich.
- *
- * Der Slot ist flacher als beim Fit-Abschnitt: Eine Referenzkarte trägt vier
- * kurze Blöcke, keine Liste mit vier Punkten.
- */
-.sceneRefs {
-  --scene-cols: minmax(0, 5fr) minmax(0, 7fr);
-  /* Gemessen: höchste Karte 394px (1600px Fenster, dort läuft die
-     Ergebniszeile am breitesten). */
-  --scene-slot: clamp(365px, 46vh, 420px);
-}
-
-/* Fünf Einträge — zwischen der vierteiligen Prozess- und der sechsteiligen
-   Telefon-Bühne. */
-.sceneRefs .sceneWrap {
-  --scene-height: 480vh;
-}
-
-/* Wie `procNote`: eine Fußnote unter der Einordnung, bewusst stiller. */
-.refNote {
-  margin: 0;
-  font-size: clamp(13.5px, 1vw, 15px);
-  line-height: 1.5;
-  color: var(--ink-3);
-  max-width: 34em;
-  text-wrap: pretty;
 }
 
 /*

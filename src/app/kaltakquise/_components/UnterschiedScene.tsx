@@ -50,40 +50,37 @@ export default function UnterschiedScene() {
   const activeRef = useRef(0)
 
   /*
-   * Die Belege des zweiten und dritten Eintrags nennen **Betriebstypen**, nicht
-   * einzelne Städte. Das ist Absicht: Eine Zeile wie „Essen: ab 7:00 Uhr“ wäre
-   * ein zweiter Textstand neben dem Ortstext und beim ersten Redigieren dort
-   * still falsch. Die Verallgemeinerung trägt über alle fünfzehn Märkte, die
-   * Uhrzeit steht auf der jeweiligen Seite.
+   * Die Belege nennen weder Städte noch Uhrzeiten je Stadt. „9 bis 11 Uhr“ ist
+   * ein Erfahrungswert, kein Messwert.
    */
   const eintraege = [
     {
       kind: 'Branchenstruktur',
       Marke: Building2,
       titel: 'Wer vor Ort sitzt, entscheidet den Einstieg',
-      text: 'Ein Anruf bei einem Zulieferer der Halbleiterfertigung beginnt anders als einer bei einem inhabergeführten Handelshaus. Der erste Satz muss zur Branche passen, sonst ist das Gespräch nach zehn Sekunden vorbei.',
+      text: 'Ein Anruf bei einem Zulieferer der Halbleiterfertigung beginnt anders als einer bei einem inhabergeführten Handelshaus. Der erste Satz muss zur Branche passen, sonst ist das Gespräch schnell vorbei.',
       beleg: leitbranchenBeleg(),
     },
     {
       kind: 'Zeitfenster',
       Marke: Clock,
-      titel: 'Dieselbe Uhrzeit trifft nicht überall',
-      text: 'Wer bundesweit im selben Block anruft, verliert in der Hälfte der Märkte die Verbindungsquote. Wann jemand ans Telefon geht, hängt am Betrieb – und der Betrieb hängt am Ort.',
+      titel: 'Die Uhrzeit entscheidet mit',
+      text: 'Nach unserer Erfahrung ist der Zeitraum zwischen 9 und 11 Uhr branchenübergreifend häufig gut geeignet. Das ist ein Erfahrungswert, keine statistisch belegte Regel: Wann jemand ans Telefon geht, hängt an der Rolle und am Betrieb.',
       beleg: [
-        { key: 'Technik', text: 'am ergiebigsten vor dem Arbeitsbeginn' },
-        { key: 'Finanzumfeld', text: 'am ergiebigsten nach Handelsschluss' },
-        { key: 'Junge Firmen', text: 'selten vor zehn Uhr morgens' },
+        { key: 'Erfahrung', text: '9 bis 11 Uhr, häufig gut geeignet' },
+        { key: 'Aber', text: 'keine statistisch belegte Regel' },
+        { key: 'Es hängt an', text: 'Rolle und Betrieb' },
       ],
     },
     {
       kind: 'Anlass',
       Marke: Search,
       titel: 'Ohne Anlass kein Gespräch',
-      text: 'Die Liste entsteht aus öffentlich zugänglichen Anlässen. Was vor Ort als Anlass taugt, ist von Markt zu Markt verschieden – und es steht vor dem Anruf fest, nicht danach im Bericht.',
+      text: 'Die Liste entsteht aus öffentlich zugänglichen Anlässen. Was als Anlass taugt, hängt an der Branche und am Angebot – und es steht vor dem Anruf fest, nicht danach im Bericht.',
       beleg: [
-        { key: 'Messestandort', text: 'der Messekalender, vorher wie nachher' },
-        { key: 'Zulieferkette', text: 'das Ende eines Rahmenvertrags' },
-        { key: 'Wachstumsmarkt', text: 'die aufgebrauchte Zeit der Geschäftsführung' },
+        { key: 'Messe', text: 'ein öffentlich angekündigter Auftritt' },
+        { key: 'Vertrag', text: 'das Ende eines Rahmenvertrags' },
+        { key: 'Wachstum', text: 'neue Stellen oder ein neuer Standort' },
       ],
     },
   ]

@@ -29,7 +29,7 @@ const BLOECKE = [
   },
   {
     label: 'Was das für Sie heißt',
-    text: 'Ein Start ist nicht zu jedem Zeitpunkt möglich. Ist der Monat voll, nennen wir einen Termin – statt anzufangen und Sie warten zu lassen.',
+    text: 'Ein Start ist nicht zu jedem Zeitpunkt möglich. Sind alle Plätze belegt, nennen wir einen Termin – statt anzufangen und Sie warten zu lassen.',
   },
   {
     label: 'Woran wir das prüfen',
@@ -62,7 +62,7 @@ export default function GrenzeSection() {
             data-fade-in=""
             style={{ '--rd': '0.16s' } as React.CSSProperties}
           >
-            Fünf Kunden im Monat. Das ist die Kapazität, nicht die Dringlichkeit.
+            Fünf Kunden gleichzeitig. Das ist die Kapazität, nicht die Dringlichkeit.
           </h2>
 
           <p

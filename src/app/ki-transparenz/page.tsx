@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Sparkles, Bot, ImageIcon, Scale, UserCheck } from 'lucide-react'
+import { Sparkles, Bot, ImageIcon, Mic, Scale, UserCheck } from 'lucide-react'
 import PageWrapper from '@/components/ui/PageWrapper'
 import PageHero from '@/components/ui/PageHero'
 import SectionCard from '@/components/ui/SectionCard'
@@ -66,6 +66,30 @@ export default function KiTransparenzPage() {
                   </ul>
                   <p className="text-sm">
                     Rechtsgrundlage der Kennzeichnung: Art. 50 Abs. 4 KI-VO.
+                  </p>
+                </div>
+              </SectionCard>
+            </FadeIn>
+
+            <FadeIn delay={0.12}>
+              <SectionCard
+                icon={Mic}
+                iconColor="text-pink-400"
+                iconBg="bg-pink-400/10"
+                title="KI-generierte Stimme in Videos"
+              >
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                    In sechs Kurzvideos des YouTube-Kanals, veröffentlicht vom 29.09. bis zum
+                    03.10.2026, ist die Stimme ein KI-Klon der Stimme von Nico Carpantier. Sie ist
+                    technisch synthetisch erzeugt.
+                  </p>
+                  <p>
+                    Der Hinweis steht unmittelbar am jeweiligen Video auf der{' '}
+                    <Link href="/wissen/videos" className="text-primary hover:underline">
+                      Videoseite
+                    </Link>
+                    . Rechtsgrundlage der Kennzeichnung: Art. 50 Abs. 4 KI-VO.
                   </p>
                 </div>
               </SectionCard>

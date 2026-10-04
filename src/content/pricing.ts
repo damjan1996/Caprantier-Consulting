@@ -45,11 +45,11 @@
  * Auftraggeber das Ergebnisrisiko, beim Terminmodell der Dienstleister. Wer
  * die Texte hier ändert, muss diese Richtung beibehalten.
  *
- * **Die Stunden bleiben als Möglichkeit bestehen, aber nicht als Aufhänger.**
- * Je nach Angebot kann ein fester Stundenumfang sinnvoller sein; das steht
- * deshalb in der `eignung` der laufenden Akquise als Alternative und nicht in
- * der Leistungsliste. Der erste Satz nennt immer die Terminzahl -- wer
- * überfliegt, soll das lesen, und wer vergleicht, findet die Option.
+ * **Stundenkontingente gibt es nicht.** Verkauft wird eine ergebnisorientierte
+ * Dienstleistung, kein Stundenmodell. Die
+ * frühere Alternative „je nach Angebot ein fester Stundenumfang“ ist aus der
+ * `eignung` der laufenden Akquise gestrichen. Der erste Satz nennt immer die
+ * Terminzahl.
  */
 
 /**
@@ -83,7 +83,7 @@ export const priceModels: PriceModel[] = [
     key: 'pilot',
     name: 'Pilotprojekt',
     eignung:
-      'Der Einstieg. Ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat, mit dem sich die Zielgruppe belastbar testen lässt.',
+      'Der Einstieg. Ein festes Kontingent von 10–15 qualifizierten Terminen über einen Monat, mit dem sich die Zielgruppe testen lässt.',
     preis: null,
     einheit: 'einmalig',
     leistungen: [
@@ -95,13 +95,13 @@ export const priceModels: PriceModel[] = [
       'Auftragsverarbeitungsvertrag nach Art. 28 DSGVO',
     ],
     grenze:
-      'Ein Monat zeigt, ob die Zielgruppe trägt – eine belastbare Quote entsteht erst ab etwa acht Wochen. Die Termine kommen dabei nicht gleichmäßig: Die erste Woche geht für Liste und Kalibrierung drauf.',
+      'Ein Monat zeigt, ob die Zielgruppe trägt. Nicht alle Termine finden innerhalb dieser 30 Tage statt, je nach Branche und Verfügbarkeit der Entscheider liegen manche einige Wochen später; das Ergebnis lässt sich deshalb oft erst nach etwa zwei Monaten vollständig bewerten. Die Termine kommen dabei nicht gleichmäßig: Die erste Woche geht für Liste und Kalibrierung drauf.',
   },
   {
     key: 'retainer',
     name: 'Laufende Akquise',
     eignung:
-      'Das Modell für kontinuierliche Neukundengewinnung, wenn das Angebot validiert ist. Vereinbart wird eine feste Terminzahl pro Monat – je nach Angebot stattdessen ein fester Stundenumfang.',
+      'Das Modell für kontinuierliche Neukundengewinnung, wenn das Angebot validiert ist. Vereinbart wird eine feste Terminzahl pro Monat.',
     preis: null,
     einheit: 'pro Monat',
     leistungen: [
@@ -109,7 +109,7 @@ export const priceModels: PriceModel[] = [
       'Laufende Pflege von Liste, Einstieg und Einwandbehandlung',
       'Qualifizierte Termine direkt in Ihren Kalender',
       'Wiedervorlagen mit Datum und Anlass',
-      'Wöchentlicher Abgleich, 30 Minuten',
+      'Regelmäßiger Abgleich, im Umfang mit Ihnen abgestimmt',
       'Vier Kennzahlen im Reporting statt zwanzig',
     ],
     grenze:

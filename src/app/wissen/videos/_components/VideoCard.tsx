@@ -1,6 +1,7 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Sparkles } from 'lucide-react'
 import type { YouTubeVideo } from '@/lib/youtube'
 import LiteYouTube from '@/components/ui/LiteYouTube'
+import { KI_STIMME_HINWEIS, hatKiStimme } from '@/content/video-kennzeichnung'
 
 /**
  * Kachel der Video-Übersicht.
@@ -44,6 +45,13 @@ export default function VideoCard({ video, headingLevel = 'h2', priority = false
         <Heading className="mt-2 text-lg font-bold leading-snug text-foreground md:text-xl">
           {video.title}
         </Heading>
+
+        {hatKiStimme(video.id) && (
+          <p className="mt-2 inline-flex items-center gap-1.5 self-start rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-foreground">
+            <Sparkles className="h-3 w-3 shrink-0" aria-hidden="true" />
+            {KI_STIMME_HINWEIS}
+          </p>
+        )}
 
         {video.description && (
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{video.description}</p>

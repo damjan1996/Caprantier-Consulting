@@ -28,19 +28,19 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: 'Wie viele Termine kann ich pro Woche erwarten?',
     answer:
-      'Im Durchschnitt liefern wir 3–8 qualifizierte Termine pro Woche, je nach Branche und Zielgruppe. Die genaue Zahl besprechen wir im Erstgespräch – sie hängt von Marktgröße und Komplexität Ihres Angebots ab.',
+      'Erfahrungsgemäß sind es 3–8 qualifizierte Termine pro Woche, je nach Branche und Zielgruppe. Das ist ein Erfahrungswert, keine Garantie. Die genaue Zahl besprechen wir im Erstgespräch – sie hängt von Marktgröße und Komplexität Ihres Angebots ab.',
   },
   {
     tag: 'Rechtliches',
     question: 'Ist telefonische Kaltakquise im B2B überhaupt erlaubt?',
     answer:
-      'Ja – unter klaren Bedingungen. Gegenüber Unternehmen ist ein Anruf ohne vorherige Einwilligung zulässig, wenn eine sogenannte mutmaßliche Einwilligung vorliegt: Das angerufene Unternehmen muss aufgrund seines Geschäfts ein sachliches Interesse an Ihrem Angebot haben können (§ 7 Abs. 2 Nr. 1 UWG). Genau deshalb recherchieren wir vor jedem Anruf und rufen nur Unternehmen an, für die Ihr Angebot fachlich passt. Datenschutzrechtlich stützen wir uns auf das berechtigte Interesse (Art. 6 Abs. 1 lit. f DSGVO), informieren transparent und dokumentieren jeden Widerspruch – wer nicht angerufen werden möchte, wird nicht mehr angerufen. Privatpersonen rufen wir grundsätzlich nicht an.',
+      'Ja – unter klaren Bedingungen. Gegenüber Unternehmen ist ein Anruf ohne vorherige Einwilligung zulässig, wenn eine sogenannte mutmaßliche Einwilligung vorliegt: Das angerufene Unternehmen muss aufgrund seines Geschäfts ein sachliches Interesse an Ihrem Angebot haben können (§ 7 Abs. 2 Nr. 1 UWG). Genau deshalb recherchieren wir vor jedem Anruf und rufen nur Unternehmen an, für die Ihr Angebot fachlich passt. Datenschutzrechtlich stützen wir uns auf das berechtigte Interesse (Art. 6 Abs. 1 lit. f DSGVO), informieren transparent und beachten jeden Widerspruch – wer nicht angerufen werden möchte, wird nicht mehr angerufen. Privatpersonen rufen wir grundsätzlich nicht an.',
     note: 'Allgemeine Einordnung, keine Rechtsberatung. Die ausführliche Fassung mit Quellen steht im Beitrag zu den rechtlichen Grundlagen.',
   },
   {
     question: 'Telefonieren Sie in unserem Namen?',
     answer:
-      'Ja. Wir treten als Teil Ihres Teams auf – wie ein eigener Mitarbeiter. Wir verwenden Ihren Firmennamen, Ihre E-Mail-Signatur und sprechen im Wir-Format. Ihre Gesprächspartner merken keinen Unterschied.',
+      'Ja. Wir treten als Teil Ihres Teams auf – wie ein eigener Mitarbeiter. Wir verwenden Ihren Firmennamen, Ihre E-Mail-Signatur und sprechen im Wir-Format.',
   },
   {
     question: 'Wie qualifizieren Sie die Leads?',
@@ -50,7 +50,7 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: 'Wie schnell kann ich mit den ersten Terminen rechnen?',
     answer:
-      'Nach Kick-off und Setup starten wir in der Regel innerhalb von 10–14 Tagen mit den ersten Gesprächen. Die ersten qualifizierten Termine stehen oft schon in der zweiten Woche in Ihrem Kalender.',
+      'Die ersten Anrufe beginnen üblicherweise innerhalb von 10–14 Tagen nach Erstgespräch und Kick-off. Ein qualifizierter Termin kann schon am ersten Telefonietag zustande kommen; erste Terminvereinbarungen innerhalb von 14 Tagen sind realistisch, eine Garantie ist das nicht.',
   },
   {
     question: 'Welche Branchen funktionieren besonders gut?',
@@ -68,7 +68,7 @@ export const homeFaqs: HomeFaq[] = [
       'Wir empfehlen mindestens drei Monate, damit der Prozess seine Wirkung entfaltet. Versteckte Kündigungsfristen gibt es nicht – wir überzeugen durch Ergebnisse, nicht durch Verträge.',
   },
   {
-    question: 'Warum nur fünf Kunden pro Monat?',
+    question: 'Warum nur maximal fünf Kunden gleichzeitig?',
     answer:
       'Qualität vor Quantität. Wir arbeiten bewusst mit maximal fünf Kunden gleichzeitig, um jedem die volle Aufmerksamkeit und Schlagzahl zu geben. Das ist der Grund, warum die Ergebnisse stimmen.',
   },
@@ -79,8 +79,6 @@ interface HomeProcessStep {
   phase: string
   /** Aufwand auf Kundenseite, als Kennzeichnung neben der Phase. */
   effort: string
-  /** Steht `effort` für „kein Eigenaufwand“? Dann wird er blau ausgezeichnet. */
-  effortIsFree?: boolean
   title: string
   description: string
   /** Balkenbreite des Aufwands in Prozent, 0–100. */
@@ -110,22 +108,20 @@ export const homeProcessSteps: HomeProcessStep[] = [
   },
   {
     phase: 'Woche 1–2',
-    effort: 'Kein Eigenaufwand',
-    effortIsFree: true,
+    effort: 'Sehr geringer Aufwand',
     title: 'Strategie & Setup',
     description:
       'Wir bauen Ihre Akquise-Infrastruktur: Recherche, Gesprächsleitfaden, Einwandbehandlung, CRM-Anbindung. Sie lesen nur gegen.',
-    effortShare: 0,
-    effortLabel: 'keiner',
+    effortShare: 8,
+    effortLabel: 'sehr gering',
   },
   {
     phase: 'Ab Woche 2',
-    effort: 'Kein Eigenaufwand',
-    effortIsFree: true,
-    title: 'Wöchentlich neue Termine',
+    effort: 'Sehr geringer Aufwand',
+    title: 'Laufend neue Termine',
     description:
-      'Ab jetzt telefonieren wir in Ihrem Namen. Qualifizierte Entscheider-Termine landen direkt in Ihrem Kalender – Woche für Woche.',
-    effortShare: 0,
-    effortLabel: 'keiner',
+      'Ab jetzt telefonieren wir in Ihrem Namen. Qualifizierte Entscheider-Termine landen direkt in Ihrem Kalender. Abstimmungen und Berichte richten sich nach Ihrem Wunsch.',
+    effortShare: 8,
+    effortLabel: 'sehr gering',
   },
 ]

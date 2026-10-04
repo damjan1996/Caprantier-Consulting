@@ -24,7 +24,6 @@ export const HOME_SECTIONS: RailSection[] = [
   { id: 'telefon', label: 'Am Telefon' },
   { id: 'prozess', label: 'Prozess' },
   { id: 'passt-das', label: 'Passt das?' },
-  { id: 'ergebnisse', label: 'Ergebnisse' },
   { id: 'gruender', label: 'Über Nico' },
   { id: 'fragen', label: 'Fragen' },
   { id: 'termin', label: 'Termin' },

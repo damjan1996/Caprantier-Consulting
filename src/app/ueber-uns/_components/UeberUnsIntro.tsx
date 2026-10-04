@@ -92,7 +92,7 @@ export default function UeberUnsIntro() {
             <span className={styles.dot} aria-hidden="true" />
             <span>Bundesweit am Telefon</span>
             <span className={styles.dot} aria-hidden="true" />
-            <span>Nur 5 Kunden pro Monat</span>
+            <span>Maximal 5 Kunden gleichzeitig</span>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ export default function UeberUnsIntro() {
           <div className={styles.portraitFrame}>
             <Image
               src={nicoOffice}
-              alt={`${businessInfo.owner.name}, Gründer und Geschäftsführer von ${businessInfo.name} (KI-generiertes Bild)`}
+              alt={`${businessInfo.owner.name}, Inhaber von ${businessInfo.name} (KI-generiertes Bild)`}
               fill
               sizes="(max-width: 1100px) 100vw, 480px"
               placeholder="blur"
@@ -119,7 +119,7 @@ export default function UeberUnsIntro() {
           <div className={styles.portraitPlate}>
             <span className={styles.portraitName}>
               <b>{businessInfo.owner.name}</b>
-              <span>Gründer &amp; Geschäftsführer</span>
+              <span>Inhaber</span>
             </span>
             <span className={styles.portraitPlace}>
               <span className={styles.liveDot} aria-hidden="true" />

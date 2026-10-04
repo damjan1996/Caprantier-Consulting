@@ -63,7 +63,7 @@ export default function RechtSection({ city }: { city: City }) {
             data-fade-in=""
             style={{ '--rd': '0.16s' } as React.CSSProperties}
           >
-            Der Anruf ist zulässig. Die Werbe-E-Mail daneben ist es nicht.
+            Der Anruf braucht einen Bezug. Die Werbe-E-Mail braucht eine Einwilligung.
           </h2>
 
           <p
@@ -97,10 +97,9 @@ export default function RechtSection({ city }: { city: City }) {
           data-fade-in=""
           style={{ '--rd': '0.38s' } as React.CSSProperties}
         >
-          Die Beweislast liegt beim werbenden Unternehmen. Deshalb trägt jeder Kontakt in{' '}
-          {city.name} ein dokumentiertes Auswahlkriterium, wir rufen mit korrekt übermittelter
-          Rufnummer an – eine manipulierte Vorwahl ist ein eigener Verstoß – und ein Widerspruch
-          wird sofort gesperrt statt gelöscht.
+          Die Beweislast liegt beim werbenden Unternehmen. Deshalb braucht jeder Anruf in{' '}
+          {city.name} einen nachvollziehbaren Bezug zum Angebot, und wir rufen mit korrekt
+          übermittelter Rufnummer an – eine manipulierte Vorwahl ist ein eigener Verstoß.
         </p>
 
         <div

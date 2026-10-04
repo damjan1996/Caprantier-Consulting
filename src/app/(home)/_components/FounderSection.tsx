@@ -98,7 +98,7 @@ export default function FounderSection() {
           <div className={`${styles.nicoFrame} ${isIn ? styles.nicoFrameIn : ''}`}>
             <Image
               src={nicoPortrait}
-              alt="Nico-Luca Carpantier, Gründer und Geschäftsführer von Carpantier Consulting (KI-generiertes Bild)"
+              alt="Nico-Luca Carpantier, Inhaber von Carpantier Consulting (KI-generiertes Bild)"
               fill
               sizes="(max-width: 1100px) 440px, 34vw"
               placeholder="blur"
@@ -113,7 +113,7 @@ export default function FounderSection() {
           <div className={styles.nicoBadge}>
             <span className={styles.nicoBadgeName}>
               <b>Nico-Luca Carpantier</b>
-              <span>Gründer &amp; Geschäftsführer</span>
+              <span>Inhaber</span>
             </span>
             <span className={styles.nicoBadgePlace}>
               <span className={styles.liveDot} aria-hidden="true" />
@@ -145,14 +145,14 @@ export default function FounderSection() {
             style={{ '--rd': '0.18s' } as React.CSSProperties}
           >
             <p className={styles.heroText} style={{ color: 'var(--ink)' }}>
-              Ich bin Nico-Luca Carpantier, Gründer und Geschäftsführer. Aus Köln heraus unterstütze
+              Ich bin Nico-Luca Carpantier, Inhaber von Carpantier Consulting. Aus Köln heraus unterstütze
               ich B2B-Dienstleister und inhabergeführte Unternehmen dabei, planbar neue Kunden zu
               gewinnen.
             </p>
             <p className={styles.body} style={{ marginTop: '14px', maxWidth: '34em' }}>
-              Kein anonymes Call-Center, kein austauschbares Skript. Bei uns telefoniert ein
-              eingespieltes Team, das Ihr Geschäft versteht und Ihre Sprache spricht. Wie ein eigener
-              Mitarbeiter – nur ohne Recruiting, Onboarding und Führung.
+              Kein anonymes Call-Center, kein austauschbares Skript. Bei uns telefoniert, wer Ihr
+              Geschäft verstanden hat und Ihre Sprache spricht. Wie ein eigener Mitarbeiter – nur
+              ohne Recruiting, Onboarding und Führung.
             </p>
           </div>
 
