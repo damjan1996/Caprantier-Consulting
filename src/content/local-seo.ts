@@ -10,22 +10,20 @@ export const businessInfo = {
 
   // Adresse
   //
-  // Die Postleitzahl stand hier bis zum 10.09.2026 auf 50735, während
-  // Impressum, Datenschutzerklärung und das Organisations-JSON-LD im Root-
-  // Layout durchgehend 50935 nannten. Maßgeblich ist die Angabe im Impressum:
-  // Sie ist die rechtlich verbindliche Anbieterkennzeichnung nach § 5 DDG.
-  // Am 05.10.2026 wurde 50935 ausdrücklich beibehalten.
+  // Die Postleitzahl ist 50735 (Köln-Riehl), am 05.10.2026 bestätigt. Bis zum
+  // 10.09.2026 stand sie hier so, während Impressum, Datenschutzerklärung und
+  // das Organisations-JSON-LD im Root-Layout 50935 nannten; seit dem 10.09.2026
+  // stand überall 50935. OpenStreetMap kennt in Köln nur eine Stammheimer
+  // Straße, und die liegt in 50735.
   //
-  // Ungeprüft: OpenStreetMap ordnet "Stammheimer Straße 123" der 50735
-  // (Köln-Riehl) zu und kennt in 50935 keine Stammheimer Straße. Eine falsche
-  // Postleitzahl im Impressum ist abmahnfähig, und Google verifiziert ein
-  // Business Profile nur für eine zustellbare Adresse. Nennt Google beim
-  // Anlegen des Profils eine andere Postleitzahl, nicht übernehmen, sondern
-  // zuerst klären. Siehe docs/aufgaben-nico.md, Punkt 1.
+  // Die Anschrift im Impressum ist die verbindliche Anbieterkennzeichnung nach
+  // § 5 DDG, eine falsche Postleitzahl ist abmahnfähig. Google verifiziert ein
+  // Business Profile nur für eine zustellbare Adresse. Siehe
+  // docs/aufgaben-nico.md, Punkt 1.
   address: {
     street: 'Stammheimer Straße 123',
     city: 'Köln',
-    postalCode: '50935',
+    postalCode: '50735',
     region: 'Nordrhein-Westfalen',
     regionCode: 'NW',
     country: 'Deutschland',
@@ -42,14 +40,13 @@ export const businessInfo = {
   // Web
   website: 'https://carpantier-consulting.de',
 
-  // Geo-Koordinaten: die Kölner Innenstadt, eine Näherung und nicht die
-  // Gebäudeposition (laut OpenStreetMap 50.9655 / 6.9769, 3,3 km entfernt).
-  // Sie wurden nicht angepasst, solange die Postleitzahl oben ungeprüft ist.
-  // Die Koordinaten der Städte, für die gearbeitet wird, stehen in cities.ts
-  // und gehören nicht in LocalBusiness.geo.
+  // Geo-Koordinaten des Firmensitzes (Gebäude laut OpenStreetMap, Way 82097112).
+  // Bis zum 05.10.2026 standen hier die Koordinaten der Kölner Innenstadt, 3,3 km
+  // vom Gebäude entfernt. Die Koordinaten der Städte, für die gearbeitet wird,
+  // stehen in cities.ts und gehören nicht in LocalBusiness.geo.
   geo: {
-    latitude: 50.9375,
-    longitude: 6.9603,
+    latitude: 50.9655,
+    longitude: 6.9769,
   },
 
   // Geschäftszeiten

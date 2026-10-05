@@ -53,27 +53,22 @@ nicht im Projekt vermerkt sind.
 
 ---
 
-## 1 · Postleitzahl prüfen — **vor allem anderen, 5 Minuten**
+## 1 · Postleitzahl — **erledigt am 05.10.2026**
 
 Im Projekt waren zwei Postleitzahlen im Umlauf: **50935** (Impressum,
 Datenschutzerklärung, Organisations-Markup) und **50735** (`local-seo.ts`).
 
-**Stand 05.10.2026:** **50935** bleibt, im Code und auf der Seite. OpenStreetMap
-ordnet „Stammheimer Straße 123, Köln“ dagegen der **50735** (Riehl/Nippes) zu und
-kennt in Köln nur eine Stammheimer Straße. Das ist ein Hinweis, kein Beleg. Die
-Koordinaten in `businessInfo.geo` sind die der Kölner Innenstadt, 3,3 km vom
-Gebäude laut OpenStreetMap (50,9655 / 6,9769), und bleiben bis zur Klärung so.
+**Bestätigt ist 50735** (Köln-Riehl). OpenStreetMap kennt in Köln nur eine
+Stammheimer Straße, und sie liegt in 50735. Geändert ist eine Stelle: `address`
+in `src/content/local-seo.ts`; Impressum, Datenschutz und alle strukturierten
+Daten lesen von dort. Die Koordinaten in `businessInfo.geo` zeigen jetzt auf das
+Gebäude (50,9655 / 6,9769) statt auf die Kölner Innenstadt, 3,3 km entfernt.
 
-Offen bleibt der Abgleich mit einem Dokument (Briefkopf, Gewerbeschein,
-Schreiben vom Finanzamt). Zwei Gründe, warum er nicht liegen bleiben sollte:
-
-- Eine falsche Adresse im Impressum ist abmahnfähig.
-- Google lehnt die Verifizierung eines Business Profiles ab, wenn die Adresse
-  nicht zustellbar ist — Punkt 2 hängt also daran. Nennt Google beim Anlegen
-  des Profils eine andere Postleitzahl, nicht übernehmen, sondern zuerst klären.
-
-Zu ändern wäre danach nur eine Stelle: `address` in `src/content/local-seo.ts`.
-Impressum, Datenschutz und alle strukturierten Daten lesen von dort.
+Zwei Gründe, warum das vor allem anderen kam: Eine falsche Adresse im Impressum
+ist abmahnfähig, und Google lehnt die Verifizierung eines Business Profiles ab,
+wenn die Adresse nicht zustellbar ist — Punkt 2 hängt daran. Nennt Google beim
+Anlegen des Profils eine andere Postleitzahl, nicht übernehmen, sondern zuerst
+klären.
 
 ---
 

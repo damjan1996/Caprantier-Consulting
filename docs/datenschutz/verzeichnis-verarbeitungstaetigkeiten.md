@@ -1,6 +1,6 @@
 # Verzeichnis der Verarbeitungstätigkeiten
 
-**Verantwortlicher:** Nico-Luca Carpantier, Stammheimer Straße 123, 50935 Köln
+**Verantwortlicher:** Nico-Luca Carpantier, Stammheimer Straße 123, 50735 Köln
 **Kontakt:** nico@carpantier-consulting.de, +49 157 3818 6221
 **Stand:** _(Datum der letzten Prüfung eintragen)_
 **Datenschutzbeauftragter:** nicht bestellt — der Schwellenwert des § 38 Abs. 1 BDSG
