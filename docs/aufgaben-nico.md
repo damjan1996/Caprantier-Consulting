@@ -55,26 +55,25 @@ nicht im Projekt vermerkt sind.
 
 ## 1 · Postleitzahl prüfen — **vor allem anderen, 5 Minuten**
 
-Im Projekt waren zwei Postleitzahlen im Umlauf:
+Im Projekt waren zwei Postleitzahlen im Umlauf: **50935** (Impressum,
+Datenschutzerklärung, Organisations-Markup) und **50735** (`local-seo.ts`).
 
-| Ort im Code | Angabe |
-|---|---|
-| Impressum, Datenschutzerklärung, Organisations-Markup | **50935** Köln |
-| `local-seo.ts`, Chatbot-Auskunft | **50735** Köln |
+**Stand 05.10.2026:** **50935** bleibt, im Code und auf der Seite. OpenStreetMap
+ordnet „Stammheimer Straße 123, Köln“ dagegen der **50735** (Riehl/Nippes) zu und
+kennt in Köln nur eine Stammheimer Straße. Das ist ein Hinweis, kein Beleg. Die
+Koordinaten in `businessInfo.geo` sind die der Kölner Innenstadt, 3,3 km vom
+Gebäude laut OpenStreetMap (50,9655 / 6,9769), und bleiben bis zur Klärung so.
 
-Vereinheitlicht wurde auf **50935**, weil das die Angabe im Impressum ist und
-damit die rechtlich verbindliche Anbieterkennzeichnung nach § 5 DDG.
-
-**Ungeprüft bleibt, ob das stimmt.** Bitte gegen einen Briefkopf oder den
-Gewerbeschein abgleichen und Bescheid geben. Zwei Gründe, warum das zuerst
-kommt:
+Offen bleibt der Abgleich mit einem Dokument (Briefkopf, Gewerbeschein,
+Schreiben vom Finanzamt). Zwei Gründe, warum er nicht liegen bleiben sollte:
 
 - Eine falsche Adresse im Impressum ist abmahnfähig.
 - Google lehnt die Verifizierung eines Business Profiles ab, wenn die Adresse
-  nicht zustellbar ist — Punkt 2 hängt also daran.
+  nicht zustellbar ist — Punkt 2 hängt also daran. Nennt Google beim Anlegen
+  des Profils eine andere Postleitzahl, nicht übernehmen, sondern zuerst klären.
 
-Zu ändern ist danach nur eine Stelle: `address` in `src/content/local-seo.ts`.
-Impressum, Datenschutz, Chatbot und alle strukturierten Daten lesen von dort.
+Zu ändern wäre danach nur eine Stelle: `address` in `src/content/local-seo.ts`.
+Impressum, Datenschutz und alle strukturierten Daten lesen von dort.
 
 ---
 
@@ -112,8 +111,8 @@ genannt — im Wesentlichen deshalb.
    dieser Schritt zuerst und alles andere danach.
 9. **Beschreibung:** Der fertige Text steht in
    `docs/GOOGLE_BUSINESS_SETUP.md`, Schritt 3. Kopieren, einfügen.
-10. **Leistungen anlegen:** B2B-Kaltakquise, Leadgenerierung,
-    Terminvereinbarung, Vertriebsoutsourcing, Vertriebsberatung.
+10. **Leistungen anlegen:** B2B-Kaltakquise, Terminvereinbarung,
+    Leadgenerierung, Vertriebsoutsourcing (Texte: Schritt 5 der Anleitung).
 
 ### Danach, laufend
 
@@ -121,8 +120,9 @@ genannt — im Wesentlichen deshalb.
   — im Business Profile sind sie ein Richtlinienrisiko, und die
   KI-Transparenzseite deckt sie dort nicht ab.
 - **Beiträge:** ein bis zwei pro Monat reichen. Zeigt Aktivität.
-- **Fragen und Antworten:** Drei Fragen selbst stellen und beantworten, Vorlage
-  in `docs/GOOGLE_BUSINESS_SETUP.md`, Schritt 8.
+- **Fragen und Antworten:** nicht selbst vorbefüllen; echte Fragen sachlich
+  beantworten, nur mit Aussagen, die auch auf der Website stehen
+  (`docs/GOOGLE_BUSINESS_SETUP.md`, Schritt 8).
 
 Nach der Freischaltung: Status in `src/content/local-seo.ts` auf `verified` setzen
 und `profileUrl` eintragen. `pnpm run check:directories` prüft das.

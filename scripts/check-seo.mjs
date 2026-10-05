@@ -125,6 +125,24 @@ function knotenMitTyp(knoten, typ) {
   return null
 }
 
+/**
+ * Alle Knoten eines Typs finden.
+ *
+ * Eine Stadtseite trägt mehrere LocalBusiness-Knoten: den des Root-Layouts und
+ * den der Seite selbst. `knotenMitTyp` liefert nur den ersten, und das ist der
+ * des Layouts -- die Koordinaten der Stadtseite blieben deshalb ungeprueft.
+ */
+function alleKnotenMitTyp(knoten, typ, gesammelt = []) {
+  if (Array.isArray(knoten)) {
+    for (const k of knoten) alleKnotenMitTyp(k, typ, gesammelt)
+  } else if (knoten && typeof knoten === 'object') {
+    const eigen = knoten['@type']
+    if (eigen === typ || (Array.isArray(eigen) && eigen.includes(typ))) gesammelt.push(knoten)
+    for (const wert of Object.values(knoten)) alleKnotenMitTyp(wert, typ, gesammelt)
+  }
+  return gesammelt
+}
+
 let geprueft = 0
 let mitLocalBusiness = 0
 
@@ -223,24 +241,26 @@ for (const eintrag of eintraege) {
 
   // --- Geo auf den Stadtseiten ---
   if (/^\/(leistungen|kaltakquise)\/[a-z-]+$/.test(pfad)) {
-    const lb = knotenMitTyp(bloecke, 'LocalBusiness')
-    if (!lb) {
+    const knoten = alleKnotenMitTyp(bloecke, 'LocalBusiness')
+    if (knoten.length === 0) {
       beanstandungen.push(`${pfad}: kein LocalBusiness-JSON-LD auf einer Stadtseite.`)
     } else {
       mitLocalBusiness++
-      const plz = lb.address?.postalCode
-      if (plz && String(plz) !== String(businessInfo.address.postalCode)) {
-        beanstandungen.push(
-          `${pfad}: LocalBusiness nennt PLZ ${plz}, businessInfo sagt ${businessInfo.address.postalCode}.`
-        )
-      }
-      const lat = lb.geo?.latitude
-      const lon = lb.geo?.longitude
-      if (lat != null && Number(lat) !== Number(businessInfo.geo.latitude)) {
-        beanstandungen.push(`${pfad}: Breitengrad ${lat} weicht von businessInfo (${businessInfo.geo.latitude}) ab.`)
-      }
-      if (lon != null && Number(lon) !== Number(businessInfo.geo.longitude)) {
-        beanstandungen.push(`${pfad}: Längengrad ${lon} weicht von businessInfo (${businessInfo.geo.longitude}) ab.`)
+      for (const lb of knoten) {
+        const plz = lb.address?.postalCode
+        if (plz && String(plz) !== String(businessInfo.address.postalCode)) {
+          beanstandungen.push(
+            `${pfad}: LocalBusiness nennt PLZ ${plz}, businessInfo sagt ${businessInfo.address.postalCode}.`
+          )
+        }
+        const lat = lb.geo?.latitude
+        const lon = lb.geo?.longitude
+        if (lat != null && Number(lat) !== Number(businessInfo.geo.latitude)) {
+          beanstandungen.push(`${pfad}: Breitengrad ${lat} weicht von businessInfo (${businessInfo.geo.latitude}) ab.`)
+        }
+        if (lon != null && Number(lon) !== Number(businessInfo.geo.longitude)) {
+          beanstandungen.push(`${pfad}: Längengrad ${lon} weicht von businessInfo (${businessInfo.geo.longitude}) ab.`)
+        }
       }
     }
   }

@@ -14,11 +14,14 @@ export const businessInfo = {
   // Impressum, Datenschutzerklärung und das Organisations-JSON-LD im Root-
   // Layout durchgehend 50935 nannten. Maßgeblich ist die Angabe im Impressum:
   // Sie ist die rechtlich verbindliche Anbieterkennzeichnung nach § 5 DDG.
+  // Am 05.10.2026 wurde 50935 ausdrücklich beibehalten.
   //
-  // ACHTUNG, ungeprüft: Ob "Stammheimer Straße 123" tatsächlich in 50935 liegt,
-  // ist nicht verifiziert. Eine falsche Postleitzahl im Impressum ist
-  // abmahnfähig, und Google lehnt die Verifizierung eines Business Profiles ab,
-  // wenn die Adresse nicht zustellbar ist. Siehe docs/aufgaben-nico.md, Punkt 1.
+  // Ungeprüft: OpenStreetMap ordnet "Stammheimer Straße 123" der 50735
+  // (Köln-Riehl) zu und kennt in 50935 keine Stammheimer Straße. Eine falsche
+  // Postleitzahl im Impressum ist abmahnfähig, und Google verifiziert ein
+  // Business Profile nur für eine zustellbare Adresse. Nennt Google beim
+  // Anlegen des Profils eine andere Postleitzahl, nicht übernehmen, sondern
+  // zuerst klären. Siehe docs/aufgaben-nico.md, Punkt 1.
   address: {
     street: 'Stammheimer Straße 123',
     city: 'Köln',
@@ -39,7 +42,11 @@ export const businessInfo = {
   // Web
   website: 'https://carpantier-consulting.de',
 
-  // Geo-Koordinaten
+  // Geo-Koordinaten: die Kölner Innenstadt, eine Näherung und nicht die
+  // Gebäudeposition (laut OpenStreetMap 50.9655 / 6.9769, 3,3 km entfernt).
+  // Sie wurden nicht angepasst, solange die Postleitzahl oben ungeprüft ist.
+  // Die Koordinaten der Städte, für die gearbeitet wird, stehen in cities.ts
+  // und gehören nicht in LocalBusiness.geo.
   geo: {
     latitude: 50.9375,
     longitude: 6.9603,

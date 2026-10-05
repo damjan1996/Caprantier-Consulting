@@ -1,220 +1,113 @@
-# Google Business Profile - Einrichtungsanleitung
+# Google Unternehmensprofil – Einrichtungsanleitung
 
-## Warum Google Business Profile?
+**Stand:** 05.10.2026 · gilt zusammen mit `docs/aufgaben-nico.md`, Punkt 1 und 2
 
-Ein vollständig optimiertes Google Business Profile ist essenziell für lokales SEO. Es ermöglicht:
-- Erscheinen in Google Maps
-- Rich Snippets in lokalen Suchergebnissen
-- Bewertungen und Rezensionen
-- Direkte Kontaktmöglichkeiten
+## Warum
 
----
+Ohne verifiziertes Profil kennt der lokale Index die Firma nicht: Google zeigt bei „Carpantier Consulting“ eine namensähnliche Firma aus einer anderen Stadt, und der Kölner Wettbewerber mit den meisten Bewertungen gewinnt das lokale Ergebnis. Ein Profil bringt außerdem Maps-Einträge, direkte Kontaktwege und Bewertungen.
 
-## Schritt 1: Google Business Profil erstellen
+## Regel für alle Texte im Profil
 
-1. Gehe zu [business.google.com](https://business.google.com)
-2. Klicke auf "Jetzt verwalten"
-3. Gib den Firmennamen ein: **Carpantier Consulting**
-4. Wähle die Kategorie: **Unternehmensberater** oder **Vertriebsberatung**
+Im Profil steht nur, was auch auf der Website steht. Das heißt:
 
-### Wichtige Kategorien für Carpantier:
-- **Hauptkategorie:** Unternehmensberater (Business consultant)
-- **Zusätzliche Kategorien:**
-  - Vertriebsberater (Sales consultant)
-  - Marketingberater (Marketing consultant)
-  - B2B-Dienstleister
+- keine Garantien und keine Ergebnisversprechen („Termine in der ersten Woche“, „5 Termine pro Woche“, Quoten),
+- keine Qualifizierungsmethode und kein Berichtswesen als Zusage,
+- kein Team, keine Teamfotos, keine „Wir sind X Mitarbeiter“-Angaben,
+- keine Preise,
+- keine Schlagwortlisten in Namen oder Beschreibung. Das ist ein Richtlinienverstoß.
+
+Weicht ein Satz davon ab, gilt die Website, nicht dieses Dokument.
 
 ---
 
-## Schritt 2: Standort & Kontakt
+## Schritt 1: Profil erstellen
 
-### Adresse
-Falls Sie ein Büro haben:
-- Vollständige Adresse eingeben
-- Auf der Karte exakt markieren
+1. [business.google.com](https://business.google.com) öffnen, mit dem Google-Konto der Firma anmelden (nicht privat).
+2. Firmenname **exakt** `Carpantier Consulting`. Keine Zusätze wie „Vertriebsagentur Köln“.
+3. Hauptkategorie **Unternehmensberater**. Zusatzkategorien, soweit angeboten: **Marketingberater**, **Telemarketing-Dienst**.
 
-Falls Sie ohne festes Büro arbeiten (Service-Area Business):
-- "Ja, ich bediene Kunden vor Ort" wählen
-- Einzugsgebiete definieren: Köln, Düsseldorf, Bonn, etc.
-- Adresse kann verborgen werden
+## Schritt 2: Standort und Kontakt
 
-### Kontaktdaten
-- **Telefon:** Geschäftstelefon
-- **Website:** https://carpantier-consulting.de
-- **Öffnungszeiten:** Mo-Fr 09:00-18:00 (oder nach Vereinbarung)
+- Als Anbieter ohne Publikumsverkehr: „Ich liefere Waren und Dienstleistungen an meine Kunden“ wählen und die Adresse **ausblenden** (Service Area Business). Die Adresse wird trotzdem für die Verifizierung gebraucht.
+- Die Adresse wird aus dem Impressum der Website übernommen, nicht aus einer anderen Quelle abgetippt. Schlägt Google eine abweichende Postleitzahl vor, nicht übernehmen, sondern erst klären (`docs/aufgaben-nico.md`, Punkt 1).
+- Einzugsgebiet: Köln, Düsseldorf, Bonn, Leverkusen, Bergisch Gladbach. Nicht ganz Deutschland eintragen, ein zu großes Gebiet schwächt die lokale Relevanz.
+- Telefon und Website **Zeichen für Zeichen** wie im Impressum. Abweichende Schreibweisen sind der häufigste Grund dafür, dass lokale Signale nicht zusammenfinden.
+- Öffnungszeiten: Mo–Fr 09:00–18:00.
+- Verifizierung per Postkarte oder Telefon. Die Postkarte braucht bis zu 14 Tage. Bis dahin ist das Profil nicht sichtbar, deshalb zuerst.
 
----
+## Schritt 3: Beschreibung
 
-## Schritt 3: Beschreibung optimieren
+Maximal 750 Zeichen. Dieser Text ist fertig (rund 560 Zeichen):
 
-### Kurzbeschreibung (max. 750 Zeichen)
 ```
-Carpantier Consulting ist Ihre spezialisierte Vertriebsagentur für B2B-Unternehmen in Köln und NRW. Wir übernehmen Ihre Kaltakquise, Leadgenerierung und Terminvereinbarung – Sie konzentrieren sich auf Ihr Kerngeschäft.
-
-✓ BANT-qualifizierte Termine mit echten Entscheidern
-✓ Transparentes Reporting & volle Kontrolle
-✓ Keine langfristigen Verträge
-
-Branchen: IT-Dienstleister, Agenturen, Beratungsunternehmen, Softwareunternehmen
-
-Jetzt kostenloses Strategiegespräch vereinbaren!
+Carpantier Consulting ist eine B2B-Vertriebsagentur aus Köln. Schwerpunkt ist die telefonische Neukundenakquise: Entscheider werden im Namen des Auftraggebers angesprochen und Termine vereinbart. Der Abschluss bleibt beim Auftraggeber. Zielgruppen sind unter anderem Personaldienstleister und IT-Systemhäuser. Die Zusammenarbeit läuft deutschlandweit; Erstgespräch und Kick-off führt der Inhaber persönlich. Das Erstgespräch ist kostenlos und unverbindlich.
 ```
 
-### Keywords einbauen:
-- Vertrieb Köln
-- Vertriebsagentur
-- Vertrieb auslagern
-- B2B Akquise
-- Leadgenerierung
-- Kaltakquise
+## Schritt 4: Fotos und Medien
 
----
+- **Logo** quadratisch, 720 × 720 px.
+- **Titelbild** erst, wenn ein echtes Foto vorliegt. Keine KI-generierten Personenbilder: Im Profil sind sie ein Richtlinienrisiko, und die Seite `/ki-transparenz` deckt sie dort nicht ab. Wer Bilder ersetzt, führt `/ki-transparenz` nach.
+- Keine Teamfotos.
 
-## Schritt 4: Fotos & Medien
+## Schritt 5: Leistungen
 
-### Empfohlene Bilder:
-1. **Logo** (quadratisch, 720x720px)
-2. **Titelbild** (1080x608px) - Teamfoto oder Büro
-3. **Profilbilder** der Teammitglieder
-4. **Arbeitsumgebung** - Besprechungsraum, Arbeitsplatz
+| Leistung | Beschreibung |
+|---|---|
+| B2B-Kaltakquise | Telefonische Ansprache von Entscheidern im Namen des Auftraggebers. |
+| Terminvereinbarung | Termine mit Entscheidern, die grundsätzliches Interesse und erkennbaren Bedarf haben. |
+| Leadgenerierung | Gewinnung von Gesprächskontakten für B2B-Unternehmen. |
+| Vertriebsoutsourcing | Auslagerung der Neukundenakquise. Der Abschluss bleibt beim Auftraggeber. |
 
-### Optimierung:
-- Dateinamen mit Keywords: `vertriebsagentur-koeln-carpantier.jpg`
-- Alt-Text: "Carpantier Consulting - Vertriebsagentur Köln"
-- Regelmäßig neue Bilder hochladen (zeigt Aktivität)
+## Schritt 6: Bewertungen
 
----
+1. Nach einem abgeschlossenen Projekt **persönlich** um eine Bewertung bitten, nicht per Serienmail.
+2. Kurzlink im Profil unter „Mehr Rezensionen erhalten“ kopieren und im Gespräch weitergeben.
+3. Nur echte Bewertungen. Keine Gegenleistung anbieten und nicht nur ausgewählte Kunden bitten: Beides verstößt gegen die Richtlinien.
+4. Auf jede Bewertung antworten, sachlich, bei Kritik lösungsorientiert.
 
-## Schritt 5: Dienstleistungen hinzufügen
+Bewertungs-Markup (`aggregateRating`, `Review`) gibt es auf der Website erst mit echten, freigegebenen und sichtbaren Kundenstimmen (`pnpm check:compliance`).
 
-Füge alle Services mit Beschreibungen hinzu:
+## Schritt 7: Beiträge
 
-### B2B Kaltakquise
-> Professionelle telefonische Ansprache von Entscheidern in Ihren Zielunternehmen.
+Optional. Ein bis zwei im Monat reichen. Inhalt: ein neuer Fachbeitrag mit Link, zum Beispiel „Was kostet es, den Vertrieb auszulagern?“, ohne zusätzliche Aussagen.
 
-### Leadgenerierung
-> Systematische Gewinnung qualifizierter Leads für Ihr Vertriebsteam.
+## Schritt 8: Fragen und Antworten
 
-### Terminvereinbarung
-> BANT-qualifizierte Termine mit echten Entscheidern direkt in Ihrem Kalender.
+Nicht selbst vorbefüllen. Echte Fragen sachlich beantworten, nur mit Aussagen, die auch auf der Website stehen (zum Beispiel: erste Terminvereinbarungen in der Regel innerhalb von 14 Tagen nach dem Erstgespräch, keine Garantie). Gibt es den Bereich im Profil nicht mehr, entfällt der Schritt.
 
-### Vertriebsoutsourcing
-> Vollständige Auslagerung Ihrer Neukundenakquise an erfahrene Profis.
+## Schritt 9: Messung
 
-### Vertriebsberatung
-> Strategische Beratung zur Optimierung Ihrer Vertriebsprozesse.
+Link zur Website mit Kampagnenparametern:
 
----
-
-## Schritt 6: Bewertungen generieren
-
-### Strategie für erste Bewertungen:
-1. **Zufriedene Kunden ansprechen** - Persönlich um eine Bewertung bitten
-2. **Nach erfolgreichen Projekten** - Timing ist wichtig
-3. **Bewertungs-Link erstellen** und per E-Mail/WhatsApp teilen
-
-### Bewertungs-Link erstellen:
-1. In Google Business einloggen
-2. "Mehr Rezensionen erhalten" klicken
-3. Kurz-URL kopieren und teilen
-
-### Auf Bewertungen antworten:
-- **Immer antworten** - zeigt Engagement
-- Bei positiven: Danken und Bezug nehmen
-- Bei negativen: Professionell, lösungsorientiert
-
----
-
-## Schritt 7: Google Posts nutzen
-
-### Regelmäßig posten (1-2x pro Woche):
-
-**Post-Typen:**
-1. **Angebote** - "Kostenloses Strategiegespräch"
-2. **Updates** - Erfolgsgeschichten, neue Blog-Artikel
-3. **Events** - Webinare, Workshops
-4. **Produkte/Services** - Dienstleistungen vorstellen
-
-### Beispiel-Post:
-```
-🎯 5 qualifizierte Termine in einer Woche?
-
-Das ist keine Ausnahme - das ist unser Standard für B2B-Dienstleister.
-
-Erfahren Sie in einem kostenlosen Strategiegespräch, wie wir auch Ihren Kalender mit qualifizierten Entscheider-Terminen füllen.
-
-👉 Jetzt Termin buchen
-```
-
----
-
-## Schritt 8: Q&A optimieren
-
-### Eigene Fragen stellen und beantworten:
-
-**Frage:** Was kostet Vertriebsoutsourcing bei Carpantier?
-**Antwort:** Die Kosten variieren je nach Umfang. Wir bieten verschiedene Modelle von Pay-per-Lead bis Monatspauschale. In einem kostenlosen Strategiegespräch erstellen wir ein individuelles Angebot.
-
-**Frage:** Für welche Branchen arbeitet Carpantier?
-**Antwort:** Wir sind spezialisiert auf B2B-Dienstleister: IT-Unternehmen, Agenturen, Beratungen und Softwareunternehmen in Köln und ganz Deutschland.
-
-**Frage:** Wie schnell kann ich mit ersten Terminen rechnen?
-**Antwort:** Nach dem Onboarding starten wir innerhalb weniger Tage. Die ersten qualifizierten Termine können Sie oft schon in der ersten Woche erwarten.
-
----
-
-## Schritt 9: Tracking einrichten
-
-### UTM-Parameter für Website-Link:
 ```
 https://carpantier-consulting.de?utm_source=google&utm_medium=gmb&utm_campaign=local
 ```
 
-### In Google Analytics tracken:
-- Klicks vom GMB-Profil
-- Anrufe
-- Wegbeschreibungen
+Die Zahlen in GA4 sind eine Untergrenze: gezählt wird nur, wer dem Analyse-Banner zugestimmt hat. Aufrufe, Klicks und Anrufe zeigt das Profil selbst, ohne Einwilligung.
+
+## Schritt 10: Einheitliche Angaben und Verzeichnisse
+
+**Name, Anschrift, Telefon überall identisch**, wie im Impressum: Profil, Website, Verzeichnisse, Social-Media-Profile. Die Quelle im Code ist `businessInfo` in `src/content/local-seo.ts`.
+
+Reihenfolge der Einträge (Liste und Status in `local-seo.ts`, Gründe in `docs/aufgaben-nico.md`, Punkt 8):
+
+1. Google Unternehmensprofil
+2. Bing Places (Import aus dem Google-Profil)
+3. Sortlist
+4. ProvenExpert, sobald es echte Bewertungen gibt
+5. LinkedIn, Das Telefonbuch, Gelbe Seiten
+6. OMR Reviews, wlw, XING
+
+Nach jeder Anmeldung `status`, `submittedAt` und `profileUrl` in `local-seo.ts` pflegen; `pnpm run check:directories` prüft das.
 
 ---
 
-## Schritt 10: Lokale Konsistenz (NAP)
+## Monatlich
 
-### NAP = Name, Address, Phone
-
-**Überall identisch verwenden:**
-- Google Business Profile
-- Website (Footer, Impressum, Kontakt)
-- Branchenverzeichnisse
-- Social Media Profile
-
-### Wichtige Verzeichnisse für Einträge:
-1. Gelbe Seiten (gelbeseiten.de)
-2. Das Örtliche (dasoertliche.de)
-3. Yelp Deutschland
-4. 11880.com
-5. GoLocal
-6. Unternehmensregister IHK
-
----
-
-## Checkliste für monatliche Optimierung
-
-- [ ] Neue Fotos hochladen
-- [ ] 2-4 Google Posts veröffentlichen
 - [ ] Auf neue Bewertungen antworten
-- [ ] Q&A-Bereich pflegen
-- [ ] Statistiken prüfen (Aufrufe, Klicks, Anrufe)
-- [ ] Informationen aktuell halten
-- [ ] Neue Dienstleistungen hinzufügen
+- [ ] Fragen im Profil beantworten, soweit vorhanden
+- [ ] Statistik prüfen (Aufrufe, Klicks, Anrufe)
+- [ ] Angaben mit dem Impressum vergleichen (Adresse, Telefon, Öffnungszeiten)
+- [ ] Leistungen und Beschreibung mit der Website abgleichen
 
----
-
-## Support
-
-Bei Fragen zur Einrichtung:
-- Google Business Hilfe: support.google.com/business
-- Google Community Forum
-
----
-
-*Erstellt für Carpantier Consulting - SEO-Optimierung 2026*
+Hilfe: [support.google.com/business](https://support.google.com/business)

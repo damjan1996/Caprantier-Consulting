@@ -56,7 +56,9 @@ export async function generateStaticParams() {
  *
  * `LocalBusiness` trägt bewusst die Kölner Anschrift und nicht die der Stadt:
  * Es gibt kein Büro vor Ort, und ein vorgetäuschter Standort wäre eine
- * irreführende Angabe. `areaServed` sagt, wofür gearbeitet wird.
+ * irreführende Angabe. `areaServed` sagt, wofür gearbeitet wird. Das gilt auch
+ * für `geo`: Bis zum 05.10.2026 stand hier die Stadtmitte der jeweiligen Stadt,
+ * also die Kölner Anschrift mit den Koordinaten von Hamburg.
  */
 function generateCityJsonLd(city: City) {
   const url = `${businessInfo.website}/leistungen/${city.slug}`
@@ -88,8 +90,8 @@ function generateCityJsonLd(city: City) {
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: city.coordinates.latitude,
-          longitude: city.coordinates.longitude,
+          latitude: businessInfo.geo.latitude,
+          longitude: businessInfo.geo.longitude,
         },
         areaServed: {
           '@type': 'City',
